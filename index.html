@@ -724,6 +724,118 @@ font-weight:900;
 color:var(--blue)
 }
 
+/* =========================================================
+TRADE CENTER
+========================================================= */
+
+.trade-center-tabs{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
+padding:6px;
+margin-bottom:16px;
+background:var(--card2);
+border:1px solid var(--border);
+border-radius:12px
+}
+
+.trade-center-tab{
+border:1px solid transparent;
+background:transparent;
+color:var(--muted);
+padding:11px 12px;
+border-radius:9px;
+font-weight:900
+}
+
+.trade-center-tab:hover{
+background:var(--card);
+color:var(--text)
+}
+
+.trade-center-tab.active{
+background:var(--blue);
+border-color:var(--blue);
+color:#fff
+}
+
+.trade-center-panel{
+display:none
+}
+
+.trade-center-panel.active{
+display:block
+}
+
+.trade-center-panel-title{
+margin-bottom:12px
+}
+
+.trade-center-panel-title h3{
+margin:0
+}
+
+.trade-center-divider{
+height:1px;
+background:var(--border);
+margin:18px 0
+}
+
+.trade-finder-grid{
+display:grid;
+grid-template-columns:1.1fr 1.4fr .7fr auto;
+gap:10px;
+align-items:end
+}
+
+.trade-finder-grid .primary{
+margin-top:0;
+height:40px;
+white-space:nowrap
+}
+
+.trade-finder-results{
+margin-top:12px
+}
+
+.trade-finder-result{
+background:var(--card2);
+border:1px solid var(--border);
+border-radius:11px;
+padding:13px;
+margin-top:9px
+}
+
+.trade-finder-result-head{
+display:flex;
+justify-content:space-between;
+gap:12px;
+align-items:flex-start
+}
+
+.trade-finder-result-head strong:last-child{
+color:var(--blue);
+white-space:nowrap
+}
+
+@media(max-width:900px){
+.trade-finder-grid{
+grid-template-columns:1fr 1fr
+}
+}
+
+@media(max-width:700px){
+.trade-center-tabs{
+grid-template-columns:1fr
+}
+}
+
+@media(max-width:550px){
+.trade-finder-grid{
+grid-template-columns:1fr
+}
+}
+
 @media(max-width:900px){
 
 .trade-grid{
@@ -1138,21 +1250,71 @@ Disconnect Sleeper
 </section>
 
 <!-- =========================================================
-SLEEPER TRADE CALCULATOR
-MOVED ABOVE THE LEAGUE DASHBOARD
+TRADE CENTER
 ========================================================= -->
 
-<section class="card">
+<section class="card" id="trade-center-card">
 
 <div class="settings-title">
 
 <span>
-Sleeper Trade Calculator
+Trade Center
 </span>
 
 <span class="sub">
-Uses the selected Sleeper rosters
+Sleeper trade tools
 </span>
+
+</div>
+
+<div
+class="trade-center-tabs"
+role="tablist"
+aria-label="Trade Center tools"
+>
+
+<button
+class="trade-center-tab"
+data-trade-center-tab="calculator"
+type="button"
+>
+Trade Calculator
+</button>
+
+<button
+class="trade-center-tab active"
+data-trade-center-tab="finder"
+type="button"
+>
+League Trade Finder
+</button>
+
+<button
+class="trade-center-tab"
+data-trade-center-tab="opportunities"
+type="button"
+>
+Trade Opportunities
+</button>
+
+</div>
+
+<!-- TRADE CALCULATOR TAB -->
+
+<div
+class="trade-center-panel"
+data-trade-center-panel="calculator"
+>
+
+<div class="trade-center-panel-title">
+
+<h3>
+Sleeper Trade Calculator
+</h3>
+
+<div class="sub">
+Uses the selected Sleeper rosters
+</div>
 
 </div>
 
@@ -1310,7 +1472,7 @@ Adjusted
 
 </div>
 
-<section class="card">
+<div class="trade-center-divider"></div>
 
 <h3>
 Suggested Trade Ideas
@@ -1324,7 +1486,117 @@ TradeForge suggests additional assets from the lower-value team's own roster to 
 Build a Sleeper trade to see suggested trade ideas.
 </div>
 
-</section>
+</div>
+
+<!-- LEAGUE TRADE FINDER TAB -->
+
+<div
+class="trade-center-panel active"
+data-trade-center-panel="finder"
+>
+
+<div class="trade-center-panel-title">
+
+<h3>
+League Trade Finder
+</h3>
+
+<div class="sub">
+Pick a player on another team and let TradeForge search your roster for the closest packages.
+</div>
+
+</div>
+
+<div class="trade-finder-grid">
+
+<label class="setting">
+
+<span>
+TRADE WITH
+</span>
+
+<select id="trade-finder-team"></select>
+
+</label>
+
+<label class="setting">
+
+<span>
+TARGET PLAYER
+</span>
+
+<select id="trade-finder-target"></select>
+
+</label>
+
+<label class="setting">
+
+<span>
+MAX PLAYERS TO SEND
+</span>
+
+<select id="trade-finder-max">
+
+<option value="1">
+1 Player
+</option>
+
+<option value="2">
+2 Players
+</option>
+
+<option value="3" selected>
+3 Players
+</option>
+
+</select>
+
+</label>
+
+<button
+id="trade-finder-run"
+class="primary"
+>
+Find Trades
+</button>
+
+</div>
+
+<div class="sub" style="margin-top:10px">
+TradeForge searches your valued Sleeper roster for 1-for-1, 2-for-1, and 3-for-1 packages and ranks them by adjusted trade value.
+</div>
+
+<div
+id="trade-finder-results"
+class="trade-finder-results"
+>
+Choose a target player and click Find Trades.
+</div>
+
+</div>
+
+<!-- TRADE OPPORTUNITIES TAB -->
+
+<div
+class="trade-center-panel"
+data-trade-center-panel="opportunities"
+>
+
+<div class="trade-center-panel-title">
+
+<h3>
+Trade Opportunities
+</h3>
+
+<div class="sub">
+TradeForge compares your positional weaknesses against the strongest position groups around your league.
+</div>
+
+</div>
+
+<div id="dashboard-trade-opportunities"></div>
+
+</div>
 
 </section>
 
@@ -1473,16 +1745,6 @@ class="sub"
 id="dashboard-position-grid"
 class="dashboard-position-grid"
 ></div>
-
-<h3 class="dashboard-section-title">
-Trade Opportunities
-</h3>
-
-<div class="sub">
-TradeForge compares your positional weaknesses against the strongest position groups around your league.
-</div>
-
-<div id="dashboard-trade-opportunities"></div>
 
 <h3 class="dashboard-section-title">
 League Power Rankings
@@ -8033,6 +8295,737 @@ ${bestPos.pos} • ${ordinal(bestPos.rank)}
 }
 
 /* =========================================================
+LEAGUE TRADE FINDER
+========================================================= */
+
+function leagueTradeFinderRosters(){
+
+const mine=
+getMyRosterId();
+
+return syncedRosters
+.filter(
+r=>
+String(r.roster_id)
+!==
+String(mine)
+);
+
+}
+
+function leagueTradeFinderPlayerKey(p){
+
+return String(
+p?.sleeperId
+||
+norm(p?.name)
+);
+
+}
+
+function populateLeagueTradeFinderTargets(
+rosterId,
+preserve=true
+){
+
+const select=
+$("trade-finder-target");
+
+if(!select){
+return;
+}
+
+const current=
+preserve
+?
+select.value
+:
+"";
+
+const players=
+rosterAssets(rosterId);
+
+select.innerHTML=
+players.length
+?
+players
+.map(
+p=>
+`<option value="${esc(leagueTradeFinderPlayerKey(p))}">${esc(p.name)} • ${esc(p.pos)} • ${sleeperValue(p).toFixed(1)}</option>`
+)
+.join("")
+:
+'<option value="">No valued players available</option>';
+
+if(
+preserve
+&&
+players.some(
+p=>
+leagueTradeFinderPlayerKey(p)===current
+)
+){
+select.value=current;
+}
+
+}
+
+function buildLeagueTradeFinder(){
+
+const select=
+$("trade-finder-team");
+
+const targetSelect=
+$("trade-finder-target");
+
+if(
+!syncedLeague
+||
+!select
+||
+!targetSelect
+){
+return;
+}
+
+const current=
+select.value;
+
+const rosters=
+leagueTradeFinderRosters();
+
+select.innerHTML=
+rosters.length
+?
+rosters
+.map(
+r=>
+`<option value="${r.roster_id}">${esc(rosterName(r))}</option>`
+)
+.join("")
+:
+'<option value="">No other teams available</option>';
+
+let chosen=
+current;
+
+if(
+!rosters.some(
+r=>
+String(r.roster_id)
+===
+String(chosen)
+)
+){
+
+chosen=
+rosters[0]
+?
+String(rosters[0].roster_id)
+:
+"";
+
+}
+
+if(chosen){
+select.value=chosen;
+}
+
+populateLeagueTradeFinderTargets(
+chosen,
+true
+);
+
+}
+
+function leagueTradeFinderGrade(d){
+
+return d<=5
+?
+"A+"
+:
+d<=10
+?
+"A"
+:
+d<=20
+?
+"B"
+:
+d<=30
+?
+"C"
+:
+d<=40
+?
+"D"
+:
+"F";
+
+}
+
+function findLeagueTrades(){
+
+const box=
+$("trade-finder-results");
+
+const teamSelect=
+$("trade-finder-team");
+
+const targetSelect=
+$("trade-finder-target");
+
+const maxSelect=
+$("trade-finder-max");
+
+if(
+!box
+||
+!teamSelect
+||
+!targetSelect
+||
+!maxSelect
+){
+return;
+}
+
+if(
+!syncedLeague
+){
+
+box.textContent=
+"Sync a Sleeper league first.";
+
+return;
+
+}
+
+const mineId=
+getMyRosterId();
+
+const otherId=
+teamSelect.value;
+
+const targetKey=
+targetSelect.value;
+
+const maxPlayers=
+Math.max(
+1,
+Math.min(
+3,
+Number(
+maxSelect.value
+)
+||
+3
+)
+);
+
+const mineRoster=
+syncedRosters
+.find(
+r=>
+String(r.roster_id)
+===
+String(mineId)
+);
+
+const otherRoster=
+syncedRosters
+.find(
+r=>
+String(r.roster_id)
+===
+String(otherId)
+);
+
+const target=
+rosterAssets(otherId)
+.find(
+p=>
+leagueTradeFinderPlayerKey(p)
+===
+targetKey
+);
+
+if(
+!mineRoster
+||
+!otherRoster
+||
+!target
+){
+
+box.textContent=
+"Choose a team and a valued target player first.";
+
+return;
+
+}
+
+const myPlayers=
+rosterAssets(mineId);
+
+if(
+!myPlayers.length
+){
+
+box.textContent=
+"TradeForge could not find any valued players on your roster.";
+
+return;
+
+}
+
+box.textContent=
+"Searching your roster for the best TradeForge packages...";
+
+const ideas=[];
+
+const evaluate=
+packagePlayers=>{
+
+const values=
+withSleeperModes(
+()=>
+adjustedTradeValues(
+packagePlayers,
+[target]
+)
+);
+
+const difference=
+diff(
+values.a,
+values.b
+);
+
+ideas.push({
+
+packagePlayers,
+values,
+difference,
+grade:
+leagueTradeFinderGrade(
+difference
+)
+
+});
+
+};
+
+for(
+let i=0;
+i<myPlayers.length;
+i++
+){
+
+evaluate([
+myPlayers[i]
+]);
+
+}
+
+if(
+maxPlayers>=2
+){
+
+for(
+let i=0;
+i<myPlayers.length;
+i++
+){
+
+for(
+let j=i+1;
+j<myPlayers.length;
+j++
+){
+
+evaluate([
+myPlayers[i],
+myPlayers[j]
+]);
+
+}
+
+}
+
+}
+
+if(
+maxPlayers>=3
+){
+
+for(
+let i=0;
+i<myPlayers.length;
+i++
+){
+
+for(
+let j=i+1;
+j<myPlayers.length;
+j++
+){
+
+for(
+let k=j+1;
+k<myPlayers.length;
+k++
+){
+
+evaluate([
+myPlayers[i],
+myPlayers[j],
+myPlayers[k]
+]);
+
+}
+
+}
+
+}
+
+}
+
+ideas.sort(
+(a,b)=>{
+
+const af=
+a.difference<=5;
+
+const bf=
+b.difference<=5;
+
+if(
+af!==bf
+){
+return af?-1:1;
+}
+
+if(
+af
+&&
+bf
+&&
+a.packagePlayers.length
+!==
+b.packagePlayers.length
+){
+return a.packagePlayers.length-b.packagePlayers.length;
+}
+
+if(
+Math.abs(
+a.difference-b.difference
+)
+>.05
+){
+return a.difference-b.difference;
+}
+
+return a.packagePlayers.length-b.packagePlayers.length;
+
+}
+);
+
+const finalIdeas=[];
+const seen=
+new Set();
+
+for(
+const idea of ideas
+){
+
+const signature=
+idea.packagePlayers
+.map(
+leagueTradeFinderPlayerKey
+)
+.sort()
+.join("|");
+
+if(
+seen.has(signature)
+){
+continue;
+}
+
+seen.add(signature);
+
+finalIdeas.push(idea);
+
+if(
+finalIdeas.length>=5
+){
+break;
+}
+
+}
+
+if(
+!finalIdeas.length
+){
+
+box.textContent=
+"TradeForge could not find a package for this target.";
+
+return;
+
+}
+
+const myName=
+rosterName(
+mineRoster
+);
+
+const otherName=
+rosterName(
+otherRoster
+);
+
+box.innerHTML=
+finalIdeas
+.map(
+(idea,index)=>{
+
+const packageNames=
+idea.packagePlayers
+.map(
+p=>
+esc(p.name)
+)
+.join(" + ");
+
+const baseSend=
+idea.packagePlayers
+.reduce(
+(t,p)=>
+t+sleeperValue(p),
+0
+);
+
+const targetBase=
+sleeperValue(
+target
+);
+
+const label=
+idea.difference<=5
+?
+"FAIR MATCH"
+:
+idea.difference<=10
+?
+"VERY CLOSE"
+:
+"BEST AVAILABLE";
+
+return`
+<div class="trade-finder-result">
+
+<div class="trade-finder-result-head">
+
+<strong>
+Option ${index+1} — ${label}
+</strong>
+
+<strong>
+Grade ${idea.grade}
+</strong>
+
+</div>
+
+<div style="margin-top:9px">
+
+<strong>
+${esc(myName)} sends:
+</strong>
+
+${packageNames}
+
+</div>
+
+<div style="margin-top:5px">
+
+<strong>
+${esc(otherName)} sends:
+</strong>
+
+${esc(target.name)}
+
+</div>
+
+<div class="sub" style="margin-top:9px">
+Base value: ${baseSend.toFixed(1)} for ${targetBase.toFixed(1)} • Adjusted value: ${idea.values.a.toFixed(1)} for ${idea.values.b.toFixed(1)} • ${idea.difference.toFixed(1)}% difference
+</div>
+
+</div>
+`;
+
+}
+)
+.join("");
+
+}
+
+const tradeFinderTeam=
+$("trade-finder-team");
+
+const tradeFinderTarget=
+$("trade-finder-target");
+
+const tradeFinderMax=
+$("trade-finder-max");
+
+const tradeFinderRun=
+$("trade-finder-run");
+
+const tradeFinderResults=
+$("trade-finder-results");
+
+if(tradeFinderTeam){
+
+tradeFinderTeam.onchange=
+()=>{
+
+populateLeagueTradeFinderTargets(
+tradeFinderTeam.value,
+false
+);
+
+if(tradeFinderResults){
+tradeFinderResults.textContent=
+"Choose a target player and click Find Trades.";
+}
+
+};
+
+}
+
+if(tradeFinderTarget){
+
+tradeFinderTarget.onchange=
+()=>{
+
+if(tradeFinderResults){
+tradeFinderResults.textContent=
+"Click Find Trades to search your roster for packages.";
+}
+
+};
+
+}
+
+if(tradeFinderMax){
+
+tradeFinderMax.onchange=
+()=>{
+
+if(tradeFinderResults){
+tradeFinderResults.textContent=
+"Click Find Trades to search your roster for packages.";
+}
+
+};
+
+}
+
+if(tradeFinderRun){
+tradeFinderRun.onclick=
+findLeagueTrades;
+}
+
+/* =========================================================
+TRADE CENTER TABS
+========================================================= */
+
+function setTradeCenterTab(tab){
+
+const valid=[
+"calculator",
+"finder",
+"opportunities"
+];
+
+if(
+!valid.includes(tab)
+){
+tab="finder";
+}
+
+document
+.querySelectorAll(
+"[data-trade-center-tab]"
+)
+.forEach(
+button=>{
+
+const active=
+button.dataset.tradeCenterTab
+===
+tab;
+
+button.classList.toggle(
+"active",
+active
+);
+
+button.setAttribute(
+"aria-selected",
+active
+?
+"true"
+:
+"false"
+);
+
+}
+);
+
+document
+.querySelectorAll(
+"[data-trade-center-panel]"
+)
+.forEach(
+panel=>{
+
+panel.classList.toggle(
+"active",
+panel.dataset.tradeCenterPanel
+===
+tab
+);
+
+}
+);
+
+}
+
+document
+.querySelectorAll(
+"[data-trade-center-tab]"
+)
+.forEach(
+button=>{
+
+button.onclick=
+()=>
+setTradeCenterTab(
+button.dataset.tradeCenterTab
+);
+
+}
+);
+
+setTradeCenterTab(
+"finder"
+);
+
+/* =========================================================
 BUILD LEAGUE PAGE
 ========================================================= */
 
@@ -8055,6 +9048,8 @@ const mine=
 getMyRosterId();
 
 renderLeagueDashboard();
+
+buildLeagueTradeFinder();
 
 renderLeagueRoster(
 mine,
