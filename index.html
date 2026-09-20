@@ -557,6 +557,7 @@ font-size:10px;
 color:var(--muted)
 }
 
+
 /* =========================================================
 TRADEFORGE LEAGUE DASHBOARD
 ========================================================= */
@@ -724,6 +725,60 @@ font-weight:900;
 color:var(--blue)
 }
 
+
+/* =========================================================
+LEAGUE TRADE FINDER
+========================================================= */
+
+.trade-finder-grid{
+display:grid;
+grid-template-columns:1.1fr 1.4fr .7fr auto;
+gap:10px;
+align-items:end
+}
+
+.trade-finder-grid .primary{
+margin-top:0;
+height:40px;
+white-space:nowrap
+}
+
+.trade-finder-results{
+margin-top:12px
+}
+
+.trade-finder-result{
+background:var(--card2);
+border:1px solid var(--border);
+border-radius:11px;
+padding:13px;
+margin-top:9px
+}
+
+.trade-finder-result-head{
+display:flex;
+justify-content:space-between;
+gap:12px;
+align-items:flex-start
+}
+
+.trade-finder-result-head strong:last-child{
+color:var(--blue);
+white-space:nowrap
+}
+
+@media(max-width:900px){
+.trade-finder-grid{
+grid-template-columns:1fr 1fr
+}
+}
+
+@media(max-width:550px){
+.trade-finder-grid{
+grid-template-columns:1fr
+}
+}
+
 @media(max-width:900px){
 
 .trade-grid{
@@ -774,6 +829,7 @@ margin-top:12px
 </style>
 </head>
 
+
 <body>
 
 <div class="wrap">
@@ -792,6 +848,7 @@ TF
 </div>
 
 </div>
+
 
 <div class="header-buttons">
 
@@ -814,6 +871,7 @@ League Dashboard
 </div>
 
 </header>
+
 
 <main id="analyzer-page">
 
@@ -877,6 +935,7 @@ Baseline mode
 
 </section>
 
+
 <section class="card">
 
 <h3 style="margin-top:0">
@@ -908,6 +967,7 @@ Top Players
 </div>
 
 </section>
+
 
 <div class="trade-grid">
 
@@ -948,6 +1008,7 @@ class="results"
 
 </section>
 
+
 <section class="result-card">
 
 <div class="meter">
@@ -984,6 +1045,7 @@ Clear Trade
 </div>
 
 </section>
+
 
 <section class="team">
 
@@ -1024,6 +1086,7 @@ class="results"
 
 </div>
 
+
 <section class="card">
 
 <h3>
@@ -1042,6 +1105,8 @@ Build a trade to see suggested trade ideas.
 
 </main>
 
+
+
 <!-- =========================================================
 LEAGUE PAGE
 ========================================================= -->
@@ -1050,6 +1115,7 @@ LEAGUE PAGE
 id="league-page"
 class="page-hidden"
 >
+
 
 <section class="card">
 
@@ -1079,6 +1145,8 @@ class="close"
 
 </section>
 
+
+
 <section
 id="sleeper-bar"
 class="card"
@@ -1103,6 +1171,7 @@ class="sub"
 
 </div>
 
+
 <div class="sync-grid">
 
 <label class="setting">
@@ -1114,6 +1183,7 @@ TEAM A ROSTER
 <select id="sleeper-roster-a"></select>
 
 </label>
+
 
 <label class="setting">
 
@@ -1127,6 +1197,7 @@ TEAM B ROSTER
 
 </div>
 
+
 <button
 id="disconnect"
 class="close"
@@ -1136,6 +1207,8 @@ Disconnect Sleeper
 </button>
 
 </section>
+
+
 
 <!-- =========================================================
 SLEEPER TRADE CALCULATOR
@@ -1156,7 +1229,9 @@ Uses the selected Sleeper rosters
 
 </div>
 
+
 <div class="trade-grid">
+
 
 <section class="team">
 
@@ -1211,6 +1286,8 @@ Adjusted
 
 </section>
 
+
+
 <section class="result-card">
 
 <div class="meter">
@@ -1218,6 +1295,7 @@ Adjusted
 <div id="sleeper-marker"></div>
 
 </div>
+
 
 <div id="sleeper-verdict">
 
@@ -1228,6 +1306,7 @@ Add players from the synced rosters.
 </small>
 
 </div>
+
 
 <div class="grade">
 
@@ -1240,6 +1319,7 @@ Trade Grade
 </strong>
 
 </div>
+
 
 <div class="actions">
 
@@ -1254,6 +1334,8 @@ Clear Trade
 </div>
 
 </section>
+
+
 
 <section class="team">
 
@@ -1277,6 +1359,7 @@ class="results"
 </div>
 
 <div id="sleeper-team-b"></div>
+
 
 <div class="totals">
 
@@ -1310,6 +1393,8 @@ Adjusted
 
 </div>
 
+
+
 <section class="card">
 
 <h3>
@@ -1327,6 +1412,8 @@ Build a Sleeper trade to see suggested trade ideas.
 </section>
 
 </section>
+
+
 
 <!-- =========================================================
 TRADEFORGE LEAGUE DASHBOARD
@@ -1359,7 +1446,9 @@ class="sub"
 
 </div>
 
+
 <div class="dashboard-kpis">
+
 
 <div class="dashboard-kpi">
 
@@ -1377,6 +1466,7 @@ LEAGUE POWER RANK
 
 </div>
 
+
 <div class="dashboard-kpi">
 
 <small>
@@ -1393,6 +1483,7 @@ STARTING LINEUP
 
 </div>
 
+
 <div class="dashboard-kpi">
 
 <small>
@@ -1408,6 +1499,7 @@ ROSTER DEPTH
 </span>
 
 </div>
+
 
 <div class="dashboard-kpi">
 
@@ -1427,11 +1519,14 @@ FUTURE VALUE
 
 </div>
 
+
 <h3 class="dashboard-section-title">
 Your Team Analysis
 </h3>
 
+
 <div class="dashboard-analysis">
+
 
 <div class="dashboard-analysis-card">
 
@@ -1449,6 +1544,7 @@ class="sub"
 ></div>
 
 </div>
+
 
 <div class="dashboard-analysis-card">
 
@@ -1469,10 +1565,12 @@ class="sub"
 
 </div>
 
+
 <div
 id="dashboard-position-grid"
 class="dashboard-position-grid"
 ></div>
+
 
 <h3 class="dashboard-section-title">
 Trade Opportunities
@@ -1484,9 +1582,11 @@ TradeForge compares your positional weaknesses against the strongest position gr
 
 <div id="dashboard-trade-opportunities"></div>
 
+
 <h3 class="dashboard-section-title">
 League Power Rankings
 </h3>
+
 
 <div class="power-table-wrap">
 
@@ -1532,6 +1632,64 @@ Strongest Position
 
 </section>
 
+
+
+<!-- =========================================================
+LEAGUE TRADE FINDER
+========================================================= -->
+
+<section class="card" id="league-trade-finder-card">
+
+<div class="settings-title">
+
+<span>
+League Trade Finder
+</span>
+
+<span class="sub">
+Find packages from your roster for a player on another team
+</span>
+
+</div>
+
+<div class="trade-finder-grid">
+
+<label class="setting">
+<span>TRADE WITH</span>
+<select id="trade-finder-team"></select>
+</label>
+
+<label class="setting">
+<span>TARGET PLAYER</span>
+<select id="trade-finder-target"></select>
+</label>
+
+<label class="setting">
+<span>MAX PLAYERS TO SEND</span>
+<select id="trade-finder-max">
+<option value="1">1 Player</option>
+<option value="2">2 Players</option>
+<option value="3" selected>3 Players</option>
+</select>
+</label>
+
+<button id="trade-finder-run" class="primary">
+Find Trades
+</button>
+
+</div>
+
+<div class="sub" style="margin-top:10px">
+TradeForge searches your valued Sleeper roster for 1-for-1, 2-for-1, and 3-for-1 packages and ranks them by adjusted trade value.
+</div>
+
+<div id="trade-finder-results" class="trade-finder-results">
+Choose a target player and click Find Trades.
+</div>
+
+</section>
+
+
 <!-- =========================================================
 ROSTER OVERVIEW
 ========================================================= -->
@@ -1539,6 +1697,7 @@ ROSTER OVERVIEW
 <section class="card">
 
 <div class="league-view-grid">
+
 
 <section class="roster-card">
 
@@ -1570,6 +1729,8 @@ class="roster-list"
 
 </section>
 
+
+
 <section class="roster-card">
 
 <label class="setting">
@@ -1581,6 +1742,7 @@ COMPARE WITH TEAM
 <select id="opponent-select"></select>
 
 </label>
+
 
 <div
 class="roster-title"
@@ -1606,6 +1768,7 @@ class="roster-meta"
 
 </div>
 
+
 <div
 id="opponent-team-roster"
 class="roster-list"
@@ -1620,6 +1783,8 @@ class="roster-list"
 </main>
 
 </div>
+
+
 
 <!-- =========================================================
 SLEEPER MODAL
@@ -1655,11 +1820,13 @@ class="close"
 
 </div>
 
+
 <input
 id="username"
 placeholder="Sleeper username"
 autocomplete="off"
 >
+
 
 <button
 id="find-leagues"
@@ -1667,6 +1834,7 @@ class="primary"
 >
 Find My Leagues
 </button>
+
 
 <div id="league-wrap">
 
@@ -1681,6 +1849,7 @@ Sync Selected League
 
 </div>
 
+
 <div
 id="status"
 aria-live="polite"
@@ -1689,6 +1858,8 @@ aria-live="polite"
 </div>
 
 </div>
+
+
 
 <script>
 
@@ -1724,6 +1895,7 @@ let sleeperIdByName={};
 
 let tradeForgeFeedMeta=null;
 
+
 const SUPERSTAR_FACTOR=1.00;
 
 const PACKAGE_WEIGHTS=[
@@ -1736,6 +1908,7 @@ const PACKAGE_WEIGHTS=[
 0.80,
 0.80
 ];
+
 
 const multipliers={
 
@@ -1776,6 +1949,7 @@ standard:1
 }
 
 };
+
 
 /* =========================================================
 PLAYER DATABASE
@@ -2179,6 +2353,7 @@ const playerDatabase=[
 {rank:395,pos:"WR",name:"Mack Hollins",redraft:0.1,keeper:0.3,dynasty:0.5}
 ];
 
+
 /* =========================================================
 DRAFT PICKS
 ========================================================= */
@@ -2214,6 +2389,7 @@ superflex:x[2]
 
 }));
 
+
 const dst={
 
 HOU:"Houston Texans DST",
@@ -2232,15 +2408,18 @@ KC:"Kansas City Chiefs DST"
 
 };
 
+
 const $=
 id=>
 document.getElementById(id);
+
 
 const key=
 p=>
 p.sleeperId
 ||
 p.pos+"|"+p.name;
+
 
 const norm=
 s=>
@@ -2250,6 +2429,7 @@ String(s||"")
 .replace(/\b(jr|sr|ii|iii|iv)\b/g,"")
 .replace(/[^a-z0-9]/g,"");
 
+
 const esc=
 s=>
 String(s??"")
@@ -2258,6 +2438,7 @@ String(s??"")
 .replace(/>/g,"&gt;")
 .replace(/"/g,"&quot;")
 .replace(/'/g,"&#039;");
+
 
 const assets=
 ()=>{
@@ -2269,6 +2450,7 @@ playerDatabase.concat(picks)
 playerDatabase;
 
 };
+
 
 /* =========================================================
 TRADEFORGE ENGINE
@@ -2330,6 +2512,7 @@ futurePickDiscounts:[
 
 };
 
+
 const tfClamp=
 (v,min,max)=>
 Math.max(
@@ -2337,9 +2520,11 @@ min,
 Math.min(max,v)
 );
 
+
 const tfRound=
 v=>
 Math.round(v*10)/10;
+
 
 const tfNum=
 (v,fallback)=>
@@ -2349,12 +2534,14 @@ Number(v)
 :
 fallback;
 
+
 const tfStoredRawValue=
 (p,mode)=>
 tfNum(
 p?.[mode],
 .1
 );
+
 
 function tfHasComponentData(obj){
 
@@ -2402,6 +2589,7 @@ Number(obj[k])
 
 }
 
+
 function tfHasRedraftData(p){
 
 return tfHasComponentData(
@@ -2409,6 +2597,7 @@ p.engine?.redraft
 );
 
 }
+
 
 function tfHasDynastyData(p){
 
@@ -2423,6 +2612,7 @@ e?.isRookie===true
 
 }
 
+
 function tfHasAnyEngineData(p){
 
 return (
@@ -2436,6 +2626,7 @@ p.engine?.keeper
 );
 
 }
+
 
 function tfWeightedSum(c){
 
@@ -2461,6 +2652,7 @@ c.situation*w.situation
 );
 
 }
+
 
 function tfTraitValue(
 baseline,
@@ -2507,6 +2699,7 @@ t
 
 }
 
+
 function tfApplyEliteCurve(v){
 
 v=
@@ -2531,6 +2724,7 @@ TRADEFORGE_ENGINE.eliteCurveExponent
 );
 
 }
+
 
 function tfDynastyAgeFactor(
 pos,
@@ -2587,6 +2781,7 @@ return 1;
 
 }
 
+
 function tfReplacementRank(pos){
 
 let rank=
@@ -2614,6 +2809,7 @@ rank=18;
 return rank;
 
 }
+
 
 function tfReplacementRaw(
 pos,
@@ -2657,6 +2853,7 @@ tfReplacementRank(pos)-1
 return list[i];
 
 }
+
 
 function tfScarcityValue(
 p,
@@ -2706,6 +2903,7 @@ TRADEFORGE_ENGINE.scarcityBoost,
 
 }
 
+
 function tfAutoMarketChange(p){
 
 if(
@@ -2736,6 +2934,7 @@ sleeperTrendMarket[id]
 0;
 
 }
+
 
 function tfMarketValue(
 p,
@@ -2795,6 +2994,7 @@ market,
 );
 
 }
+
 
 function tfPerformanceValue(
 e,
@@ -2860,6 +3060,7 @@ w.recent,
 
 }
 
+
 function tfOpportunityValue(
 e,
 baseline
@@ -2905,6 +3106,7 @@ e.roleConfidence,
 return baseline;
 
 }
+
 
 function tfConsistencyValue(
 e,
@@ -2974,6 +3176,7 @@ score,
 return baseline;
 
 }
+
 
 function tfAvailabilityValue(
 e,
@@ -3047,6 +3250,7 @@ return baseline;
 
 }
 
+
 function tfSituationValue(
 e,
 baseline
@@ -3093,6 +3297,7 @@ e.roleConfidence,
 return baseline;
 
 }
+
 
 function tfRedraftComponents(p){
 
@@ -3160,6 +3365,7 @@ baseline
 
 }
 
+
 function tfRedraftRaw(p){
 
 if(
@@ -3182,6 +3388,7 @@ tfRedraftComponents(p)
 );
 
 }
+
 
 function tfDynastyAnchor(
 p,
@@ -3236,6 +3443,7 @@ y.year3,
 );
 
 }
+
 
 function tfDynastySituationValue(
 p,
@@ -3311,6 +3519,7 @@ baseline
 );
 
 }
+
 
 function tfDynastyComponents(p){
 
@@ -3452,6 +3661,7 @@ anchor
 
 }
 
+
 function tfDynastyRaw(p){
 
 if(
@@ -3494,6 +3704,7 @@ tfRound(score),
 );
 
 }
+
 
 function tfKeeperRaw(p){
 
@@ -3598,6 +3809,7 @@ w.dynasty
 
 }
 
+
 function tfDynamicPickValue(p){
 
 const baseline=
@@ -3655,6 +3867,7 @@ baseline*discount
 );
 
 }
+
 
 function tfApplyLeagueSettings(
 p,
@@ -3744,6 +3957,7 @@ tfRound(v),
 
 }
 
+
 function legacyValue(p){
 
 if(
@@ -3766,6 +3980,7 @@ leagueMode
 );
 
 }
+
 
 function value(p){
 
@@ -3812,6 +4027,7 @@ leagueMode
 );
 
 }
+
 
 function updateEngineStatus(){
 
@@ -3860,6 +4076,7 @@ $("engine-status").textContent=
 text;
 
 }
+
 
 async function loadTradeForgeFeed(){
 
@@ -3954,6 +4171,7 @@ render();
 
 }
 
+
 /* =========================================================
 TRADE PACKAGE MATH
 ========================================================= */
@@ -3967,6 +4185,7 @@ return v<=0
 v;
 
 }
+
 
 function adjustedCore(team){
 
@@ -3999,6 +4218,7 @@ PACKAGE_WEIGHTS[i]
 );
 
 }
+
 
 function consolidationPremium(
 team,
@@ -4061,6 +4281,7 @@ return .05+.05*elite;
 
 }
 
+
 function adjusted(
 team,
 opponent=null
@@ -4082,6 +4303,7 @@ opponent
 return total;
 
 }
+
 
 function adjustedTradeValues(
 a,
@@ -4118,6 +4340,7 @@ a
 
 }
 
+
 function base(team){
 
 return team.reduce(
@@ -4129,6 +4352,7 @@ value(p),
 );
 
 }
+
 
 function diff(
 a,
@@ -4151,6 +4375,7 @@ avg
 0;
 
 }
+
 
 /* =========================================================
 MODE LABELS
@@ -4197,6 +4422,7 @@ return `${s} • ${l} • ${q}${t}`;
 
 }
 
+
 function sleeperModeLabel(){
 
 const s=
@@ -4237,6 +4463,7 @@ sleeperTePremiumMode==="full"
 return `${s} • ${l} • ${q}${t}`;
 
 }
+
 
 /* =========================================================
 SLEEPER CONTEXT
@@ -4292,6 +4519,7 @@ saved.sleeperCalculationContext;
 
 }
 
+
 function sleeperValue(p){
 
 return withSleeperModes(
@@ -4299,6 +4527,7 @@ return withSleeperModes(
 );
 
 }
+
 
 /* =========================================================
 TOP PLAYER BOARD
@@ -4363,6 +4592,7 @@ No ranked players
 
 }
 
+
 function renderBoard(){
 
 $("mode-label").textContent=
@@ -4391,6 +4621,7 @@ renderTop(
 );
 
 }
+
 
 /* =========================================================
 MAIN CALCULATOR
@@ -4474,6 +4705,7 @@ onclick="removePlayer('${side}',${i})"
 
 }
 
+
 function removePlayer(
 side,
 i
@@ -4495,6 +4727,7 @@ render();
 
 }
 
+
 function render(){
 
 renderTeam("A");
@@ -4503,6 +4736,7 @@ renderTeam("B");
 calculate();
 
 }
+
 
 function calculate(){
 
@@ -4687,6 +4921,7 @@ ab
 );
 
 }
+
 
 /* =========================================================
 MAIN TRADE IDEAS
@@ -5092,6 +5327,7 @@ idea.fair
 
 }
 
+
 /* =========================================================
 MAIN SEARCH
 ========================================================= */
@@ -5244,6 +5480,7 @@ render();
 
 }
 
+
 function applyControls(){
 
 scoringMode=
@@ -5279,6 +5516,7 @@ render();
 
 }
 
+
 [
 "scoring",
 "league",
@@ -5290,6 +5528,7 @@ id=>
 $(id).onchange=
 applyControls
 );
+
 
 $("swap").onclick=
 ()=>{
@@ -5308,6 +5547,7 @@ render();
 
 };
 
+
 $("clear").onclick=
 ()=>{
 
@@ -5317,6 +5557,7 @@ teamB=[];
 render();
 
 };
+
 
 $("theme-toggle").onclick=
 ()=>{
@@ -5343,8 +5584,10 @@ next==="dark"
 
 };
 
+
 setupSearch("A");
 setupSearch("B");
+
 
 /* =========================================================
 SLEEPER ROSTER ASSETS
@@ -5386,6 +5629,7 @@ sleeperValue(a)
 
 }
 
+
 function sleeperSelectedRoster(side){
 
 return side==="A"
@@ -5395,6 +5639,7 @@ sleeperRosterA
 sleeperRosterB;
 
 }
+
 
 function sleeperPool(side){
 
@@ -5419,6 +5664,7 @@ r.concat(picks)
 r;
 
 }
+
 
 /* =========================================================
 SLEEPER CALCULATOR
@@ -5506,6 +5752,7 @@ onclick="removeSleeperPlayer('${side}',${i})"
 
 }
 
+
 function removeSleeperPlayer(
 side,
 i
@@ -5527,6 +5774,7 @@ renderSleeper();
 
 }
 
+
 function renderSleeper(){
 
 renderSleeperTeam("A");
@@ -5535,6 +5783,7 @@ renderSleeperTeam("B");
 sleeperCalculate();
 
 }
+
 
 function sleeperCalculate(){
 
@@ -5726,6 +5975,7 @@ ab
 );
 
 }
+
 
 /* =========================================================
 SLEEPER TRADE IDEAS
@@ -6230,6 +6480,7 @@ idea.fair
 
 }
 
+
 /* =========================================================
 SLEEPER SEARCH
 ========================================================= */
@@ -6391,8 +6642,10 @@ renderSleeper();
 
 }
 
+
 setupSleeperSearch("A");
 setupSleeperSearch("B");
+
 
 $("sleeper-swap").onclick=
 ()=>{
@@ -6433,6 +6686,7 @@ renderSleeper();
 
 };
 
+
 $("sleeper-clear").onclick=
 ()=>{
 
@@ -6442,6 +6696,7 @@ sleeperTeamB=[];
 renderSleeper();
 
 };
+
 
 /* =========================================================
 ROSTER VIEW
@@ -6473,6 +6728,7 @@ sleeperRosterA
 );
 
 }
+
 
 function getSleeperRosterPlayer(id){
 
@@ -6543,6 +6799,7 @@ null
 };
 
 }
+
 
 function renderLeagueRoster(
 rosterId,
@@ -6701,6 +6958,7 @@ ${val}
 
 }
 
+
 /* =========================================================
 LEAGUE DASHBOARD ENGINE
 ========================================================= */
@@ -6711,6 +6969,7 @@ const DASHBOARD_POSITIONS=[
 "WR",
 "TE"
 ];
+
 
 function ordinal(n){
 
@@ -6748,6 +7007,7 @@ return `${n}th`;
 
 }
 
+
 function sleeperValueForMode(
 p,
 mode
@@ -6774,6 +7034,7 @@ saved;
 
 }
 
+
 function dashboardRosterPlayers(roster){
 
 if(!roster){
@@ -6795,6 +7056,7 @@ String(pid)
 
 }
 
+
 function dashboardValue(
 p,
 mode=null
@@ -6810,6 +7072,7 @@ mode
 sleeperValue(p);
 
 }
+
 
 function dashboardCanFill(
 player,
@@ -6892,6 +7155,7 @@ return false;
 
 }
 
+
 function dashboardStarterSlots(){
 
 const excluded=
@@ -6912,6 +7176,7 @@ slot=>
 );
 
 }
+
 
 function dashboardStarterValue(
 roster,
@@ -7062,6 +7327,7 @@ return total;
 
 }
 
+
 function dashboardPositionCap(pos){
 
 if(
@@ -7097,6 +7363,7 @@ return 2;
 return 1;
 
 }
+
 
 function dashboardPositionValue(
 players,
@@ -7137,6 +7404,7 @@ mode
 );
 
 }
+
 
 function dashboardMetrics(roster){
 
@@ -7237,6 +7505,7 @@ power
 
 }
 
+
 function dashboardRank(
 metrics,
 field,
@@ -7264,6 +7533,7 @@ index+1
 metrics.length;
 
 }
+
 
 function dashboardPositionRank(
 metrics,
@@ -7294,6 +7564,7 @@ index+1
 metrics.length;
 
 }
+
 
 /* =========================================================
 ROSTER PROFILE
@@ -7423,6 +7694,7 @@ detail:
 };
 
 }
+
 
 /* =========================================================
 TRADE OPPORTUNITY FINDER
@@ -7666,6 +7938,7 @@ return opportunities.slice(
 
 }
 
+
 /* =========================================================
 RENDER LEAGUE DASHBOARD
 ========================================================= */
@@ -7749,6 +8022,7 @@ futureField,
 my.rosterId
 );
 
+
 $("dashboard-overall-rank").textContent=
 `${ordinal(overallRank)} / ${leagueSize}`;
 
@@ -7784,6 +8058,7 @@ sleeperLeagueMode==="dynasty"
 :
 `${my.total.toFixed(1)} total value`;
 
+
 const totalSleeperPlayers=
 syncedRosters.reduce(
 (t,r)=>
@@ -7812,6 +8087,7 @@ $("dashboard-coverage").textContent=
 $("dashboard-subtitle").textContent=
 `${syncedLeague.name} • ${sleeperModeLabel()} • TradeForge league analysis`;
 
+
 const profile=
 dashboardTeamProfile(
 my,
@@ -7823,6 +8099,7 @@ profile.label;
 
 $("dashboard-profile-detail").textContent=
 profile.detail;
+
 
 const positionRanks=
 DASHBOARD_POSITIONS
@@ -7862,6 +8139,7 @@ $("dashboard-position-summary").textContent=
 $("dashboard-position-detail").textContent=
 `${strongest.pos} ranks ${ordinal(strongest.rank)} in the league. ${weakest.pos} ranks ${ordinal(weakest.rank)}.`;
 
+
 $("dashboard-position-grid").innerHTML=
 DASHBOARD_POSITIONS
 .map(
@@ -7899,6 +8177,7 @@ ${my.positions[pos].toFixed(1)} TradeForge positional value
 }
 )
 .join("");
+
 
 const opportunities=
 dashboardTradeOpportunities(
@@ -7942,6 +8221,7 @@ No clear roster-strength trade opportunities were found with the players current
 
 </div>
 `;
+
 
 const powerOrder=
 all
@@ -8032,6 +8312,549 @@ ${bestPos.pos} • ${ordinal(bestPos.rank)}
 
 }
 
+
+/* =========================================================
+LEAGUE TRADE FINDER
+========================================================= */
+
+function leagueTradeFinderRosters(){
+
+const mine=
+getMyRosterId();
+
+return syncedRosters
+.filter(
+r=>
+String(r.roster_id)
+!==
+String(mine)
+);
+
+}
+
+
+function leagueTradeFinderPlayerKey(p){
+
+return String(
+p?.sleeperId
+||
+norm(p?.name)
+);
+
+}
+
+
+function populateLeagueTradeFinderTargets(
+rosterId,
+preserve=true
+){
+
+const select=
+$("trade-finder-target");
+
+const current=
+preserve
+?
+select.value
+:
+"";
+
+const players=
+rosterAssets(rosterId);
+
+select.innerHTML=
+players.length
+?
+players
+.map(
+p=>
+`<option value="${esc(leagueTradeFinderPlayerKey(p))}">${esc(p.name)} • ${esc(p.pos)} • ${sleeperValue(p).toFixed(1)}</option>`
+)
+.join("")
+:
+'<option value="">No valued players available</option>';
+
+if(
+preserve
+&&
+players.some(
+p=>
+leagueTradeFinderPlayerKey(p)===current
+)
+){
+select.value=current;
+}
+
+}
+
+
+function buildLeagueTradeFinder(){
+
+if(
+!syncedLeague
+){
+return;
+}
+
+const select=
+$("trade-finder-team");
+
+const current=
+select.value;
+
+const rosters=
+leagueTradeFinderRosters();
+
+select.innerHTML=
+rosters.length
+?
+rosters
+.map(
+r=>
+`<option value="${r.roster_id}">${esc(rosterName(r))}</option>`
+)
+.join("")
+:
+'<option value="">No other teams available</option>';
+
+let chosen=
+current;
+
+if(
+!rosters.some(
+r=>
+String(r.roster_id)
+===
+String(chosen)
+)
+){
+chosen=
+rosters[0]
+?
+String(rosters[0].roster_id)
+:
+"";
+}
+
+if(chosen){
+select.value=chosen;
+}
+
+populateLeagueTradeFinderTargets(
+chosen,
+true
+);
+
+}
+
+
+function leagueTradeFinderGrade(d){
+
+return d<=5
+?
+"A+"
+:
+d<=10
+?
+"A"
+:
+d<=20
+?
+"B"
+:
+d<=30
+?
+"C"
+:
+d<=40
+?
+"D"
+:
+"F";
+
+}
+
+
+function findLeagueTrades(){
+
+const box=
+$("trade-finder-results");
+
+if(
+!syncedLeague
+){
+box.textContent=
+"Sync a Sleeper league first.";
+return;
+}
+
+const mineId=
+getMyRosterId();
+
+const otherId=
+$("trade-finder-team").value;
+
+const targetKey=
+$("trade-finder-target").value;
+
+const maxPlayers=
+Math.max(
+1,
+Math.min(
+3,
+Number(
+$("trade-finder-max").value
+)
+||
+3
+)
+);
+
+const mineRoster=
+syncedRosters
+.find(
+r=>
+String(r.roster_id)
+===
+String(mineId)
+);
+
+const otherRoster=
+syncedRosters
+.find(
+r=>
+String(r.roster_id)
+===
+String(otherId)
+);
+
+const target=
+rosterAssets(otherId)
+.find(
+p=>
+leagueTradeFinderPlayerKey(p)
+===
+targetKey
+);
+
+if(
+!mineRoster
+||
+!otherRoster
+||
+!target
+){
+box.textContent=
+"Choose a team and a valued target player first.";
+return;
+}
+
+const myPlayers=
+rosterAssets(mineId);
+
+if(
+!myPlayers.length
+){
+box.textContent=
+"TradeForge could not find any valued players on your roster.";
+return;
+}
+
+box.textContent=
+"Searching your roster for the best TradeForge packages...";
+
+const ideas=[];
+
+const evaluate=
+packagePlayers=>{
+
+const values=
+withSleeperModes(
+()=>
+adjustedTradeValues(
+packagePlayers,
+[target]
+)
+);
+
+const difference=
+diff(
+values.a,
+values.b
+);
+
+ideas.push({
+packagePlayers,
+values,
+difference,
+grade:leagueTradeFinderGrade(difference)
+});
+
+};
+
+for(
+let i=0;
+i<myPlayers.length;
+i++
+){
+
+evaluate([
+myPlayers[i]
+]);
+
+}
+
+if(
+maxPlayers>=2
+){
+
+for(
+let i=0;
+i<myPlayers.length;
+i++
+){
+
+for(
+let j=i+1;
+j<myPlayers.length;j++
+){
+
+evaluate([
+myPlayers[i],
+myPlayers[j]
+]);
+
+}
+
+}
+
+}
+
+if(
+maxPlayers>=3
+){
+
+for(
+let i=0;
+i<myPlayers.length;i++
+){
+
+for(
+let j=i+1;
+j<myPlayers.length;j++
+){
+
+for(
+let k=j+1;
+k<myPlayers.length;k++
+){
+
+evaluate([
+myPlayers[i],
+myPlayers[j],
+myPlayers[k]
+]);
+
+}
+
+}
+
+}
+
+}
+
+ideas.sort(
+(a,b)=>{
+
+const af=
+a.difference<=5;
+
+const bf=
+b.difference<=5;
+
+if(af!==bf){
+return af?-1:1;
+}
+
+if(
+af
+&&
+bf
+&&
+a.packagePlayers.length
+!==
+b.packagePlayers.length
+){
+return a.packagePlayers.length-b.packagePlayers.length;
+}
+
+if(
+Math.abs(
+a.difference-b.difference
+)
+>.05
+){
+return a.difference-b.difference;
+}
+
+return a.packagePlayers.length-b.packagePlayers.length;
+
+}
+);
+
+const finalIdeas=[];
+const seen=
+new Set();
+
+for(
+const idea of ideas
+){
+
+const signature=
+idea.packagePlayers
+.map(leagueTradeFinderPlayerKey)
+.sort()
+.join("|");
+
+if(
+seen.has(signature)
+){
+continue;
+}
+
+seen.add(signature);
+finalIdeas.push(idea);
+
+if(
+finalIdeas.length>=5
+){
+break;
+}
+
+}
+
+if(
+!finalIdeas.length
+){
+box.textContent=
+"TradeForge could not find a package for this target.";
+return;
+}
+
+const myName=
+rosterName(mineRoster);
+
+const otherName=
+rosterName(otherRoster);
+
+box.innerHTML=
+finalIdeas
+.map(
+(idea,index)=>{
+
+const packageNames=
+idea.packagePlayers
+.map(
+p=>
+esc(p.name)
+)
+.join(" + ");
+
+const baseSend=
+idea.packagePlayers
+.reduce(
+(t,p)=>
+t+sleeperValue(p),
+0
+);
+
+const targetBase=
+sleeperValue(target);
+
+const label=
+idea.difference<=5
+?
+"FAIR MATCH"
+:
+idea.difference<=10
+?
+"VERY CLOSE"
+:
+"BEST AVAILABLE";
+
+return`
+<div class="trade-finder-result">
+
+<div class="trade-finder-result-head">
+
+<strong>
+Option ${index+1} — ${label}
+</strong>
+
+<strong>
+Grade ${idea.grade}
+</strong>
+
+</div>
+
+<div style="margin-top:9px">
+<strong>${esc(myName)} sends:</strong> ${packageNames}
+</div>
+
+<div style="margin-top:5px">
+<strong>${esc(otherName)} sends:</strong> ${esc(target.name)}
+</div>
+
+<div class="sub" style="margin-top:9px">
+Base value: ${baseSend.toFixed(1)} for ${targetBase.toFixed(1)} • Adjusted value: ${idea.values.a.toFixed(1)} for ${idea.values.b.toFixed(1)} • ${idea.difference.toFixed(1)}% difference
+</div>
+
+</div>
+`;
+
+}
+)
+.join("");
+
+}
+
+
+$("trade-finder-team").onchange=
+()=>{
+
+populateLeagueTradeFinderTargets(
+$("trade-finder-team").value,
+false
+);
+
+$("trade-finder-results").textContent=
+"Choose a target player and click Find Trades.";
+
+};
+
+
+$("trade-finder-target").onchange=
+()=>{
+
+$("trade-finder-results").textContent=
+"Click Find Trades to search your roster for packages.";
+
+};
+
+
+$("trade-finder-max").onchange=
+()=>{
+
+$("trade-finder-results").textContent=
+"Click Find Trades to search your roster for packages.";
+
+};
+
+
+$("trade-finder-run").onclick=
+findLeagueTrades;
+
+
 /* =========================================================
 BUILD LEAGUE PAGE
 ========================================================= */
@@ -8055,6 +8878,8 @@ const mine=
 getMyRosterId();
 
 renderLeagueDashboard();
+
+buildLeagueTradeFinder();
 
 renderLeagueRoster(
 mine,
@@ -8152,6 +8977,7 @@ renderSleeper();
 
 }
 
+
 $("opponent-select").onchange=
 e=>
 renderLeagueRoster(
@@ -8160,6 +8986,7 @@ e.target.value,
 "opponent-team-name",
 "opponent-team-meta"
 );
+
 
 /* =========================================================
 PAGE NAVIGATION
@@ -8203,6 +9030,7 @@ window.scrollTo(
 
 }
 
+
 $("league-view-button").onclick=
 ()=>{
 
@@ -8221,6 +9049,7 @@ setPage(
 
 };
 
+
 $("back-to-analyzer").onclick=
 ()=>{
 
@@ -8232,6 +9061,7 @@ setPage(
 );
 
 };
+
 
 window.addEventListener(
 "hashchange",
@@ -8248,12 +9078,14 @@ location.hash==="#league"
 }
 );
 
+
 /* =========================================================
 SLEEPER SYNC
 ========================================================= */
 
 const modal=
 $("modal");
+
 
 $("sync-button").onclick=
 ()=>{
@@ -8264,6 +9096,7 @@ modal.classList.add(
 
 };
 
+
 $("modal-close").onclick=
 ()=>{
 
@@ -8272,6 +9105,7 @@ modal.classList.remove(
 );
 
 };
+
 
 async function fetchJSON(url){
 
@@ -8296,6 +9130,7 @@ return r.json();
 
 }
 
+
 async function fetchJSONSafe(
 url,
 fallback=[]
@@ -8314,6 +9149,7 @@ return fallback;
 }
 
 }
+
 
 /* =========================================================
 FIND LEAGUES
@@ -8421,6 +9257,7 @@ e.message
 }
 
 };
+
 
 /* =========================================================
 CONNECT LEAGUE
@@ -8538,6 +9375,7 @@ e.message
 
 };
 
+
 /* =========================================================
 SLEEPER LEAGUE SETTINGS
 ========================================================= */
@@ -8623,6 +9461,7 @@ set.type
 
 }
 
+
 /* =========================================================
 ROSTER NAMES
 ========================================================= */
@@ -8649,6 +9488,7 @@ u?.username
 r.roster_id;
 
 }
+
 
 /* =========================================================
 ROSTER SELECTORS
@@ -8733,6 +9573,7 @@ sleeperRosterB;
 
 }
 
+
 $("sleeper-roster-a").onchange=
 e=>{
 
@@ -8747,6 +9588,7 @@ buildLeaguePage();
 
 };
 
+
 $("sleeper-roster-b").onchange=
 e=>{
 
@@ -8760,6 +9602,7 @@ renderSleeper();
 buildLeaguePage();
 
 };
+
 
 /* =========================================================
 SLEEPER MARKET MAP
@@ -8808,6 +9651,7 @@ String(id);
 );
 
 }
+
 
 async function refreshSleeperTrends(){
 
@@ -8939,6 +9783,7 @@ buildLeaguePage();
 
 }
 
+
 /* =========================================================
 MATCH SLEEPER PLAYERS
 ========================================================= */
@@ -9018,6 +9863,7 @@ null;
 
 }
 
+
 /* =========================================================
 DISCONNECT
 ========================================================= */
@@ -9066,6 +9912,7 @@ renderBoard();
 render();
 
 };
+
 
 /* =========================================================
 START
