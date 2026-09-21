@@ -10042,7 +10042,118 @@ ${bestPos.pos} • ${ordinal(bestPos.rank)}
 LEAGUE TRADE FINDER
 ========================================================= */
 
-function leagueTradeFinderRosters(){
+function buildTradeFromFinder(
+otherRosterId,
+targetPlayer,
+packagePlayers
+){
+
+const myRosterId=
+getMyRosterId();
+
+if(
+!myRosterId
+||
+!otherRosterId
+||
+!targetPlayer
+||
+!Array.isArray(packagePlayers)
+||
+!packagePlayers.length
+){
+return;
+}
+
+/*
+Your roster becomes Team A.
+The roster owning the target becomes Team B.
+*/
+
+sleeperRosterA=
+String(myRosterId);
+
+sleeperRosterB=
+String(otherRosterId);
+
+
+/*
+Update the roster dropdowns in the Sleeper calculator.
+*/
+
+if($("sleeper-roster-a")){
+
+$("sleeper-roster-a").value=
+sleeperRosterA;
+
+}
+
+if($("sleeper-roster-b")){
+
+$("sleeper-roster-b").value=
+sleeperRosterB;
+
+}
+
+
+/*
+Load the suggested players into Team A.
+*/
+
+sleeperTeamA=
+packagePlayers.map(
+p=>({
+...p
+})
+);
+
+
+/*
+Load the target player into Team B.
+*/
+
+sleeperTeamB=[
+{
+...targetPlayer
+}
+];
+
+
+/*
+Recalculate and display the completed trade.
+*/
+
+renderSleeper();
+
+
+/*
+Switch the Trade Center to the Trade Calculator tab.
+*/
+
+setTradeCenterTab(
+"calculator"
+);
+
+
+/*
+Scroll the user directly to the Trade Center.
+*/
+
+const tradeCenter=
+$("trade-center-card");
+
+if(tradeCenter){
+
+tradeCenter.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+}
+
+}
+ 
+  function leagueTradeFinderRosters(){
 
 const mine=
 getMyRosterId();
@@ -10511,6 +10622,146 @@ p=>
 esc(p.name)
 )
 .join(" + ");
+
+const baseSend=
+idea.packagePlayers
+.reduce(
+(t,p)=>
+t+sleeperValue(p),
+0
+);
+
+const targetBase=
+sleeperValue(
+target
+);
+
+const label=
+idea.difference<=5
+?
+"FAIR MATCH"
+:
+idea.difference<=10
+?
+"VERY CLOSE"
+:
+"BEST AVAILABLE";
+
+return`
+<div class="trade-finder-result">
+
+<div class="trade-finder-result-layout">
+
+<div>
+
+<div class="trade-finder-result-head">
+
+<strong>
+Option ${index+1} — ${label}
+</strong>
+
+<strong>
+Grade ${idea.grade}
+</strong>
+
+</div>
+
+<div style="margin-top:9px">
+
+<strong>
+${esc(myName)} sends:
+</strong>
+
+${packageNames}
+
+</div>
+
+<div style="margin-top:5px">
+
+<strong>
+${esc(otherName)} sends:
+</strong>
+
+${esc(target.name)}
+
+</div>
+
+<div class="sub" style="margin-top:9px">
+
+Base value:
+${baseSend.toFixed(1)}
+for
+${targetBase.toFixed(1)}
+
+•
+
+Adjusted value:
+${idea.values.a.toFixed(1)}
+for
+${idea.values.b.toFixed(1)}
+
+•
+
+${idea.difference.toFixed(1)}% difference
+
+</div>
+
+</div>
+
+<button
+class="trade-finder-build-button"
+data-build-trade="${index}"
+type="button"
+>
+Build Trade
+</button>
+
+</div>
+
+</div>
+`;
+
+}
+)
+.join("");
+
+
+/*
+Make each Build Trade button open its exact suggested trade.
+*/
+
+box
+.querySelectorAll(
+"[data-build-trade]"
+)
+.forEach(
+button=>{
+
+button.onclick=
+()=>{
+
+const index=
+Number(
+button.dataset.buildTrade
+);
+
+const idea=
+finalIdeas[index];
+
+if(!idea){
+return;
+}
+
+buildTradeFromFinder(
+otherId,
+target,
+idea.packagePlayers
+);
+
+};
+
+}
+);
 
 const baseSend=
 idea.packagePlayers
