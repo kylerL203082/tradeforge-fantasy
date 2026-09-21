@@ -455,6 +455,101 @@ font-size:11px;
 color:var(--muted)
 }
 
+.trade-insight-grid{
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:12px;
+margin-top:10px
+}
+
+.trade-insight-side{
+min-width:0
+}
+
+.trade-insight-side-title{
+font-size:11px;
+font-weight:900;
+letter-spacing:.08em;
+text-transform:uppercase;
+color:var(--muted);
+margin-bottom:7px
+}
+
+.trade-insight-player{
+background:var(--card);
+border:1px solid var(--border);
+border-radius:10px;
+padding:11px 12px;
+margin-bottom:9px
+}
+
+.trade-insight-player:last-child{
+margin-bottom:0
+}
+
+.trade-insight-player-head{
+display:flex;
+justify-content:space-between;
+gap:10px;
+align-items:baseline;
+margin-bottom:7px
+}
+
+.trade-insight-player-name{
+font-size:13px;
+font-weight:900
+}
+
+.trade-insight-player-meta{
+font-size:10px;
+color:var(--muted);
+white-space:nowrap
+}
+
+.trade-insight-factor-list{
+list-style:none;
+margin:0;
+padding:0
+}
+
+.trade-insight-factor{
+font-size:12px;
+line-height:1.45;
+padding:5px 0 5px 18px;
+position:relative
+}
+
+.trade-insight-factor:before{
+content:"•";
+position:absolute;
+left:4px;
+top:5px;
+font-weight:900
+}
+
+.trade-insight-factor.risk:before{
+content:"!"
+}
+
+.trade-insight-factor.positive:before{
+content:"+"
+}
+
+.trade-insight-factor strong{
+font-weight:900
+}
+
+.trade-insight-source{
+color:var(--muted);
+font-size:10px
+}
+
+@media(max-width:760px){
+.trade-insight-grid{
+grid-template-columns:1fr
+}
+}
+
 #sleeper-bar{
 display:none;
 border-color:var(--blue)
@@ -1180,11 +1275,11 @@ TradeForge Insight
 </h3>
 
 <div class="sub" style="margin-bottom:10px">
-Player-specific reasons behind the current values: age, career stage, production, role and future upside.
+Current player-impact factors: injuries, teammate injuries, role changes, positional schedule, and availability risk.
 </div>
 
 <div id="trade-insight" class="trade-insight-box empty">
-Build a trade to see the player-specific reasons behind each asset's value.
+Build a trade to see the current factors affecting each player.
 </div>
 
 </section>
@@ -1352,6 +1447,8 @@ Trade Opportunities
 
 </div>
 
+<!-- TRADE CALCULATOR TAB -->
+
 <div
 class="trade-center-panel"
 data-trade-center-panel="calculator"
@@ -1397,13 +1494,27 @@ class="results"
 <div class="totals">
 
 <div class="total">
-<small>Base</small>
-<strong id="sleeper-base-a">0.0</strong>
+
+<small>
+Base
+</small>
+
+<strong id="sleeper-base-a">
+0.0
+</strong>
+
 </div>
 
 <div class="total">
-<small>Adjusted</small>
-<strong id="sleeper-adj-a">0.0</strong>
+
+<small>
+Adjusted
+</small>
+
+<strong id="sleeper-adj-a">
+0.0
+</strong>
+
 </div>
 
 </div>
@@ -1413,7 +1524,9 @@ class="results"
 <section class="result-card">
 
 <div class="meter">
+
 <div id="sleeper-marker"></div>
+
 </div>
 
 <div id="sleeper-verdict">
@@ -1478,13 +1591,27 @@ class="results"
 <div class="totals">
 
 <div class="total">
-<small>Base</small>
-<strong id="sleeper-base-b">0.0</strong>
+
+<small>
+Base
+</small>
+
+<strong id="sleeper-base-b">
+0.0
+</strong>
+
 </div>
 
 <div class="total">
-<small>Adjusted</small>
-<strong id="sleeper-adj-b">0.0</strong>
+
+<small>
+Adjusted
+</small>
+
+<strong id="sleeper-adj-b">
+0.0
+</strong>
+
 </div>
 
 </div>
@@ -1500,11 +1627,11 @@ TradeForge Insight
 </h3>
 
 <div class="sub" style="margin-bottom:10px">
-Player-specific reasons behind the current values in your Sleeper league: age, career stage, production, role and future upside.
+Current player-impact factors for the players in this Sleeper trade.
 </div>
 
 <div id="sleeper-trade-insight" class="trade-insight-box empty">
-Build a Sleeper trade to see the player-specific reasons behind each asset's value.
+Build a Sleeper trade to see the current factors affecting each player.
 </div>
 
 <div class="trade-center-divider"></div>
@@ -1522,6 +1649,8 @@ Build a Sleeper trade to see suggested trade ideas.
 </div>
 
 </div>
+
+<!-- LEAGUE TRADE FINDER TAB -->
 
 <div
 class="trade-center-panel active"
@@ -1608,6 +1737,8 @@ Choose a target player and click Find Trades.
 
 </div>
 
+<!-- TRADE OPPORTUNITIES TAB -->
+
 <div
 class="trade-center-panel"
 data-trade-center-panel="opportunities"
@@ -1630,6 +1761,11 @@ TradeForge compares your positional weaknesses against the strongest position gr
 </div>
 
 </section>
+
+<!-- =========================================================
+TRADEFORGE LEAGUE DASHBOARD
+NOW BELOW THE SLEEPER TRADE CALCULATOR
+========================================================= -->
 
 <section class="card" id="league-dashboard-card">
 
@@ -1784,12 +1920,29 @@ League Power Rankings
 
 <tr>
 
-<th>Rank</th>
-<th>Team</th>
-<th>Power</th>
-<th>Starters</th>
-<th>Depth</th>
-<th>Strongest Position</th>
+<th>
+Rank
+</th>
+
+<th>
+Team
+</th>
+
+<th>
+Power
+</th>
+
+<th>
+Starters
+</th>
+
+<th>
+Depth
+</th>
+
+<th>
+Strongest Position
+</th>
 
 </tr>
 
@@ -1802,6 +1955,10 @@ League Power Rankings
 </div>
 
 </section>
+
+<!-- =========================================================
+ROSTER OVERVIEW
+========================================================= -->
 
 <section class="card">
 
@@ -1887,6 +2044,10 @@ class="roster-list"
 </main>
 
 </div>
+
+<!-- =========================================================
+SLEEPER MODAL
+========================================================= -->
 
 <div
 id="modal"
@@ -1984,6 +2145,17 @@ let sleeperRosterB="";
 
 let sleeperTrendMarket={};
 let sleeperIdByName={};
+
+/*
+TradeForge Insight can use Sleeper's public player metadata even when a
+league has not been synced. This is kept separate from the league-sync
+player pool so disconnecting a league does not remove injury context from
+the main calculator.
+*/
+let insightSleeperPlayers={};
+let insightSleeperIdByName={};
+let insightSleeperLoading=false;
+let insightSleeperLoaded=false;
 
 let tradeForgeFeedMeta=null;
 
@@ -4161,17 +4333,19 @@ feed.players
 norm(player.name)
 ];
 
-if(
-live?.engine
-){
-
-player.engine=
-live.engine;
+if(live){
 
 player.liveData=
 live;
 
+if(live.engine){
+
+player.engine=
+live.engine;
+
 applied++;
+
+}
 
 }
 
@@ -4420,23 +4594,125 @@ TRADE INSIGHTS
 ========================================================= */
 
 /*
-TradeForge Insight is intentionally player-first.
-It explains WHY the important assets carry their current value
-(age, career stage, rookie status, current-season production,
-role, draft capital and dynasty runway) instead of repeating
-trade math that is already shown in the calculator above.
-*/
+PLAYER-IMPACT INSIGHT DESIGN
+----------------------------
+The Insight panel intentionally avoids explaining package math. It focuses
+on facts and signals that can change an individual player's outlook.
 
-let tradeInsightSleeperByName={};
+Sleeper provides public player metadata that can supply current injury
+status and roster/team context. The optional tradeforge-data.json feed can
+add richer, curated context that Sleeper does not provide, especially:
 
-function tradeInsightIndexSleeperPlayers(source){
-
-if(!source){
-return;
+insight:{
+  injury:{
+    status:"Questionable",
+    bodyPart:"Hamstring",
+    summary:"Limited in practice after leaving Week 3 early.",
+    source:"Team injury report"
+  },
+  teammateInjuries:[
+    {
+      name:"Teammate Name",
+      status:"Out",
+      summary:"Expected to miss multiple weeks.",
+      impact:"Could increase target/touch opportunity.",
+      source:"Team injury report"
+    }
+  ],
+  sos:{
+    easiestRank:5,
+    total:32,
+    window:"rest of season",
+    label:"favorable",
+    note:"Five of the next eight opponents are bottom-10 against RBs.",
+    source:"TradeForge schedule model"
+  },
+  role:{
+    summary:"Snap share has increased in three straight games.",
+    source:"TradeForge usage model"
+  },
+  offField:{
+    summary:"Reported suspension or legal matter that could affect availability.",
+    status:"monitor",
+    verified:true,
+    source:"Credible published source"
+  },
+  notes:[
+    {summary:"Any additional player-specific factor.",source:"Source"}
+  ]
 }
 
-Object.values(source).forEach(
-sp=>{
+Off-field items are shown only when they are explicitly present in the
+curated feed. TradeForge does not infer criminal, legal, disciplinary, or
+personal conduct issues from rumors or from a generic player status.
+*/
+
+function tradeInsightBasePlayer(p){
+
+if(!p){
+return null;
+}
+
+return playerDatabase.find(
+x=>
+norm(x.name)
+===
+norm(p.name)
+)
+||
+p;
+
+}
+
+function tradeInsightLiveContext(p){
+
+const base=
+tradeInsightBasePlayer(p);
+
+const live=
+base?.liveData
+||
+p?.liveData
+||
+null;
+
+return live?.insight
+||
+live?.context
+||
+{};
+
+}
+
+function tradeInsightPlayerPool(){
+
+if(
+Object.keys(
+sleeperPlayers
+||
+{}
+).length
+){
+return sleeperPlayers;
+}
+
+return insightSleeperPlayers
+||
+{};
+
+}
+
+function rebuildInsightSleeperNameMap(){
+
+insightSleeperIdByName={};
+
+Object.entries(
+insightSleeperPlayers
+||
+{}
+)
+.forEach(
+([id,sp])=>{
 
 const name=
 sp?.full_name
@@ -4449,9 +4725,9 @@ sp?.last_name
 .join(" ");
 
 if(name){
-tradeInsightSleeperByName[
+insightSleeperIdByName[
 norm(name)
-]=sp;
+]=String(id);
 }
 
 }
@@ -4459,778 +4735,1342 @@ norm(name)
 
 }
 
-async function loadTradeInsightPlayerMetadata(){
+async function ensureInsightSleeperData(){
 
-try{
-
-const response=
-await fetch(
-"https://api.sleeper.app/v1/players/nfl?active=true"
-);
-
-if(!response.ok){
+if(
+Object.keys(
+sleeperPlayers
+||
+{}
+).length
+||
+insightSleeperLoaded
+||
+insightSleeperLoading
+){
 return;
 }
 
-const data=
-await response.json();
+insightSleeperLoading=true;
 
-tradeInsightIndexSleeperPlayers(
-data
+try{
+
+const data=
+await fetchJSONSafe(
+"https://api.sleeper.app/v1/players/nfl?active=true",
+{}
 );
 
+if(
+data
+&&
+typeof data==="object"
+){
+
+insightSleeperPlayers=
+data;
+rebuildInsightSleeperNameMap();
+
+}
+
+}
+finally{
+
+insightSleeperLoading=false;
+insightSleeperLoaded=true;
+
+if(
+teamA.length
+&&
+teamB.length
+){
 render();
+}
 
 if(
 syncedLeague
 &&
-!(
-$("league-page")
-.classList
-.contains(
-"page-hidden"
-)
-)
-){
-buildLeaguePage();
-}
-
-}
-catch(error){
-
-console.warn(
-"TradeForge player metadata unavailable; insight will use the valuation data already loaded.",
-error
-);
-
-}
-
-}
-
-function tradeInsightEngineForMode(p){
-
-if(!p||p.pos==="PICK"){
-return {};
-}
-
-if(leagueMode==="dynasty"){
-return p.engine?.dynasty||{};
-}
-
-if(leagueMode==="keeper"){
-return p.engine?.keeper||p.engine?.dynasty||p.engine?.redraft||{};
-}
-
-return p.engine?.redraft||{};
-
-}
-
-function tradeInsightPlayerMeta(p){
-
-if(!p){
-return {};
-}
-
-const dynasty=
-p.engine?.dynasty
-||
-{};
-
-let sleeper=null;
-
-if(
-p.sleeperId
+sleeperTeamA.length
 &&
-sleeperPlayers?.[p.sleeperId]
+sleeperTeamB.length
 ){
-sleeper=sleeperPlayers[p.sleeperId];
+renderSleeper();
 }
-
-if(!sleeper){
-sleeper=
-tradeInsightSleeperByName[
-norm(p.name)
-]
-||
-null;
-}
-
-const ageCandidates=[
-
-dynasty.age,
-
-p.liveData?.age,
-
-p.liveData?.player?.age,
-
-sleeper?.age
-
-];
-
-const ageRaw=
-ageCandidates.find(
-x=>Number.isFinite(Number(x))
-);
-
-const yearsCandidates=[
-
-p.liveData?.yearsExp,
-
-p.liveData?.years_exp,
-
-sleeper?.years_exp
-
-];
-
-const yearsRaw=
-yearsCandidates.find(
-x=>Number.isFinite(Number(x))
-);
-
-const age=
-Number.isFinite(Number(ageRaw))
-?
-Number(ageRaw)
-:
-null;
-
-const yearsExp=
-Number.isFinite(Number(yearsRaw))
-?
-Number(yearsRaw)
-:
-null;
-
-const isRookie=
-(
-dynasty.isRookie===true
-||
-p.liveData?.isRookie===true
-||
-yearsExp===0
-);
-
-return{
-
-age,
-
-yearsExp,
-
-isRookie,
-
-team:
-p.nflTeam
-||
-sleeper?.team
-||
-p.liveData?.team
-||
-"",
-
-status:
-sleeper?.status
-||
-p.liveData?.status
-||
-"",
-
-position:
-sleeper?.position
-||
-p.pos
-
-};
 
 }
 
-function tradeInsightProjectedPoints(
-p,
-e
-){
-
-const candidates=[
-
-p?.liveData?.projectedPoints,
-
-p?.liveData?.projectionPoints,
-
-p?.liveData?.projectedFantasyPoints,
-
-p?.liveData?.fantasyPointsProjection,
-
-p?.liveData?.projection?.points,
-
-e?.projectedPoints,
-
-e?.projectionPoints,
-
-e?.projectedFantasyPoints
-
-];
-
-const found=
-candidates.find(
-x=>Number.isFinite(Number(x))
-);
-
-return Number.isFinite(Number(found))
-?
-Number(found)
-:
-null;
-
 }
 
-function tradeInsightModeRawValue(
-p,
-mode
-){
-
-if(!p||p.pos==="PICK"){
-return 0;
-}
-
-if(
-mode==="dynasty"
-&&
-tfHasAnyEngineData(p)
-){
-return tfDynastyRaw(p);
-}
-
-if(
-mode==="keeper"
-&&
-tfHasAnyEngineData(p)
-){
-return tfKeeperRaw(p);
-}
-
-if(
-mode==="redraft"
-&&
-tfHasAnyEngineData(p)
-){
-return tfRedraftRaw(p);
-}
-
-return tfStoredRawValue(
-p,
-mode
-);
-
-}
-
-function tradeInsightPositionRank(p){
+function tradeInsightSleeperMeta(p){
 
 if(!p||p.pos==="PICK"){
 return null;
 }
 
-const peers=
-playerDatabase
-.filter(
-x=>x.pos===p.pos
-)
-.slice()
-.sort(
-(a,b)=>value(b)-value(a)
-);
+const pool=
+tradeInsightPlayerPool();
 
-const index=
-peers.findIndex(
-x=>norm(x.name)===norm(p.name)
-);
+if(!Object.keys(pool).length){
+return null;
+}
 
-return index>=0
+let id=
+p.sleeperId
 ?
-index+1
+String(p.sleeperId)
 :
+"";
+
+if(
+!id
+&&
+Object.keys(
+sleeperPlayers
+||
+{}
+).length
+){
+
+id=
+sleeperIdByName[
+norm(p.name)
+]
+||
+"";
+
+}
+
+if(!id){
+
+id=
+insightSleeperIdByName[
+norm(p.name)
+]
+||
+"";
+
+}
+
+if(
+id
+&&
+pool[id]
+){
+return{
+id,
+...pool[id]
+};
+}
+
+const hit=
+Object.entries(pool)
+.find(
+([,sp])=>{
+
+const name=
+sp?.full_name
+||
+[
+sp?.first_name,
+sp?.last_name
+]
+.filter(Boolean)
+.join(" ");
+
+return norm(name)
+===
+norm(p.name);
+
+}
+);
+
+if(!hit){
+return null;
+}
+
+return{
+id:String(hit[0]),
+...hit[1]
+};
+
+}
+
+function tradeInsightText(value){
+
+if(
+value===null
+||
+value===undefined
+){
+return "";
+}
+
+if(typeof value==="string"){
+return value.trim();
+}
+
+if(typeof value==="number"){
+return String(value);
+}
+
+return "";
+
+}
+
+function tradeInsightSource(value){
+
+if(!value||typeof value!=="object"){
+return "";
+}
+
+return tradeInsightText(
+value.source
+||
+value.sourceName
+||
+value.provider
+);
+
+}
+
+function tradeInsightFactor(
+label,
+text,
+tone="neutral",
+source="",
+priority=50
+){
+
+if(!tradeInsightText(text)){
+return null;
+}
+
+return{
+label,
+text:tradeInsightText(text),
+tone,
+source:tradeInsightText(source),
+priority
+};
+
+}
+
+function tradeInsightInjuryFactor(
+p,
+ctx,
+meta
+){
+
+const custom=
+ctx?.injury;
+
+if(custom){
+
+if(typeof custom==="string"){
+return tradeInsightFactor(
+"Injury",
+custom,
+"risk",
+"",
+100
+);
+}
+
+const status=
+tradeInsightText(
+custom.status
+||
+custom.designation
+);
+
+const body=
+tradeInsightText(
+custom.bodyPart
+||
+custom.body_part
+);
+
+const detail=
+tradeInsightText(
+custom.summary
+||
+custom.note
+||
+custom.details
+);
+
+const pieces=[];
+
+if(status){
+pieces.push(status);
+}
+
+if(body){
+pieces.push(body);
+}
+
+let text=
+pieces.join(" — ");
+
+if(detail){
+text+=
+(text?". ":"")
++
+detail;
+}
+
+if(text){
+return tradeInsightFactor(
+"Injury",
+text,
+"risk",
+tradeInsightSource(custom),
+100
+);
+}
+
+}
+
+if(meta){
+
+const injuryStatus=
+tradeInsightText(
+meta.injury_status
+);
+
+const body=
+tradeInsightText(
+meta.injury_body_part
+);
+
+const injuryNote=
+tradeInsightText(
+meta.injury_notes
+);
+
+if(injuryStatus){
+
+let text=
+injuryStatus;
+
+if(body){
+text+=` — ${body}`;
+}
+
+if(injuryNote){
+text+=`. ${injuryNote}`;
+}
+
+return tradeInsightFactor(
+"Injury",
+text,
+"risk",
+"Sleeper",
+100
+);
+
+}
+
+const status=
+tradeInsightText(
+meta.status
+).toLowerCase();
+
+if(
+status
+&&
+[
+"injured reserve",
+"ir",
+"physically unable to perform",
+"pup",
+"non-football injury",
+"nfi"
+]
+.some(
+x=>status.includes(x)
+)
+){
+
+return tradeInsightFactor(
+"Availability",
+`Sleeper lists the player status as ${meta.status}.`,
+"risk",
+"Sleeper",
+98
+);
+
+}
+
+return tradeInsightFactor(
+"Health",
+"No active injury designation is currently listed in Sleeper's player metadata.",
+"positive",
+"Sleeper",
+20
+);
+
+}
+
+return null;
+
+}
+
+function tradeInsightInjurySeverity(status){
+
+const s=
+String(status||"")
+.toLowerCase();
+
+if(
+/\b(ir|out|pup|nfi|doubtful)\b/.test(s)
+){
+return 4;
+}
+
+if(
+/questionable/.test(s)
+){
+return 3;
+}
+
+if(
+/probable|limited/.test(s)
+){
+return 2;
+}
+
+return 1;
+
+}
+
+function tradeInsightRelevantTeammate(
+p,
+playerMeta,
+teammate
+){
+
+const pos=
+String(
+p?.pos
+||
+playerMeta?.position
+||
+""
+).toUpperCase();
+
+const tpos=
+String(
+teammate?.position
+||
+""
+).toUpperCase();
+
+if(!tpos){
+return false;
+}
+
+if(pos==="RB"){
+return[
+"RB",
+"QB"
+].includes(tpos);
+}
+
+if(pos==="WR"){
+return[
+"WR",
+"TE",
+"QB"
+].includes(tpos);
+}
+
+if(pos==="TE"){
+return[
+"TE",
+"WR",
+"QB"
+].includes(tpos);
+}
+
+if(pos==="QB"){
+return[
+"WR",
+"TE",
+"RB"
+].includes(tpos);
+}
+
+return false;
+
+}
+
+function tradeInsightTeammateEffectText(
+p,
+playerMeta,
+teammate,
+name,
+status
+){
+
+const pos=
+String(
+p?.pos
+||
+playerMeta?.position
+||
+""
+).toUpperCase();
+
+const tpos=
+String(
+teammate?.position
+||
+""
+).toUpperCase();
+
+if(
+tpos==="QB"
+&&
+pos!=="QB"
+){
+return `${name} (${status}) is a quarterback availability concern, which can affect the offense's efficiency and scoring environment.`;
+}
+
+if(pos==="QB"){
+return `${name} (${status}) is dealing with an injury, reducing or threatening one of the quarterback's supporting weapons.`;
+}
+
+if(
+pos==="RB"
+&&
+tpos==="RB"
+){
+return `${name} (${status}) is an injured backfield teammate. If that player is limited or out, touches could consolidate toward ${p.name}.`;
+}
+
+if(
+["WR","TE"].includes(pos)
+&&
+["WR","TE"].includes(tpos)
+){
+return `${name} (${status}) is an injured target competitor. Missed time could concentrate additional targets toward ${p.name}.`;
+}
+
+return `${name} (${status}) is a relevant teammate injury that could change ${p.name}'s weekly role or scoring environment.`;
+
+}
+
+function tradeInsightTeammateFactors(
+p,
+ctx,
+meta
+){
+
+const factors=[];
+
+const custom=
+ctx?.teammateInjuries
+||
+ctx?.teammate_injuries;
+
+if(Array.isArray(custom)){
+
+custom
+.slice(0,3)
+.forEach(
+item=>{
+
+if(typeof item==="string"){
+
+factors.push(
+tradeInsightFactor(
+"Teammate injury",
+item,
+"neutral",
+"",
+90
+)
+);
+
+return;
+}
+
+const name=
+tradeInsightText(
+item?.name
+||
+item?.player
+);
+
+const status=
+tradeInsightText(
+item?.status
+||
+item?.designation
+);
+
+const summary=
+tradeInsightText(
+item?.summary
+||
+item?.note
+||
+item?.details
+);
+
+const impact=
+tradeInsightText(
+item?.impact
+);
+
+let text=
+[
+name,
+status
+]
+.filter(Boolean)
+.join(" — ");
+
+if(summary){
+text+=
+(text?". ":"")
++
+summary;
+}
+
+if(impact){
+text+=
+(text?" ":"")
++
+impact;
+}
+
+if(text){
+
+factors.push(
+tradeInsightFactor(
+"Teammate injury",
+text,
+"neutral",
+tradeInsightSource(item),
+90
+)
+);
+
+}
+
+}
+);
+
+if(factors.length){
+return factors.filter(Boolean);
+}
+
+}
+
+if(!meta?.team){
+return factors;
+}
+
+const pool=
+tradeInsightPlayerPool();
+
+const teammates=
+Object.entries(pool)
+.map(
+([id,sp])=>({
+id,
+...sp
+})
+)
+.filter(
+sp=>
+sp.id!==meta.id
+&&
+sp.team===meta.team
+&&
+tradeInsightText(sp.injury_status)
+&&
+tradeInsightRelevantTeammate(
+p,
+meta,
+sp
+)
+)
+.sort(
+(a,b)=>
+tradeInsightInjurySeverity(
+b.injury_status
+)
+-
+tradeInsightInjurySeverity(
+a.injury_status
+)
+)
+.slice(0,2);
+
+teammates.forEach(
+sp=>{
+
+const name=
+sp.full_name
+||
+[
+sp.first_name,
+sp.last_name
+]
+.filter(Boolean)
+.join(" ")
+||
+"A teammate";
+
+const status=
+sp.injury_status
+||
+"injured";
+
+factors.push(
+tradeInsightFactor(
+"Teammate injury",
+tradeInsightTeammateEffectText(
+p,
+meta,
+sp,
+name,
+status
+),
+"neutral",
+"Sleeper",
+85
+)
+);
+
+}
+);
+
+return factors.filter(Boolean);
+
+}
+
+function tradeInsightSOSFactor(
+p,
+ctx
+){
+
+const sos=
+ctx?.sos
+||
+ctx?.positionalSOS
+||
+ctx?.strengthOfSchedule
+||
 null;
 
+if(!sos){
+return null;
 }
 
-function tradeInsightAgeReason(
+if(typeof sos==="string"){
+return tradeInsightFactor(
+"Position schedule",
+sos,
+"neutral",
+"",
+80
+);
+}
+
+const note=
+tradeInsightText(
+sos.note
+||
+sos.summary
+||
+sos.details
+);
+
+const window=
+tradeInsightText(
+sos.window
+||
+sos.period
+||
+"remaining schedule"
+);
+
+const label=
+tradeInsightText(
+sos.label
+||
+sos.rating
+);
+
+const easiestRank=
+Number(
+sos.easiestRank
+??
+sos.rankEasiest
+);
+
+const hardestRank=
+Number(
+sos.hardestRank
+??
+sos.rankHardest
+);
+
+const genericRank=
+Number(sos.rank);
+
+const total=
+Number(sos.total)
+||
+32;
+
+let text="";
+let tone="neutral";
+
+if(note){
+text=note;
+}
+else if(Number.isFinite(easiestRank)){
+text=`${p.pos} ${window} ranks ${Math.round(easiestRank)} of ${total} from easiest to hardest.`;
+tone=
+easiestRank<=10
+?
+"positive"
+:
+easiestRank>=23
+?
+"risk"
+:
+"neutral";
+}
+else if(Number.isFinite(hardestRank)){
+text=`${p.pos} ${window} ranks ${Math.round(hardestRank)} of ${total} from hardest to easiest.`;
+tone=
+hardestRank<=10
+?
+"risk"
+:
+hardestRank>=23
+?
+"positive"
+:
+"neutral";
+}
+else if(
+Number.isFinite(genericRank)
+&&
+label
+){
+text=`${label} ${p.pos} ${window} (rank ${Math.round(genericRank)} of ${total}).`;
+}
+else if(label){
+text=`${label} ${p.pos} ${window}.`;
+}
+
+if(!text){
+return null;
+}
+
+return tradeInsightFactor(
+"Position schedule",
+text,
+tone,
+tradeInsightSource(sos),
+80
+);
+
+}
+
+function tradeInsightRoleFactor(
 p,
+ctx,
 meta
 ){
 
-const age=
-meta.age;
+const role=
+ctx?.role
+||
+ctx?.roleChange
+||
+ctx?.usage
+||
+null;
 
-if(!Number.isFinite(age)){
-return "";
+if(role){
+
+if(typeof role==="string"){
+return tradeInsightFactor(
+"Role / usage",
+role,
+"neutral",
+"",
+75
+);
+}
+
+const text=
+tradeInsightText(
+role.summary
+||
+role.note
+||
+role.details
+||
+role.change
+);
+
+if(text){
+return tradeInsightFactor(
+"Role / usage",
+text,
+role.tone==="positive"
+?
+"positive"
+:
+role.tone==="risk"
+?
+"risk"
+:
+"neutral",
+tradeInsightSource(role),
+75
+);
+}
+
+}
+
+if(
+meta
+&&
+tradeInsightText(meta.depth_chart_position)
+&&
+Number.isFinite(
+Number(meta.depth_chart_order)
+)
+){
+
+const order=
+Number(meta.depth_chart_order);
+
+if(order<=1){
+return tradeInsightFactor(
+"Depth chart",
+`Sleeper currently lists ${p.name} at the top of the ${meta.position||p.pos} depth chart.`,
+"positive",
+"Sleeper",
+35
+);
+}
+
+if(order>=3){
+return tradeInsightFactor(
+"Depth chart",
+`Sleeper currently lists ${p.name} at depth-chart order ${order}, which can limit near-term opportunity unless the role changes.`,
+"risk",
+"Sleeper",
+35
+);
+}
+
+}
+
+return null;
+
+}
+
+function tradeInsightOffFieldFactor(
+ctx
+){
+
+const item=
+ctx?.offField
+||
+ctx?.offFieldRisk
+||
+ctx?.discipline
+||
+ctx?.suspension
+||
+null;
+
+if(!item){
+return null;
+}
+
+if(typeof item==="string"){
+return tradeInsightFactor(
+"Off-field availability",
+`Reported availability concern: ${item}`,
+"risk",
+"TradeForge curated feed",
+95
+);
+}
+
+if(item.verified===false){
+return null;
+}
+
+const text=
+tradeInsightText(
+item.summary
+||
+item.note
+||
+item.details
+||
+item.status
+);
+
+if(!text){
+return null;
+}
+
+return tradeInsightFactor(
+"Off-field availability",
+`Reported availability concern: ${text}`,
+"risk",
+tradeInsightSource(item)
+||
+"TradeForge curated feed",
+95
+);
+
+}
+
+function tradeInsightAdditionalFactors(
+ctx
+){
+
+const notes=
+ctx?.notes;
+
+if(!Array.isArray(notes)){
+return[];
+}
+
+return notes
+.slice(0,3)
+.map(
+item=>{
+
+if(typeof item==="string"){
+return tradeInsightFactor(
+"Player context",
+item,
+"neutral",
+"",
+60
+);
+}
+
+return tradeInsightFactor(
+tradeInsightText(item?.label)
+||
+"Player context",
+tradeInsightText(
+item?.summary
+||
+item?.note
+||
+item?.details
+),
+item?.tone==="positive"
+?
+"positive"
+:
+item?.tone==="risk"
+?
+"risk"
+:
+"neutral",
+tradeInsightSource(item),
+60
+);
+
+}
+)
+.filter(Boolean);
+
+}
+
+function tradeInsightModelAvailabilityFactor(p){
+
+const components=
+tradeInsightComponents(p);
+
+if(!components){
+return null;
+}
+
+const availability=
+Number(components.availability);
+
+if(!Number.isFinite(availability)){
+return null;
+}
+
+const baseline=
+Number(value(p));
+
+if(!Number.isFinite(baseline)){
+return null;
+}
+
+const gap=
+availability-baseline;
+
+if(gap<=-8){
+return tradeInsightFactor(
+"Availability model",
+"TradeForge's availability input is materially below this player's overall value, which is a risk flag even when no specific current injury note is loaded.",
+"risk",
+"TradeForge model",
+25
+);
+}
+
+return null;
+
+}
+
+function tradeInsightComponents(p){
+
+if(
+!p
+||
+p.pos==="PICK"
+||
+!tfHasAnyEngineData(p)
+){
+return null;
 }
 
 if(leagueMode==="dynasty"){
-
-if(p.pos==="RB"){
-
-if(age<=24){
-return `At age ${age}, ${esc(p.name)} is still in the premium dynasty age window for a running back, so the model gives him a long multi-year runway.`;
-}
-
-if(age>=28){
-return `At age ${age}, ${esc(p.name)} is on the older side for a dynasty running back. The shorter remaining RB window limits long-term value even if he can still help now.`;
-}
-
-return `At age ${age}, ${esc(p.name)} is still within a productive RB window, but age is becoming more important to his dynasty value.`;
-
-}
-
-if(p.pos==="WR"){
-
-if(age<=25){
-return `At age ${age}, ${esc(p.name)} still has a long wide-receiver runway, which is a meaningful positive in dynasty.`;
-}
-
-if(age>=30){
-return `At age ${age}, ${esc(p.name)} has less long-term runway than younger wide receivers, so dynasty value is more dependent on near-term production.`;
-}
-
-return `At age ${age}, ${esc(p.name)} is in a strong wide-receiver career window with multiple productive seasons still plausible.`;
-
-}
-
-if(p.pos==="TE"){
-
-if(age<=26){
-return `At age ${age}, ${esc(p.name)} is young for a tight end, a position where many players develop later. That gives him additional dynasty runway.`;
-}
-
-if(age>=31){
-return `At age ${age}, ${esc(p.name)} has a shorter long-term window at tight end, so current production matters more than future growth.`;
-}
-
-return `At age ${age}, ${esc(p.name)} is in a favorable tight-end career window for dynasty value.`;
-
-}
-
-if(p.pos==="QB"){
-
-if(age<=27){
-return `At age ${age}, ${esc(p.name)} has a long potential quarterback runway, which can materially increase dynasty value.`;
-}
-
-if(age>=36){
-return `At age ${age}, ${esc(p.name)} has a limited long-term quarterback runway. Retirement and year-to-year role uncertainty keep his dynasty value below younger starters even when he can still produce in the short term.`;
-}
-
-return `At age ${age}, ${esc(p.name)} still has a meaningful multi-year quarterback window, so age is not a major dynasty penalty.`;
-
-}
-
+return tfDynastyComponents(p);
 }
 
 if(leagueMode==="keeper"){
 
-if(
-(p.pos==="RB"&&age>=28)
-||
-(p.pos==="WR"&&age>=30)
-||
-(p.pos==="TE"&&age>=31)
-||
-(p.pos==="QB"&&age>=36)
-){
-return `At age ${age}, ${esc(p.name)} carries less future value in a keeper format, even if his current-season production remains useful.`;
-}
+const direct=
+p.engine?.keeper;
 
 if(
-(p.pos==="RB"&&age<=24)
-||
-(p.pos==="WR"&&age<=25)
-||
-(p.pos==="TE"&&age<=26)
-||
-(p.pos==="QB"&&age<=27)
+tfHasComponentData(direct)
 ){
-return `At age ${age}, ${esc(p.name)} gets an added keeper boost because his value can extend well beyond the current season.`;
-}
 
-return `At age ${age}, ${esc(p.name)} sits in a fairly stable keeper-age window, so both current production and future seasons matter.`;
-
-}
-
-if(
-(p.pos==="RB"&&age>=29)
-||
-(p.pos==="WR"&&age>=31)
-||
-(p.pos==="TE"&&age>=32)
-||
-(p.pos==="QB"&&age>=38)
-){
-return `At age ${age}, ${esc(p.name)} has more career-stage risk than younger players, although age is weighted far less heavily in redraft than it is in dynasty.`;
-}
-
-return `At age ${age}, ${esc(p.name)} is evaluated mainly on this season in redraft; age is only a secondary factor unless it affects role or availability.`;
-
-}
-
-function tradeInsightRookieReason(
+const baseline=
+tfStoredRawValue(
 p,
-meta,
-e
-){
-
-if(!meta.isRookie){
-return "";
-}
-
-if(leagueMode==="dynasty"){
-
-const draftCapital=
-Number(e?.draftCapital);
-
-const roleSecurity=
-Number(e?.roleSecurity);
-
-const opportunity=
-Number(e?.opportunity);
-
-let extra="";
-
-if(Number.isFinite(draftCapital)){
-
-if(draftCapital>=70){
-extra+=
-" Strong draft capital supports a longer development leash and a better chance to earn a lasting role.";
-}
-else if(draftCapital<=35){
-extra+=
-" Weaker draft-capital support adds more uncertainty to the long-term projection.";
-}
-
-}
-
-if(Number.isFinite(roleSecurity)&&roleSecurity>=70){
-extra+=
-" His role-security input is also strong for a first-year player.";
-}
-else if(Number.isFinite(opportunity)&&opportunity>=70){
-extra+=
-" His early opportunity profile is another positive.";
-}
-
-return `${esc(p.name)} is a rookie, so his dynasty value is driven heavily by youth, development runway and future role upside rather than only by what he is projected to score right now.${extra}`;
-
-}
-
-if(leagueMode==="keeper"){
-return `${esc(p.name)} is a rookie, giving him more future keeper upside than an older player with similar current-season production.`;
-}
-
-return `${esc(p.name)} is a rookie. In redraft, TradeForge cares much more about his immediate role and current-season production than his long-term upside.`;
-
-}
-
-function tradeInsightProductionReason(
-p,
-e,
-meta
-){
-
-const projectedPoints=
-tradeInsightProjectedPoints(
-p,
-e
+"keeper"
 );
 
-if(Number.isFinite(projectedPoints)){
-return `${esc(p.name)} is currently projected for ${projectedPoints.toFixed(1)} fantasy points in the loaded data, so expected production is a direct part of his valuation.`;
-}
-
-const performance=
-Number(e?.performance);
-
-if(Number.isFinite(performance)){
-
-if(performance>=85){
-return `${esc(p.name)} has an elite current-production profile in the TradeForge inputs, which is a major reason he stays near the top of the rankings.`;
-}
-
-if(performance>=65){
-return `${esc(p.name)} carries a strong current-production profile, so the valuation is supported by more than age or future upside alone.`;
-}
-
-if(performance<=25){
-
-if(meta.isRookie&&leagueMode==="dynasty"){
-return `${esc(p.name)} does not need an elite current-season production profile to hold dynasty value because his youth and future development window are carrying more of the long-term case.`;
-}
-
-return `${esc(p.name)} has a modest current-production profile, which keeps his present value capped unless role or future upside improves.`;
+return{
+performance:tfPerformanceValue(direct,baseline),
+opportunity:tfOpportunityValue(direct,baseline),
+scarcity:tfScarcityValue(p,"keeper",baseline,direct),
+market:tfMarketValue(p,direct,baseline),
+consistency:tfConsistencyValue(direct,baseline),
+availability:tfAvailabilityValue(direct,baseline),
+situation:tfSituationValue(direct,baseline)
+};
 
 }
 
-}
-
-const rank=
-tradeInsightPositionRank(p);
-
-if(rank&&rank<=3){
-return `${esc(p.name)} is currently a top-${rank} ${esc(p.pos)} in TradeForge's active settings, showing that his present production/value profile is one of the strongest at the position.`;
-}
-
-if(rank&&rank<=10){
-return `${esc(p.name)} currently sits inside the top 10 at ${esc(p.pos)} in the active settings, giving him a strong present-season value base.`;
-}
-
-return "";
+return null;
 
 }
 
-function tradeInsightFutureReason(
-p,
-meta
-){
-
-if(p.pos==="PICK"){
-return "";
-}
-
-const redraft=
-tradeInsightModeRawValue(
-p,
-"redraft"
-);
-
-const dynasty=
-tradeInsightModeRawValue(
-p,
-"dynasty"
-);
-
-if(
-!Number.isFinite(redraft)
-||
-!Number.isFinite(dynasty)
-||
-redraft<=0
-){
-return "";
-}
-
-const ratio=
-dynasty/redraft;
-
-if(
-leagueMode==="dynasty"
-&&
-ratio>=1.35
-){
-
-if(meta.isRookie){
-return `${esc(p.name)} is valued much more aggressively in dynasty than in redraft, which fits a profile where future seasons and development runway matter more than immediate scoring.`;
-}
-
-return `${esc(p.name)} carries substantially more dynasty value than redraft value, signaling that long-term role and future seasons are an important part of his ranking.`;
+return tfRedraftComponents(p);
 
 }
 
-if(
-leagueMode==="dynasty"
-&&
-ratio<=.78
-){
-return `${esc(p.name)} is worth more for the current season than for the long term, so his dynasty ranking is restrained by a shorter future window.`;
-}
-
-if(
-leagueMode==="keeper"
-&&
-ratio>=1.30
-){
-return `${esc(p.name)} has a strong long-term profile relative to his redraft value, which adds meaningful keeper appeal.`;
-}
-
-if(
-leagueMode==="keeper"
-&&
-ratio<=.80
-){
-return `${esc(p.name)} is more valuable as a current-season asset than as a long-term hold, which limits his keeper ceiling.`;
-}
-
-return "";
-
-}
-
-function tradeInsightRoleReason(
-p,
-e
-){
-
-const opportunity=
-Number(e?.opportunity);
-
-const roleSecurity=
-Number(e?.roleSecurity);
-
-const roleConfidence=
-Number(e?.roleConfidence);
-
-if(Number.isFinite(roleSecurity)){
-
-if(roleSecurity>=80){
-return `${esc(p.name)} has a very strong role-security signal, which supports both weekly usage and longer-term value.`;
-}
-
-if(roleSecurity<=35){
-return `${esc(p.name)} has meaningful role-security uncertainty, which keeps the model from valuing him solely on upside.`;
-}
-
-}
-
-if(Number.isFinite(roleConfidence)){
-
-if(roleConfidence>=80){
-return `${esc(p.name)} has a high-confidence role in the loaded data, strengthening the case for dependable opportunity.`;
-}
-
-if(roleConfidence<=35){
-return `${esc(p.name)} has a low-confidence role profile, so opportunity is a significant risk to his value.`;
-}
-
-}
-
-if(Number.isFinite(opportunity)){
-
-if(opportunity>=85){
-return `${esc(p.name)} has an elite opportunity profile, meaning expected volume and role are major positives in his valuation.`;
-}
-
-if(opportunity<=25){
-return `${esc(p.name)} has a limited opportunity profile right now, which caps his value until his role expands.`;
-}
-
-}
-
-return "";
-
-}
-
-function tradeInsightPickReason(p){
-
-const year=
-String(p.name)
-.match(/20\d{2}/)?.[0]
-||
-"future";
-
-const round=
-String(p.name)
-.match(/\b(1st|2nd|3rd|4th)\b/i)?.[0]
-||
-"draft";
-
-return `${esc(p.name)} is a ${esc(year)} ${esc(round)} pick. Its value comes from future player access and roster flexibility rather than the age, role or projection of a current NFL player.`;
-
-}
-
-function tradeInsightPlayerReasons(p){
+function tradeInsightFactorsForPlayer(p){
 
 if(!p){
-return [];
+return[];
 }
 
 if(p.pos==="PICK"){
-return [tradeInsightPickReason(p)];
+return[
+tradeInsightFactor(
+"Draft pick",
+"Draft picks do not have injury, teammate, schedule, or off-field player context. Their value remains tied to pick slot, class strength, and league format.",
+"neutral",
+"",
+50
+)
+].filter(Boolean);
 }
+
+const ctx=
+tradeInsightLiveContext(p);
 
 const meta=
-tradeInsightPlayerMeta(p);
+tradeInsightSleeperMeta(p);
 
-const e=
-tradeInsightEngineForMode(p);
+const factors=[];
 
-const reasons=[];
-
-const rookie=
-tradeInsightRookieReason(
+const injury=
+tradeInsightInjuryFactor(
 p,
-meta,
-e
-);
-
-if(rookie){
-reasons.push(rookie);
-}
-
-const age=
-tradeInsightAgeReason(
-p,
+ctx,
 meta
 );
 
-if(age){
-reasons.push(age);
+if(injury){
+factors.push(injury);
 }
 
-const production=
-tradeInsightProductionReason(
+factors.push(
+...tradeInsightTeammateFactors(
 p,
-e,
+ctx,
 meta
+)
 );
 
-if(production){
-reasons.push(production);
+const sos=
+tradeInsightSOSFactor(
+p,
+ctx
+);
+
+if(sos){
+factors.push(sos);
 }
 
 const role=
-tradeInsightRoleReason(
+tradeInsightRoleFactor(
 p,
-e
-);
-
-if(role){
-reasons.push(role);
-}
-
-const future=
-tradeInsightFutureReason(
-p,
+ctx,
 meta
 );
 
-if(future){
-reasons.push(future);
+if(role){
+factors.push(role);
 }
 
-if(!reasons.length){
-
-if(leagueMode==="dynasty"){
-reasons.push(
-`${esc(p.name)} is being valued on a multi-year dynasty profile rather than only on this season. Current production, positional value and future runway are all reflected in his TradeForge value.`
+const offField=
+tradeInsightOffFieldFactor(
+ctx
 );
+
+if(offField){
+factors.push(offField);
 }
-else if(leagueMode==="keeper"){
-reasons.push(
-`${esc(p.name)} is being valued on a blend of current-season usefulness and future value, which is the core of TradeForge's keeper model.`
+
+factors.push(
+...tradeInsightAdditionalFactors(ctx)
 );
-}
-else{
-reasons.push(
-`${esc(p.name)} is being valued primarily on current-season production, role and positional value in this redraft setup.`
-);
-}
 
-}
+const modelAvailability=
+tradeInsightModelAvailabilityFactor(p);
 
-return reasons.slice(0,3);
-
+if(modelAvailability){
+factors.push(modelAvailability);
 }
 
-function tradeInsightKeyAssets(team){
-
-return team
-.slice()
+return factors
+.filter(Boolean)
 .sort(
-(a,b)=>value(b)-value(a)
+(a,b)=>b.priority-a.priority
 )
-.slice(0,2);
+.slice(0,4);
+
+}
+
+function tradeInsightPlayerTeam(p){
+
+const meta=
+tradeInsightSleeperMeta(p);
+
+return p?.nflTeam
+||
+meta?.team
+||
+tradeInsightText(
+tradeInsightLiveContext(p)?.team
+)
+||
+"";
+
+}
+
+function tradeInsightRenderFactor(factor){
+
+const source=
+factor.source
+?
+` <span class="trade-insight-source">(${esc(factor.source)})</span>`
+:
+"";
+
+return `
+<li class="trade-insight-factor ${esc(factor.tone||"neutral")}">
+<strong>${esc(factor.label)}:</strong>
+${esc(factor.text)}${source}
+</li>
+`;
+
+}
+
+function tradeInsightRenderPlayer(p){
+
+const factors=
+tradeInsightFactorsForPlayer(p);
+
+const team=
+tradeInsightPlayerTeam(p);
+
+const meta=
+[
+p.pos,
+team
+]
+.filter(Boolean)
+.join(" • ");
+
+const body=
+factors.length
+?
+factors.map(
+tradeInsightRenderFactor
+).join("")
+:
+`<li class="trade-insight-factor neutral">No significant current injury, teammate-injury, schedule, role, or off-field flag is loaded for this player.</li>`;
+
+return `
+<div class="trade-insight-player">
+<div class="trade-insight-player-head">
+<div class="trade-insight-player-name">${esc(p.name)}</div>
+<div class="trade-insight-player-meta">${esc(meta)}</div>
+</div>
+<ul class="trade-insight-factor-list">
+${body}
+</ul>
+</div>
+`;
+
+}
+
+function tradeInsightRenderSide(
+label,
+team
+){
+
+return `
+<div class="trade-insight-side">
+<div class="trade-insight-side-title">${esc(label)}</div>
+${team.map(
+tradeInsightRenderPlayer
+).join("")}
+</div>
+`;
 
 }
 
@@ -5257,60 +6097,17 @@ box.className=
 box.textContent=
 id==="sleeper-trade-insight"
 ?
-"Build a Sleeper trade to see the player-specific reasons behind each asset's value."
+"Build a Sleeper trade to see the current factors affecting each player."
 :
-"Build a trade to see the player-specific reasons behind each asset's value.";
+"Build a trade to see the current factors affecting each player.";
 return;
 }
 
-const selected=[];
-
-tradeInsightKeyAssets(aTeam)
-.forEach(
-p=>selected.push({side:"A",player:p})
-);
-
-tradeInsightKeyAssets(bTeam)
-.forEach(
-p=>selected.push({side:"B",player:p})
-);
-
-const seen=new Set();
-
-const rows=
-selected
-.filter(
-item=>{
-
-const key=
-`${item.side}:${norm(item.player.name)}`;
-
-if(seen.has(key)){
-return false;
-}
-
-seen.add(key);
-return true;
-
-}
-)
-.map(
-item=>{
-
-const p=item.player;
-const reasons=
-tradeInsightPlayerReasons(p);
-
-return `
-<li>
-<strong>Team ${item.side}: ${esc(p.name)}</strong>
-<div>${reasons.join(" ")}</div>
-</li>
-`;
-
-}
-)
-.join("");
+/*
+If a Sleeper league has not been synced, load the public NFL player pool in
+the background so injury designations can populate the next render.
+*/
+ensureInsightSleeperData();
 
 box.className=
 "trade-insight-box";
@@ -5318,15 +6115,16 @@ box.className=
 box.innerHTML=
 `
 <div class="trade-insight-summary">
-What is driving the player values
+Current Player Impact Factors
 </div>
 
-<ul class="trade-insight-list">
-${rows}
-</ul>
+<div class="trade-insight-grid">
+${tradeInsightRenderSide("Team A players",aTeam)}
+${tradeInsightRenderSide("Team B players",bTeam)}
+</div>
 
 <div class="trade-insight-context">
-Current model: ${esc(modeLabel())}. Insight focuses on the players themselves — age, career stage, rookie status, current production, role and future runway — instead of repeating the trade-value math shown above.
+Insight is player-specific, not a restatement of the trade-value math. Injury and teammate context can come from Sleeper. Strength-of-schedule, role-change, and off-field availability notes appear only when those fields are present in the TradeForge live data feed. Off-field notes are treated as availability risk, not as a legal conclusion.
 </div>
 `;
 
@@ -8503,6 +9301,10 @@ metrics.length;
 
 }
 
+/* =========================================================
+ROSTER PROFILE
+========================================================= */
+
 function dashboardTeamProfile(
 my,
 all
@@ -8627,6 +9429,10 @@ detail:
 };
 
 }
+
+/* =========================================================
+TRADE OPPORTUNITY FINDER
+========================================================= */
 
 function dashboardTradeOpportunities(
 my,
@@ -8865,6 +9671,10 @@ return opportunities.slice(
 );
 
 }
+
+/* =========================================================
+RENDER LEAGUE DASHBOARD
+========================================================= */
 
 function renderLeagueDashboard(){
 
@@ -9227,6 +10037,10 @@ ${bestPos.pos} • ${ordinal(bestPos.rank)}
 .join("");
 
 }
+
+/* =========================================================
+LEAGUE TRADE FINDER
+========================================================= */
 
 function leagueTradeFinderRosters(){
 
@@ -9802,6 +10616,10 @@ $("trade-finder-results").textContent=
 $("trade-finder-run").onclick=
 findLeagueTrades;
 
+/* =========================================================
+TRADE CENTER TABS
+========================================================= */
+
 function setTradeCenterTab(tab){
 
 const valid=[
@@ -9883,6 +10701,10 @@ button.dataset.tradeCenterTab
 setTradeCenterTab(
 "finder"
 );
+
+/* =========================================================
+BUILD LEAGUE PAGE
+========================================================= */
 
 function buildLeaguePage(){
 
@@ -10011,6 +10833,10 @@ e.target.value,
 "opponent-team-meta"
 );
 
+/* =========================================================
+PAGE NAVIGATION
+========================================================= */
+
 function setPage(page){
 
 if(
@@ -10094,6 +10920,10 @@ location.hash==="#league"
 }
 );
 
+/* =========================================================
+SLEEPER SYNC
+========================================================= */
+
 const modal=
 $("modal");
 
@@ -10156,6 +10986,10 @@ return fallback;
 }
 
 }
+
+/* =========================================================
+FIND LEAGUES
+========================================================= */
 
 $("find-leagues").onclick=
 async()=>{
@@ -10260,6 +11094,10 @@ e.message
 
 };
 
+/* =========================================================
+CONNECT LEAGUE
+========================================================= */
+
 $("connect-league").onclick=
 async()=>{
 
@@ -10310,10 +11148,6 @@ fetchJSON(
 ]);
 
 applySleeperSettings();
-
-tradeInsightIndexSleeperPlayers(
-sleeperPlayers
-);
 
 buildSleeperRosterSelectors();
 
@@ -10375,6 +11209,10 @@ e.message
 }
 
 };
+
+/* =========================================================
+SLEEPER LEAGUE SETTINGS
+========================================================= */
 
 function applySleeperSettings(){
 
@@ -10457,6 +11295,10 @@ set.type
 
 }
 
+/* =========================================================
+ROSTER NAMES
+========================================================= */
+
 function rosterName(r){
 
 const u=
@@ -10479,6 +11321,10 @@ u?.username
 r.roster_id;
 
 }
+
+/* =========================================================
+ROSTER SELECTORS
+========================================================= */
 
 function buildSleeperRosterSelectors(){
 
@@ -10586,6 +11432,10 @@ renderSleeper();
 buildLeaguePage();
 
 };
+
+/* =========================================================
+SLEEPER MARKET MAP
+========================================================= */
 
 function buildSleeperNameMap(){
 
@@ -10761,6 +11611,10 @@ buildLeaguePage();
 
 }
 
+/* =========================================================
+MATCH SLEEPER PLAYERS
+========================================================= */
+
 function matchSleeper(id){
 
 id=
@@ -10836,6 +11690,10 @@ null;
 
 }
 
+/* =========================================================
+DISCONNECT
+========================================================= */
+
 $("disconnect").onclick=
 ()=>{
 
@@ -10881,6 +11739,10 @@ render();
 
 };
 
+/* =========================================================
+START
+========================================================= */
+
 if(
 !location.hash
 ){
@@ -10920,7 +11782,6 @@ renderBoard();
 render();
 
 loadTradeForgeFeed();
-loadTradeInsightPlayerMetadata();
 
 </script>
 
