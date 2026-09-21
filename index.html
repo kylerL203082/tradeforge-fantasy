@@ -724,6 +724,7 @@ font-weight:900;
 color:var(--blue)
 }
 
+
 /* =========================================================
 TRADE CENTER
 ========================================================= */
@@ -1025,7 +1026,7 @@ Top Players
 
 <section class="team">
 
-<h2>Team A</h2>
+<h2>Team A (Receiving)</h2>
 
 <div class="search-wrap">
 
@@ -1099,7 +1100,7 @@ Clear Trade
 
 <section class="team">
 
-<h2>Team B</h2>
+<h2>Team B (Receiving)</h2>
 
 <div class="search-wrap">
 
@@ -1323,7 +1324,7 @@ Uses the selected Sleeper rosters
 <section class="team">
 
 <h2>
-Team A
+Team A (Receiving)
 </h2>
 
 <div class="search-wrap">
@@ -1420,7 +1421,7 @@ Clear Trade
 <section class="team">
 
 <h2>
-Team B
+Team B (Receiving)
 </h2>
 
 <div class="search-wrap">
@@ -8313,6 +8314,7 @@ String(mine)
 
 }
 
+
 function leagueTradeFinderPlayerKey(p){
 
 return String(
@@ -8323,6 +8325,7 @@ norm(p?.name)
 
 }
 
+
 function populateLeagueTradeFinderTargets(
 rosterId,
 preserve=true
@@ -8330,10 +8333,6 @@ preserve=true
 
 const select=
 $("trade-finder-target");
-
-if(!select){
-return;
-}
 
 const current=
 preserve
@@ -8369,6 +8368,7 @@ select.value=current;
 }
 
 }
+
 
 function buildLeagueTradeFinder(){
 
@@ -8438,6 +8438,7 @@ true
 
 }
 
+
 function leagueTradeFinderGrade(d){
 
 return d<=5
@@ -8463,6 +8464,7 @@ d<=40
 "F";
 
 }
+
 
 function findLeagueTrades(){
 
@@ -8616,6 +8618,7 @@ difference
 
 };
 
+
 for(
 let i=0;
 i<myPlayers.length;
@@ -8627,6 +8630,7 @@ myPlayers[i]
 ]);
 
 }
+
 
 if(
 maxPlayers>=2
@@ -8654,6 +8658,7 @@ myPlayers[j]
 }
 
 }
+
 
 if(
 maxPlayers>=3
@@ -8690,6 +8695,7 @@ myPlayers[k]
 }
 
 }
+
 
 ideas.sort(
 (a,b)=>{
@@ -8732,6 +8738,7 @@ return a.packagePlayers.length-b.packagePlayers.length;
 }
 );
 
+
 const finalIdeas=[];
 const seen=
 new Set();
@@ -8766,6 +8773,7 @@ break;
 
 }
 
+
 if(
 !finalIdeas.length
 ){
@@ -8777,6 +8785,7 @@ return;
 
 }
 
+
 const myName=
 rosterName(
 mineRoster
@@ -8786,6 +8795,7 @@ const otherName=
 rosterName(
 otherRoster
 );
+
 
 box.innerHTML=
 finalIdeas
@@ -8872,6 +8882,7 @@ Base value: ${baseSend.toFixed(1)} for ${targetBase.toFixed(1)} • Adjusted val
 
 }
 
+
 const tradeFinderTeam=
 $("trade-finder-team");
 
@@ -8939,6 +8950,7 @@ tradeFinderRun.onclick=
 findLeagueTrades;
 }
 
+
 /* =========================================================
 TRADE CENTER TABS
 ========================================================= */
@@ -9005,6 +9017,7 @@ tab
 
 }
 
+
 document
 .querySelectorAll(
 "[data-trade-center-tab]"
@@ -9021,9 +9034,11 @@ button.dataset.tradeCenterTab
 }
 );
 
+
 setTradeCenterTab(
 "finder"
 );
+
 
 /* =========================================================
 BUILD LEAGUE PAGE
