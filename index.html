@@ -938,6 +938,37 @@ padding:13px;
 margin-top:9px
 }
 
+.trade-finder-result-layout{
+display:grid;
+grid-template-columns:minmax(0,1fr) auto;
+gap:18px;
+align-items:center
+}
+
+.trade-finder-build-button{
+background:var(--blue);
+color:#fff;
+border:1px solid var(--blue);
+border-radius:9px;
+padding:11px 16px;
+font-weight:900;
+white-space:nowrap;
+min-width:110px;
+box-shadow:0 3px 10px rgba(0,0,0,.15);
+transition:transform .15s ease,filter .15s ease,box-shadow .15s ease
+}
+
+.trade-finder-build-button:hover{
+filter:brightness(1.08);
+transform:translateY(-1px);
+box-shadow:0 5px 14px rgba(0,0,0,.2)
+}
+
+.trade-finder-build-button:active{
+transform:translateY(0);
+box-shadow:0 2px 6px rgba(0,0,0,.15)
+}
+
 .trade-finder-result-head{
 display:flex;
 justify-content:space-between;
@@ -960,6 +991,19 @@ grid-template-columns:1fr 1fr
 .trade-center-tabs{
 grid-template-columns:1fr
 }
+}
+
+@media(max-width:650px){
+
+.trade-finder-result-layout{
+grid-template-columns:1fr
+}
+
+.trade-finder-build-button{
+width:100%;
+min-width:0
+}
+
 }
 
 @media(max-width:550px){
@@ -2146,12 +2190,6 @@ let sleeperRosterB="";
 let sleeperTrendMarket={};
 let sleeperIdByName={};
 
-/*
-TradeForge Insight can use Sleeper's public player metadata even when a
-league has not been synced. This is kept separate from the league-sync
-player pool so disconnecting a league does not remove injury context from
-the main calculator.
-*/
 let insightSleeperPlayers={};
 let insightSleeperIdByName={};
 let insightSleeperLoading=false;
@@ -4593,60 +4631,6 @@ avg
 TRADE INSIGHTS
 ========================================================= */
 
-/*
-PLAYER-IMPACT INSIGHT DESIGN
-----------------------------
-The Insight panel intentionally avoids explaining package math. It focuses
-on facts and signals that can change an individual player's outlook.
-
-Sleeper provides public player metadata that can supply current injury
-status and roster/team context. The optional tradeforge-data.json feed can
-add richer, curated context that Sleeper does not provide, especially:
-
-insight:{
-  injury:{
-    status:"Questionable",
-    bodyPart:"Hamstring",
-    summary:"Limited in practice after leaving Week 3 early.",
-    source:"Team injury report"
-  },
-  teammateInjuries:[
-    {
-      name:"Teammate Name",
-      status:"Out",
-      summary:"Expected to miss multiple weeks.",
-      impact:"Could increase target/touch opportunity.",
-      source:"Team injury report"
-    }
-  ],
-  sos:{
-    easiestRank:5,
-    total:32,
-    window:"rest of season",
-    label:"favorable",
-    note:"Five of the next eight opponents are bottom-10 against RBs.",
-    source:"TradeForge schedule model"
-  },
-  role:{
-    summary:"Snap share has increased in three straight games.",
-    source:"TradeForge usage model"
-  },
-  offField:{
-    summary:"Reported suspension or legal matter that could affect availability.",
-    status:"monitor",
-    verified:true,
-    source:"Credible published source"
-  },
-  notes:[
-    {summary:"Any additional player-specific factor.",source:"Source"}
-  ]
-}
-
-Off-field items are shown only when they are explicitly present in the
-curated feed. TradeForge does not infer criminal, legal, disciplinary, or
-personal conduct issues from rumors or from a generic player status.
-*/
-
 function tradeInsightBasePlayer(p){
 
 if(!p){
@@ -6103,10 +6087,6 @@ id==="sleeper-trade-insight"
 return;
 }
 
-/*
-If a Sleeper league has not been synced, load the public NFL player pool in
-the background so injury designations can populate the next render.
-*/
 ensureInsightSleeperData();
 
 box.className=
@@ -6295,7 +6275,7 @@ p=>
 p.pos===pos
 &&
 Number.isFinite(
-legacyValue(p)
+value(p)
 )
 )
 
@@ -6303,9 +6283,9 @@ legacyValue(p)
 
 .sort(
 (a,b)=>
-legacyValue(b)
+value(b)
 -
-legacyValue(a)
+value(a)
 ||
 a.rank-b.rank
 )
@@ -6326,7 +6306,7 @@ top.map(
 #${i+1} ${esc(p.name)}
 </span>
 <strong>
-${legacyValue(p).toFixed(1)}
+${value(p).toFixed(1)}
 </strong>
 </div>
 `
@@ -10042,14 +10022,58 @@ ${bestPos.pos} • ${ordinal(bestPos.rank)}
 LEAGUE TRADE FINDER
 ========================================================= */
 
-function buildTradeFromFinder(
-otherRosterId,
-targetPlayer,
-packagePlayers
+let leagueTradeFinderBuilds=[];
+
+function buildTradeFromFinderIndex(index){
+
+const trade=
+leagueTradeFinderBuilds[
+Number(index)
+];
+
+if(!trade){
+return;
+}
+
+buildTradeFromFinder(trade);
+
+}
+
+function buildTradeFromFinder(trade){
+
+if(
+!syncedLeague
+||
+!trade
 ){
+return;
+}
 
 const myRosterId=
-getMyRosterId();
+String(
+getMyRosterId()
+||
+""
+);
+
+const otherRosterId=
+String(
+trade.otherRosterId
+||
+""
+);
+
+const targetPlayer=
+trade.targetPlayer;
+
+const packagePlayers=
+Array.isArray(
+trade.packagePlayers
+)
+?
+trade.packagePlayers
+:
+[];
 
 if(
 !myRosterId
@@ -10058,47 +10082,26 @@ if(
 ||
 !targetPlayer
 ||
-!Array.isArray(packagePlayers)
-||
 !packagePlayers.length
 ){
 return;
 }
 
-/*
-Your roster becomes Team A.
-The roster owning the target becomes Team B.
-*/
-
 sleeperRosterA=
-String(myRosterId);
+myRosterId;
 
 sleeperRosterB=
-String(otherRosterId);
-
-
-/*
-Update the roster dropdowns in the Sleeper calculator.
-*/
+otherRosterId;
 
 if($("sleeper-roster-a")){
-
 $("sleeper-roster-a").value=
 sleeperRosterA;
-
 }
 
 if($("sleeper-roster-b")){
-
 $("sleeper-roster-b").value=
 sleeperRosterB;
-
 }
-
-
-/*
-Load the suggested players into Team A.
-*/
 
 sleeperTeamA=
 packagePlayers.map(
@@ -10107,53 +10110,31 @@ p=>({
 })
 );
 
-
-/*
-Load the target player into Team B.
-*/
-
 sleeperTeamB=[
 {
 ...targetPlayer
 }
 ];
 
-
-/*
-Recalculate and display the completed trade.
-*/
-
 renderSleeper();
-
-
-/*
-Switch the Trade Center to the Trade Calculator tab.
-*/
 
 setTradeCenterTab(
 "calculator"
 );
 
-
-/*
-Scroll the user directly to the Trade Center.
-*/
-
 const tradeCenter=
 $("trade-center-card");
 
 if(tradeCenter){
-
 tradeCenter.scrollIntoView({
 behavior:"smooth",
 block:"start"
 });
-
 }
 
 }
- 
-  function leagueTradeFinderRosters(){
+
+function leagueTradeFinderRosters(){
 
 const mine=
 getMyRosterId();
@@ -10610,6 +10591,25 @@ rosterName(
 otherRoster
 );
 
+leagueTradeFinderBuilds=
+finalIdeas.map(
+idea=>({
+otherRosterId:
+String(otherId),
+
+targetPlayer:{
+...target
+},
+
+packagePlayers:
+idea.packagePlayers.map(
+p=>({
+...p
+})
+)
+})
+);
+
 box.innerHTML=
 finalIdeas
 .map(
@@ -10687,23 +10687,7 @@ ${esc(target.name)}
 </div>
 
 <div class="sub" style="margin-top:9px">
-
-Base value:
-${baseSend.toFixed(1)}
-for
-${targetBase.toFixed(1)}
-
-•
-
-Adjusted value:
-${idea.values.a.toFixed(1)}
-for
-${idea.values.b.toFixed(1)}
-
-•
-
-${idea.difference.toFixed(1)}% difference
-
+Base value: ${baseSend.toFixed(1)} for ${targetBase.toFixed(1)} • Adjusted value: ${idea.values.a.toFixed(1)} for ${idea.values.b.toFixed(1)} • ${idea.difference.toFixed(1)}% difference
 </div>
 
 </div>
@@ -10725,11 +10709,6 @@ Build Trade
 )
 .join("");
 
-
-/*
-Make each Build Trade button open its exact suggested trade.
-*/
-
 box
 .querySelectorAll(
 "[data-build-trade]"
@@ -10737,101 +10716,19 @@ box
 .forEach(
 button=>{
 
-button.onclick=
+button.addEventListener(
+"click",
 ()=>{
 
-const index=
-Number(
+buildTradeFromFinderIndex(
 button.dataset.buildTrade
 );
 
-const idea=
-finalIdeas[index];
-
-if(!idea){
-return;
-}
-
-buildTradeFromFinder(
-otherId,
-target,
-idea.packagePlayers
-);
-
-};
-
 }
 );
 
-const baseSend=
-idea.packagePlayers
-.reduce(
-(t,p)=>
-t+sleeperValue(p),
-0
-);
-
-const targetBase=
-sleeperValue(
-target
-);
-
-const label=
-idea.difference<=5
-?
-"FAIR MATCH"
-:
-idea.difference<=10
-?
-"VERY CLOSE"
-:
-"BEST AVAILABLE";
-
-return`
-<div class="trade-finder-result">
-
-<div class="trade-finder-result-head">
-
-<strong>
-Option ${index+1} — ${label}
-</strong>
-
-<strong>
-Grade ${idea.grade}
-</strong>
-
-</div>
-
-<div style="margin-top:9px">
-
-<strong>
-${esc(myName)} sends:
-</strong>
-
-${packageNames}
-
-</div>
-
-<div style="margin-top:5px">
-
-<strong>
-${esc(otherName)} sends:
-</strong>
-
-${esc(target.name)}
-
-</div>
-
-<div class="sub" style="margin-top:9px">
-Base value: ${baseSend.toFixed(1)} for ${targetBase.toFixed(1)} • Adjusted value: ${idea.values.a.toFixed(1)} for ${idea.values.b.toFixed(1)} • ${idea.difference.toFixed(1)}% difference
-</div>
-
-</div>
-`;
-
 }
-)
-.join("");
+);
 
 }
 
