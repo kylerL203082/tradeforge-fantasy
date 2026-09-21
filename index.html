@@ -115,7 +115,7 @@ border:1px solid var(--border)
 #sync-button,
 #espn-sync-button{
 background:var(--blue);
-color:#fff;
+color:var(--sync);
 border:0
 }
 
@@ -850,22 +850,70 @@ white-space:nowrap
 }
 
 @media(max-width:900px){
-.trade-finder-grid{grid-template-columns:1fr 1fr}
-.trade-grid{grid-template-columns:1fr}
-.top-grid,.settings,.dashboard-kpis,.dashboard-position-grid{grid-template-columns:1fr 1fr}
+.trade-finder-grid{
+grid-template-columns:1fr 1fr
+}
 }
 
 @media(max-width:700px){
-.trade-center-tabs{grid-template-columns:1fr}
+.trade-center-tabs{
+grid-template-columns:1fr
+}
 }
 
 @media(max-width:550px){
-.trade-finder-grid{grid-template-columns:1fr}
-header{display:block}
-.header-buttons{width:100%;margin-top:15px}
-.top-grid,.settings,.sync-grid,.sync-actions,.league-view-grid,.dashboard-kpis,.dashboard-position-grid,.dashboard-analysis{grid-template-columns:1fr}
-.league-toolbar,.dashboard-header{display:block}
-.league-toolbar button{width:100%;margin-top:12px}
+.trade-finder-grid{
+grid-template-columns:1fr
+}
+}
+
+@media(max-width:900px){
+
+.trade-grid{
+grid-template-columns:1fr
+}
+
+.top-grid,
+.settings,
+.dashboard-kpis,
+.dashboard-position-grid{
+grid-template-columns:1fr 1fr
+}
+
+}
+
+@media(max-width:550px){
+
+header{
+display:block
+}
+
+.header-buttons{
+width:100%;
+margin-top:15px
+}
+
+.top-grid,
+.settings,
+.sync-grid,
+.sync-actions,
+.league-view-grid,
+.dashboard-kpis,
+.dashboard-position-grid,
+.dashboard-analysis{
+grid-template-columns:1fr
+}
+
+.league-toolbar,
+.dashboard-header{
+display:block
+}
+
+.league-toolbar button{
+width:100%;
+margin-top:12px
+}
+
 }
 </style>
 </head>
@@ -877,34 +925,40 @@ header{display:block}
 <header>
 
 <div class="brand">
-<div class="logo">TF</div>
+
+<div class="logo">
+TF
+</div>
+
 <div>
 <h1>TradeForge Fantasy</h1>
 <div class="sub">Super Trade Analyzer</div>
 </div>
+
 </div>
 
 <div class="header-buttons">
 
-<button id="theme-toggle" type="button">
+<button id="theme-toggle">
 ☀ Light Theme
 </button>
 
 <div class="sync-actions">
 
-<button id="sync-button" type="button">
+<button id="sync-button">
 Sync Sleeper
 </button>
 
-<button id="espn-sync-button" type="button">
+<button id="espn-sync-button">
 Sync ESPN
 </button>
 
-<button id="league-view-button" type="button" disabled>
+<button id="league-view-button" disabled>
 League Dashboard
 </button>
 
 </div>
+
 </div>
 
 </header>
@@ -958,14 +1012,24 @@ League Dashboard
 </div>
 
 <div class="engine-strip">
-<strong>TradeForge Engine v2.0 • Weighted Model</strong>
-<span id="engine-status">Baseline mode</span>
+
+<strong>
+TradeForge Engine v2.0 • Weighted Model
+</strong>
+
+<span id="engine-status">
+Baseline mode
+</span>
+
 </div>
 
 </section>
 
 <section class="card">
-<h3 style="margin-top:0">Top Players</h3>
+
+<h3 style="margin-top:0">
+Top Players
+</h3>
 
 <div class="top-grid">
 
@@ -990,6 +1054,7 @@ League Dashboard
 </div>
 
 </div>
+
 </section>
 
 <div class="trade-grid">
@@ -999,15 +1064,34 @@ League Dashboard
 <h2>Team A (Receiving)</h2>
 
 <div class="search-wrap">
-<input id="search-a" placeholder="Search player or pick" autocomplete="off">
-<div id="results-a" class="results"></div>
+
+<input
+id="search-a"
+placeholder="Search player or pick"
+autocomplete="off"
+>
+
+<div
+id="results-a"
+class="results"
+></div>
+
 </div>
 
 <div id="team-a"></div>
 
 <div class="totals">
-<div class="total"><small>Base</small><strong id="base-a">0.0</strong></div>
-<div class="total"><small>Adjusted</small><strong id="adj-a">0.0</strong></div>
+
+<div class="total">
+<small>Base</small>
+<strong id="base-a">0.0</strong>
+</div>
+
+<div class="total">
+<small>Adjusted</small>
+<strong id="adj-a">0.0</strong>
+</div>
+
 </div>
 
 </section>
@@ -1019,18 +1103,32 @@ League Dashboard
 </div>
 
 <div id="verdict">
+
 Build a Trade
-<small>Add players to both sides.</small>
+
+<small>
+Add players to both sides.
+</small>
+
 </div>
 
 <div class="grade">
+
 <span>Trade Grade</span>
 <strong id="grade">—</strong>
+
 </div>
 
 <div class="actions">
-<button id="swap" type="button">Swap Sides</button>
-<button id="clear" type="button">Clear Trade</button>
+
+<button id="swap">
+Swap Sides
+</button>
+
+<button id="clear">
+Clear Trade
+</button>
+
 </div>
 
 </section>
@@ -1040,15 +1138,34 @@ Build a Trade
 <h2>Team B (Receiving)</h2>
 
 <div class="search-wrap">
-<input id="search-b" placeholder="Search player or pick" autocomplete="off">
-<div id="results-b" class="results"></div>
+
+<input
+id="search-b"
+placeholder="Search player or pick"
+autocomplete="off"
+>
+
+<div
+id="results-b"
+class="results"
+></div>
+
 </div>
 
 <div id="team-b"></div>
 
 <div class="totals">
-<div class="total"><small>Base</small><strong id="base-b">0.0</strong></div>
-<div class="total"><small>Adjusted</small><strong id="adj-b">0.0</strong></div>
+
+<div class="total">
+<small>Base</small>
+<strong id="base-b">0.0</strong>
+</div>
+
+<div class="total">
+<small>Adjusted</small>
+<strong id="adj-b">0.0</strong>
+</div>
+
 </div>
 
 </section>
@@ -1056,61 +1173,125 @@ Build a Trade
 </div>
 
 <section class="card">
-<h3>TradeForge Insight</h3>
-<div class="sub" style="margin-bottom:10px">Why the current values make this trade fair or favor one side.</div>
-<div id="trade-insight" class="trade-insight-box empty">Build a trade to see why TradeForge values it this way.</div>
+
+<h3>
+TradeForge Insight
+</h3>
+
+<div class="sub" style="margin-bottom:10px">
+Why the current values make this trade fair or favor one side.
+</div>
+
+<div id="trade-insight" class="trade-insight-box empty">
+Build a trade to see why TradeForge values it this way.
+</div>
+
 </section>
 
 <section class="card">
-<h3>Suggested Trade Ideas</h3>
-<div class="sub" style="margin-bottom:10px">TradeForge only adds assets to the side currently receiving less adjusted value.</div>
-<div id="trade-ideas">Build a trade to see suggested trade ideas.</div>
+
+<h3>
+Suggested Trade Ideas
+</h3>
+
+<div class="sub" style="margin-bottom:10px">
+TradeForge only adds assets to the side currently receiving less adjusted value.
+</div>
+
+<div id="trade-ideas">
+Build a trade to see suggested trade ideas.
+</div>
+
 </section>
 
 </main>
 
-<main id="league-page" class="page-hidden">
+<main
+id="league-page"
+class="page-hidden"
+>
 
 <section class="card">
 
 <div class="league-toolbar">
+
 <div>
-<h2>TradeForge League Dashboard</h2>
-<div id="league-page-name" class="sub"></div>
+
+<h2>
+TradeForge League Dashboard
+</h2>
+
+<div
+id="league-page-name"
+class="sub"
+></div>
+
 </div>
 
-<button id="back-to-analyzer" class="close" type="button">
+<button
+id="back-to-analyzer"
+class="close"
+>
 ← Back to Trade Analyzer
 </button>
+
 </div>
 
 </section>
 
-<section id="sleeper-bar" class="card">
+<section
+id="sleeper-bar"
+class="card"
+>
 
 <div class="settings-title">
+
 <div>
-<strong id="sleeper-name">Synced League</strong>
-<div id="sleeper-info" class="sub"></div>
+
+<strong id="sleeper-name">
+Synced League
+</strong>
+
+<div
+id="sleeper-info"
+class="sub"
+></div>
+
 </div>
+
 <span id="sleeper-mode-label"></span>
+
 </div>
 
 <div class="sync-grid">
 
 <label class="setting">
-<span>TEAM A ROSTER</span>
+
+<span>
+TEAM A ROSTER
+</span>
+
 <select id="sleeper-roster-a"></select>
+
 </label>
 
 <label class="setting">
-<span>TEAM B ROSTER</span>
+
+<span>
+TEAM B ROSTER
+</span>
+
 <select id="sleeper-roster-b"></select>
+
 </label>
 
 </div>
 
-<button id="disconnect" class="close" style="margin-top:10px" type="button">
+<button
+id="disconnect"
+class="close"
+style="margin-top:10px"
+>
 Disconnect League
 </button>
 
@@ -1119,49 +1300,117 @@ Disconnect League
 <section class="card" id="trade-center-card">
 
 <div class="settings-title">
-<span>Trade Center</span>
-<span class="sub" id="trade-center-provider-label">Synced league trade tools</span>
+
+<span>
+Trade Center
+</span>
+
+<span class="sub" id="trade-center-provider-label">
+Synced league trade tools
+</span>
+
 </div>
 
-<div class="trade-center-tabs" role="tablist" aria-label="Trade Center tools">
+<div
+class="trade-center-tabs"
+role="tablist"
+aria-label="Trade Center tools"
+>
 
-<button class="trade-center-tab" data-trade-center-tab="calculator" type="button">
+<button
+class="trade-center-tab"
+data-trade-center-tab="calculator"
+type="button"
+>
 Trade Calculator
 </button>
 
-<button class="trade-center-tab active" data-trade-center-tab="finder" type="button">
+<button
+class="trade-center-tab active"
+data-trade-center-tab="finder"
+type="button"
+>
 League Trade Finder
 </button>
 
-<button class="trade-center-tab" data-trade-center-tab="opportunities" type="button">
+<button
+class="trade-center-tab"
+data-trade-center-tab="opportunities"
+type="button"
+>
 Trade Opportunities
 </button>
 
 </div>
 
-<div class="trade-center-panel" data-trade-center-panel="calculator">
+<div
+class="trade-center-panel"
+data-trade-center-panel="calculator"
+>
 
 <div class="trade-center-panel-title">
-<h3 id="synced-trade-calculator-title">Synced League Trade Calculator</h3>
-<div class="sub" id="synced-trade-calculator-sub">Uses the selected synced rosters</div>
+
+<h3 id="synced-trade-calculator-title">
+Synced League Trade Calculator
+</h3>
+
+<div class="sub" id="synced-trade-calculator-sub">
+Uses the selected synced rosters
+</div>
+
 </div>
 
 <div class="trade-grid">
 
 <section class="team">
 
-<h2>Team A (Receiving)</h2>
+<h2>
+Team A (Receiving)
+</h2>
 
 <div class="search-wrap">
-<input id="sleeper-search-a" placeholder="Search Team A roster" autocomplete="off">
-<div id="sleeper-results-a" class="results"></div>
+
+<input
+id="sleeper-search-a"
+placeholder="Search Team A roster"
+autocomplete="off"
+>
+
+<div
+id="sleeper-results-a"
+class="results"
+></div>
+
 </div>
 
 <div id="sleeper-team-a"></div>
 
 <div class="totals">
-<div class="total"><small>Base</small><strong id="sleeper-base-a">0.0</strong></div>
-<div class="total"><small>Adjusted</small><strong id="sleeper-adj-a">0.0</strong></div>
+
+<div class="total">
+
+<small>
+Base
+</small>
+
+<strong id="sleeper-base-a">
+0.0
+</strong>
+
+</div>
+
+<div class="total">
+
+<small>
+Adjusted
+</small>
+
+<strong id="sleeper-adj-a">
+0.0
+</strong>
+
+</div>
+
 </div>
 
 </section>
@@ -1169,40 +1418,96 @@ Trade Opportunities
 <section class="result-card">
 
 <div class="meter">
+
 <div id="sleeper-marker"></div>
+
 </div>
 
 <div id="sleeper-verdict">
+
 Build a Trade
-<small>Add players from the synced rosters.</small>
+
+<small>
+Add players from the synced rosters.
+</small>
+
 </div>
 
 <div class="grade">
-<span>Trade Grade</span>
-<strong id="sleeper-grade">—</strong>
+
+<span>
+Trade Grade
+</span>
+
+<strong id="sleeper-grade">
+—
+</strong>
+
 </div>
 
 <div class="actions">
-<button id="sleeper-swap" type="button">Swap Sides</button>
-<button id="sleeper-clear" type="button">Clear Trade</button>
+
+<button id="sleeper-swap">
+Swap Sides
+</button>
+
+<button id="sleeper-clear">
+Clear Trade
+</button>
+
 </div>
 
 </section>
 
 <section class="team">
 
-<h2>Team B (Receiving)</h2>
+<h2>
+Team B (Receiving)
+</h2>
 
 <div class="search-wrap">
-<input id="sleeper-search-b" placeholder="Search Team B roster" autocomplete="off">
-<div id="sleeper-results-b" class="results"></div>
+
+<input
+id="sleeper-search-b"
+placeholder="Search Team B roster"
+autocomplete="off"
+>
+
+<div
+id="sleeper-results-b"
+class="results"
+></div>
+
 </div>
 
 <div id="sleeper-team-b"></div>
 
 <div class="totals">
-<div class="total"><small>Base</small><strong id="sleeper-base-b">0.0</strong></div>
-<div class="total"><small>Adjusted</small><strong id="sleeper-adj-b">0.0</strong></div>
+
+<div class="total">
+
+<small>
+Base
+</small>
+
+<strong id="sleeper-base-b">
+0.0
+</strong>
+
+</div>
+
+<div class="total">
+
+<small>
+Adjusted
+</small>
+
+<strong id="sleeper-adj-b">
+0.0
+</strong>
+
+</div>
+
 </div>
 
 </section>
@@ -1211,7 +1516,9 @@ Build a Trade
 
 <div class="trade-center-divider"></div>
 
-<h3>TradeForge Insight</h3>
+<h3>
+TradeForge Insight
+</h3>
 
 <div class="sub" id="synced-insight-sub" style="margin-bottom:10px">
 Why the current synced league settings make this trade fair or favor one side.
@@ -1223,7 +1530,9 @@ Build a synced league trade to see why TradeForge values it this way.
 
 <div class="trade-center-divider"></div>
 
-<h3>Suggested Trade Ideas</h3>
+<h3>
+Suggested Trade Ideas
+</h3>
 
 <div class="sub" style="margin-bottom:10px">
 TradeForge suggests additional assets from the lower-value team's own roster to add to its side of the trade.
@@ -1235,35 +1544,75 @@ Build a synced league trade to see suggested trade ideas.
 
 </div>
 
-<div class="trade-center-panel active" data-trade-center-panel="finder">
+<div
+class="trade-center-panel active"
+data-trade-center-panel="finder"
+>
 
 <div class="trade-center-panel-title">
-<h3>League Trade Finder</h3>
-<div class="sub">Pick a player on another team and let TradeForge search your roster for the closest packages.</div>
+
+<h3>
+League Trade Finder
+</h3>
+
+<div class="sub">
+Pick a player on another team and let TradeForge search your roster for the closest packages.
+</div>
+
 </div>
 
 <div class="trade-finder-grid">
 
 <label class="setting">
-<span>TRADE WITH</span>
+
+<span>
+TRADE WITH
+</span>
+
 <select id="trade-finder-team"></select>
+
 </label>
 
 <label class="setting">
-<span>TARGET PLAYER</span>
+
+<span>
+TARGET PLAYER
+</span>
+
 <select id="trade-finder-target"></select>
+
 </label>
 
 <label class="setting">
-<span>MAX PLAYERS TO SEND</span>
+
+<span>
+MAX PLAYERS TO SEND
+</span>
+
 <select id="trade-finder-max">
-<option value="1">1 Player</option>
-<option value="2">2 Players</option>
-<option value="3" selected>3 Players</option>
+
+<option value="1">
+1 Player
+</option>
+
+<option value="2">
+2 Players
+</option>
+
+<option value="3" selected>
+3 Players
+</option>
+
 </select>
+
 </label>
 
-<button id="trade-finder-run" class="primary" type="button">Find Trades</button>
+<button
+id="trade-finder-run"
+class="primary"
+>
+Find Trades
+</button>
 
 </div>
 
@@ -1271,19 +1620,30 @@ Build a synced league trade to see suggested trade ideas.
 TradeForge searches your valued synced roster for 1-for-1, 2-for-1, and 3-for-1 packages and ranks them by adjusted trade value.
 </div>
 
-<div id="trade-finder-results" class="trade-finder-results">
+<div
+id="trade-finder-results"
+class="trade-finder-results"
+>
 Choose a target player and click Find Trades.
 </div>
 
 </div>
 
-<div class="trade-center-panel" data-trade-center-panel="opportunities">
+<div
+class="trade-center-panel"
+data-trade-center-panel="opportunities"
+>
 
 <div class="trade-center-panel-title">
-<h3>Trade Opportunities</h3>
+
+<h3>
+Trade Opportunities
+</h3>
+
 <div class="sub">
 TradeForge compares your positional weaknesses against the strongest position groups around your league.
 </div>
+
 </div>
 
 <div id="dashboard-trade-opportunities"></div>
@@ -1297,77 +1657,180 @@ TradeForge compares your positional weaknesses against the strongest position gr
 <div class="dashboard-header">
 
 <div>
-<h2>Your League at a Glance</h2>
-<div id="dashboard-subtitle" class="sub">League-wide roster analysis using TradeForge values.</div>
+
+<h2>
+Your League at a Glance
+</h2>
+
+<div
+id="dashboard-subtitle"
+class="sub"
+>
+League-wide roster analysis using TradeForge values.
 </div>
 
-<div id="dashboard-coverage" class="sub"></div>
+</div>
+
+<div
+id="dashboard-coverage"
+class="sub"
+></div>
 
 </div>
 
 <div class="dashboard-kpis">
 
 <div class="dashboard-kpi">
-<small>LEAGUE POWER RANK</small>
-<strong id="dashboard-overall-rank">—</strong>
-<span id="dashboard-overall-detail">—</span>
+
+<small>
+LEAGUE POWER RANK
+</small>
+
+<strong id="dashboard-overall-rank">
+—
+</strong>
+
+<span id="dashboard-overall-detail">
+—
+</span>
+
 </div>
 
 <div class="dashboard-kpi">
-<small>STARTING LINEUP</small>
-<strong id="dashboard-starter-rank">—</strong>
-<span id="dashboard-starter-detail">—</span>
+
+<small>
+STARTING LINEUP
+</small>
+
+<strong id="dashboard-starter-rank">
+—
+</strong>
+
+<span id="dashboard-starter-detail">
+—
+</span>
+
 </div>
 
 <div class="dashboard-kpi">
-<small>ROSTER DEPTH</small>
-<strong id="dashboard-depth-rank">—</strong>
-<span id="dashboard-depth-detail">—</span>
+
+<small>
+ROSTER DEPTH
+</small>
+
+<strong id="dashboard-depth-rank">
+—
+</strong>
+
+<span id="dashboard-depth-detail">
+—
+</span>
+
 </div>
 
 <div class="dashboard-kpi">
-<small id="dashboard-future-label">FUTURE VALUE</small>
-<strong id="dashboard-future-rank">—</strong>
-<span id="dashboard-future-detail">—</span>
-</div>
+
+<small id="dashboard-future-label">
+FUTURE VALUE
+</small>
+
+<strong id="dashboard-future-rank">
+—
+</strong>
+
+<span id="dashboard-future-detail">
+—
+</span>
 
 </div>
 
-<h3 class="dashboard-section-title">Your Team Analysis</h3>
+</div>
+
+<h3 class="dashboard-section-title">
+Your Team Analysis
+</h3>
 
 <div class="dashboard-analysis">
 
 <div class="dashboard-analysis-card">
-<small>ROSTER PROFILE</small>
-<strong id="dashboard-profile">—</strong>
-<div id="dashboard-profile-detail" class="sub"></div>
+
+<small>
+ROSTER PROFILE
+</small>
+
+<strong id="dashboard-profile">
+—
+</strong>
+
+<div
+id="dashboard-profile-detail"
+class="sub"
+></div>
+
 </div>
 
 <div class="dashboard-analysis-card">
-<small>POSITION SNAPSHOT</small>
-<strong id="dashboard-position-summary">—</strong>
-<div id="dashboard-position-detail" class="sub"></div>
-</div>
+
+<small>
+POSITION SNAPSHOT
+</small>
+
+<strong id="dashboard-position-summary">
+—
+</strong>
+
+<div
+id="dashboard-position-detail"
+class="sub"
+></div>
 
 </div>
 
-<div id="dashboard-position-grid" class="dashboard-position-grid"></div>
+</div>
 
-<h3 class="dashboard-section-title">League Power Rankings</h3>
+<div
+id="dashboard-position-grid"
+class="dashboard-position-grid"
+></div>
+
+<h3 class="dashboard-section-title">
+League Power Rankings
+</h3>
 
 <div class="power-table-wrap">
 
 <table class="power-table">
 
 <thead>
+
 <tr>
-<th>Rank</th>
-<th>Team</th>
-<th>Power</th>
-<th>Starters</th>
-<th>Depth</th>
-<th>Strongest Position</th>
+
+<th>
+Rank
+</th>
+
+<th>
+Team
+</th>
+
+<th>
+Power
+</th>
+
+<th>
+Starters
+</th>
+
+<th>
+Depth
+</th>
+
+<th>
+Strongest Position
+</th>
+
 </tr>
+
 </thead>
 
 <tbody id="dashboard-power-body"></tbody>
@@ -1385,33 +1848,73 @@ TradeForge compares your positional weaknesses against the strongest position gr
 <section class="roster-card">
 
 <div class="roster-title">
+
 <div>
-<div class="roster-meta">YOUR TEAM</div>
-<h3 id="my-team-name">Your Team</h3>
-</div>
-<div id="my-team-meta" class="roster-meta"></div>
+
+<div class="roster-meta">
+YOUR TEAM
 </div>
 
-<div id="my-team-roster" class="roster-list"></div>
+<h3 id="my-team-name">
+Your Team
+</h3>
+
+</div>
+
+<div
+id="my-team-meta"
+class="roster-meta"
+></div>
+
+</div>
+
+<div
+id="my-team-roster"
+class="roster-list"
+></div>
 
 </section>
 
 <section class="roster-card">
 
 <label class="setting">
-<span>COMPARE WITH TEAM</span>
+
+<span>
+COMPARE WITH TEAM
+</span>
+
 <select id="opponent-select"></select>
+
 </label>
 
-<div class="roster-title" style="margin-top:15px">
+<div
+class="roster-title"
+style="margin-top:15px"
+>
+
 <div>
-<div class="roster-meta">OTHER TEAM</div>
-<h3 id="opponent-team-name">Team</h3>
-</div>
-<div id="opponent-team-meta" class="roster-meta"></div>
+
+<div class="roster-meta">
+OTHER TEAM
 </div>
 
-<div id="opponent-team-roster" class="roster-list"></div>
+<h3 id="opponent-team-name">
+Team
+</h3>
+
+</div>
+
+<div
+id="opponent-team-meta"
+class="roster-meta"
+></div>
+
+</div>
+
+<div
+id="opponent-team-roster"
+class="roster-list"
+></div>
 
 </section>
 
@@ -1423,85 +1926,159 @@ TradeForge compares your positional weaknesses against the strongest position gr
 
 </div>
 
-<div id="modal" class="modal-bg">
+<div
+id="modal"
+class="modal-bg"
+>
 
 <div class="modal">
 
 <div class="modal-head">
+
 <div>
-<h2>Sync Your Sleeper League</h2>
-<div class="sub">Enter your Sleeper username. No password is needed.</div>
+
+<h2>
+Sync Your Sleeper League
+</h2>
+
+<div class="sub">
+Enter your Sleeper username. No password is needed.
 </div>
 
-<button id="modal-close" class="close" type="button">×</button>
 </div>
 
-<input id="username" placeholder="Sleeper username" autocomplete="off">
+<button
+id="modal-close"
+class="close"
+>
+×
+</button>
 
-<button id="find-leagues" class="primary" type="button">
+</div>
+
+<input
+id="username"
+placeholder="Sleeper username"
+autocomplete="off"
+>
+
+<button
+id="find-leagues"
+class="primary"
+>
 Find My Leagues
 </button>
 
 <div id="league-wrap">
+
 <select id="league-picker"></select>
 
-<button id="connect-league" class="primary" type="button">
+<button
+id="connect-league"
+class="primary"
+>
 Sync Selected League
 </button>
-</div>
-
-<div id="status" aria-live="polite"></div>
 
 </div>
+
+<div
+id="status"
+aria-live="polite"
+></div>
+
 </div>
 
-<div id="espn-modal" class="modal-bg">
+</div>
+
+<div
+id="espn-modal"
+class="modal-bg"
+>
 
 <div class="modal">
 
 <div class="modal-head">
 
 <div>
-<h2>Sync Your ESPN League</h2>
+
+<h2>
+Sync Your ESPN League
+</h2>
+
 <div class="sub">
-Enter your ESPN league ID or paste an ESPN league URL.
+Enter your ESPN league ID or paste an ESPN league URL. Public leagues sync directly.
 </div>
-</div>
-
-<button id="espn-modal-close" class="close" type="button">×</button>
 
 </div>
 
-<label class="setting" style="margin-top:15px">
-<span>ESPN LEAGUE ID OR URL</span>
-<input id="espn-league-input" placeholder="League ID or ESPN league URL" autocomplete="off">
-</label>
+<button
+id="espn-modal-close"
+class="close"
+>
+×
+</button>
+
+</div>
+
+<input
+id="espn-league-input"
+placeholder="ESPN league ID or league URL"
+autocomplete="off"
+>
 
 <div class="sync-grid">
 
 <label class="setting">
-<span>SEASON</span>
-<input id="espn-season" type="number" min="2018" step="1">
+
+<span>
+SEASON
+</span>
+
+<input
+id="espn-season"
+type="number"
+min="2018"
+step="1"
+>
+
 </label>
 
 <label class="setting">
-<span>MY TEAM ID (OPTIONAL)</span>
-<input id="espn-team-id" inputmode="numeric" placeholder="Auto from URL if available" autocomplete="off">
+
+<span>
+MY TEAM ID (OPTIONAL)
+</span>
+
+<input
+id="espn-team-id"
+inputmode="numeric"
+placeholder="Auto from URL if available"
+autocomplete="off"
+>
+
 </label>
 
 </div>
 
-<button id="espn-connect-league" class="primary" type="button">
+<button
+id="espn-connect-league"
+class="primary"
+>
 Sync ESPN League
 </button>
 
 <div class="sub" style="margin-top:10px">
-For a private league, sign in to ESPN Fantasy in this browser first.
+For a private league, sign in to ESPN Fantasy in this browser first. TradeForge never asks for or stores your ESPN password or ESPN session-cookie values.
 </div>
 
-<div id="espn-status" aria-live="polite"></div>
+<div
+id="espn-status"
+aria-live="polite"
+></div>
 
 </div>
+
 </div>
 
 <script>
@@ -1535,9 +2112,11 @@ let sleeperRosterB="";
 
 let sleeperTrendMarket={};
 let sleeperIdByName={};
+let leagueTradeFinderBuilds=[];
 
 let syncedProvider="";
 let espnLeagueRaw=null;
+
 let tradeForgeFeedMeta=null;
 
 const SUPERSTAR_FACTOR=1.00;
@@ -1554,12 +2133,43 @@ const PACKAGE_WEIGHTS=[
 ];
 
 const multipliers={
-RB:{ppr:1,half:.98,standard:.95},
-WR:{ppr:1,half:.96,standard:.91},
-TE:{ppr:1,half:.95,standard:.89},
-QB:{ppr:1,half:1,standard:1},
-K:{ppr:1,half:1,standard:1},
-DST:{ppr:1,half:1,standard:1}
+
+RB:{
+ppr:1,
+half:.98,
+standard:.95
+},
+
+WR:{
+ppr:1,
+half:.96,
+standard:.91
+},
+
+TE:{
+ppr:1,
+half:.95,
+standard:.89
+},
+
+QB:{
+ppr:1,
+half:1,
+standard:1
+},
+
+K:{
+ppr:1,
+half:1,
+standard:1
+},
+
+DST:{
+ppr:1,
+half:1,
+standard:1
+}
+
 };
 
 const playerDatabase=[
@@ -1961,6 +2571,7 @@ const playerDatabase=[
 ];
 
 const picks=[
+
 ["2027 Early 1st",52,58],
 ["2027 Mid 1st",44,50],
 ["2027 Late 1st",36,42],
@@ -1979,15 +2590,19 @@ const picks=[
 ["2028 Early 3rd",11,13],
 ["2028 Mid 3rd",8,10],
 ["2028 Late 3rd",5,7]
+
 ].map((x,i)=>({
+
 rank:1001+i,
 name:x[0],
 pos:"PICK",
 oneqb:x[1],
 superflex:x[2]
+
 }));
 
 const dst={
+
 HOU:"Houston Texans DST",
 DEN:"Denver Broncos DST",
 SEA:"Seattle Seahawks DST",
@@ -2001,20 +2616,29 @@ GB:"Green Bay Packers DST",
 BAL:"Baltimore Ravens DST",
 JAC:"Jacksonville Jaguars DST",
 KC:"Kansas City Chiefs DST"
+
 };
 
-const $=id=>document.getElementById(id);
+const $=
+id=>
+document.getElementById(id);
 
-const key=p=>p.sleeperId||p.pos+"|"+p.name;
+const key=
+p=>
+p.sleeperId
+||
+p.pos+"|"+p.name;
 
-const norm=s=>
+const norm=
+s=>
 String(s||"")
 .toLowerCase()
 .replace(/[.'’\-]/g,"")
 .replace(/\b(jr|sr|ii|iii|iv)\b/g,"")
 .replace(/[^a-z0-9]/g,"");
 
-const esc=s=>
+const esc=
+s=>
 String(s??"")
 .replace(/&/g,"&amp;")
 .replace(/</g,"&lt;")
@@ -2022,9 +2646,19 @@ String(s??"")
 .replace(/"/g,"&quot;")
 .replace(/'/g,"&#039;");
 
-const assets=()=>leagueMode==="dynasty"?playerDatabase.concat(picks):playerDatabase;
+const assets=
+()=>{
+
+return leagueMode==="dynasty"
+?
+playerDatabase.concat(picks)
+:
+playerDatabase;
+
+};
 
 const TRADEFORGE_ENGINE={
+
 enabled:true,
 
 weights:{
@@ -2076,12 +2710,34 @@ futurePickDiscounts:[
 .84,
 .78
 ]
+
 };
 
-const tfClamp=(v,min,max)=>Math.max(min,Math.min(max,v));
-const tfRound=v=>Math.round(v*10)/10;
-const tfNum=(v,fallback)=>Number.isFinite(Number(v))?Number(v):fallback;
-const tfStoredRawValue=(p,mode)=>tfNum(p?.[mode],.1);
+const tfClamp=
+(v,min,max)=>
+Math.max(
+min,
+Math.min(max,v)
+);
+
+const tfRound=
+v=>
+Math.round(v*10)/10;
+
+const tfNum=
+(v,fallback)=>
+Number.isFinite(Number(v))
+?
+Number(v)
+:
+fallback;
+
+const tfStoredRawValue=
+(p,mode)=>
+tfNum(
+p?.[mode],
+.1
+);
 
 function tfHasComponentData(obj){
 
@@ -2089,7 +2745,8 @@ if(!obj){
 return false;
 }
 
-return[
+return [
+
 "performance",
 "projection",
 "consensus",
@@ -2118,74 +2775,163 @@ return[
 "age",
 "ageScore",
 "nflGames"
-].some(k=>Number.isFinite(Number(obj[k])));
 
-}
-
-function tfHasRedraftData(p){
-return tfHasComponentData(p.engine?.redraft);
-}
-
-function tfHasDynastyData(p){
-const e=p.engine?.dynasty;
-return tfHasComponentData(e)||e?.isRookie===true;
-}
-
-function tfHasAnyEngineData(p){
-return tfHasRedraftData(p)||tfHasDynastyData(p)||tfHasComponentData(p.engine?.keeper);
-}
-
-function tfWeightedSum(c){
-
-const w=TRADEFORGE_ENGINE.weights;
-
-return(
-c.performance*w.performance+
-c.opportunity*w.opportunity+
-c.scarcity*w.scarcity+
-c.market*w.market+
-c.consistency*w.consistency+
-c.availability*w.availability+
-c.situation*w.situation
+].some(
+k=>
+Number.isFinite(
+Number(obj[k])
+)
 );
 
 }
 
-function tfTraitValue(baseline,trait,low=.80,high=1.05){
+function tfHasRedraftData(p){
 
-if(!Number.isFinite(Number(trait))){
-return baseline;
+return tfHasComponentData(
+p.engine?.redraft
+);
+
 }
 
-const t=tfClamp(Number(trait),0,100)/100;
+function tfHasDynastyData(p){
+
+const e=
+p.engine?.dynasty;
+
+return (
+tfHasComponentData(e)
+||
+e?.isRookie===true
+);
+
+}
+
+function tfHasAnyEngineData(p){
+
+return (
+tfHasRedraftData(p)
+||
+tfHasDynastyData(p)
+||
+tfHasComponentData(
+p.engine?.keeper
+)
+);
+
+}
+
+function tfWeightedSum(c){
+
+const w=
+TRADEFORGE_ENGINE.weights;
+
+return (
+
+c.performance*w.performance
++
+c.opportunity*w.opportunity
++
+c.scarcity*w.scarcity
++
+c.market*w.market
++
+c.consistency*w.consistency
++
+c.availability*w.availability
++
+c.situation*w.situation
+
+);
+
+}
+
+function tfTraitValue(
+baseline,
+trait,
+low=.80,
+high=1.05
+){
+
+if(
+!Number.isFinite(
+Number(trait)
+)
+){
+
+return baseline;
+
+}
+
+const t=
+tfClamp(
+Number(trait),
+0,
+100
+)
+/
+100;
 
 return tfClamp(
-baseline*(low+(high-low)*t),
+
+baseline
+*
+(
+low
++
+(high-low)
+*
+t
+),
+
 .1,
 100
+
 );
 
 }
 
 function tfApplyEliteCurve(v){
 
-v=tfClamp(tfNum(v,.1),.1,100);
-
-return tfClamp(
-100*Math.pow(v/100,TRADEFORGE_ENGINE.eliteCurveExponent),
+v=
+tfClamp(
+tfNum(v,.1),
 .1,
 100
 );
 
+return tfClamp(
+
+100
+*
+Math.pow(
+v/100,
+TRADEFORGE_ENGINE.eliteCurveExponent
+),
+
+.1,
+100
+
+);
+
 }
 
-function tfDynastyAgeFactor(pos,age){
+function tfDynastyAgeFactor(
+pos,
+age
+){
 
-if(!Number.isFinite(Number(age))){
+if(
+!Number.isFinite(
+Number(age)
+)
+){
+
 return 1;
+
 }
 
-age=Number(age);
+age=
+Number(age);
 
 if(pos==="RB"){
 if(age<=23)return 1.05;
@@ -2226,13 +2972,25 @@ return 1;
 
 function tfReplacementRank(pos){
 
-let rank=TRADEFORGE_ENGINE.replacementRanks[pos]??12;
+let rank=
+TRADEFORGE_ENGINE
+.replacementRanks[pos]
+??
+12;
 
-if(pos==="QB"&&qbMode==="superflex"){
+if(
+pos==="QB"
+&&
+qbMode==="superflex"
+){
 rank=28;
 }
 
-if(pos==="TE"&&tePremiumMode!=="off"){
+if(
+pos==="TE"
+&&
+tePremiumMode!=="off"
+){
 rank=18;
 }
 
@@ -2240,39 +2998,91 @@ return rank;
 
 }
 
-function tfReplacementRaw(pos,mode){
+function tfReplacementRaw(
+pos,
+mode
+){
 
-const list=playerDatabase
-.filter(p=>p.pos===pos)
-.map(p=>tfStoredRawValue(p,mode))
-.filter(Number.isFinite)
-.sort((a,b)=>b-a);
+const list=
+playerDatabase
+.filter(
+p=>
+p.pos===pos
+)
+.map(
+p=>
+tfStoredRawValue(
+p,
+mode
+)
+)
+.filter(
+Number.isFinite
+)
+.sort(
+(a,b)=>
+b-a
+);
 
 if(!list.length){
 return 0;
 }
 
-const i=Math.min(list.length-1,Math.max(0,tfReplacementRank(pos)-1));
+const i=
+Math.min(
+list.length-1,
+Math.max(
+0,
+tfReplacementRank(pos)-1
+)
+);
 
 return list[i];
 
 }
 
-function tfScarcityValue(p,mode,anchor,e={}){
+function tfScarcityValue(
+p,
+mode,
+anchor,
+e={}
+){
 
-if(Number.isFinite(Number(e.scarcity))){
-return tfClamp(Number(e.scarcity),.1,100);
+if(
+Number.isFinite(
+Number(e.scarcity)
+)
+){
+return tfClamp(
+Number(e.scarcity),
+.1,
+100
+);
 }
 
 const replacement=
-Number.isFinite(Number(e.replacement))
-?Number(e.replacement)
-:tfReplacementRaw(p.pos,mode);
+Number.isFinite(
+Number(e.replacement)
+)
+?
+Number(e.replacement)
+:
+tfReplacementRaw(
+p.pos,
+mode
+);
 
-const gap=anchor-replacement;
+const gap=
+anchor
+-
+replacement;
 
 return tfClamp(
-anchor+gap*TRADEFORGE_ENGINE.scarcityBoost,
+anchor
++
+gap
+*
+TRADEFORGE_ENGINE.scarcityBoost,
 .1,
 100
 );
@@ -2281,37 +3091,79 @@ anchor+gap*TRADEFORGE_ENGINE.scarcityBoost,
 
 function tfAutoMarketChange(p){
 
-if(!sleeperCalculationContext||!TRADEFORGE_ENGINE.useSleeperTrendingMarket){
+if(
+!sleeperCalculationContext
+||
+!TRADEFORGE_ENGINE.useSleeperTrendingMarket
+){
 return 0;
 }
 
-const id=p.sleeperId||sleeperIdByName[norm(p.name)];
+const id=
+p.sleeperId
+||
+sleeperIdByName[
+norm(p.name)
+];
 
-return id&&Number.isFinite(sleeperTrendMarket[id])
-?sleeperTrendMarket[id]
-:0;
+return (
+id
+&&
+Number.isFinite(
+sleeperTrendMarket[id]
+)
+)
+?
+sleeperTrendMarket[id]
+:
+0;
 
 }
 
-function tfMarketValue(p,e,baseline){
+function tfMarketValue(
+p,
+e,
+baseline
+){
 
 let market=
-Number.isFinite(Number(e?.market))
-?Number(e.market)
-:Number.isFinite(Number(e?.consensus))
-?Number(e.consensus)
-:baseline;
+Number.isFinite(
+Number(e?.market)
+)
+?
+Number(e.market)
+:
+Number.isFinite(
+Number(e?.consensus)
+)
+?
+Number(e.consensus)
+:
+baseline;
 
 const movement=
-Number.isFinite(Number(e?.marketChange))
-?Number(e.marketChange)
-:Number.isFinite(Number(e?.marketMomentum))
-?Number(e.marketMomentum)
-:tfAutoMarketChange(p);
+Number.isFinite(
+Number(e?.marketChange)
+)
+?
+Number(e.marketChange)
+:
+Number.isFinite(
+Number(e?.marketMomentum)
+)
+?
+Number(e.marketMomentum)
+:
+tfAutoMarketChange(p);
 
-if(Math.abs(movement)<=1){
+if(
+Math.abs(movement)<=1
+){
 
-market*=1+tfClamp(
+market*=
+1
++
+tfClamp(
 movement,
 -TRADEFORGE_ENGINE.marketAdjustmentMax,
 TRADEFORGE_ENGINE.marketAdjustmentMax
@@ -2319,102 +3171,186 @@ TRADEFORGE_ENGINE.marketAdjustmentMax
 
 }
 
-return tfClamp(market,.1,100);
+return tfClamp(
+market,
+.1,
+100
+);
 
 }
 
-function tfPerformanceValue(e,baseline){
+function tfPerformanceValue(
+e,
+baseline
+){
 
-if(Number.isFinite(Number(e?.performance))){
-return tfClamp(Number(e.performance),.1,100);
+if(
+Number.isFinite(
+Number(e?.performance)
+)
+){
+return tfClamp(
+Number(e.performance),
+.1,
+100
+);
 }
 
-const hasInputs=["projection","consensus","recent"]
-.some(k=>Number.isFinite(Number(e?.[k])));
+const hasInputs=
+[
+"projection",
+"consensus",
+"recent"
+]
+.some(
+k=>
+Number.isFinite(
+Number(e?.[k])
+)
+);
 
 if(!hasInputs){
 return baseline;
 }
 
-const w=TRADEFORGE_ENGINE.performanceInputs;
+const w=
+TRADEFORGE_ENGINE.performanceInputs;
 
 return tfClamp(
-tfNum(e.projection,baseline)*w.projection+
-tfNum(e.consensus,baseline)*w.consensus+
-tfNum(e.recent,baseline)*w.recent,
+tfNum(
+e.projection,
+baseline
+)
+*
+w.projection
++
+tfNum(
+e.consensus,
+baseline
+)
+*
+w.consensus
++
+tfNum(
+e.recent,
+baseline
+)
+*
+w.recent,
 .1,
 100
 );
 
 }
 
-function tfOpportunityValue(e,baseline){
+function tfOpportunityValue(
+e,
+baseline
+){
 
-if(Number.isFinite(Number(e?.opportunity))){
-return tfClamp(Number(e.opportunity),.1,100);
-}
-
-if(Number.isFinite(Number(e?.roleSecurity))){
-return tfClamp(Number(e.roleSecurity),.1,100);
-}
-
-if(Number.isFinite(Number(e?.roleConfidence))){
-return tfTraitValue(baseline,e.roleConfidence,.75,1.08);
-}
-
-return baseline;
-
-}
-
-function tfConsistencyValue(e,baseline){
-
-if(Number.isFinite(Number(e?.consistency))){
-return tfClamp(Number(e.consistency),.1,100);
-}
-
-if(Number.isFinite(Number(e?.consistencyScore))){
-return tfTraitValue(baseline,e.consistencyScore,.80,1.06);
+if(
+Number.isFinite(
+Number(e?.opportunity)
+)
+){
+return tfClamp(
+Number(e.opportunity),
+.1,
+100
+);
 }
 
 if(
-Number.isFinite(Number(e?.projection))&&
-Number.isFinite(Number(e?.recent))
+Number.isFinite(
+Number(e?.roleSecurity)
+)
 ){
-
-const gap=Math.abs(Number(e.projection)-Number(e.recent));
-const score=tfClamp(100-gap*2,35,100);
-
-return tfTraitValue(baseline,score,.82,1.05);
-
-}
-
-return baseline;
-
-}
-
-function tfAvailabilityValue(e,baseline){
-
-if(Number.isFinite(Number(e?.availabilityValue))){
-return tfClamp(Number(e.availabilityValue),.1,100);
-}
-
-if(Number.isFinite(Number(e?.availabilityScore))){
 return tfClamp(
-baseline*tfClamp(Number(e.availabilityScore),0,100)/100,
+Number(e.roleSecurity),
 .1,
 100
 );
 }
 
-if(Number.isFinite(Number(e?.availability))){
-
-const a=Number(e.availability);
-
-if(a<=1.25){
-return tfClamp(baseline*tfClamp(a,0,1),.1,100);
+if(
+Number.isFinite(
+Number(e?.roleConfidence)
+)
+){
+return tfTraitValue(
+baseline,
+e.roleConfidence,
+.75,
+1.08
+);
 }
 
-return tfClamp(a,.1,100);
+return baseline;
+
+}
+
+function tfConsistencyValue(
+e,
+baseline
+){
+
+if(
+Number.isFinite(
+Number(e?.consistency)
+)
+){
+return tfClamp(
+Number(e.consistency),
+.1,
+100
+);
+}
+
+if(
+Number.isFinite(
+Number(e?.consistencyScore)
+)
+){
+return tfTraitValue(
+baseline,
+e.consistencyScore,
+.80,
+1.06
+);
+}
+
+if(
+Number.isFinite(
+Number(e?.projection)
+)
+&&
+Number.isFinite(
+Number(e?.recent)
+)
+){
+
+const gap=
+Math.abs(
+Number(e.projection)
+-
+Number(e.recent)
+);
+
+const score=
+tfClamp(
+100
+-
+gap*2,
+35,
+100
+);
+
+return tfTraitValue(
+baseline,
+score,
+.82,
+1.05
+);
 
 }
 
@@ -2422,18 +3358,119 @@ return baseline;
 
 }
 
-function tfSituationValue(e,baseline){
+function tfAvailabilityValue(
+e,
+baseline
+){
 
-if(Number.isFinite(Number(e?.situation))){
-return tfClamp(Number(e.situation),.1,100);
+if(
+Number.isFinite(
+Number(e?.availabilityValue)
+)
+){
+return tfClamp(
+Number(e.availabilityValue),
+.1,
+100
+);
 }
 
-if(Number.isFinite(Number(e?.situationScore))){
-return tfTraitValue(baseline,e.situationScore,.80,1.06);
+if(
+Number.isFinite(
+Number(e?.availabilityScore)
+)
+){
+return tfClamp(
+baseline
+*
+tfClamp(
+Number(e.availabilityScore),
+0,
+100
+)
+/
+100,
+.1,
+100
+);
 }
 
-if(Number.isFinite(Number(e?.roleConfidence))){
-return tfTraitValue(baseline,e.roleConfidence,.82,1.05);
+if(
+Number.isFinite(
+Number(e?.availability)
+)
+){
+
+const a=
+Number(e.availability);
+
+if(a<=1.25){
+return tfClamp(
+baseline
+*
+tfClamp(
+a,
+0,
+1
+),
+.1,
+100
+);
+}
+
+return tfClamp(
+a,
+.1,
+100
+);
+
+}
+
+return baseline;
+
+}
+
+function tfSituationValue(
+e,
+baseline
+){
+
+if(
+Number.isFinite(
+Number(e?.situation)
+)
+){
+return tfClamp(
+Number(e.situation),
+.1,
+100
+);
+}
+
+if(
+Number.isFinite(
+Number(e?.situationScore)
+)
+){
+return tfTraitValue(
+baseline,
+e.situationScore,
+.80,
+1.06
+);
+}
+
+if(
+Number.isFinite(
+Number(e?.roleConfidence)
+)
+){
+return tfTraitValue(
+baseline,
+e.roleConfidence,
+.82,
+1.05
+);
 }
 
 return baseline;
@@ -2442,99 +3479,269 @@ return baseline;
 
 function tfRedraftComponents(p){
 
-const baseline=tfStoredRawValue(p,"redraft");
-const e=p.engine?.redraft||{};
-const performance=tfPerformanceValue(e,baseline);
+const baseline=
+tfStoredRawValue(
+p,
+"redraft"
+);
+
+const e=
+p.engine?.redraft
+||
+{};
+
+const performance=
+tfPerformanceValue(
+e,
+baseline
+);
 
 return{
+
 performance,
-opportunity:tfOpportunityValue(e,baseline),
-scarcity:tfScarcityValue(p,"redraft",performance,e),
-market:tfMarketValue(p,e,baseline),
-consistency:tfConsistencyValue(e,baseline),
-availability:tfAvailabilityValue(e,baseline),
-situation:tfSituationValue(e,baseline)
+
+opportunity:
+tfOpportunityValue(
+e,
+baseline
+),
+
+scarcity:
+tfScarcityValue(
+p,
+"redraft",
+performance,
+e
+),
+
+market:
+tfMarketValue(
+p,
+e,
+baseline
+),
+
+consistency:
+tfConsistencyValue(
+e,
+baseline
+),
+
+availability:
+tfAvailabilityValue(
+e,
+baseline
+),
+
+situation:
+tfSituationValue(
+e,
+baseline
+)
+
 };
 
 }
 
 function tfRedraftRaw(p){
 
-if(!tfHasRedraftData(p)){
-return tfStoredRawValue(p,"redraft");
+if(
+!tfHasRedraftData(p)
+){
+return tfStoredRawValue(
+p,
+"redraft"
+);
 }
 
 return tfClamp(
-tfRound(tfWeightedSum(tfRedraftComponents(p))),
+tfRound(
+tfWeightedSum(
+tfRedraftComponents(p)
+)
+),
 .1,
 100
 );
 
 }
 
-function tfDynastyAnchor(p,e,baseline){
+function tfDynastyAnchor(
+p,
+e,
+baseline
+){
 
-const hasYears=["year1","year2","year3"]
-.some(k=>Number.isFinite(Number(e?.[k])));
+const hasYears=
+[
+"year1",
+"year2",
+"year3"
+]
+.some(
+k=>
+Number.isFinite(
+Number(e?.[k])
+)
+);
 
 if(!hasYears){
 return baseline;
 }
 
-const y=TRADEFORGE_ENGINE.dynastyYears;
+const y=
+TRADEFORGE_ENGINE
+.dynastyYears;
 
 return tfClamp(
-tfNum(e.year1,baseline)*y.year1+
-tfNum(e.year2,baseline)*y.year2+
-tfNum(e.year3,baseline)*y.year3,
+tfNum(
+e.year1,
+baseline
+)
+*
+y.year1
++
+tfNum(
+e.year2,
+baseline
+)
+*
+y.year2
++
+tfNum(
+e.year3,
+baseline
+)
+*
+y.year3,
 .1,
 100
 );
 
 }
 
-function tfDynastySituationValue(p,e,baseline){
+function tfDynastySituationValue(
+p,
+e,
+baseline
+){
 
-if(Number.isFinite(Number(e?.situation))){
-return tfClamp(Number(e.situation),.1,100);
+if(
+Number.isFinite(
+Number(e?.situation)
+)
+){
+return tfClamp(
+Number(e.situation),
+.1,
+100
+);
 }
 
-if(e?.isRookie===true){
+if(
+e?.isRookie===true
+){
 
 return tfClamp(
-tfNum(e.prospect,baseline)*.30+
-tfNum(e.draftCapital,baseline)*.25+
-tfNum(e.roleSecurity,baseline)*.25+
-tfNum(e.opportunity,baseline)*.20,
+tfNum(
+e.prospect,
+baseline
+)
+*
+.30
++
+tfNum(
+e.draftCapital,
+baseline
+)
+*
+.25
++
+tfNum(
+e.roleSecurity,
+baseline
+)
+*
+.25
++
+tfNum(
+e.opportunity,
+baseline
+)
+*
+.20,
 .1,
 100
 );
 
 }
 
-if(Number.isFinite(Number(e?.roleSecurity))){
-return tfClamp(Number(e.roleSecurity),.1,100);
+if(
+Number.isFinite(
+Number(e?.roleSecurity)
+)
+){
+return tfClamp(
+Number(e.roleSecurity),
+.1,
+100
+);
 }
 
-return tfSituationValue(e,baseline);
+return tfSituationValue(
+e,
+baseline
+);
 
 }
 
 function tfDynastyComponents(p){
 
-const baseline=tfStoredRawValue(p,"dynasty");
-const e=p.engine?.dynasty||{};
-const anchor=tfDynastyAnchor(p,e,baseline);
+const baseline=
+tfStoredRawValue(
+p,
+"dynasty"
+);
 
-let consistency=baseline;
+const e=
+p.engine?.dynasty
+||
+{};
 
-if(Number.isFinite(Number(e.consistency))){
-consistency=tfClamp(Number(e.consistency),.1,100);
+const anchor=
+tfDynastyAnchor(
+p,
+e,
+baseline
+);
+
+let consistency=
+baseline;
+
+if(
+Number.isFinite(
+Number(e.consistency)
+)
+){
+consistency=
+tfClamp(
+Number(e.consistency),
+.1,
+100
+);
 }
 else if(
-Number.isFinite(Number(e.year1))&&
-Number.isFinite(Number(e.year2))&&
-Number.isFinite(Number(e.year3))
+Number.isFinite(
+Number(e.year1)
+)
+&&
+Number.isFinite(
+Number(e.year2)
+)
+&&
+Number.isFinite(
+Number(e.year3)
+)
 ){
 
 const years=[
@@ -2543,11 +3750,19 @@ Number(e.year2),
 Number(e.year3)
 ];
 
-const spread=Math.max(...years)-Math.min(...years);
+const spread=
+Math.max(...years)
+-
+Math.min(...years);
 
-consistency=tfTraitValue(
+consistency=
+tfTraitValue(
 anchor,
-tfClamp(100-spread*1.5,35,100),
+tfClamp(
+100-spread*1.5,
+35,
+100
+),
 .84,
 1.05
 );
@@ -2556,60 +3771,188 @@ tfClamp(100-spread*1.5,35,100),
 
 const availabilitySource=
 Object.keys(e).length
-?e
-:(p.engine?.redraft||{});
+?
+e
+:
+(
+p.engine?.redraft
+||
+{}
+);
 
 return{
-performance:Number.isFinite(Number(e.performance))?tfClamp(Number(e.performance),.1,100):anchor,
-opportunity:tfOpportunityValue(e,anchor),
-scarcity:tfScarcityValue(p,"dynasty",anchor,e),
-market:tfMarketValue(p,e,baseline),
+
+performance:
+Number.isFinite(
+Number(e.performance)
+)
+?
+tfClamp(
+Number(e.performance),
+.1,
+100
+)
+:
+anchor,
+
+opportunity:
+tfOpportunityValue(
+e,
+anchor
+),
+
+scarcity:
+tfScarcityValue(
+p,
+"dynasty",
+anchor,
+e
+),
+
+market:
+tfMarketValue(
+p,
+e,
+baseline
+),
+
 consistency,
-availability:tfAvailabilityValue(availabilitySource,anchor),
-situation:tfDynastySituationValue(p,e,anchor)
+
+availability:
+tfAvailabilityValue(
+availabilitySource,
+anchor
+),
+
+situation:
+tfDynastySituationValue(
+p,
+e,
+anchor
+)
+
 };
 
 }
 
 function tfDynastyRaw(p){
 
-if(!tfHasDynastyData(p)){
-return tfStoredRawValue(p,"dynasty");
+if(
+!tfHasDynastyData(p)
+){
+return tfStoredRawValue(
+p,
+"dynasty"
+);
 }
 
-const e=p.engine?.dynasty||{};
-let score=tfWeightedSum(tfDynastyComponents(p));
+const e=
+p.engine?.dynasty
+||
+{};
 
-if(Number.isFinite(Number(e.age))){
-score*=tfDynastyAgeFactor(p.pos,Number(e.age));
+let score=
+tfWeightedSum(
+tfDynastyComponents(p)
+);
+
+if(
+Number.isFinite(
+Number(e.age)
+)
+){
+
+score*=
+tfDynastyAgeFactor(
+p.pos,
+Number(e.age)
+);
+
 }
 
-return tfClamp(tfRound(score),.1,100);
+return tfClamp(
+tfRound(score),
+.1,
+100
+);
 
 }
 
 function tfKeeperRaw(p){
 
-if(!tfHasAnyEngineData(p)){
-return tfStoredRawValue(p,"keeper");
+if(
+!tfHasAnyEngineData(p)
+){
+return tfStoredRawValue(
+p,
+"keeper"
+);
 }
 
-const direct=p.engine?.keeper;
+const direct=
+p.engine?.keeper;
 
-if(tfHasComponentData(direct)){
+if(
+tfHasComponentData(
+direct
+)
+){
 
-const baseline=tfStoredRawValue(p,"keeper");
+const baseline=
+tfStoredRawValue(
+p,
+"keeper"
+);
 
 return tfClamp(
 tfRound(
 tfWeightedSum({
-performance:tfPerformanceValue(direct,baseline),
-opportunity:tfOpportunityValue(direct,baseline),
-scarcity:tfScarcityValue(p,"keeper",baseline,direct),
-market:tfMarketValue(p,direct,baseline),
-consistency:tfConsistencyValue(direct,baseline),
-availability:tfAvailabilityValue(direct,baseline),
-situation:tfSituationValue(direct,baseline)
+
+performance:
+tfPerformanceValue(
+direct,
+baseline
+),
+
+opportunity:
+tfOpportunityValue(
+direct,
+baseline
+),
+
+scarcity:
+tfScarcityValue(
+p,
+"keeper",
+baseline,
+direct
+),
+
+market:
+tfMarketValue(
+p,
+direct,
+baseline
+),
+
+consistency:
+tfConsistencyValue(
+direct,
+baseline
+),
+
+availability:
+tfAvailabilityValue(
+direct,
+baseline
+),
+
+situation:
+tfSituationValue(
+direct,
+baseline
+)
+
 })
 ),
 .1,
@@ -2618,108 +3961,190 @@ situation:tfSituationValue(direct,baseline)
 
 }
 
-const w=TRADEFORGE_ENGINE.keeperWeights;
+const w=
+TRADEFORGE_ENGINE
+.keeperWeights;
 
 return tfClamp(
 tfRound(
-tfRedraftRaw(p)*w.redraft+
-tfDynastyRaw(p)*w.dynasty
+tfRedraftRaw(p)
+*
+w.redraft
++
+tfDynastyRaw(p)
+*
+w.dynasty
 ),
 .1,
 100
 );
 
 }
+
 function tfDynamicPickValue(p){
 
 const baseline=
 qbMode==="superflex"
-?p.superflex
-:p.oneqb;
+?
+p.superflex
+:
+p.oneqb;
 
-if(!TRADEFORGE_ENGINE.useDynamicPickValues){
+if(
+!TRADEFORGE_ENGINE.useDynamicPickValues
+){
 return baseline;
 }
 
-const year=Number(String(p.name).match(/20\d{2}/)?.[0]);
+const year=
+Number(
+String(p.name)
+.match(/20\d{2}/)?.[0]
+);
 
 if(!year){
 return baseline;
 }
 
-const upcoming=new Date().getFullYear()+1;
-const yearsOut=Math.max(0,year-upcoming);
-const d=TRADEFORGE_ENGINE.futurePickDiscounts;
+const upcoming=
+new Date().getFullYear()+1;
+
+const yearsOut=
+Math.max(
+0,
+year-upcoming
+);
+
+const d=
+TRADEFORGE_ENGINE
+.futurePickDiscounts;
 
 const discount=
-d[Math.min(yearsOut,d.length-1)]
+d[
+Math.min(
+yearsOut,
+d.length-1
+)
+]
 ??
 d[d.length-1];
 
-return tfClamp(tfRound(baseline*discount),.1,100);
+return tfClamp(
+tfRound(
+baseline*discount
+),
+.1,
+100
+);
 
 }
 
-function tfApplyLeagueSettings(p,raw,mode){
+function tfApplyLeagueSettings(
+p,
+raw,
+mode
+){
 
 let v=
-raw*
+raw
+*
 (
 multipliers[p.pos]?.[scoringMode]
 ||
 1
 );
 
-if(qbMode==="superflex"&&p.pos==="QB"){
+if(
+qbMode==="superflex"
+&&
+p.pos==="QB"
+){
 
 v*=
 mode==="dynasty"
-?1.45
-:mode==="keeper"
-?1.40
-:1.35;
+?
+1.45
+:
+mode==="keeper"
+?
+1.40
+:
+1.35;
 
 }
 
-if(p.pos==="TE"&&tePremiumMode==="half"){
+if(
+p.pos==="TE"
+&&
+tePremiumMode==="half"
+){
 
 v*=
 v>=75
-?1.10
-:v>=50
-?1.08
-:v>=25
-?1.06
-:1.04;
+?
+1.10
+:
+v>=50
+?
+1.08
+:
+v>=25
+?
+1.06
+:
+1.04;
 
 }
 
-if(p.pos==="TE"&&tePremiumMode==="full"){
+if(
+p.pos==="TE"
+&&
+tePremiumMode==="full"
+){
 
 v*=
 v>=75
-?1.18
-:v>=50
-?1.14
-:v>=25
-?1.10
-:1.06;
+?
+1.18
+:
+v>=50
+?
+1.14
+:
+v>=25
+?
+1.10
+:
+1.06;
 
 }
 
-return tfClamp(tfRound(v),.1,100);
+return tfClamp(
+tfRound(v),
+.1,
+100
+);
 
 }
 
 function legacyValue(p){
 
-if(p.pos==="PICK"){
-return qbMode==="superflex"?p.superflex:p.oneqb;
+if(
+p.pos==="PICK"
+){
+return qbMode==="superflex"
+?
+p.superflex
+:
+p.oneqb;
 }
 
 return tfApplyLeagueSettings(
 p,
-tfStoredRawValue(p,leagueMode),
+tfStoredRawValue(
+p,
+leagueMode
+),
 leagueMode
 );
 
@@ -2727,7 +4152,9 @@ leagueMode
 
 function value(p){
 
-if(p.pos==="PICK"){
+if(
+p.pos==="PICK"
+){
 return tfDynamicPickValue(p);
 }
 
@@ -2741,46 +4168,78 @@ return legacyValue(p);
 
 let raw;
 
-if(leagueMode==="dynasty"){
-raw=tfDynastyRaw(p);
+if(
+leagueMode==="dynasty"
+){
+raw=
+tfDynastyRaw(p);
 }
-else if(leagueMode==="keeper"){
-raw=tfKeeperRaw(p);
+else if(
+leagueMode==="keeper"
+){
+raw=
+tfKeeperRaw(p);
 }
 else{
-raw=tfRedraftRaw(p);
+raw=
+tfRedraftRaw(p);
 }
 
-raw=tfApplyEliteCurve(raw);
+raw=
+tfApplyEliteCurve(raw);
 
-return tfApplyLeagueSettings(p,raw,leagueMode);
+return tfApplyLeagueSettings(
+p,
+raw,
+leagueMode
+);
 
 }
 
 function updateEngineStatus(){
 
-const live=playerDatabase.filter(tfHasAnyEngineData).length;
+const live=
+playerDatabase
+.filter(
+tfHasAnyEngineData
+)
+.length;
 
 let text=
 live
-?`Weighted model • ${live}/${playerDatabase.length} data-enhanced players`
-:`Weighted model ready • ${playerDatabase.length} baseline players`;
+?
+`Weighted model • ${live}/${playerDatabase.length} data-enhanced players`
+:
+`Weighted model ready • ${playerDatabase.length} baseline players`;
 
-if(tradeForgeFeedMeta?.week){
-text+=` • Week ${tradeForgeFeedMeta.week}`;
+if(
+tradeForgeFeedMeta?.week
+){
+text+=
+` • Week ${tradeForgeFeedMeta.week}`;
+}
+if(
+tradeForgeFeedMeta?.generatedAt
+){
+
+const d=
+new Date(
+tradeForgeFeedMeta.generatedAt
+);
+
+if(
+!Number.isNaN(
+d.getTime()
+)
+){
+text+=
+` • Updated ${d.toLocaleString()}`;
 }
 
-if(tradeForgeFeedMeta?.generatedAt){
-
-const d=new Date(tradeForgeFeedMeta.generatedAt);
-
-if(!Number.isNaN(d.getTime())){
-text+=` • Updated ${d.toLocaleString()}`;
 }
 
-}
-
-$("engine-status").textContent=text;
+$("engine-status").textContent=
+text;
 
 }
 
@@ -2788,34 +4247,59 @@ async function loadTradeForgeFeed(){
 
 try{
 
-const response=await fetch(
+const response=
+await fetch(
 `./tradeforge-data.json?v=${Date.now()}`,
-{cache:"no-store"}
+{
+cache:"no-store"
+}
 );
 
 if(!response.ok){
-throw new Error(`Feed HTTP ${response.status}`);
+throw new Error(
+`Feed HTTP ${response.status}`
+);
 }
 
-const feed=await response.json();
+const feed=
+await response.json();
 
-tradeForgeFeedMeta=feed.meta||null;
+tradeForgeFeedMeta=
+feed.meta
+||
+null;
 
 let applied=0;
 
-playerDatabase.forEach(player=>{
+playerDatabase.forEach(
+player=>{
 
-const live=feed.players?.[norm(player.name)];
+const live=
+feed.players
+?.[
+norm(player.name)
+];
 
-if(live?.engine){
-player.engine=live.engine;
-player.liveData=live;
+if(
+live?.engine
+){
+
+player.engine=
+live.engine;
+
+player.liveData=
+live;
+
 applied++;
+
 }
 
-});
+}
+);
 
-console.log(`TradeForge feed applied to ${applied} players.`);
+console.log(
+`TradeForge feed applied to ${applied} players.`
+);
 
 renderBoard();
 render();
@@ -2823,12 +4307,19 @@ render();
 if(
 syncedLeague
 &&
-!$("league-page").classList.contains("page-hidden")
+!(
+$("league-page")
+.classList
+.contains(
+"page-hidden"
+)
+)
 ){
 buildLeaguePage();
 }
 
 }
+
 catch(error){
 
 console.warn(
@@ -2846,22 +4337,51 @@ render();
 }
 
 function adjustedPlayer(v){
-return v<=0?0:v;
+
+return v<=0
+?
+0
+:
+v;
+
 }
 
 function adjustedCore(team){
 
 return team
-.map(p=>adjustedPlayer(value(p)))
-.sort((a,b)=>b-a)
+
+.map(
+p=>
+adjustedPlayer(
+value(p)
+)
+)
+
+.sort(
+(a,b)=>
+b-a
+)
+
 .reduce(
-(t,v,i)=>t+v*(PACKAGE_WEIGHTS[i]??.8),
+(t,v,i)=>
+t
++
+v
+*
+(
+PACKAGE_WEIGHTS[i]
+??
+.8
+),
 0
 );
 
 }
 
-function consolidationPremium(team,opponent){
+function consolidationPremium(
+team,
+opponent
+){
 
 if(
 !team?.length
@@ -2873,19 +4393,45 @@ team.length>=opponent.length
 return 0;
 }
 
-const best=Math.max(...team.map(p=>value(p)));
-const elite=tfClamp(best/100,0,1);
-const gap=opponent.length-team.length;
+const best=
+Math.max(
+...team.map(
+p=>
+value(p)
+)
+);
 
-if(team.length===1&&opponent.length===2){
+const elite=
+tfClamp(
+best/100,
+0,
+1
+);
+
+const gap=
+opponent.length
+-
+team.length;
+
+if(
+team.length===1
+&&
+opponent.length===2
+){
 return .08+.07*elite;
 }
 
-if(team.length===1&&opponent.length>=3){
+if(
+team.length===1
+&&
+opponent.length>=3
+){
 return .15+.10*elite;
 }
 
-if(gap>=2){
+if(
+gap>=2
+){
 return .15+.10*elite;
 }
 
@@ -2893,40 +4439,94 @@ return .05+.05*elite;
 
 }
 
-function adjusted(team,opponent=null){
+function adjusted(
+team,
+opponent=null
+){
 
-let total=adjustedCore(team);
+let total=
+adjustedCore(team);
 
 if(opponent){
-total*=1+consolidationPremium(team,opponent);
+total*=
+1
++
+consolidationPremium(
+team,
+opponent
+);
 }
 
 return total;
 
 }
 
-function adjustedTradeValues(a,b){
+function adjustedTradeValues(
+a,
+b
+){
 
 return{
-a:adjusted(a,b),
-b:adjusted(b,a),
-premiumA:consolidationPremium(a,b),
-premiumB:consolidationPremium(b,a)
+
+a:
+adjusted(
+a,
+b
+),
+
+b:
+adjusted(
+b,
+a
+),
+
+premiumA:
+consolidationPremium(
+a,
+b
+),
+
+premiumB:
+consolidationPremium(
+b,
+a
+)
+
 };
 
 }
 
 function base(team){
-return team.reduce((t,p)=>t+value(p),0);
+
+return team.reduce(
+(t,p)=>
+t
++
+value(p),
+0
+);
+
 }
 
-function diff(a,b){
+function diff(
+a,
+b
+){
 
-const avg=(a+b)/2;
+const avg=
+(a+b)/2;
 
 return avg
-?Math.abs(a-b)/avg*100
-:0;
+?
+Math.abs(
+a-b
+)
+/
+avg
+*
+100
+:
+0;
 
 }
 
@@ -2958,11 +4558,18 @@ return tfDynastyComponents(p);
 
 if(leagueMode==="keeper"){
 
-const direct=p.engine?.keeper;
+const direct=
+p.engine?.keeper;
 
-if(tfHasComponentData(direct)){
+if(
+tfHasComponentData(direct)
+){
 
-const baseline=tfStoredRawValue(p,"keeper");
+const baseline=
+tfStoredRawValue(
+p,
+"keeper"
+);
 
 return{
 performance:tfPerformanceValue(direct,baseline),
@@ -2984,58 +4591,110 @@ return tfRedraftComponents(p);
 
 }
 
-function tradeInsightComponentReason(leader,other){
+function tradeInsightComponentReason(
+leader,
+other
+){
 
-const a=tradeInsightComponents(leader);
-const b=tradeInsightComponents(other);
+const a=
+tradeInsightComponents(leader);
+
+const b=
+tradeInsightComponents(other);
 
 if(!a||!b){
 return "";
 }
 
 const drivers=
-Object.keys(TRADE_INSIGHT_COMPONENT_LABELS)
-.map(k=>({
+Object.keys(
+TRADE_INSIGHT_COMPONENT_LABELS
+)
+.map(
+k=>({
 key:k,
-gap:(Number(a[k])-Number(b[k]))*(TRADEFORGE_ENGINE.weights[k]||0)
+gap:
+(
+Number(a[k])
+-
+Number(b[k])
+)
+*
+(
+TRADEFORGE_ENGINE.weights[k]
+||
+0
+)
 }))
-.filter(x=>Number.isFinite(x.gap)&&x.gap>1)
-.sort((x,y)=>y.gap-x.gap)
+.filter(
+x=>
+Number.isFinite(x.gap)
+&&
+x.gap>1
+)
+.sort(
+(x,y)=>y.gap-x.gap
+)
 .slice(0,2);
 
 if(!drivers.length){
 return "";
 }
 
-const labels=drivers.map(x=>TRADE_INSIGHT_COMPONENT_LABELS[x.key]);
+const labels=
+drivers.map(
+x=>
+TRADE_INSIGHT_COMPONENT_LABELS[x.key]
+);
 
 return `${esc(leader.name)} has the stronger weighted model profile in ${labels.join(" and ")}.`;
 
 }
 
-function tradeInsightSettingReason(leader,other){
+function tradeInsightSettingReason(
+leader,
+other
+){
 
 if(!leader||!other){
 return "";
 }
 
-if(leader.pos===other.pos){
+if(
+leader.pos===other.pos
+){
 return `Because both headline assets play ${esc(leader.pos)}, the positional-format adjustments mostly cancel out; the difference comes primarily from their individual TradeForge values.`;
 }
 
-if(other.pos==="QB"&&qbMode==="oneqb"){
+if(
+other.pos==="QB"
+&&
+qbMode==="oneqb"
+){
 return `This is a 1QB format, so ${esc(other.name)} does not receive the Superflex quarterback boost. That makes elite non-QB assets such as ${esc(leader.name)} more competitive in trade value.`;
 }
 
-if(leader.pos==="QB"&&qbMode==="superflex"){
+if(
+leader.pos==="QB"
+&&
+qbMode==="superflex"
+){
 return `Superflex increases quarterback scarcity in the TradeForge model, which raises ${esc(leader.name)}'s value relative to the same player in a 1QB league.`;
 }
 
-if(leader.pos==="TE"&&tePremiumMode!=="off"){
+if(
+leader.pos==="TE"
+&&
+tePremiumMode!=="off"
+){
 return `Tight end premium is active, so ${esc(leader.name)} receives an additional format boost at TE.`;
 }
 
-if(other.pos==="TE"&&tePremiumMode!=="off"){
+if(
+other.pos==="TE"
+&&
+tePremiumMode!=="off"
+){
 return `${esc(other.name)} receives the active tight end premium boost, but it is not enough to close the current value gap.`;
 }
 
@@ -3061,13 +4720,22 @@ return `The active ${esc(modeLabel())} settings are already included in both val
 
 }
 
-function tradeInsightPackageReason(side,team,opponent,premium){
+function tradeInsightPackageReason(
+side,
+team,
+opponent,
+premium
+){
 
-if(Number(premium)>0){
+if(
+Number(premium)>0
+){
 return `Team ${side} also receives a ${Math.round(premium*100)}% consolidation premium because it is getting fewer assets. TradeForge gives extra weight to concentrating value into the stronger, smaller package.`;
 }
 
-if(team.length>opponent.length){
+if(
+team.length>opponent.length
+){
 return `Team ${side}'s package contains more assets. TradeForge discounts the second and later pieces slightly, so several smaller values do not automatically equal one premium asset.`;
 }
 
@@ -3079,13 +4747,20 @@ function tradeInsightTopAsset(team){
 
 return team
 .slice()
-.sort((a,b)=>value(b)-value(a))[0]
+.sort(
+(a,b)=>value(b)-value(a)
+)[0]
 ||
 null;
 
 }
 
-function renderTradeInsight(id,aTeam,bTeam,tradeValues){
+function renderTradeInsight(
+id,
+aTeam,
+bTeam,
+tradeValues
+){
 
 const box=$(id);
 
@@ -3093,65 +4768,145 @@ if(!box){
 return;
 }
 
-if(!aTeam.length||!bTeam.length){
-
-box.className="trade-insight-box empty";
-
+if(
+!aTeam.length
+||
+!bTeam.length
+){
+box.className=
+"trade-insight-box empty";
 box.textContent=
 id==="sleeper-trade-insight"
-?`Build a trade from the synced ${syncedProviderName()} league to see why TradeForge values it this way.`
-:"Build a trade to see why TradeForge values it this way.";
-
+?
+`Build a trade from the synced ${syncedProviderName()} league to see why TradeForge values it this way.`
+:
+"Build a trade to see why TradeForge values it this way.";
 return;
-
 }
 
-const aa=tradeValues.a;
-const ab=tradeValues.b;
-const d=diff(aa,ab);
+const aa=
+tradeValues.a;
 
-const topA=tradeInsightTopAsset(aTeam);
-const topB=tradeInsightTopAsset(bTeam);
+const ab=
+tradeValues.b;
 
-const valueA=topA?value(topA):0;
-const valueB=topB?value(topB):0;
+const d=
+diff(aa,ab);
 
-const fair=d<=5;
-const leadSide=aa>=ab?"A":"B";
-const trailSide=leadSide==="A"?"B":"A";
+const topA=
+tradeInsightTopAsset(aTeam);
 
-const leadTeam=leadSide==="A"?aTeam:bTeam;
-const trailTeam=leadSide==="A"?bTeam:aTeam;
+const topB=
+tradeInsightTopAsset(bTeam);
 
-const leadTop=leadSide==="A"?topA:topB;
-const trailTop=leadSide==="A"?topB:topA;
+const valueA=
+topA
+?
+value(topA)
+:
+0;
 
-const leadTopValue=leadSide==="A"?valueA:valueB;
-const trailTopValue=leadSide==="A"?valueB:valueA;
+const valueB=
+topB
+?
+value(topB)
+:
+0;
+
+const fair=
+d<=5;
+
+const leadSide=
+aa>=ab
+?
+"A"
+:
+"B";
+
+const trailSide=
+leadSide==="A"
+?
+"B"
+:
+"A";
+
+const leadTeam=
+leadSide==="A"
+?
+aTeam
+:
+bTeam;
+
+const trailTeam=
+leadSide==="A"
+?
+bTeam
+:
+aTeam;
+
+const leadTop=
+leadSide==="A"
+?
+topA
+:
+topB;
+
+const trailTop=
+leadSide==="A"
+?
+topB
+:
+topA;
+
+const leadTopValue=
+leadSide==="A"
+?
+valueA
+:
+valueB;
+
+const trailTopValue=
+leadSide==="A"
+?
+valueB
+:
+valueA;
 
 const leadPremium=
 leadSide==="A"
-?tradeValues.premiumA
-:tradeValues.premiumB;
+?
+tradeValues.premiumA
+:
+tradeValues.premiumB;
 
 const trailPremium=
 leadSide==="A"
-?tradeValues.premiumB
-:tradeValues.premiumA;
+?
+tradeValues.premiumB
+:
+tradeValues.premiumA;
 
 const points=[];
 
 if(fair){
 
-const exact=d<=1;
+const exact=
+d<=1;
 
 points.push(
 `The adjusted package values are ${aa.toFixed(1)} for Team A and ${ab.toFixed(1)} for Team B — only ${d.toFixed(1)}% apart, which is ${exact?"essentially even":"inside TradeForge's 5% fair range"}.`
 );
 
-if(topA&&topB){
+if(
+topA
+&&
+topB
+){
 
-const topGap=Math.abs(valueA-valueB);
+const topGap=
+Math.abs(
+valueA-valueB
+);
 
 if(
 topGap>=5
@@ -3163,8 +4918,15 @@ bTeam.length>1
 )
 ){
 
-const highTop=valueA>=valueB?topA:topB;
-const highValue=Math.max(valueA,valueB);
+const highTop=
+valueA>=valueB
+?
+topA
+:
+topB;
+
+const highValue=
+Math.max(valueA,valueB);
 
 points.push(
 `${esc(highTop.name)} is the highest-valued individual asset at ${highValue.toFixed(1)}, but the rest of the opposite package closes enough of the gap to make the overall trade balanced.`
@@ -3174,7 +4936,7 @@ points.push(
 else{
 
 points.push(
-"The headline assets are close enough in current TradeForge value that neither side creates a meaningful advantage after package adjustments."
+`The headline assets are close enough in current TradeForge value that neither side creates a meaningful advantage after package adjustments.`
 );
 
 }
@@ -3182,16 +4944,49 @@ points.push(
 }
 
 if(tradeValues.premiumA>0){
-points.push(tradeInsightPackageReason("A",aTeam,bTeam,tradeValues.premiumA));
+points.push(
+tradeInsightPackageReason(
+"A",
+aTeam,
+bTeam,
+tradeValues.premiumA
+)
+);
 }
 else if(tradeValues.premiumB>0){
-points.push(tradeInsightPackageReason("B",bTeam,aTeam,tradeValues.premiumB));
+points.push(
+tradeInsightPackageReason(
+"B",
+bTeam,
+aTeam,
+tradeValues.premiumB
+)
+);
 }
-else if(aTeam.length!==bTeam.length){
+else if(
+aTeam.length!==bTeam.length
+){
 
-const largerSide=aTeam.length>bTeam.length?"A":"B";
-const largerTeam=largerSide==="A"?aTeam:bTeam;
-const smallerTeam=largerSide==="A"?bTeam:aTeam;
+const largerSide=
+aTeam.length>bTeam.length
+?
+"A"
+:
+"B";
+
+const largerTeam=
+largerSide==="A"
+?
+aTeam
+:
+bTeam;
+
+const smallerTeam=
+largerSide==="A"
+?
+bTeam
+:
+aTeam;
 
 points.push(
 tradeInsightPackageReason(
@@ -3211,19 +5006,31 @@ points.push(
 `Team ${leadSide} is receiving ${leadSide==="A"?aa.toFixed(1):ab.toFixed(1)} adjusted value versus ${leadSide==="A"?ab.toFixed(1):aa.toFixed(1)} for Team ${trailSide}, a ${d.toFixed(1)}% difference.`
 );
 
-if(leadTop&&trailTop){
+if(
+leadTop
+&&
+trailTop
+){
 
 points.push(
 `${esc(leadTop.name)} is valued at ${leadTopValue.toFixed(1)} compared with ${esc(trailTop.name)} at ${trailTopValue.toFixed(1)} in the current settings.`
 );
 
-const settingReason=tradeInsightSettingReason(leadTop,trailTop);
+const settingReason=
+tradeInsightSettingReason(
+leadTop,
+trailTop
+);
 
 if(settingReason){
 points.push(settingReason);
 }
 
-const componentReason=tradeInsightComponentReason(leadTop,trailTop);
+const componentReason=
+tradeInsightComponentReason(
+leadTop,
+trailTop
+);
 
 if(componentReason){
 points.push(componentReason);
@@ -3262,16 +5069,29 @@ points.push(trailingPackageReason);
 
 const heading=
 fair
-?"Why this trade is balanced"
-:`Why Team ${leadSide} has more value`;
+?
+"Why this trade is balanced"
+:
+`Why Team ${leadSide} has more value`;
 
-box.className="trade-insight-box";
+box.className=
+"trade-insight-box";
 
-box.innerHTML=`
-<div class="trade-insight-summary">${heading}</div>
+box.innerHTML=
+`
+<div class="trade-insight-summary">
+${heading}
+</div>
+
 <ul class="trade-insight-list">
-${points.filter(Boolean).map(p=>`<li>${p}</li>`).join("")}
+${points
+.filter(Boolean)
+.map(
+p=>`<li>${p}</li>`
+)
+.join("")}
 </ul>
+
 <div class="trade-insight-context">
 Current model: ${esc(modeLabel())}. Insight explains TradeForge trade value, not projected fantasy points.
 </div>
@@ -3283,20 +5103,38 @@ function modeLabel(){
 
 const s=
 scoringMode==="ppr"
-?"PPR"
-:scoringMode==="half"
-?"0.5 PPR"
-:"No PPR";
+?
+"PPR"
+:
+scoringMode==="half"
+?
+"0.5 PPR"
+:
+"No PPR";
 
-const l=leagueMode[0].toUpperCase()+leagueMode.slice(1);
-const q=qbMode==="superflex"?"Superflex":"1QB";
+const l=
+leagueMode[0]
+.toUpperCase()
++
+leagueMode.slice(1);
+
+const q=
+qbMode==="superflex"
+?
+"Superflex"
+:
+"1QB";
 
 const t=
 tePremiumMode==="half"
-?" • TEP +0.5"
-:tePremiumMode==="full"
-?" • TEP +1.0"
-:"";
+?
+" • TEP +0.5"
+:
+tePremiumMode==="full"
+?
+" • TEP +1.0"
+:
+"";
 
 return `${s} • ${l} • ${q}${t}`;
 
@@ -3306,32 +5144,57 @@ function sleeperModeLabel(){
 
 const s=
 sleeperScoringMode==="ppr"
-?"PPR"
-:sleeperScoringMode==="half"
-?"0.5 PPR"
-:"No PPR";
+?
+"PPR"
+:
+sleeperScoringMode==="half"
+?
+"0.5 PPR"
+:
+"No PPR";
 
-const l=sleeperLeagueMode[0].toUpperCase()+sleeperLeagueMode.slice(1);
-const q=sleeperQbMode==="superflex"?"Superflex":"1QB";
+const l=
+sleeperLeagueMode[0]
+.toUpperCase()
++
+sleeperLeagueMode.slice(1);
+
+const q=
+sleeperQbMode==="superflex"
+?
+"Superflex"
+:
+"1QB";
 
 const t=
 sleeperTePremiumMode==="half"
-?" • TEP +0.5"
-:sleeperTePremiumMode==="full"
-?" • TEP +1.0"
-:"";
+?
+" • TEP +0.5"
+:
+sleeperTePremiumMode==="full"
+?
+" • TEP +1.0"
+:
+"";
 
 return `${s} • ${l} • ${q}${t}`;
 
 }
 
 function syncedProviderName(){
-return syncedProvider==="espn"?"ESPN":"Sleeper";
+
+return syncedProvider==="espn"
+?
+"ESPN"
+:
+"Sleeper";
+
 }
 
 function updateSyncedProviderCopy(){
 
-const provider=syncedProviderName();
+const provider=
+syncedProviderName();
 
 if($("sleeper-info")){
 $("sleeper-info").textContent=
@@ -3339,19 +5202,23 @@ $("sleeper-info").textContent=
 }
 
 if($("disconnect")){
-$("disconnect").textContent=`Disconnect ${provider}`;
+$("disconnect").textContent=
+`Disconnect ${provider}`;
 }
 
 if($("trade-center-provider-label")){
-$("trade-center-provider-label").textContent=`${provider} trade tools`;
+$("trade-center-provider-label").textContent=
+`${provider} trade tools`;
 }
 
 if($("synced-trade-calculator-title")){
-$("synced-trade-calculator-title").textContent=`${provider} Trade Calculator`;
+$("synced-trade-calculator-title").textContent=
+`${provider} Trade Calculator`;
 }
 
 if($("synced-trade-calculator-sub")){
-$("synced-trade-calculator-sub").textContent=`Uses the selected ${provider} rosters`;
+$("synced-trade-calculator-sub").textContent=
+`Uses the selected ${provider} rosters`;
 }
 
 if($("synced-insight-sub")){
@@ -3376,76 +5243,168 @@ tePremiumMode,
 sleeperCalculationContext
 };
 
-scoringMode=sleeperScoringMode;
-leagueMode=sleeperLeagueMode;
-qbMode=sleeperQbMode;
-tePremiumMode=sleeperTePremiumMode;
-sleeperCalculationContext=true;
+scoringMode=
+sleeperScoringMode;
+
+leagueMode=
+sleeperLeagueMode;
+
+qbMode=
+sleeperQbMode;
+
+tePremiumMode=
+sleeperTePremiumMode;
+
+sleeperCalculationContext=
+true;
 
 try{
 return fn();
 }
+
 finally{
 
-scoringMode=saved.scoringMode;
-leagueMode=saved.leagueMode;
-qbMode=saved.qbMode;
-tePremiumMode=saved.tePremiumMode;
-sleeperCalculationContext=saved.sleeperCalculationContext;
+scoringMode=
+saved.scoringMode;
+
+leagueMode=
+saved.leagueMode;
+
+qbMode=
+saved.qbMode;
+
+tePremiumMode=
+saved.tePremiumMode;
+
+sleeperCalculationContext=
+saved.sleeperCalculationContext;
 
 }
 
 }
 
 function sleeperValue(p){
-return withSleeperModes(()=>value(p));
+
+return withSleeperModes(
+()=>value(p)
+);
+
 }
 
-function renderTop(pos,id){
+function renderTop(
+pos,
+id
+){
 
 const top=
 playerDatabase
-.filter(p=>p.pos===pos&&Number.isFinite(legacyValue(p)))
+
+.filter(
+p=>
+p.pos===pos
+&&
+Number.isFinite(
+legacyValue(p)
+)
+)
+
 .slice()
-.sort((a,b)=>legacyValue(b)-legacyValue(a)||a.rank-b.rank)
-.slice(0,3);
+
+.sort(
+(a,b)=>
+legacyValue(b)
+-
+legacyValue(a)
+||
+a.rank-b.rank
+)
+
+.slice(
+0,
+3
+);
 
 $(id).innerHTML=
 top.length
-?top.map(
-(p,i)=>`
+?
+top.map(
+(p,i)=>
+`
 <div class="top-row">
-<span>#${i+1} ${esc(p.name)}</span>
-<strong>${legacyValue(p).toFixed(1)}</strong>
+<span>
+#${i+1} ${esc(p.name)}
+</span>
+<strong>
+${legacyValue(p).toFixed(1)}
+</strong>
 </div>
 `
-).join("")
-:`<div class="sub">No ranked players</div>`;
+)
+.join("")
+:
+`
+<div class="sub">
+No ranked players
+</div>
+`;
 
 }
 
 function renderBoard(){
 
-$("mode-label").textContent=modeLabel();
+$("mode-label").textContent=
+modeLabel();
 
 updateEngineStatus();
 
-renderTop("RB","top-rb");
-renderTop("WR","top-wr");
-renderTop("QB","top-qb");
-renderTop("TE","top-te");
+renderTop(
+"RB",
+"top-rb"
+);
+
+renderTop(
+"WR",
+"top-wr"
+);
+
+renderTop(
+"QB",
+"top-qb"
+);
+
+renderTop(
+"TE",
+"top-te"
+);
 
 }
 
 function renderTeam(side){
 
-const team=side==="A"?teamA:teamB;
-const box=$(side==="A"?"team-a":"team-b");
+const team=
+side==="A"
+?
+teamA
+:
+teamB;
+
+const box=
+$(
+side==="A"
+?
+"team-a"
+:
+"team-b"
+);
 
 if(!team.length){
 
-box.innerHTML=`
-<div class="sub" style="padding:20px 0">
+box.innerHTML=
+`
+<div
+class="sub"
+style="padding:20px 0"
+>
 Search above to add players.
 </div>
 `;
@@ -3456,27 +5415,64 @@ return;
 
 box.innerHTML=
 team.map(
-(p,i)=>`
+(p,i)=>
+`
 <div class="player">
 
 <div>
-<strong>${esc(p.name)}</strong>
-<small>${esc(p.pos)}${p.nflTeam?" • "+esc(p.nflTeam):""}</small>
+<strong>
+${esc(p.name)}
+</strong>
+
+<small>
+${esc(p.pos)}
+${
+p.nflTeam
+?
+" • "
++
+esc(p.nflTeam)
+:
+""
+}
+</small>
+
 </div>
 
-<strong>${value(p).toFixed(1)}</strong>
+<strong>
+${value(p).toFixed(1)}
+</strong>
 
-<button class="remove" onclick="removePlayer('${side}',${i})">×</button>
+<button
+class="remove"
+onclick="removePlayer('${side}',${i})"
+>
+×
+</button>
 
 </div>
 `
-).join("");
+)
+.join("");
 
 }
 
-function removePlayer(side,i){
+function removePlayer(
+side,
+i
+){
 
-(side==="A"?teamA:teamB).splice(i,1);
+(
+side==="A"
+?
+teamA
+:
+teamB
+)
+.splice(
+i,
+1
+);
 
 render();
 
@@ -3486,45 +5482,88 @@ function render(){
 
 renderTeam("A");
 renderTeam("B");
+
 calculate();
 
 }
 
 function calculate(){
 
-const ba=base(teamA);
-const bb=base(teamB);
+const ba=
+base(teamA);
 
-const tradeValues=adjustedTradeValues(teamA,teamB);
+const bb=
+base(teamB);
 
-const aa=tradeValues.a;
-const ab=tradeValues.b;
-const d=diff(aa,ab);
+const tradeValues=
+adjustedTradeValues(
+teamA,
+teamB
+);
 
-$("base-a").textContent=ba.toFixed(1);
-$("base-b").textContent=bb.toFixed(1);
-$("adj-a").textContent=aa.toFixed(1);
-$("adj-b").textContent=ab.toFixed(1);
+const aa=
+tradeValues.a;
+
+const ab=
+tradeValues.b;
+
+const d=
+diff(
+aa,
+ab
+);
+
+$("base-a").textContent=
+ba.toFixed(1);
+
+$("base-b").textContent=
+bb.toFixed(1);
+
+$("adj-a").textContent=
+aa.toFixed(1);
+
+$("adj-b").textContent=
+ab.toFixed(1);
 
 $("marker").style.left=
 (
 aa+ab
-?Math.max(5,Math.min(95,ab/(aa+ab)*100))
-:50
-)+"%";
+?
+Math.max(
+5,
+Math.min(
+95,
+ab/(aa+ab)*100
+)
+)
+:
+50
+)
++
+"%";
 
-const v=$("verdict");
+const v=
+$("verdict");
 
 v.className="";
 
-if(!teamA.length||!teamB.length){
+if(
+!teamA.length
+||
+!teamB.length
+){
 
-v.innerHTML=`
+v.innerHTML=
+`
 Build a Trade
-<small>Add players to both sides.</small>
+
+<small>
+Add players to both sides.
+</small>
 `;
 
-$("grade").textContent="—";
+$("grade").textContent=
+"—";
 
 renderTradeInsight(
 "trade-insight",
@@ -3543,40 +5582,94 @@ return;
 let title;
 let cls;
 
-if(d<=5){
-title="FAIR TRADE";
-cls="fair";
+if(
+d<=5
+){
+title=
+"FAIR TRADE";
+cls=
+"fair";
 }
-else if(d<=10){
-title="SLIGHT ADVANTAGE";
-cls="slight";
+
+else if(
+d<=10
+){
+title=
+"SLIGHT ADVANTAGE";
+cls=
+"slight";
 }
-else if(d<=20){
-title="ADVANTAGE";
-cls="adv";
+
+else if(
+d<=20
+){
+title=
+"ADVANTAGE";
+cls=
+"adv";
 }
+
 else{
-title="MAJOR ADVANTAGE";
-cls="major";
+title=
+"MAJOR ADVANTAGE";
+cls=
+"major";
 }
 
-v.className=cls;
+v.className=
+cls;
 
-v.innerHTML=`
+v.innerHTML=
+`
 ${title}
+
 <small>
+
 ${d.toFixed(1)}% difference
-${d>5?" • "+(aa>ab?"Team A":"Team B")+" has more adjusted value":""}
+
+${
+d>5
+?
+" • "
++
+(
+aa>ab
+?
+"Team A"
+:
+"Team B"
+)
++
+" has more adjusted value"
+:
+""
+}
+
 </small>
 `;
 
 $("grade").textContent=
-d<=5?"A+"
-:d<=10?"A"
-:d<=20?"B"
-:d<=30?"C"
-:d<=40?"D"
-:"F";
+d<=5
+?
+"A+"
+:
+d<=10
+?
+"A"
+:
+d<=20
+?
+"B"
+:
+d<=30
+?
+"C"
+:
+d<=40
+?
+"D"
+:
+"F";
 
 renderTradeInsight(
 "trade-insight",
@@ -3585,15 +5678,26 @@ teamB,
 tradeValues
 );
 
-tradeIdeas(aa,ab);
+tradeIdeas(
+aa,
+ab
+);
 
 }
 
-function tradeIdeas(aa,ab){
+function tradeIdeas(
+aa,
+ab
+){
 
-const box=$("trade-ideas");
+const box=
+$("trade-ideas");
 
-if(!teamA.length||!teamB.length){
+if(
+!teamA.length
+||
+!teamB.length
+){
 
 box.textContent=
 "Build a trade to see suggested trade ideas.";
@@ -3602,15 +5706,28 @@ return;
 
 }
 
-const currentDifference=diff(aa,ab);
+const currentDifference=
+diff(
+aa,
+ab
+);
 
-if(currentDifference<=5){
+if(
+currentDifference<=5
+){
 
-box.innerHTML=`
+box.innerHTML=
+`
 <div class="suggestion">
-<strong>No adjustment needed.</strong>
+
+<strong>
+No adjustment needed.
+</strong>
+
 <br><br>
+
 This trade is already inside the 5% TradeForge fair range.
+
 </div>
 `;
 
@@ -3618,82 +5735,136 @@ return;
 
 }
 
-const weakerSide=aa>ab?"B":"A";
+const weakerSide=
+aa>ab
+?
+"B"
+:
+"A";
 
 const used=
 new Set(
-teamA.concat(teamB).map(key)
+teamA
+.concat(teamB)
+.map(key)
 );
 
 const available=
-assets().filter(p=>!used.has(key(p)));
+assets()
+.filter(
+p=>
+!used.has(
+key(p)
+)
+);
 
-const evaluate=additions=>{
+const evaluate=
+additions=>{
 
 const newA=
 weakerSide==="A"
-?teamA.concat(additions)
-:teamA;
+?
+teamA.concat(additions)
+:
+teamA;
 
 const newB=
 weakerSide==="B"
-?teamB.concat(additions)
-:teamB;
+?
+teamB.concat(additions)
+:
+teamB;
 
 const recalculated=
-adjustedTradeValues(newA,newB);
+adjustedTradeValues(
+newA,
+newB
+);
 
 const newDifference=
-diff(recalculated.a,recalculated.b);
+diff(
+recalculated.a,
+recalculated.b
+);
 
-if(newDifference>=currentDifference){
+if(
+newDifference>=currentDifference
+){
 return null;
 }
 
 return{
+
 additions,
 recalculated,
 newDifference,
 fair:newDifference<=5,
 close:newDifference>5&&newDifference<=10,
 improvement:currentDifference-newDifference
+
 };
 
 };
 
 const ideas=[];
 
-available.forEach(player=>{
+available.forEach(
+player=>{
 
-const idea=evaluate([player]);
+const idea=
+evaluate(
+[player]
+);
 
 if(idea){
 ideas.push(idea);
 }
 
-});
+}
+);
 
-const valueGap=Math.abs(aa-ab);
+const valueGap=
+Math.abs(
+aa-ab
+);
 
 const relevant=
 available
 .slice()
 .sort(
 (a,b)=>
-Math.abs(value(a)-valueGap)
--
-Math.abs(value(b)-valueGap)
+Math.abs(
+value(a)-valueGap
 )
-.slice(0,35);
+-
+Math.abs(
+value(b)-valueGap
+)
+)
+.slice(
+0,
+35
+);
 
-for(let i=0;i<relevant.length;i++){
+for(
+let i=0;
+i<relevant.length;
+i++
+){
 
-for(let j=i+1;j<relevant.length;j++){
+for(
+let j=i+1;
+j<relevant.length;
+j++
+){
 
-const idea=evaluate([
+const idea=
+evaluate(
+[
 relevant[i],
 relevant[j]
-]);
+]
+);
 
 if(idea){
 ideas.push(idea);
@@ -3703,21 +5874,44 @@ ideas.push(idea);
 
 }
 
-if(!ideas.some(idea=>idea.fair)){
+if(
+!ideas.some(
+idea=>idea.fair
+)
+){
 
-const triplePool=relevant.slice(0,18);
+const triplePool=
+relevant.slice(
+0,
+18
+);
 
-for(let i=0;i<triplePool.length;i++){
+for(
+let i=0;
+i<triplePool.length;
+i++
+){
 
-for(let j=i+1;j<triplePool.length;j++){
+for(
+let j=i+1;
+j<triplePool.length;
+j++
+){
 
-for(let k=j+1;k<triplePool.length;k++){
+for(
+let k=j+1;
+k<triplePool.length;
+k++
+){
 
-const idea=evaluate([
+const idea=
+evaluate(
+[
 triplePool[i],
 triplePool[j],
 triplePool[k]
-]);
+]
+);
 
 if(idea){
 ideas.push(idea);
@@ -3731,14 +5925,16 @@ ideas.push(idea);
 
 }
 
-ideas.sort((a,b)=>{
+ideas.sort(
+(a,b)=>{
 
 if(a.fair!==b.fair){
 return a.fair?-1:1;
 }
 
 if(
-a.additions.length!==b.additions.length
+a.additions.length
+!==b.additions.length
 &&
 a.fair
 &&
@@ -3753,29 +5949,44 @@ return a.close?-1:1;
 
 return a.newDifference-b.newDifference;
 
-});
+}
+);
 
 const finalIdeas=[];
-const seen=new Set();
+const seen=
+new Set();
 
-for(const idea of ideas){
+for(
+const idea of ideas
+){
 
 const signature=
-idea.additions.map(key).sort().join("|");
+idea.additions
+.map(key)
+.sort()
+.join("|");
 
-if(seen.has(signature)){
+if(
+seen.has(signature)
+){
 continue;
 }
 
 seen.add(signature);
 
-if(!idea.fair&&idea.improvement<2){
+if(
+!idea.fair
+&&
+idea.improvement<2
+){
 continue;
 }
 
 finalIdeas.push(idea);
 
-if(finalIdeas.length>=3){
+if(
+finalIdeas.length>=3
+){
 break;
 }
 
@@ -3783,9 +5994,12 @@ break;
 
 if(!finalIdeas.length){
 
-box.innerHTML=`
+box.innerHTML=
+`
 <div class="suggestion">
+
 TradeForge could not find a reasonable addition that meaningfully improves the trade.
+
 </div>
 `;
 
@@ -3794,26 +6008,39 @@ return;
 }
 
 box.innerHTML=
-finalIdeas.map((idea,index)=>{
+finalIdeas.map(
+(idea,index)=>{
 
 const names=
-idea.additions.map(p=>esc(p.name)).join(" + ");
+idea.additions
+.map(
+p=>esc(p.name)
+)
+.join(" + ");
 
 const label=
 idea.fair
-?"FAIR MATCH"
-:idea.close
-?"VERY CLOSE"
-:"BEST AVAILABLE";
+?
+"FAIR MATCH"
+:
+idea.close
+?
+"VERY CLOSE"
+:
+"BEST AVAILABLE";
 
 return`
 <div class="suggestion">
 
-<strong>Idea ${index+1} — ${label}</strong>
+<strong>
+Idea ${index+1} — ${label}
+</strong>
 
 <br><br>
 
-<strong>Add ${names} to Team ${weakerSide}'s side.</strong>
+<strong>
+Add ${names} to Team ${weakerSide}'s side.
+</strong>
 
 <br><br>
 
@@ -3836,30 +6063,61 @@ ${currentDifference.toFixed(1)}%
 →
 ${idea.newDifference.toFixed(1)}%
 
-${idea.fair?`
+${
+idea.fair
+?
+`
 <br><br>
-<strong>✓ Inside the 5% TradeForge fair range</strong>
-`:""}
+<strong>
+✓ Inside the 5% TradeForge fair range
+</strong>
+`
+:
+""
+}
 
 </div>
 `;
 
-}).join("");
+}
+)
+.join("");
 
 }
 
 function setupSearch(side){
 
-const input=$(side==="A"?"search-a":"search-b");
-const results=$(side==="A"?"results-a":"results-b");
+const input=
+$(
+side==="A"
+?
+"search-a"
+:
+"search-b"
+);
 
-input.oninput=()=>{
+const results=
+$(
+side==="A"
+?
+"results-a"
+:
+"results-b"
+);
 
-const q=input.value.trim().toLowerCase();
+input.oninput=
+()=>{
+
+const q=
+input.value
+.trim()
+.toLowerCase();
 
 if(!q){
 
-results.classList.remove("show");
+results.classList.remove(
+"show"
+);
 
 return;
 
@@ -3867,58 +6125,109 @@ return;
 
 const used=
 new Set(
-teamA.concat(teamB).map(key)
+teamA
+.concat(teamB)
+.map(key)
 );
 
 const found=
 assets()
 .filter(
 p=>
-!used.has(key(p))
+!used.has(
+key(p)
+)
 &&
 (
-p.name.toLowerCase().includes(q)
+p.name
+.toLowerCase()
+.includes(q)
 ||
-p.pos.toLowerCase().includes(q)
+p.pos
+.toLowerCase()
+.includes(q)
 )
 )
-.sort((a,b)=>value(b)-value(a))
-.slice(0,15);
+.sort(
+(a,b)=>
+value(b)-value(a)
+)
+.slice(
+0,
+15
+);
 
 results.innerHTML=
 found.length
-?found.map(
-(p,i)=>`
-<div class="result-item" data-i="${i}">
+?
+found.map(
+(p,i)=>
+`
+<div
+class="result-item"
+data-i="${i}"
+>
+
 <span>
 ${esc(p.name)}
-<small class="sub">${esc(p.pos)}</small>
+<small class="sub">
+${esc(p.pos)}
+</small>
 </span>
-<strong>${value(p).toFixed(1)}</strong>
+
+<strong>
+${value(p).toFixed(1)}
+</strong>
+
 </div>
 `
-).join("")
-:`<div class="result-item"><span>No matching players found</span></div>`;
+)
+.join("")
+:
+`
+<div class="result-item">
+<span>
+No matching players found
+</span>
+</div>
+`;
 
-results.classList.add("show");
+results.classList.add(
+"show"
+);
 
 results
-.querySelectorAll("[data-i]")
-.forEach((el,i)=>{
+.querySelectorAll(
+"[data-i]"
+)
+.forEach(
+(el,i)=>
+el.onclick=
+()=>{
 
-el.onclick=()=>{
-
-(side==="A"?teamA:teamB).push({...found[i]});
+(
+side==="A"
+?
+teamA
+:
+teamB
+)
+.push(
+{
+...found[i]
+}
+);
 
 input.value="";
 
-results.classList.remove("show");
+results.classList.remove(
+"show"
+);
 
 render();
 
-};
-
-});
+}
+);
 
 };
 
@@ -3926,14 +6235,32 @@ render();
 
 function applyControls(){
 
-scoringMode=$("scoring").value;
-leagueMode=$("league").value;
-qbMode=$("qb").value;
-tePremiumMode=$("tep").value;
+scoringMode=
+$("scoring").value;
 
-if(leagueMode!=="dynasty"){
-teamA=teamA.filter(x=>x.pos!=="PICK");
-teamB=teamB.filter(x=>x.pos!=="PICK");
+leagueMode=
+$("league").value;
+
+qbMode=
+$("qb").value;
+
+tePremiumMode=
+$("tep").value;
+
+if(
+leagueMode!=="dynasty"
+){
+
+teamA=
+teamA.filter(
+x=>x.pos!=="PICK"
+);
+
+teamB=
+teamB.filter(
+x=>x.pos!=="PICK"
+);
+
 }
 
 renderBoard();
@@ -3941,19 +6268,37 @@ render();
 
 }
 
-["scoring","league","qb","tep"].forEach(
-id=>$(id).onchange=applyControls
+[
+"scoring",
+"league",
+"qb",
+"tep"
+]
+.forEach(
+id=>
+$(id).onchange=
+applyControls
 );
 
-$("swap").onclick=()=>{
+$("swap").onclick=
+()=>{
 
-[teamA,teamB]=[teamB,teamA];
+[
+teamA,
+teamB
+]
+=
+[
+teamB,
+teamA
+];
 
 render();
 
 };
 
-$("clear").onclick=()=>{
+$("clear").onclick=
+()=>{
 
 teamA=[];
 teamB=[];
@@ -3962,21 +6307,28 @@ render();
 
 };
 
-$("theme-toggle").onclick=()=>{
+$("theme-toggle").onclick=
+()=>{
 
-const html=document.documentElement;
+const html=
+document.documentElement;
 
 const next=
 html.dataset.theme==="dark"
-?"light"
-:"dark";
+?
+"light"
+:
+"dark";
 
-html.dataset.theme=next;
+html.dataset.theme=
+next;
 
 $("theme-toggle").textContent=
 next==="dark"
-?"☀ Light Theme"
-:"☾ Dark Theme";
+?
+"☀ Light Theme"
+:
+"☾ Dark Theme";
 
 };
 
@@ -3986,38 +6338,70 @@ setupSearch("B");
 function rosterAssets(id){
 
 const r=
-syncedRosters.find(
-x=>String(x.roster_id)===String(id)
+syncedRosters
+.find(
+x=>
+String(x.roster_id)
+===
+String(id)
 );
 
 if(!r){
 return[];
 }
 
-return(r.players||[])
-.map(pid=>matchSleeper(String(pid)))
+return (
+r.players
+||
+[]
+)
+.map(
+pid=>
+matchSleeper(
+String(pid)
+)
+)
 .filter(Boolean)
-.sort((a,b)=>sleeperValue(b)-sleeperValue(a));
+.sort(
+(a,b)=>
+sleeperValue(b)
+-
+sleeperValue(a)
+);
 
 }
 
 function sleeperSelectedRoster(side){
-return side==="A"?sleeperRosterA:sleeperRosterB;
+
+return side==="A"
+?
+sleeperRosterA
+:
+sleeperRosterB;
+
 }
 
 function sleeperPool(side){
 
-const rosterId=sleeperSelectedRoster(side);
+const rosterId=
+sleeperSelectedRoster(side);
 
-if(!syncedLeague||!rosterId){
+if(
+!syncedLeague
+||
+!rosterId
+){
 return[];
 }
 
-const r=rosterAssets(rosterId);
+const r=
+rosterAssets(rosterId);
 
 return sleeperLeagueMode==="dynasty"
-?r.concat(picks)
-:r;
+?
+r.concat(picks)
+:
+r;
 
 }
 
@@ -4025,16 +6409,28 @@ function renderSleeperTeam(side){
 
 const team=
 side==="A"
-?sleeperTeamA
-:sleeperTeamB;
+?
+sleeperTeamA
+:
+sleeperTeamB;
 
 const box=
-$(side==="A"?"sleeper-team-a":"sleeper-team-b");
+$(
+side==="A"
+?
+"sleeper-team-a"
+:
+"sleeper-team-b"
+);
 
 if(!team.length){
 
-box.innerHTML=`
-<div class="sub" style="padding:20px 0">
+box.innerHTML=
+`
+<div
+class="sub"
+style="padding:20px 0"
+>
 Search the selected synced roster above to add players.
 </div>
 `;
@@ -4045,33 +6441,68 @@ return;
 
 box.innerHTML=
 team.map(
-(p,i)=>`
+(p,i)=>
+`
 <div class="player">
 
 <div>
-<strong>${esc(p.name)}</strong>
+
+<strong>
+${esc(p.name)}
+</strong>
+
 <small>
+
 ${esc(p.pos)}
-${p.nflTeam?" • "+esc(p.nflTeam):""}
+
+${
+p.nflTeam
+?
+" • "
++
+esc(p.nflTeam)
+:
+""
+}
+
 </small>
+
 </div>
 
-<strong>${sleeperValue(p).toFixed(1)}</strong>
+<strong>
+${sleeperValue(p).toFixed(1)}
+</strong>
 
-<button class="remove" onclick="removeSleeperPlayer('${side}',${i})">
+<button
+class="remove"
+onclick="removeSleeperPlayer('${side}',${i})"
+>
 ×
 </button>
 
 </div>
 `
-).join("");
+)
+.join("");
 
 }
 
-function removeSleeperPlayer(side,i){
+function removeSleeperPlayer(
+side,
+i
+){
 
-(side==="A"?sleeperTeamA:sleeperTeamB)
-.splice(i,1);
+(
+side==="A"
+?
+sleeperTeamA
+:
+sleeperTeamB
+)
+.splice(
+i,
+1
+);
 
 renderSleeper();
 
@@ -4081,16 +6512,25 @@ function renderSleeper(){
 
 renderSleeperTeam("A");
 renderSleeperTeam("B");
+
 sleeperCalculate();
 
 }
 
 function sleeperCalculate(){
 
-withSleeperModes(()=>{
+withSleeperModes(
+()=>{
 
-const ba=base(sleeperTeamA);
-const bb=base(sleeperTeamB);
+const ba=
+base(
+sleeperTeamA
+);
+
+const bb=
+base(
+sleeperTeamB
+);
 
 const tradeValues=
 adjustedTradeValues(
@@ -4098,34 +6538,69 @@ sleeperTeamA,
 sleeperTeamB
 );
 
-const aa=tradeValues.a;
-const ab=tradeValues.b;
-const d=diff(aa,ab);
+const aa=
+tradeValues.a;
 
-$("sleeper-base-a").textContent=ba.toFixed(1);
-$("sleeper-base-b").textContent=bb.toFixed(1);
-$("sleeper-adj-a").textContent=aa.toFixed(1);
-$("sleeper-adj-b").textContent=ab.toFixed(1);
+const ab=
+tradeValues.b;
+
+const d=
+diff(
+aa,
+ab
+);
+
+$("sleeper-base-a").textContent=
+ba.toFixed(1);
+
+$("sleeper-base-b").textContent=
+bb.toFixed(1);
+
+$("sleeper-adj-a").textContent=
+aa.toFixed(1);
+
+$("sleeper-adj-b").textContent=
+ab.toFixed(1);
 
 $("sleeper-marker").style.left=
 (
 aa+ab
-?Math.max(5,Math.min(95,ab/(aa+ab)*100))
-:50
-)+"%";
+?
+Math.max(
+5,
+Math.min(
+95,
+ab/(aa+ab)*100
+)
+)
+:
+50
+)
++
+"%";
 
-const v=$("sleeper-verdict");
+const v=
+$("sleeper-verdict");
 
 v.className="";
 
-if(!sleeperTeamA.length||!sleeperTeamB.length){
+if(
+!sleeperTeamA.length
+||
+!sleeperTeamB.length
+){
 
-v.innerHTML=`
+v.innerHTML=
+`
 Build a Trade
-<small>Add players from both synced rosters.</small>
+
+<small>
+Add players from both synced rosters.
+</small>
 `;
 
-$("sleeper-grade").textContent="—";
+$("sleeper-grade").textContent=
+"—";
 
 renderTradeInsight(
 "sleeper-trade-insight",
@@ -4144,40 +6619,91 @@ return;
 let title;
 let cls;
 
-if(d<=5){
-title="FAIR TRADE";
-cls="fair";
+if(
+d<=5
+){
+title=
+"FAIR TRADE";
+cls=
+"fair";
 }
-else if(d<=10){
-title="SLIGHT ADVANTAGE";
-cls="slight";
+else if(
+d<=10
+){
+title=
+"SLIGHT ADVANTAGE";
+cls=
+"slight";
 }
-else if(d<=20){
-title="ADVANTAGE";
-cls="adv";
+else if(
+d<=20
+){
+title=
+"ADVANTAGE";
+cls=
+"adv";
 }
 else{
-title="MAJOR ADVANTAGE";
-cls="major";
+title=
+"MAJOR ADVANTAGE";
+cls=
+"major";
 }
 
-v.className=cls;
+v.className=
+cls;
 
-v.innerHTML=`
+v.innerHTML=
+`
 ${title}
+
 <small>
+
 ${d.toFixed(1)}% difference
-${d>5?" • "+(aa>ab?"Team A":"Team B")+" has more adjusted value":""}
+
+${
+d>5
+?
+" • "
++
+(
+aa>ab
+?
+"Team A"
+:
+"Team B"
+)
++
+" has more adjusted value"
+:
+""
+}
+
 </small>
 `;
 
 $("sleeper-grade").textContent=
-d<=5?"A+"
-:d<=10?"A"
-:d<=20?"B"
-:d<=30?"C"
-:d<=40?"D"
-:"F";
+d<=5
+?
+"A+"
+:
+d<=10
+?
+"A"
+:
+d<=20
+?
+"B"
+:
+d<=30
+?
+"C"
+:
+d<=40
+?
+"D"
+:
+"F";
 
 renderTradeInsight(
 "sleeper-trade-insight",
@@ -4186,17 +6712,29 @@ sleeperTeamB,
 tradeValues
 );
 
-sleeperTradeIdeas(aa,ab);
+sleeperTradeIdeas(
+aa,
+ab
+);
 
-});
+}
+);
 
 }
 
-function sleeperTradeIdeas(aa,ab){
+function sleeperTradeIdeas(
+aa,
+ab
+){
 
-const box=$("sleeper-trade-ideas");
+const box=
+$("sleeper-trade-ideas");
 
-if(!sleeperTeamA.length||!sleeperTeamB.length){
+if(
+!sleeperTeamA.length
+||
+!sleeperTeamB.length
+){
 
 box.textContent=
 `Build a trade from the synced ${syncedProviderName()} league to see suggested trade ideas.`;
@@ -4205,15 +6743,28 @@ return;
 
 }
 
-const currentDifference=diff(aa,ab);
+const currentDifference=
+diff(
+aa,
+ab
+);
 
-if(currentDifference<=5){
+if(
+currentDifference<=5
+){
 
-box.innerHTML=`
+box.innerHTML=
+`
 <div class="suggestion">
-<strong>No adjustment needed.</strong>
+
+<strong>
+No adjustment needed.
+</strong>
+
 <br><br>
+
 This trade is already inside the 5% TradeForge fair range.
+
 </div>
 `;
 
@@ -4221,34 +6772,60 @@ return;
 
 }
 
-const weakerSide=aa>ab?"B":"A";
+const weakerSide=
+aa>ab
+?
+"B"
+:
+"A";
 
 const weakerRosterId=
 weakerSide==="A"
-?sleeperRosterA
-:sleeperRosterB;
+?
+sleeperRosterA
+:
+sleeperRosterB;
 
 const used=
 new Set(
-sleeperTeamA.concat(sleeperTeamB).map(key)
+sleeperTeamA
+.concat(
+sleeperTeamB
+)
+.map(
+key
+)
 );
 
 const available=
-rosterAssets(weakerRosterId)
+rosterAssets(
+weakerRosterId
+)
 .filter(
 p=>
-!used.has(key(p))
+!used.has(
+key(p)
+)
 &&
 p.pos!=="PICK"
 );
 
-if(!available.length){
+if(
+!available.length
+){
 
-box.innerHTML=`
+box.innerHTML=
+`
 <div class="suggestion">
-<strong>Team ${weakerSide} needs more value.</strong>
+
+<strong>
+Team ${weakerSide} needs more value.
+</strong>
+
 <br><br>
+
 TradeForge could not find another valued player on Team ${weakerSide}'s roster to add to the trade.
+
 </div>
 `;
 
@@ -4256,76 +6833,124 @@ return;
 
 }
 
-const assetValue=p=>sleeperValue(p);
+const assetValue=
+p=>
+sleeperValue(p);
 
-const evaluate=additions=>{
+const evaluate=
+additions=>{
 
 const newA=
 weakerSide==="A"
-?sleeperTeamA.concat(additions)
-:sleeperTeamA;
+?
+sleeperTeamA.concat(
+additions
+)
+:
+sleeperTeamA;
 
 const newB=
 weakerSide==="B"
-?sleeperTeamB.concat(additions)
-:sleeperTeamB;
+?
+sleeperTeamB.concat(
+additions
+)
+:
+sleeperTeamB;
 
 const recalculated=
 withSleeperModes(
-()=>adjustedTradeValues(newA,newB)
+()=>
+adjustedTradeValues(
+newA,
+newB
+)
 );
 
 const newDifference=
-diff(recalculated.a,recalculated.b);
+diff(
+recalculated.a,
+recalculated.b
+);
 
-if(newDifference>=currentDifference){
+if(
+newDifference>=currentDifference
+){
 return null;
 }
 
 return{
+
 additions,
 recalculated,
 newDifference,
 fair:newDifference<=5,
 close:newDifference>5&&newDifference<=10,
 improvement:currentDifference-newDifference
+
 };
 
 };
 
 const ideas=[];
 
-available.forEach(player=>{
+available.forEach(
+player=>{
 
-const idea=evaluate([player]);
+const idea=
+evaluate(
+[player]
+);
 
 if(idea){
 ideas.push(idea);
 }
 
-});
+}
+);
 
-const valueGap=Math.abs(aa-ab);
+const valueGap=
+Math.abs(
+aa-ab
+);
 
 const relevant=
 available
 .slice()
 .sort(
 (a,b)=>
-Math.abs(assetValue(a)-valueGap)
--
-Math.abs(assetValue(b)-valueGap)
+Math.abs(
+assetValue(a)-valueGap
 )
-.slice(0,30);
+-
+Math.abs(
+assetValue(b)-valueGap
+)
+)
+.slice(
+0,
+30
+);
 
-for(let i=0;i<relevant.length;i++){
+for(
+let i=0;
+i<relevant.length;
+i++
+){
 
-for(let j=i+1;j<relevant.length;j++){
+for(
+let j=i+1;
+j<relevant.length;
+j++
+){
 
-const idea=evaluate([
+const idea=
+evaluate(
+[
 relevant[i],
 relevant[j]
-]);
+]
+);
 
 if(idea){
 ideas.push(idea);
@@ -4335,21 +6960,44 @@ ideas.push(idea);
 
 }
 
-if(!ideas.some(idea=>idea.fair)){
+if(
+!ideas.some(
+idea=>idea.fair
+)
+){
 
-const triplePool=relevant.slice(0,16);
+const triplePool=
+relevant.slice(
+0,
+16
+);
 
-for(let i=0;i<triplePool.length;i++){
+for(
+let i=0;
+i<triplePool.length;
+i++
+){
 
-for(let j=i+1;j<triplePool.length;j++){
+for(
+let j=i+1;
+j<triplePool.length;
+j++
+){
 
-for(let k=j+1;k<triplePool.length;k++){
+for(
+let k=j+1;
+k<triplePool.length;
+k++
+){
 
-const idea=evaluate([
+const idea=
+evaluate(
+[
 triplePool[i],
 triplePool[j],
 triplePool[k]
-]);
+]
+);
 
 if(idea){
 ideas.push(idea);
@@ -4365,11 +7013,18 @@ ideas.push(idea);
 
 if(!ideas.length){
 
-box.innerHTML=`
+box.innerHTML=
+`
 <div class="suggestion">
-<strong>Team ${weakerSide} needs more value.</strong>
+
+<strong>
+Team ${weakerSide} needs more value.
+</strong>
+
 <br><br>
+
 TradeForge could not find an additional player or combination from Team ${weakerSide}'s roster that improves the trade.
+
 </div>
 `;
 
@@ -4377,15 +7032,23 @@ return;
 
 }
 
-ideas.sort((a,b)=>{
+ideas.sort(
+(a,b)=>{
 
 if(a.fair!==b.fair){
 return a.fair?-1:1;
 }
 
-if(a.fair&&b.fair){
+if(
+a.fair
+&&
+b.fair
+){
 
-if(a.additions.length!==b.additions.length){
+if(
+a.additions.length
+!==b.additions.length
+){
 return a.additions.length-b.additions.length;
 }
 
@@ -4397,35 +7060,57 @@ if(a.close!==b.close){
 return a.close?-1:1;
 }
 
-if(Math.abs(a.newDifference-b.newDifference)>.25){
+if(
+Math.abs(
+a.newDifference-b.newDifference
+)
+>.25
+){
 return a.newDifference-b.newDifference;
 }
 
 return a.additions.length-b.additions.length;
 
-});
+}
+);
 
 const finalIdeas=[];
-const seen=new Set();
+const seen=
+new Set();
 
-for(const idea of ideas){
+for(
+const idea of ideas
+){
 
 const signature=
-idea.additions.map(p=>key(p)).sort().join("|");
+idea.additions
+.map(
+p=>key(p)
+)
+.sort()
+.join("|");
 
-if(seen.has(signature)){
+if(
+seen.has(signature)
+){
 continue;
 }
 
 seen.add(signature);
 
-if(!idea.fair&&idea.improvement<2){
+if(
+!idea.fair
+&&
+idea.improvement<2
+){
 continue;
 }
 
 finalIdeas.push(idea);
 
-if(finalIdeas.length>=3){
+if(
+finalIdeas.length>=3
+){
 break;
 }
 
@@ -4433,11 +7118,18 @@ break;
 
 if(!finalIdeas.length){
 
-box.innerHTML=`
+box.innerHTML=
+`
 <div class="suggestion">
-<strong>Team ${weakerSide} needs more value.</strong>
+
+<strong>
+Team ${weakerSide} needs more value.
+</strong>
+
 <br><br>
+
 TradeForge could not find a reasonable addition from Team ${weakerSide}'s roster that gets the trade close enough to recommend.
+
 </div>
 `;
 
@@ -4446,23 +7138,39 @@ return;
 }
 
 box.innerHTML=
-finalIdeas.map(
+finalIdeas
+.map(
 (idea,index)=>{
 
 const names=
-idea.additions.map(p=>esc(p.name)).join(" + ");
+idea.additions
+.map(
+p=>
+esc(
+p.name
+)
+)
+.join(
+" + "
+);
 
 const label=
 idea.fair
-?"FAIR MATCH"
-:idea.close
-?"VERY CLOSE"
-:"BEST AVAILABLE";
+?
+"FAIR MATCH"
+:
+idea.close
+?
+"VERY CLOSE"
+:
+"BEST AVAILABLE";
 
 return`
 <div class="suggestion">
 
-<strong>Idea ${index+1} — ${label}</strong>
+<strong>
+Idea ${index+1} — ${label}
+</strong>
 
 <br><br>
 
@@ -4491,34 +7199,61 @@ ${currentDifference.toFixed(1)}%
 →
 ${idea.newDifference.toFixed(1)}%
 
-${idea.fair?`
+${
+idea.fair
+?
+`
 <br><br>
-<strong>✓ Inside the 5% TradeForge fair range</strong>
-`:""}
+<strong>
+✓ Inside the 5% TradeForge fair range
+</strong>
+`
+:
+""
+}
 
 </div>
 `;
 
 }
-).join("");
+)
+.join("");
 
 }
 
 function setupSleeperSearch(side){
 
 const input=
-$(side==="A"?"sleeper-search-a":"sleeper-search-b");
+$(
+side==="A"
+?
+"sleeper-search-a"
+:
+"sleeper-search-b"
+);
 
 const results=
-$(side==="A"?"sleeper-results-a":"sleeper-results-b");
+$(
+side==="A"
+?
+"sleeper-results-a"
+:
+"sleeper-results-b"
+);
 
-input.oninput=()=>{
+input.oninput=
+()=>{
 
-const q=input.value.trim().toLowerCase();
+const q=
+input.value
+.trim()
+.toLowerCase();
 
 if(!q){
 
-results.classList.remove("show");
+results.classList.remove(
+"show"
+);
 
 return;
 
@@ -4526,65 +7261,115 @@ return;
 
 const used=
 new Set(
-sleeperTeamA.concat(sleeperTeamB).map(key)
+sleeperTeamA
+.concat(
+sleeperTeamB
+)
+.map(key)
 );
 
 const found=
 sleeperPool(side)
 .filter(
 p=>
-!used.has(key(p))
+!used.has(
+key(p)
+)
 &&
 (
-p.name.toLowerCase().includes(q)
+p.name
+.toLowerCase()
+.includes(q)
 ||
-p.pos.toLowerCase().includes(q)
+p.pos
+.toLowerCase()
+.includes(q)
 )
 )
-.sort((a,b)=>sleeperValue(b)-sleeperValue(a))
-.slice(0,15);
+.sort(
+(a,b)=>
+sleeperValue(b)
+-
+sleeperValue(a)
+)
+.slice(
+0,
+15
+);
 
 results.innerHTML=
 found.length
-?found.map(
-(p,i)=>`
-<div class="result-item" data-i="${i}">
+?
+found.map(
+(p,i)=>
+`
+<div
+class="result-item"
+data-i="${i}"
+>
 
 <span>
+
 ${esc(p.name)}
-<small class="sub">${esc(p.pos)}</small>
+
+<small class="sub">
+${esc(p.pos)}
+</small>
+
 </span>
 
-<strong>${sleeperValue(p).toFixed(1)}</strong>
+<strong>
+${sleeperValue(p).toFixed(1)}
+</strong>
 
 </div>
 `
-).join("")
-:`
+)
+.join("")
+:
+`
 <div class="result-item">
-<span>No matching players found on this roster</span>
+
+<span>
+No matching players found on this roster
+</span>
+
 </div>
 `;
 
-results.classList.add("show");
+results.classList.add(
+"show"
+);
 
 results
-.querySelectorAll("[data-i]")
+.querySelectorAll(
+"[data-i]"
+)
 .forEach(
-(el,i)=>{
+(el,i)=>
+el.onclick=
+()=>{
 
-el.onclick=()=>{
-
-(side==="A"?sleeperTeamA:sleeperTeamB)
-.push({...found[i]});
+(
+side==="A"
+?
+sleeperTeamA
+:
+sleeperTeamB
+)
+.push(
+{
+...found[i]
+}
+);
 
 input.value="";
 
-results.classList.remove("show");
+results.classList.remove(
+"show"
+);
 
 renderSleeper();
-
-};
 
 }
 );
@@ -4596,18 +7381,38 @@ renderSleeper();
 setupSleeperSearch("A");
 setupSleeperSearch("B");
 
-$("sleeper-swap").onclick=()=>{
+$("sleeper-swap").onclick=
+()=>{
 
-[sleeperTeamA,sleeperTeamB]=
-[sleeperTeamB,sleeperTeamA];
+[
+sleeperTeamA,
+sleeperTeamB
+]
+=
+[
+sleeperTeamB,
+sleeperTeamA
+];
 
-[sleeperRosterA,sleeperRosterB]=
-[sleeperRosterB,sleeperRosterA];
+[
+sleeperRosterA,
+sleeperRosterB
+]
+=
+[
+sleeperRosterB,
+sleeperRosterA
+];
 
-if(syncedLeague){
+if(
+syncedLeague
+){
 
-$("sleeper-roster-a").value=sleeperRosterA;
-$("sleeper-roster-b").value=sleeperRosterB;
+$("sleeper-roster-a").value=
+sleeperRosterA;
+
+$("sleeper-roster-b").value=
+sleeperRosterB;
 
 }
 
@@ -4615,7 +7420,8 @@ renderSleeper();
 
 };
 
-$("sleeper-clear").onclick=()=>{
+$("sleeper-clear").onclick=
+()=>{
 
 sleeperTeamA=[];
 sleeperTeamB=[];
@@ -4626,60 +7432,107 @@ renderSleeper();
 
 function getMyRosterId(){
 
-if(syncedProvider==="espn"){
-return String(sleeperRosterA||"");
+if(
+syncedProvider==="espn"
+){
+return String(
+sleeperRosterA
+||
+""
+);
 }
 
 const mine=
-syncedRosters.find(
+syncedRosters
+.find(
 r=>
 String(r.owner_id)
 ===
-String(sleeperUser?.user_id)
+String(
+sleeperUser?.user_id
+)
 );
 
 return mine
-?String(mine.roster_id)
-:String(sleeperRosterA||"");
+?
+String(
+mine.roster_id
+)
+:
+String(
+sleeperRosterA
+||
+""
+);
 
 }
 
 function getSleeperRosterPlayer(id){
 
-id=String(id);
+id=
+String(id);
 
-const matched=matchSleeper(id);
+const matched=
+matchSleeper(id);
 
-if(matched){
+if(
+matched
+){
 
 return{
-name:matched.name,
-pos:matched.pos,
-team:matched.nflTeam||"",
-tradePlayer:matched
+
+name:
+matched.name,
+
+pos:
+matched.pos,
+
+team:
+matched.nflTeam
+||
+"",
+
+tradePlayer:
+matched
+
 };
 
 }
 
-const sp=sleeperPlayers[id];
+const sp=
+sleeperPlayers[id];
 
 if(!sp){
 return null;
 }
 
 return{
+
 name:
 sp.full_name
 ||
 [
 sp.first_name,
 sp.last_name
-].filter(Boolean).join(" ")
+]
+.filter(Boolean)
+.join(" ")
 ||
 "Unknown Player",
-pos:sp.position||"",
-team:sp.team||"",
-tradePlayer:null
+
+pos:
+sp.position
+||
+"",
+
+team:
+sp.team
+||
+"",
+
+tradePlayer:
+null
+
 };
 
 }
@@ -4692,17 +7545,23 @@ metaId
 ){
 
 const roster=
-syncedRosters.find(
+syncedRosters
+.find(
 r=>
 String(r.roster_id)
 ===
 String(rosterId)
 );
 
-if(!roster){
+if(
+!roster
+){
 
-$(nameId).textContent="Roster Not Found";
+$(nameId).textContent=
+"Roster Not Found";
+
 $(metaId).textContent="";
+
 $(listId).innerHTML="";
 
 return;
@@ -4710,21 +7569,35 @@ return;
 }
 
 const players=
-(roster.players||[])
-.map(getSleeperRosterPlayer)
+(
+roster.players
+||
+[]
+)
+.map(
+getSleeperRosterPlayer
+)
 .filter(Boolean)
 .sort(
 (a,b)=>{
 
 const bv=
 b.tradePlayer
-?sleeperValue(b.tradePlayer)
-:-1;
+?
+sleeperValue(
+b.tradePlayer
+)
+:
+-1;
 
 const av=
 a.tradePlayer
-?sleeperValue(a.tradePlayer)
-:-1;
+?
+sleeperValue(
+a.tradePlayer
+)
+:
+-1;
 
 return bv-av;
 
@@ -4732,11 +7605,21 @@ return bv-av;
 );
 
 const valued=
-players.filter(p=>p.tradePlayer);
+players
+.filter(
+p=>
+p.tradePlayer
+);
 
 const total=
-valued.reduce(
-(t,p)=>t+sleeperValue(p.tradePlayer),
+valued
+.reduce(
+(t,p)=>
+t
++
+sleeperValue(
+p.tradePlayer
+),
 0
 );
 
@@ -4747,39 +7630,67 @@ $(metaId).textContent=
 `${players.length} players • ${valued.length} valued • ${total.toFixed(1)} value`;
 
 $(listId).innerHTML=
-players.map(
+players
+.map(
 p=>{
 
 const val=
 p.tradePlayer
-?sleeperValue(p.tradePlayer).toFixed(1)
-:"—";
+?
+sleeperValue(
+p.tradePlayer
+)
+.toFixed(1)
+:
+"—";
 
-const info=[
+const info=
+[
 p.pos,
 p.team
-].filter(Boolean).join(" • ");
+]
+.filter(Boolean)
+.join(
+" • "
+);
 
 return`
 <div class="roster-player">
 
 <div>
-<strong>${esc(p.name)}</strong>
-<small>${esc(info)}</small>
-${p.tradePlayer?"":`
+
+<strong>
+${esc(p.name)}
+</strong>
+
+<small>
+${esc(info)}
+</small>
+
+${
+p.tradePlayer
+?
+""
+:
+`
 <div class="not-valued">
 Not yet in TradeForge database
 </div>
-`}
+`
+}
+
 </div>
 
-<div class="roster-value">${val}</div>
+<div class="roster-value">
+${val}
+</div>
 
 </div>
 `;
 
 }
-).join("");
+)
+.join("");
 
 }
 
@@ -4792,11 +7703,19 @@ const DASHBOARD_POSITIONS=[
 
 function ordinal(n){
 
-n=Number(n)||0;
+n=
+Number(n)
+||
+0;
 
-const mod100=n%100;
+const mod100=
+n%100;
 
-if(mod100>=11&&mod100<=13){
+if(
+mod100>=11
+&&
+mod100<=13
+){
 return `${n}th`;
 }
 
@@ -4818,17 +7737,28 @@ return `${n}th`;
 
 }
 
-function sleeperValueForMode(p,mode){
+function sleeperValueForMode(
+p,
+mode
+){
 
-const saved=sleeperLeagueMode;
+const saved=
+sleeperLeagueMode;
 
-sleeperLeagueMode=mode;
+sleeperLeagueMode=
+mode;
 
 try{
+
 return sleeperValue(p);
+
 }
+
 finally{
-sleeperLeagueMode=saved;
+
+sleeperLeagueMode=
+saved;
+
 }
 
 }
@@ -4839,25 +7769,56 @@ if(!roster){
 return[];
 }
 
-return(roster.players||[])
-.map(pid=>matchSleeper(String(pid)))
+return(
+roster.players
+||
+[]
+)
+.map(
+pid=>
+matchSleeper(
+String(pid)
+)
+)
 .filter(Boolean);
 
 }
 
-function dashboardValue(p,mode=null){
-return mode?sleeperValueForMode(p,mode):sleeperValue(p);
+function dashboardValue(
+p,
+mode=null
+){
+
+return mode
+?
+sleeperValueForMode(
+p,
+mode
+)
+:
+sleeperValue(p);
+
 }
 
-function dashboardCanFill(player,slot){
+function dashboardCanFill(
+player,
+slot
+){
 
-const pos=player.pos;
+const pos=
+player.pos;
 
-if(slot===pos){
+if(
+slot===pos
+){
 return true;
 }
 
-if(slot==="DEF"&&pos==="DST"){
+if(
+slot==="DEF"
+&&
+pos==="DST"
+){
 return true;
 }
 
@@ -4866,15 +7827,38 @@ slot==="FLEX"
 ||
 slot==="WRRBTE_FLEX"
 ){
-return["RB","WR","TE"].includes(pos);
+
+return[
+"RB",
+"WR",
+"TE"
+]
+.includes(pos);
+
 }
 
-if(slot==="WRRB_FLEX"){
-return["RB","WR"].includes(pos);
+if(
+slot==="WRRB_FLEX"
+){
+
+return[
+"RB",
+"WR"
+]
+.includes(pos);
+
 }
 
-if(slot==="REC_FLEX"){
-return["WR","TE"].includes(pos);
+if(
+slot==="REC_FLEX"
+){
+
+return[
+"WR",
+"TE"
+]
+.includes(pos);
+
 }
 
 if(
@@ -4882,7 +7866,15 @@ slot==="SUPER_FLEX"
 ||
 slot==="OP"
 ){
-return["QB","RB","WR","TE"].includes(pos);
+
+return[
+"QB",
+"RB",
+"WR",
+"TE"
+]
+.includes(pos);
+
 }
 
 return false;
@@ -4891,7 +7883,8 @@ return false;
 
 function dashboardStarterSlots(){
 
-const excluded=new Set([
+const excluded=
+new Set([
 "BN",
 "IR",
 "TAXI"
@@ -4901,42 +7894,71 @@ return(
 syncedLeague?.roster_positions
 ||
 []
-).filter(slot=>!excluded.has(slot));
+)
+.filter(
+slot=>
+!excluded.has(slot)
+);
 
 }
 
-function dashboardStarterValue(roster,mode=null){
+function dashboardStarterValue(
+roster,
+mode=null
+){
 
-const players=dashboardRosterPlayers(roster);
+const players=
+dashboardRosterPlayers(roster);
 
-if(!players.length){
+if(
+!players.length
+){
 return 0;
 }
 
-const slots=dashboardStarterSlots();
+const slots=
+dashboardStarterSlots();
 
-if(!slots.length){
+if(
+!slots.length
+){
 
 return players
 .slice()
 .sort(
 (a,b)=>
-dashboardValue(b,mode)
+dashboardValue(
+b,
+mode
+)
 -
-dashboardValue(a,mode)
+dashboardValue(
+a,
+mode
+)
 )
 .slice(
 0,
-Math.min(9,players.length)
+Math.min(
+9,
+players.length
+)
 )
 .reduce(
-(t,p)=>t+dashboardValue(p,mode),
+(t,p)=>
+t
++
+dashboardValue(
+p,
+mode
+),
 0
 );
 
 }
 
-const remaining=players.slice();
+const remaining=
+players.slice();
 
 const orderedSlots=
 slots
@@ -4945,10 +7967,22 @@ slots
 (a,b)=>{
 
 const ca=
-players.filter(p=>dashboardCanFill(p,a)).length;
+players.filter(
+p=>
+dashboardCanFill(
+p,
+a
+)
+).length;
 
 const cb=
-players.filter(p=>dashboardCanFill(p,b)).length;
+players.filter(
+p=>
+dashboardCanFill(
+p,
+b
+)
+).length;
 
 return ca-cb;
 
@@ -4957,7 +7991,8 @@ return ca-cb;
 
 let total=0;
 
-orderedSlots.forEach(slot=>{
+orderedSlots.forEach(
+slot=>{
 
 let bestIndex=-1;
 let bestValue=-1;
@@ -4965,29 +8000,52 @@ let bestValue=-1;
 remaining.forEach(
 (p,i)=>{
 
-if(!dashboardCanFill(p,slot)){
+if(
+!dashboardCanFill(
+p,
+slot
+)
+){
 return;
 }
 
-const v=dashboardValue(p,mode);
+const v=
+dashboardValue(
+p,
+mode
+);
 
-if(v>bestValue){
-bestValue=v;
-bestIndex=i;
+if(
+v>bestValue
+){
+
+bestValue=
+v;
+
+bestIndex=
+i;
+
 }
 
 }
 );
 
-if(bestIndex>=0){
+if(
+bestIndex>=0
+){
 
-total+=bestValue;
+total+=
+bestValue;
 
-remaining.splice(bestIndex,1);
+remaining.splice(
+bestIndex,
+1
+);
 
 }
 
-});
+}
+);
 
 return total;
 
@@ -4995,19 +8053,33 @@ return total;
 
 function dashboardPositionCap(pos){
 
-if(pos==="QB"){
-return sleeperQbMode==="superflex"?2:1;
+if(
+pos==="QB"
+){
+
+return sleeperQbMode==="superflex"
+?
+2
+:
+1;
+
 }
 
-if(pos==="RB"){
+if(
+pos==="RB"
+){
 return 3;
 }
 
-if(pos==="WR"){
+if(
+pos==="WR"
+){
 return 3;
 }
 
-if(pos==="TE"){
+if(
+pos==="TE"
+){
 return 2;
 }
 
@@ -5015,19 +8087,41 @@ return 1;
 
 }
 
-function dashboardPositionValue(players,pos,mode=null){
+function dashboardPositionValue(
+players,
+pos,
+mode=null
+){
 
 return players
-.filter(p=>p.pos===pos)
+.filter(
+p=>
+p.pos===pos
+)
 .sort(
 (a,b)=>
-dashboardValue(b,mode)
--
-dashboardValue(a,mode)
+dashboardValue(
+b,
+mode
 )
-.slice(0,dashboardPositionCap(pos))
+-
+dashboardValue(
+a,
+mode
+)
+)
+.slice(
+0,
+dashboardPositionCap(pos)
+)
 .reduce(
-(t,p)=>t+dashboardValue(p,mode),
+(t,p)=>
+t
++
+dashboardValue(
+p,
+mode
+),
 0
 );
 
@@ -5035,11 +8129,16 @@ dashboardValue(a,mode)
 
 function dashboardMetrics(roster){
 
-const players=dashboardRosterPlayers(roster);
+const players=
+dashboardRosterPlayers(roster);
 
 const total=
-players.reduce(
-(t,p)=>t+dashboardValue(p),
+players
+.reduce(
+(t,p)=>
+t
++
+dashboardValue(p),
 0
 );
 
@@ -5047,7 +8146,10 @@ const starters=
 dashboardStarterValue(roster);
 
 const depth=
-Math.max(0,total-starters);
+Math.max(
+0,
+total-starters
+);
 
 const redraftStarters=
 dashboardStarterValue(
@@ -5056,8 +8158,15 @@ roster,
 );
 
 const dynastyTotal=
-players.reduce(
-(t,p)=>t+dashboardValue(p,"dynasty"),
+players
+.reduce(
+(t,p)=>
+t
++
+dashboardValue(
+p,
+"dynasty"
+),
 0
 );
 
@@ -5065,51 +8174,91 @@ const positions={};
 
 DASHBOARD_POSITIONS.forEach(
 pos=>{
-positions[pos]=dashboardPositionValue(players,pos);
+
+positions[pos]=
+dashboardPositionValue(
+players,
+pos
+);
+
 }
 );
 
 const power=
-starters*.60+
-depth*.20+
+starters*.60
++
+depth*.20
++
 total*.20;
 
 return{
+
 roster,
-rosterId:String(roster.roster_id),
-name:rosterName(roster),
+
+rosterId:
+String(
+roster.roster_id
+),
+
+name:
+rosterName(roster),
+
 players,
+
 total,
+
 starters,
+
 depth,
+
 redraftStarters,
+
 dynastyTotal,
+
 positions,
-matched:players.length,
+
+matched:
+players.length,
+
 power
+
 };
 
 }
 
-function dashboardRank(metrics,field,rosterId){
+function dashboardRank(
+metrics,
+field,
+rosterId
+){
 
 const ordered=
 metrics
 .slice()
-.sort((a,b)=>b[field]-a[field]);
+.sort(
+(a,b)=>
+b[field]-a[field]
+);
 
 const index=
 ordered.findIndex(
-m=>m.rosterId===String(rosterId)
+m=>
+m.rosterId===String(rosterId)
 );
 
 return index>=0
-?index+1
-:metrics.length;
+?
+index+1
+:
+metrics.length;
 
 }
 
-function dashboardPositionRank(metrics,position,rosterId){
+function dashboardPositionRank(
+metrics,
+position,
+rosterId
+){
 
 const ordered=
 metrics
@@ -5123,18 +8272,26 @@ a.positions[position]
 
 const index=
 ordered.findIndex(
-m=>m.rosterId===String(rosterId)
+m=>
+m.rosterId===String(rosterId)
 );
 
 return index>=0
-?index+1
-:metrics.length;
+?
+index+1
+:
+metrics.length;
 
 }
 
-function dashboardTeamProfile(my,all){
+function dashboardTeamProfile(
+my,
+all
+){
 
-if(sleeperLeagueMode==="dynasty"){
+if(
+sleeperLeagueMode==="dynasty"
+){
 
 const nowRank=
 dashboardRank(
@@ -5150,27 +8307,46 @@ all,
 my.rosterId
 );
 
-if(nowRank+2<futureRank){
+if(
+nowRank+2<futureRank
+){
 
 return{
-label:"Win-now leaning",
-detail:`Current lineup strength ranks ${ordinal(nowRank)} while long-term dynasty value ranks ${ordinal(futureRank)}.`
+
+label:
+"Win-now leaning",
+
+detail:
+`Current lineup strength ranks ${ordinal(nowRank)} while long-term dynasty value ranks ${ordinal(futureRank)}.`
+
 };
 
 }
 
-if(futureRank+2<nowRank){
+if(
+futureRank+2<nowRank
+){
 
 return{
-label:"Future-focused",
-detail:`Long-term dynasty value ranks ${ordinal(futureRank)} while current lineup strength ranks ${ordinal(nowRank)}.`
+
+label:
+"Future-focused",
+
+detail:
+`Long-term dynasty value ranks ${ordinal(futureRank)} while current lineup strength ranks ${ordinal(nowRank)}.`
+
 };
 
 }
 
 return{
-label:"Balanced roster",
-detail:`Current lineup strength ranks ${ordinal(nowRank)} and long-term dynasty value ranks ${ordinal(futureRank)}.`
+
+label:
+"Balanced roster",
+
+detail:
+`Current lineup strength ranks ${ordinal(nowRank)} and long-term dynasty value ranks ${ordinal(futureRank)}.`
+
 };
 
 }
@@ -5189,58 +8365,109 @@ all,
 my.rosterId
 );
 
-if(starterRank+2<depthRank){
+if(
+starterRank+2<depthRank
+){
 
 return{
-label:"Starter-heavy",
-detail:`The starting lineup ranks ${ordinal(starterRank)}, while roster depth ranks ${ordinal(depthRank)}.`
+
+label:
+"Starter-heavy",
+
+detail:
+`The starting lineup ranks ${ordinal(starterRank)}, while roster depth ranks ${ordinal(depthRank)}.`
+
 };
 
 }
 
-if(depthRank+2<starterRank){
+if(
+depthRank+2<starterRank
+){
 
 return{
-label:"Depth-heavy",
-detail:`Roster depth ranks ${ordinal(depthRank)}, while the starting lineup ranks ${ordinal(starterRank)}.`
+
+label:
+"Depth-heavy",
+
+detail:
+`Roster depth ranks ${ordinal(depthRank)}, while the starting lineup ranks ${ordinal(starterRank)}.`
+
 };
 
 }
 
 return{
-label:"Balanced roster",
-detail:`Starting lineup ranks ${ordinal(starterRank)} and depth ranks ${ordinal(depthRank)}.`
+
+label:
+"Balanced roster",
+
+detail:
+`Starting lineup ranks ${ordinal(starterRank)} and depth ranks ${ordinal(depthRank)}.`
+
 };
 
 }
 
-function dashboardTradeOpportunities(my,all){
+function dashboardTradeOpportunities(
+my,
+all
+){
 
-const leagueSize=all.length;
+const leagueSize=
+all.length;
 
 const needs=
 DASHBOARD_POSITIONS
 .map(
 pos=>({
+
 pos,
-rank:dashboardPositionRank(all,pos,my.rosterId)
+
+rank:
+dashboardPositionRank(
+all,
+pos,
+my.rosterId
+)
+
 })
 )
-.sort((a,b)=>b.rank-a.rank)
-.slice(0,2);
+.sort(
+(a,b)=>
+b.rank-a.rank
+)
+.slice(
+0,
+2
+);
 
 const opportunities=[];
-const usedTeams=new Set();
+const usedTeams=
+new Set();
 
-for(const need of needs){
+for(
+const need of needs
+){
 
 const partners=
 all
-.filter(m=>m.rosterId!==my.rosterId)
+.filter(
+m=>
+m.rosterId!==my.rosterId
+)
 .map(
 m=>({
+
 ...m,
-posRank:dashboardPositionRank(all,need.pos,m.rosterId)
+
+posRank:
+dashboardPositionRank(
+all,
+need.pos,
+m.rosterId
+)
+
 })
 )
 .sort(
@@ -5252,24 +8479,44 @@ b.positions[need.pos]
 a.positions[need.pos]
 );
 
-for(const partner of partners){
+for(
+const partner of partners
+){
 
-if(usedTeams.has(partner.rosterId)){
+if(
+usedTeams.has(
+partner.rosterId
+)
+){
 continue;
 }
 
 const positionPlayers=
 partner.players
-.filter(p=>p.pos===need.pos)
-.sort((a,b)=>sleeperValue(b)-sleeperValue(a));
+.filter(
+p=>
+p.pos===need.pos
+)
+.sort(
+(a,b)=>
+sleeperValue(b)
+-
+sleeperValue(a)
+);
 
-if(!positionPlayers.length){
+if(
+!positionPlayers.length
+){
 continue;
 }
 
 let targetIndex=0;
 
-if(positionPlayers.length>=2&&need.pos!=="QB"){
+if(
+positionPlayers.length>=2
+&&
+need.pos!=="QB"
+){
 targetIndex=1;
 }
 
@@ -5283,16 +8530,21 @@ positionPlayers.length>=2
 targetIndex=1;
 }
 
-const target=positionPlayers[targetIndex];
+const target=
+positionPlayers[targetIndex];
 
 opportunities.push({
+
 need,
 partner,
 target,
 leagueSize
+
 });
 
-usedTeams.add(partner.rosterId);
+usedTeams.add(
+partner.rosterId
+);
 
 break;
 
@@ -5300,9 +8552,12 @@ break;
 
 }
 
-if(needs[0]){
+if(
+needs[0]
+){
 
-const need=needs[0];
+const need=
+needs[0];
 
 const extra=
 all
@@ -5310,12 +8565,22 @@ all
 m=>
 m.rosterId!==my.rosterId
 &&
-!usedTeams.has(m.rosterId)
+!usedTeams.has(
+m.rosterId
+)
 )
 .map(
 m=>({
+
 ...m,
-posRank:dashboardPositionRank(all,need.pos,m.rosterId)
+
+posRank:
+dashboardPositionRank(
+all,
+need.pos,
+m.rosterId
+)
+
 })
 )
 .sort(
@@ -5327,65 +8592,104 @@ b.positions[need.pos]
 a.positions[need.pos]
 )
 .find(
-m=>m.players.some(p=>p.pos===need.pos)
+m=>
+m.players.some(
+p=>
+p.pos===need.pos
+)
 );
 
 if(extra){
 
 const positionPlayers=
 extra.players
-.filter(p=>p.pos===need.pos)
-.sort((a,b)=>sleeperValue(b)-sleeperValue(a));
+.filter(
+p=>
+p.pos===need.pos
+)
+.sort(
+(a,b)=>
+sleeperValue(b)
+-
+sleeperValue(a)
+);
 
 const target=
 positionPlayers[
 positionPlayers.length>=2
-?1
-:0
+?
+1
+:
+0
 ];
 
 opportunities.push({
+
 need,
-partner:extra,
+
+partner:
+extra,
+
 target,
+
 leagueSize
+
 });
 
 }
 
 }
 
-return opportunities.slice(0,3);
+return opportunities.slice(
+0,
+3
+);
 
 }
 
 function renderLeagueDashboard(){
 
-if(!syncedLeague||!syncedRosters.length){
+if(
+!syncedLeague
+||
+!syncedRosters.length
+){
 return;
 }
 
 const all=
 syncedRosters
-.map(dashboardMetrics)
-.filter(m=>m.matched>0);
+.map(
+dashboardMetrics
+)
+.filter(
+m=>
+m.matched>0
+);
 
-if(!all.length){
+if(
+!all.length
+){
 return;
 }
 
-const mineId=getMyRosterId();
+const mineId=
+getMyRosterId();
 
 const my=
 all.find(
-m=>m.rosterId===String(mineId)
+m=>
+m.rosterId===String(mineId)
 );
 
-if(!my){
+if(
+!my
+){
 return;
 }
 
-const leagueSize=all.length;
+const leagueSize=
+all.length;
 
 const overallRank=
 dashboardRank(
@@ -5410,8 +8714,10 @@ my.rosterId
 
 const futureField=
 sleeperLeagueMode==="dynasty"
-?"dynastyTotal"
-:"total";
+?
+"dynastyTotal"
+:
+"total";
 
 const futureRank=
 dashboardRank(
@@ -5440,37 +8746,54 @@ $("dashboard-depth-detail").textContent=
 
 $("dashboard-future-label").textContent=
 sleeperLeagueMode==="dynasty"
-?"FUTURE VALUE"
-:"TOTAL ROSTER VALUE";
+?
+"FUTURE VALUE"
+:
+"TOTAL ROSTER VALUE";
 
 $("dashboard-future-rank").textContent=
 `${ordinal(futureRank)} / ${leagueSize}`;
 
 $("dashboard-future-detail").textContent=
 sleeperLeagueMode==="dynasty"
-?`${my.dynastyTotal.toFixed(1)} dynasty value`
-:`${my.total.toFixed(1)} total value`;
+?
+`${my.dynastyTotal.toFixed(1)} dynasty value`
+:
+`${my.total.toFixed(1)} total value`;
 
-const totalRosterPlayers=
+const totalSleeperPlayers=
 syncedRosters.reduce(
-(t,r)=>t+(r.players?.length||0),
+(t,r)=>
+t
++
+(
+r.players?.length
+||
+0
+),
 0
 );
 
 const matchedPlayers=
 all.reduce(
-(t,m)=>t+m.matched,
+(t,m)=>
+t
++
+m.matched,
 0
 );
 
 $("dashboard-coverage").textContent=
-`${matchedPlayers}/${totalRosterPlayers} rostered players matched`;
+`${matchedPlayers}/${totalSleeperPlayers} rostered players matched`;
 
 $("dashboard-subtitle").textContent=
 `${syncedLeague.name} • ${sleeperModeLabel()} • TradeForge league analysis`;
 
 const profile=
-dashboardTeamProfile(my,all);
+dashboardTeamProfile(
+my,
+all
+);
 
 $("dashboard-profile").textContent=
 profile.label;
@@ -5482,15 +8805,33 @@ const positionRanks=
 DASHBOARD_POSITIONS
 .map(
 pos=>({
+
 pos,
-rank:dashboardPositionRank(all,pos,my.rosterId),
-value:my.positions[pos]
+
+rank:
+dashboardPositionRank(
+all,
+pos,
+my.rosterId
+),
+
+value:
+my.positions[pos]
+
 })
 )
-.sort((a,b)=>a.rank-b.rank);
+.sort(
+(a,b)=>
+a.rank-b.rank
+);
 
-const strongest=positionRanks[0];
-const weakest=positionRanks[positionRanks.length-1];
+const strongest=
+positionRanks[0];
+
+const weakest=
+positionRanks[
+positionRanks.length-1
+];
 
 $("dashboard-position-summary").textContent=
 `Strongest: ${strongest.pos} • Biggest need: ${weakest.pos}`;
@@ -5499,7 +8840,8 @@ $("dashboard-position-detail").textContent=
 `${strongest.pos} ranks ${ordinal(strongest.rank)} in the league. ${weakest.pos} ranks ${ordinal(weakest.rank)}.`;
 
 $("dashboard-position-grid").innerHTML=
-DASHBOARD_POSITIONS.map(
+DASHBOARD_POSITIONS
+.map(
 pos=>{
 
 const rank=
@@ -5513,10 +8855,15 @@ return`
 <div class="dashboard-position-card">
 
 <div class="dashboard-position-head">
-<strong>${pos}</strong>
+
+<strong>
+${pos}
+</strong>
+
 <span class="dashboard-position-rank">
 ${ordinal(rank)} / ${leagueSize}
 </span>
+
 </div>
 
 <div class="dashboard-position-value">
@@ -5527,7 +8874,8 @@ ${my.positions[pos].toFixed(1)} TradeForge positional value
 `;
 
 }
-).join("");
+)
+.join("");
 
 const opportunities=
 dashboardTradeOpportunities(
@@ -5537,7 +8885,9 @@ all
 
 $("dashboard-trade-opportunities").innerHTML=
 opportunities.length
-?opportunities.map(
+?
+opportunities
+.map(
 (o,i)=>`
 <div class="trade-opportunity">
 
@@ -5546,81 +8896,142 @@ Opportunity ${i+1}: ${esc(o.partner.name)}
 </strong>
 
 <div class="sub">
+
 Your ${o.need.pos} room ranks ${ordinal(o.need.rank)} of ${o.leagueSize}.
+
 ${esc(o.partner.name)} ranks ${ordinal(o.partner.posRank)} at ${o.need.pos}.
+
 A player worth exploring is ${esc(o.target.name)} at ${sleeperValue(o.target).toFixed(1)} TradeForge value.
+
 </div>
 
 </div>
 `
-).join("")
-:`
+)
+.join("")
+:
+`
 <div class="trade-opportunity">
+
 <div class="sub">
 No clear roster-strength trade opportunities were found with the players currently matched in TradeForge.
 </div>
+
 </div>
 `;
 
 const powerOrder=
 all
 .slice()
-.sort((a,b)=>b.power-a.power);
+.sort(
+(a,b)=>
+b.power-a.power
+);
 
 $("dashboard-power-body").innerHTML=
-powerOrder.map(
+powerOrder
+.map(
 (m,i)=>{
 
 const bestPos=
 DASHBOARD_POSITIONS
 .map(
 pos=>({
+
 pos,
-rank:dashboardPositionRank(all,pos,m.rosterId)
+
+rank:
+dashboardPositionRank(
+all,
+pos,
+m.rosterId
+)
+
 })
 )
-.sort((a,b)=>a.rank-b.rank)[0];
+.sort(
+(a,b)=>
+a.rank-b.rank
+)[0];
 
 const mineClass=
 m.rosterId===my.rosterId
-?"my-row"
-:"";
+?
+"my-row"
+:
+"";
 
 return`
 <tr class="${mineClass}">
 
-<td class="rank-cell">${i+1}</td>
-
-<td>
-<strong>${esc(m.name)}</strong>
-${m.rosterId===my.rosterId?' <span class="sub">(You)</span>':""}
+<td class="rank-cell">
+${i+1}
 </td>
 
-<td>${m.power.toFixed(1)}</td>
-<td>${m.starters.toFixed(1)}</td>
-<td>${m.depth.toFixed(1)}</td>
-<td>${bestPos.pos} • ${ordinal(bestPos.rank)}</td>
+<td>
+
+<strong>
+${esc(m.name)}
+</strong>
+
+${
+m.rosterId===my.rosterId
+?
+' <span class="sub">(You)</span>'
+:
+""
+}
+
+</td>
+
+<td>
+${m.power.toFixed(1)}
+</td>
+
+<td>
+${m.starters.toFixed(1)}
+</td>
+
+<td>
+${m.depth.toFixed(1)}
+</td>
+
+<td>
+${bestPos.pos} • ${ordinal(bestPos.rank)}
+</td>
 
 </tr>
 `;
 
 }
-).join("");
+)
+.join("");
 
 }
 
 function leagueTradeFinderRosters(){
 
-const mine=getMyRosterId();
+const mine=
+getMyRosterId();
 
-return syncedRosters.filter(
-r=>String(r.roster_id)!==String(mine)
+return syncedRosters
+.filter(
+r=>
+String(r.roster_id)
+!==
+String(mine)
 );
 
 }
 
 function leagueTradeFinderPlayerKey(p){
-return String(p?.sleeperId||norm(p?.name));
+
+return String(
+p?.sleeperId
+||
+norm(p?.name)
+);
+
 }
 
 function populateLeagueTradeFinderTargets(
@@ -5628,28 +9039,37 @@ rosterId,
 preserve=true
 ){
 
-const select=$("trade-finder-target");
+const select=
+$("trade-finder-target");
 
 const current=
 preserve
-?select.value
-:"";
+?
+select.value
+:
+"";
 
 const players=
 rosterAssets(rosterId);
 
 select.innerHTML=
 players.length
-?players.map(
-p=>`<option value="${esc(leagueTradeFinderPlayerKey(p))}">${esc(p.name)} • ${esc(p.pos)} • ${sleeperValue(p).toFixed(1)}</option>`
-).join("")
-:'<option value="">No valued players available</option>';
+?
+players
+.map(
+p=>
+`<option value="${esc(leagueTradeFinderPlayerKey(p))}">${esc(p.name)} • ${esc(p.pos)} • ${sleeperValue(p).toFixed(1)}</option>`
+)
+.join("")
+:
+'<option value="">No valued players available</option>';
 
 if(
 preserve
 &&
 players.some(
-p=>leagueTradeFinderPlayerKey(p)===current
+p=>
+leagueTradeFinderPlayerKey(p)===current
 )
 ){
 select.value=current;
@@ -5659,33 +9079,51 @@ select.value=current;
 
 function buildLeagueTradeFinder(){
 
-if(!syncedLeague){
+if(
+!syncedLeague
+){
 return;
 }
 
-const select=$("trade-finder-team");
-const current=select.value;
-const rosters=leagueTradeFinderRosters();
+const select=
+$("trade-finder-team");
+
+const current=
+select.value;
+
+const rosters=
+leagueTradeFinderRosters();
 
 select.innerHTML=
 rosters.length
-?rosters.map(
-r=>`<option value="${r.roster_id}">${esc(rosterName(r))}</option>`
-).join("")
-:'<option value="">No other teams available</option>';
+?
+rosters
+.map(
+r=>
+`<option value="${r.roster_id}">${esc(rosterName(r))}</option>`
+)
+.join("")
+:
+'<option value="">No other teams available</option>';
 
-let chosen=current;
+let chosen=
+current;
 
 if(
 !rosters.some(
-r=>String(r.roster_id)===String(chosen)
+r=>
+String(r.roster_id)
+===
+String(chosen)
 )
 ){
 
 chosen=
 rosters[0]
-?String(rosters[0].roster_id)
-:"";
+?
+String(rosters[0].roster_id)
+:
+"";
 
 }
 
@@ -5703,24 +9141,39 @@ true
 function leagueTradeFinderGrade(d){
 
 return d<=5
-?"A+"
-:d<=10
-?"A"
-:d<=20
-?"B"
-:d<=30
-?"C"
-:d<=40
-?"D"
-:"F";
+?
+"A+"
+:
+d<=10
+?
+"A"
+:
+d<=20
+?
+"B"
+:
+d<=30
+?
+"C"
+:
+d<=40
+?
+"D"
+:
+"F";
 
 }
 
 function findLeagueTrades(){
 
-const box=$("trade-finder-results");
+const box=
+$("trade-finder-results");
 
-if(!syncedLeague){
+leagueTradeFinderBuilds=[];
+
+if(
+!syncedLeague
+){
 
 box.textContent=
 "Sync a Sleeper or ESPN league first.";
@@ -5729,32 +9182,53 @@ return;
 
 }
 
-const mineId=getMyRosterId();
-const otherId=$("trade-finder-team").value;
-const targetKey=$("trade-finder-target").value;
+const mineId=
+getMyRosterId();
+
+const otherId=
+$("trade-finder-team").value;
+
+const targetKey=
+$("trade-finder-target").value;
 
 const maxPlayers=
 Math.max(
 1,
 Math.min(
 3,
-Number($("trade-finder-max").value)||3
+Number(
+$("trade-finder-max").value
+)
+||
+3
 )
 );
 
 const mineRoster=
-syncedRosters.find(
-r=>String(r.roster_id)===String(mineId)
+syncedRosters
+.find(
+r=>
+String(r.roster_id)
+===
+String(mineId)
 );
 
 const otherRoster=
-syncedRosters.find(
-r=>String(r.roster_id)===String(otherId)
+syncedRosters
+.find(
+r=>
+String(r.roster_id)
+===
+String(otherId)
 );
 
 const target=
-rosterAssets(otherId).find(
-p=>leagueTradeFinderPlayerKey(p)===targetKey
+rosterAssets(otherId)
+.find(
+p=>
+leagueTradeFinderPlayerKey(p)
+===
+targetKey
 );
 
 if(
@@ -5775,7 +9249,9 @@ return;
 const myPlayers=
 rosterAssets(mineId);
 
-if(!myPlayers.length){
+if(
+!myPlayers.length
+){
 
 box.textContent=
 "TradeForge could not find any valued players on your roster.";
@@ -5789,37 +9265,65 @@ box.textContent=
 
 const ideas=[];
 
-const evaluate=packagePlayers=>{
+const evaluate=
+packagePlayers=>{
 
 const values=
 withSleeperModes(
-()=>adjustedTradeValues(
+()=>
+adjustedTradeValues(
 packagePlayers,
 [target]
 )
 );
 
 const difference=
-diff(values.a,values.b);
+diff(
+values.a,
+values.b
+);
 
 ideas.push({
+
 packagePlayers,
 values,
 difference,
-grade:leagueTradeFinderGrade(difference)
+grade:
+leagueTradeFinderGrade(
+difference
+)
+
 });
 
 };
 
-for(let i=0;i<myPlayers.length;i++){
-evaluate([myPlayers[i]]);
+for(
+let i=0;
+i<myPlayers.length;
+i++
+){
+
+evaluate([
+myPlayers[i]
+]);
+
 }
 
-if(maxPlayers>=2){
+if(
+maxPlayers>=2
+){
 
-for(let i=0;i<myPlayers.length;i++){
+for(
+let i=0;
+i<myPlayers.length;
+i++
+){
 
-for(let j=i+1;j<myPlayers.length;j++){
+for(
+let j=i+1;
+j<myPlayers.length;
+j++
+){
 
 evaluate([
 myPlayers[i],
@@ -5832,13 +9336,27 @@ myPlayers[j]
 
 }
 
-if(maxPlayers>=3){
+if(
+maxPlayers>=3
+){
 
-for(let i=0;i<myPlayers.length;i++){
+for(
+let i=0;
+i<myPlayers.length;
+i++
+){
 
-for(let j=i+1;j<myPlayers.length;j++){
+for(
+let j=i+1;
+j<myPlayers.length;
+j++
+){
 
-for(let k=j+1;k<myPlayers.length;k++){
+for(
+let k=j+1;
+k<myPlayers.length;
+k++
+){
 
 evaluate([
 myPlayers[i],
@@ -5854,12 +9372,18 @@ myPlayers[k]
 
 }
 
-ideas.sort((a,b)=>{
+ideas.sort(
+(a,b)=>{
 
-const af=a.difference<=5;
-const bf=b.difference<=5;
+const af=
+a.difference<=5;
 
-if(af!==bf){
+const bf=
+b.difference<=5;
+
+if(
+af!==bf
+){
 return af?-1:1;
 }
 
@@ -5868,31 +9392,46 @@ af
 &&
 bf
 &&
-a.packagePlayers.length!==b.packagePlayers.length
+a.packagePlayers.length
+!==
+b.packagePlayers.length
 ){
 return a.packagePlayers.length-b.packagePlayers.length;
 }
 
-if(Math.abs(a.difference-b.difference)>.05){
+if(
+Math.abs(
+a.difference-b.difference
+)
+>.05
+){
 return a.difference-b.difference;
 }
 
 return a.packagePlayers.length-b.packagePlayers.length;
 
-});
+}
+);
 
 const finalIdeas=[];
-const seen=new Set();
+const seen=
+new Set();
 
-for(const idea of ideas){
+for(
+const idea of ideas
+){
 
 const signature=
 idea.packagePlayers
-.map(leagueTradeFinderPlayerKey)
+.map(
+leagueTradeFinderPlayerKey
+)
 .sort()
 .join("|");
 
-if(seen.has(signature)){
+if(
+seen.has(signature)
+){
 continue;
 }
 
@@ -5900,13 +9439,17 @@ seen.add(signature);
 
 finalIdeas.push(idea);
 
-if(finalIdeas.length>=5){
+if(
+finalIdeas.length>=5
+){
 break;
 }
 
 }
 
-if(!finalIdeas.length){
+if(
+!finalIdeas.length
+){
 
 box.textContent=
 "TradeForge could not find a package for this target.";
@@ -5916,68 +9459,135 @@ return;
 }
 
 const myName=
-rosterName(mineRoster);
+rosterName(
+mineRoster
+);
 
 const otherName=
-rosterName(otherRoster);
+rosterName(
+otherRoster
+);
+
+leagueTradeFinderBuilds=
+finalIdeas
+.map(
+idea=>({
+
+mineId:
+String(mineId),
+
+otherId:
+String(otherId),
+
+target:{...target},
+
+packagePlayers:
+idea.packagePlayers
+.map(
+p=>({...p})
+)
+
+})
+);
 
 box.innerHTML=
-finalIdeas.map(
+finalIdeas
+.map(
 (idea,index)=>{
 
 const packageNames=
 idea.packagePlayers
-.map(p=>esc(p.name))
+.map(
+p=>
+esc(p.name)
+)
 .join(" + ");
 
 const baseSend=
 idea.packagePlayers
 .reduce(
-(t,p)=>t+sleeperValue(p),
+(t,p)=>
+t+sleeperValue(p),
 0
 );
 
 const targetBase=
-sleeperValue(target);
+sleeperValue(
+target
+);
 
 const label=
 idea.difference<=5
-?"FAIR MATCH"
-:idea.difference<=10
-?"VERY CLOSE"
-:"BEST AVAILABLE";
+?
+"FAIR MATCH"
+:
+idea.difference<=10
+?
+"VERY CLOSE"
+:
+"BEST AVAILABLE";
 
 return`
 <div class="trade-finder-result">
 
 <div class="trade-finder-result-head">
-<strong>Option ${index+1} — ${label}</strong>
-<strong>Grade ${idea.grade}</strong>
+
+<strong>
+Option ${index+1} — ${label}
+</strong>
+
+<strong>
+Grade ${idea.grade}
+</strong>
+
 </div>
 
 <div style="margin-top:9px">
-<strong>${esc(myName)} sends:</strong>
+
+<strong>
+${esc(myName)} sends:
+</strong>
+
 ${packageNames}
+
 </div>
 
 <div style="margin-top:5px">
-<strong>${esc(otherName)} sends:</strong>
+
+<strong>
+${esc(otherName)} sends:
+</strong>
+
 ${esc(target.name)}
+
 </div>
 
 <div class="sub" style="margin-top:9px">
 Base value: ${baseSend.toFixed(1)} for ${targetBase.toFixed(1)} • Adjusted value: ${idea.values.a.toFixed(1)} for ${idea.values.b.toFixed(1)} • ${idea.difference.toFixed(1)}% difference
 </div>
 
+<button
+type="button"
+class="primary"
+style="margin-top:12px"
+onclick="buildLeagueFinderTrade(${index})"
+>
+Build Trade
+</button>
+
 </div>
 `;
 
 }
-).join("");
+)
+.join("");
 
 }
 
-$("trade-finder-team").onchange=()=>{
+$("trade-finder-team").onchange=
+()=>{
+
+leagueTradeFinderBuilds=[];
 
 populateLeagueTradeFinderTargets(
 $("trade-finder-team").value,
@@ -5989,14 +9599,20 @@ $("trade-finder-results").textContent=
 
 };
 
-$("trade-finder-target").onchange=()=>{
+$("trade-finder-target").onchange=
+()=>{
+
+leagueTradeFinderBuilds=[];
 
 $("trade-finder-results").textContent=
 "Click Find Trades to search your roster for packages.";
 
 };
 
-$("trade-finder-max").onchange=()=>{
+$("trade-finder-max").onchange=
+()=>{
+
+leagueTradeFinderBuilds=[];
 
 $("trade-finder-results").textContent=
 "Click Find Trades to search your roster for packages.";
@@ -6006,6 +9622,51 @@ $("trade-finder-results").textContent=
 $("trade-finder-run").onclick=
 findLeagueTrades;
 
+function buildLeagueFinderTrade(index){
+
+const trade=
+leagueTradeFinderBuilds[index];
+
+if(!trade){
+return;
+}
+
+sleeperRosterA=
+String(trade.mineId);
+
+sleeperRosterB=
+String(trade.otherId);
+
+$("sleeper-roster-a").value=
+sleeperRosterA;
+
+$("sleeper-roster-b").value=
+sleeperRosterB;
+
+sleeperTeamA=
+trade.packagePlayers
+.map(
+p=>({...p})
+);
+
+sleeperTeamB=[
+{...trade.target}
+];
+
+renderSleeper();
+
+setTradeCenterTab(
+"calculator"
+);
+
+$("trade-center-card")
+?.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+}
+
 function setTradeCenterTab(tab){
 
 const valid=[
@@ -6014,17 +9675,23 @@ const valid=[
 "opportunities"
 ];
 
-if(!valid.includes(tab)){
+if(
+!valid.includes(tab)
+){
 tab="finder";
 }
 
 document
-.querySelectorAll("[data-trade-center-tab]")
+.querySelectorAll(
+"[data-trade-center-tab]"
+)
 .forEach(
 button=>{
 
 const active=
-button.dataset.tradeCenterTab===tab;
+button.dataset.tradeCenterTab
+===
+tab;
 
 button.classList.toggle(
 "active",
@@ -6033,20 +9700,28 @@ active
 
 button.setAttribute(
 "aria-selected",
-active?"true":"false"
+active
+?
+"true"
+:
+"false"
 );
 
 }
 );
 
 document
-.querySelectorAll("[data-trade-center-panel]")
+.querySelectorAll(
+"[data-trade-center-panel]"
+)
 .forEach(
 panel=>{
 
 panel.classList.toggle(
 "active",
-panel.dataset.tradeCenterPanel===tab
+panel.dataset.tradeCenterPanel
+===
+tab
 );
 
 }
@@ -6055,23 +9730,30 @@ panel.dataset.tradeCenterPanel===tab
 }
 
 document
-.querySelectorAll("[data-trade-center-tab]")
+.querySelectorAll(
+"[data-trade-center-tab]"
+)
 .forEach(
 button=>{
 
 button.onclick=
-()=>setTradeCenterTab(
+()=>
+setTradeCenterTab(
 button.dataset.tradeCenterTab
 );
 
 }
 );
 
-setTradeCenterTab("finder");
+setTradeCenterTab(
+"finder"
+);
 
 function buildLeaguePage(){
 
-if(!syncedLeague){
+if(
+!syncedLeague
+){
 return;
 }
 
@@ -6082,9 +9764,11 @@ syncedLeague.name
 +
 sleeperModeLabel();
 
-const mine=getMyRosterId();
+const mine=
+getMyRosterId();
 
 renderLeagueDashboard();
+
 buildLeagueTradeFinder();
 
 renderLeagueRoster(
@@ -6095,38 +9779,55 @@ mine,
 );
 
 const opponents=
-syncedRosters.filter(
-r=>String(r.roster_id)!==String(mine)
+syncedRosters
+.filter(
+r=>
+String(r.roster_id)
+!==
+String(mine)
 );
 
 const current=
 $("opponent-select").value;
 
 $("opponent-select").innerHTML=
-opponents.map(
-r=>`
+opponents
+.map(
+r=>
+`
 <option value="${r.roster_id}">
 ${esc(rosterName(r))}
 </option>
 `
-).join("");
+)
+.join("");
 
-let opponent=current;
+let opponent=
+current;
 
 if(
 !opponents.some(
-r=>String(r.roster_id)===String(opponent)
+r=>
+String(r.roster_id)
+===
+String(opponent)
 )
 ){
 
 opponent=
 opponents[0]
-?String(opponents[0].roster_id)
-:"";
+?
+String(
+opponents[0].roster_id
+)
+:
+"";
 
 }
 
-if(opponent){
+if(
+opponent
+){
 
 $("opponent-select").value=
 opponent;
@@ -6139,6 +9840,7 @@ opponent,
 );
 
 }
+
 else{
 
 $("opponent-team-name").textContent=
@@ -6159,12 +9861,14 @@ $("sleeper-mode-label").textContent=
 sleeperModeLabel();
 
 updateSyncedProviderCopy();
+
 renderSleeper();
 
 }
 
 $("opponent-select").onchange=
-e=>renderLeagueRoster(
+e=>
+renderLeagueRoster(
 e.target.value,
 "opponent-team-roster",
 "opponent-team-name",
@@ -6173,8 +9877,13 @@ e.target.value,
 
 function setPage(page){
 
-if(page==="league"&&!syncedLeague){
-page="analyzer";
+if(
+page==="league"
+&&
+!syncedLeague
+){
+page=
+"analyzer";
 }
 
 $("analyzer-page")
@@ -6191,31 +9900,46 @@ $("league-page")
 page!=="league"
 );
 
-if(page==="league"){
+if(
+page==="league"
+){
 buildLeaguePage();
 }
 
-window.scrollTo(0,0);
+window.scrollTo(
+0,
+0
+);
 
 }
 
-$("league-view-button").onclick=()=>{
+$("league-view-button").onclick=
+()=>{
 
-if(syncedLeague){
+if(
+syncedLeague
+){
 
-location.hash="league";
+location.hash=
+"league";
 
-setPage("league");
+setPage(
+"league"
+);
 
 }
 
 };
 
-$("back-to-analyzer").onclick=()=>{
+$("back-to-analyzer").onclick=
+()=>{
 
-location.hash="analyzer";
+location.hash=
+"analyzer";
 
-setPage("analyzer");
+setPage(
+"analyzer"
+);
 
 };
 
@@ -6225,32 +9949,44 @@ window.addEventListener(
 
 setPage(
 location.hash==="#league"
-?"league"
-:"analyzer"
+?
+"league"
+:
+"analyzer"
 );
 
 }
 );
 
-const modal=$("modal");
+const modal=
+$("modal");
 
-$("sync-button").onclick=()=>{
+$("sync-button").onclick=
+()=>{
 
-modal.classList.add("show");
+modal.classList.add(
+"show"
+);
 
 };
 
-$("modal-close").onclick=()=>{
+$("modal-close").onclick=
+()=>{
 
-modal.classList.remove("show");
+modal.classList.remove(
+"show"
+);
 
 };
 
 async function fetchJSON(url){
 
-const r=await fetch(url);
+const r=
+await fetch(url);
 
-if(!r.ok){
+if(
+!r.ok
+){
 
 throw new Error(
 "Sleeper request failed ("
@@ -6272,10 +10008,15 @@ fallback=[]
 ){
 
 try{
+
 return await fetchJSON(url);
+
 }
+
 catch{
+
 return fallback;
+
 }
 
 }
@@ -6288,7 +10029,9 @@ $("username")
 .value
 .trim();
 
-if(!username){
+if(
+!username
+){
 
 $("status").textContent=
 "Enter your Sleeper username.";
@@ -6306,10 +10049,14 @@ sleeperUser=
 await fetchJSON(
 "https://api.sleeper.app/v1/user/"
 +
-encodeURIComponent(username)
+encodeURIComponent(
+username
+)
 );
 
-if(!sleeperUser?.user_id){
+if(
+!sleeperUser?.user_id
+){
 
 throw new Error(
 "Username not found."
@@ -6333,7 +10080,9 @@ await fetchJSON(
 );
 
 if(
-!Array.isArray(leagues)
+!Array.isArray(
+leagues
+)
 ||
 !leagues.length
 ){
@@ -6345,13 +10094,16 @@ throw new Error(
 }
 
 $("league-picker").innerHTML=
-leagues.map(
-l=>`
+leagues
+.map(
+l=>
+`
 <option value="${l.league_id}">
 ${esc(l.name)}
 </option>
 `
-).join("");
+)
+.join("");
 
 $("league-wrap").style.display=
 "block";
@@ -6360,6 +10112,7 @@ $("status").textContent=
 `Found ${leagues.length} league${leagues.length===1?"":"s"}.`;
 
 }
+
 catch(e){
 
 $("status").textContent=
@@ -6377,7 +10130,9 @@ async()=>{
 const id=
 $("league-picker").value;
 
-if(!id){
+if(
+!id
+){
 
 $("status").textContent=
 "Choose a league first.";
@@ -6418,11 +10173,15 @@ fetchJSON(
 
 ]);
 
-syncedProvider="sleeper";
+syncedProvider=
+"sleeper";
+
 espnLeagueRaw=null;
 
 applySleeperSettings();
+
 buildSleeperRosterSelectors();
+
 buildSleeperNameMap();
 
 sleeperTeamA=[];
@@ -6450,19 +10209,29 @@ $("espn-sync-button").textContent=
 $("league-view-button").disabled=
 false;
 
-modal.classList.remove("show");
+modal.classList.remove(
+"show"
+);
 
 renderSleeper();
 
-location.hash="league";
+location.hash=
+"league";
 
-setPage("league");
+setPage(
+"league"
+);
 
-if(TRADEFORGE_ENGINE.useSleeperTrendingMarket){
+if(
+TRADEFORGE_ENGINE.useSleeperTrendingMarket
+){
+
 refreshSleeperTrends();
+
 }
 
 }
+
 catch(e){
 
 $("status").textContent=
@@ -6474,11 +10243,8 @@ e.message
 
 };
 
-/* =========================================================
-ESPN SYNC
-========================================================= */
-
-const espnModal=$("espn-modal");
+const espnModal=
+$("espn-modal");
 
 const ESPN_POSITION_MAP={
 1:"QB",
@@ -6543,22 +10309,30 @@ const ESPN_LINEUP_SLOT_MAP={
 25:"BN"
 };
 
-$("espn-sync-button").onclick=()=>{
+$("espn-sync-button").onclick=
+()=>{
 
 $("espn-season").value=
 $("espn-season").value
 ||
-String(new Date().getFullYear());
+String(
+new Date().getFullYear()
+);
 
 $("espn-status").textContent="";
 
-espnModal.classList.add("show");
+espnModal.classList.add(
+"show"
+);
 
 };
 
-$("espn-modal-close").onclick=()=>{
+$("espn-modal-close").onclick=
+()=>{
 
-espnModal.classList.remove("show");
+espnModal.classList.remove(
+"show"
+);
 
 };
 
@@ -6572,39 +10346,54 @@ let leagueId="";
 let teamId="";
 let seasonId="";
 
-if(/^\d+$/.test(raw)){
+if(
+/^\d+$/.test(raw)
+){
 leagueId=raw;
 }
+
 else if(raw){
 
 try{
 
-const u=new URL(raw);
+const u=
+new URL(raw);
 
 leagueId=
-u.searchParams.get("leagueId")
+u.searchParams.get(
+"leagueId"
+)
 ||
 "";
 
 teamId=
-u.searchParams.get("teamId")
+u.searchParams.get(
+"teamId"
+)
 ||
 "";
 
 seasonId=
-u.searchParams.get("seasonId")
+u.searchParams.get(
+"seasonId"
+)
 ||
 "";
 
 }
+
 catch{}
 
 if(!leagueId){
 
 const match=
-raw.match(/leagueId(?:=|\/)(\d+)/i)
+raw.match(
+/leagueId(?:=|\/)(\d+)/i
+)
 ||
-raw.match(/\b(\d{4,})\b/);
+raw.match(
+/\b(\d{4,})\b/
+);
 
 leagueId=
 match?.[1]
@@ -6616,7 +10405,9 @@ match?.[1]
 if(!teamId){
 
 const match=
-raw.match(/teamId(?:=|\/)(\d+)/i);
+raw.match(
+/teamId(?:=|\/)(\d+)/i
+);
 
 teamId=
 match?.[1]
@@ -6628,7 +10419,9 @@ match?.[1]
 if(!seasonId){
 
 const match=
-raw.match(/seasonId(?:=|\/)(\d{4})/i);
+raw.match(
+/seasonId(?:=|\/)(\d{4})/i
+);
 
 seasonId=
 match?.[1]
@@ -6665,6 +10458,7 @@ Accept:"application/json"
 );
 
 }
+
 catch(error){
 
 throw new Error(
@@ -6673,9 +10467,15 @@ throw new Error(
 
 }
 
-if(!r.ok){
+if(
+!r.ok
+){
 
-if(r.status===401||r.status===403){
+if(
+r.status===401
+||
+r.status===403
+){
 
 throw new Error(
 "ESPN denied access to this league. If it is private, sign in to ESPN Fantasy in this browser first, then retry the sync."
@@ -6693,11 +10493,14 @@ r.status
 
 }
 
-const data=await r.json();
+const data=
+await r.json();
 
 return Array.isArray(data)
-?data[0]
-:data;
+?
+data[0]
+:
+data;
 
 }
 
@@ -6705,7 +10508,11 @@ function espnRosterPositions(counts){
 
 const slots=[];
 
-Object.entries(counts||{})
+Object.entries(
+counts
+||
+{}
+)
 .forEach(
 ([id,count])=>{
 
@@ -6721,10 +10528,15 @@ return;
 const total=
 Math.max(
 0,
-Number(count)||0
+Number(count)
+||
+0
 );
 
-for(let i=0;i<total;i++){
+for(
+let i=0;
+i<total;i++
+){
 slots.push(slot);
 }
 
@@ -6743,11 +10555,13 @@ raw?.settings?.scoringSettings?.scoringItems
 [];
 
 return items.find(
-x=>Number(x.statId)===53
+x=>
+Number(x.statId)===53
 )
 ||
 items.find(
-x=>Number(x.statId)===41
+x=>
+Number(x.statId)===41
 )
 ||
 null;
@@ -6770,12 +10584,21 @@ const teOverrideRaw=
 recItem?.pointsOverrides?.["4"];
 
 const teOverride=
-Number(teOverrideRaw);
+Number(
+teOverrideRaw
+);
 
 const teBonus=
-Number.isFinite(teOverride)
-?Math.max(0,teOverride-rec)
-:0;
+Number.isFinite(
+teOverride
+)
+?
+Math.max(
+0,
+teOverride-rec
+)
+:
+0;
 
 const lineupCounts=
 raw?.settings?.rosterSettings?.lineupSlotCounts
@@ -6798,27 +10621,43 @@ raw?.settings?.draftSettings?.keeperCountFuture
 
 sleeperScoringMode=
 rec>=.75
-?"ppr"
-:rec>=.25
-?"half"
-:"standard";
+?
+"ppr"
+:
+rec>=.25
+?
+"half"
+:
+"standard";
 
 sleeperQbMode=
-Number(lineupCounts["7"]||0)>0
-?"superflex"
-:"oneqb";
+Number(
+lineupCounts["7"]
+||
+0
+)>0
+?
+"superflex"
+:
+"oneqb";
 
 sleeperTePremiumMode=
 teBonus>=.75
-?"full"
-:teBonus>=.25
-?"half"
-:"off";
+?
+"full"
+:
+teBonus>=.25
+?
+"half"
+:
+"off";
 
 sleeperLeagueMode=
 keeperCount>0
-?"keeper"
-:"redraft";
+?
+"keeper"
+:
+"redraft";
 
 }
 
@@ -6837,7 +10676,11 @@ team?.abbrev
 ||
 "Team "
 +
-String(team?.id||"");
+String(
+team?.id
+||
+""
+);
 
 }
 
@@ -6847,22 +10690,28 @@ requestedTeamId=""
 ){
 
 const teams=
-Array.isArray(raw?.teams)
-?raw.teams
-:[];
+Array.isArray(
+raw?.teams
+)
+?
+raw.teams
+:
+[];
 
 if(!teams.length){
-
 throw new Error(
 "ESPN returned the league, but no team rosters were available."
 );
-
 }
 
 const members=
-Array.isArray(raw?.members)
-?raw.members
-:[];
+Array.isArray(
+raw?.members
+)
+?
+raw.members
+:
+[];
 
 const playerMap={};
 const rosters=[];
@@ -6872,7 +10721,9 @@ teams.forEach(
 team=>{
 
 const rosterId=
-String(team.id);
+String(
+team.id
+);
 
 const ownerId=
 "espn-team-"
@@ -6880,9 +10731,13 @@ const ownerId=
 rosterId;
 
 const entries=
-Array.isArray(team?.roster?.entries)
-?team.roster.entries
-:[];
+Array.isArray(
+team?.roster?.entries
+)
+?
+team.roster.entries
+:
+[];
 
 const playerIds=[];
 
@@ -6913,14 +10768,18 @@ playerIds.push(id);
 
 const pos=
 ESPN_POSITION_MAP[
-Number(player.defaultPositionId)
+Number(
+player.defaultPositionId
+)
 ]
 ||
 "";
 
 const proTeam=
 ESPN_PRO_TEAM_MAP[
-Number(player.proTeamId)
+Number(
+player.proTeamId
+)
 ]
 ||
 "";
@@ -6937,17 +10796,14 @@ player.lastName
 .join(" ")
 ||
 "Unknown Player",
-
 first_name:
 player.firstName
 ||
 "",
-
 last_name:
 player.lastName
 ||
 "",
-
 position:pos,
 team:proTeam,
 espn_id:id
@@ -6966,12 +10822,18 @@ espnTeam:team
 const owner=
 members.find(
 member=>
-(team.owners||[])
+(
+team.owners
+||
+[]
+)
 .some(
 id=>
 String(id)
 ===
-String(member.id)
+String(
+member.id
+)
 )
 );
 
@@ -6986,7 +10848,8 @@ owner?.displayName
 ||
 "",
 metadata:{
-team_name:espnTeamName(team)
+team_name:
+espnTeamName(team)
 }
 });
 
@@ -7009,9 +10872,16 @@ recItem?.pointsOverrides?.["4"]
 );
 
 const teBonus=
-Number.isFinite(teOverride)
-?Math.max(0,teOverride-rec)
-:0;
+Number.isFinite(
+teOverride
+)
+?
+Math.max(
+0,
+teOverride-rec
+)
+:
+0;
 
 const keeperCount=
 Math.max(
@@ -7029,36 +10899,39 @@ raw?.settings?.draftSettings?.keeperCountFuture
 
 syncedLeague={
 ...raw,
-
 name:
 raw?.settings?.name
 ||
 raw?.name
 ||
 "ESPN League",
-
 roster_positions:
 espnRosterPositions(
 raw?.settings?.rosterSettings?.lineupSlotCounts
 ),
-
 scoring_settings:{
 rec,
 bonus_rec_te:teBonus
 },
-
 settings:{
 ...(raw?.settings||{}),
 type:
 keeperCount>0
-?1
-:0
+?
+1
+:
+0
 }
 };
 
-syncedRosters=rosters;
-syncedUsers=users;
-sleeperPlayers=playerMap;
+syncedRosters=
+rosters;
+
+syncedUsers=
+users;
+
+sleeperPlayers=
+playerMap;
 
 const requested=
 String(
@@ -7071,15 +10944,18 @@ sleeperUser=
 requested
 &&
 rosters.some(
-r=>String(r.roster_id)===requested
+r=>
+String(r.roster_id)===requested
 )
-?{
+?
+{
 user_id:
 "espn-team-"
 +
 requested
 }
-:null;
+:
+null;
 
 }
 
@@ -7093,7 +10969,8 @@ const base=
 
 const initial=
 await fetchEspnJSON(
-base+
+base
++
 "?view=mSettings&view=mTeam&view=mStatus"
 );
 
@@ -7109,10 +10986,13 @@ initial?.status?.latestScoringPeriod
 );
 
 return fetchEspnJSON(
-base+
+base
++
 "?view=mSettings&view=mTeam&view=mRoster&view=mDraftDetail&view=mStatus&scoringPeriodId="
 +
-encodeURIComponent(scoringPeriod)
+encodeURIComponent(
+scoringPeriod
+)
 );
 
 }
@@ -7147,7 +11027,7 @@ new Date().getFullYear()
 if(!leagueId){
 
 $("espn-status").textContent=
-"Enter an ESPN league ID or paste an ESPN league URL.";
+"Enter an ESPN league ID or paste a league URL.";
 
 return;
 
@@ -7177,8 +11057,11 @@ leagueId,
 season
 );
 
-syncedProvider="espn";
-espnLeagueRaw=raw;
+syncedProvider=
+"espn";
+
+espnLeagueRaw=
+raw;
 
 normalizeEspnLeague(
 raw,
@@ -7188,10 +11071,12 @@ teamId
 applyEspnSettings(raw);
 
 buildSleeperRosterSelectors();
+
 buildSleeperNameMap();
 
 sleeperTeamA=[];
 sleeperTeamB=[];
+
 sleeperTrendMarket={};
 
 $("sleeper-name").textContent=
@@ -7216,21 +11101,22 @@ $("espn-sync-button").textContent=
 $("league-view-button").disabled=
 false;
 
-espnModal.classList.remove("show");
+espnModal.classList.remove(
+"show"
+);
 
 renderSleeper();
 
-location.hash="league";
+location.hash=
+"league";
 
-setPage("league");
+setPage(
+"league"
+);
 
 }
-catch(e){
 
-console.error(
-"ESPN sync error:",
-e
-);
+catch(e){
 
 $("espn-status").textContent=
 e.message
@@ -7259,43 +11145,74 @@ syncedLeague?.settings
 {};
 
 const rec=
-Number(s.rec||0);
+Number(
+s.rec
+||
+0
+);
 
 const te=
-Number(s.bonus_rec_te||0);
+Number(
+s.bonus_rec_te
+||
+0
+);
 
 sleeperScoringMode=
 rec>=.75
-?"ppr"
-:rec>=.25
-?"half"
-:"standard";
+?
+"ppr"
+:
+rec>=.25
+?
+"half"
+:
+"standard";
 
 sleeperQbMode=
-rp.includes("SUPER_FLEX")
-?"superflex"
-:"oneqb";
+rp.includes(
+"SUPER_FLEX"
+)
+?
+"superflex"
+:
+"oneqb";
 
 sleeperTePremiumMode=
 te>=.75
-?"full"
-:te>=.25
-?"half"
-:"off";
+?
+"full"
+:
+te>=.25
+?
+"half"
+:
+"off";
 
 sleeperLeagueMode=
-Number(set.type)===2
-?"dynasty"
-:Number(set.type)===1
-?"keeper"
-:"redraft";
+Number(
+set.type
+)
+===2
+?
+"dynasty"
+:
+Number(
+set.type
+)
+===1
+?
+"keeper"
+:
+"redraft";
 
 }
 
 function rosterName(r){
 
 const u=
-syncedUsers.find(
+syncedUsers
+.find(
 x=>
 String(x.user_id)
 ===
@@ -7317,32 +11234,55 @@ r.roster_id;
 function buildSleeperRosterSelectors(){
 
 const list=
-syncedRosters.map(
+syncedRosters
+.map(
 r=>({
-id:String(r.roster_id),
-owner:String(r.owner_id||""),
-name:rosterName(r)
+
+id:
+String(
+r.roster_id
+),
+
+owner:
+String(
+r.owner_id
+||
+""
+),
+
+name:
+rosterName(r)
+
 })
 );
 
 const html=
-list.map(
-x=>`
+list
+.map(
+x=>
+`
 <option value="${x.id}">
 ${esc(x.name)}
 </option>
 `
-).join("");
+)
+.join("");
 
-$("sleeper-roster-a").innerHTML=html;
-$("sleeper-roster-b").innerHTML=html;
+$("sleeper-roster-a").innerHTML=
+html;
+
+$("sleeper-roster-b").innerHTML=
+html;
 
 const mine=
-list.find(
+list
+.find(
 x=>
 x.owner
 ===
-String(sleeperUser?.user_id)
+String(
+sleeperUser?.user_id
+)
 );
 
 sleeperRosterA=
@@ -7353,7 +11293,12 @@ list[0]?.id
 "";
 
 sleeperRosterB=
-list.find(x=>x.id!==sleeperRosterA)?.id
+list
+.find(
+x=>
+x.id!==sleeperRosterA
+)
+?.id
 ||
 sleeperRosterA;
 
@@ -7368,10 +11313,13 @@ sleeperRosterB;
 $("sleeper-roster-a").onchange=
 e=>{
 
-sleeperRosterA=e.target.value;
+sleeperRosterA=
+e.target.value;
+
 sleeperTeamA=[];
 
 renderSleeper();
+
 buildLeaguePage();
 
 };
@@ -7379,10 +11327,13 @@ buildLeaguePage();
 $("sleeper-roster-b").onchange=
 e=>{
 
-sleeperRosterB=e.target.value;
+sleeperRosterB=
+e.target.value;
+
 sleeperTeamB=[];
 
 renderSleeper();
+
 buildLeaguePage();
 
 };
@@ -7397,7 +11348,12 @@ sleeperPlayers
 {}
 )
 .forEach(
-([id,sp])=>{
+(
+[
+id,
+sp
+]
+)=>{
 
 const name=
 sp?.full_name
@@ -7409,8 +11365,16 @@ sp?.last_name
 .filter(Boolean)
 .join(" ");
 
-if(name){
-sleeperIdByName[norm(name)]=String(id);
+if(
+name
+){
+
+sleeperIdByName[
+norm(name)
+]
+=
+String(id);
+
 }
 
 }
@@ -7442,23 +11406,47 @@ fetchJSONSafe(
 const addMax=
 Math.max(
 1,
-...adds.map(
-x=>Number(x.count||0)
+...
+adds.map(
+x=>
+Number(
+x.count
+||
+0
+)
 )
 );
 
 const dropMax=
 Math.max(
 1,
-...drops.map(
-x=>Number(x.count||0)
+...
+drops.map(
+x=>
+Number(
+x.count
+||
+0
+)
 )
 );
 
 const ids=
 new Set([
-...adds.map(x=>String(x.player_id)),
-...drops.map(x=>String(x.player_id))
+...
+adds.map(
+x=>
+String(
+x.player_id
+)
+),
+...
+drops.map(
+x=>
+String(
+x.player_id
+)
+)
 ]);
 
 sleeperTrendMarket={};
@@ -7469,8 +11457,14 @@ id=>{
 const add=
 Number(
 adds.find(
-x=>String(x.player_id)===id
-)?.count
+x=>
+String(
+x.player_id
+)
+===
+id
+)
+?.count
 ||
 0
 )
@@ -7480,8 +11474,14 @@ addMax;
 const drop=
 Number(
 drops.find(
-x=>String(x.player_id)===id
-)?.count
+x=>
+String(
+x.player_id
+)
+===
+id
+)
+?.count
 ||
 0
 )
@@ -7490,7 +11490,11 @@ dropMax;
 
 sleeperTrendMarket[id]=
 tfClamp(
-(add-drop)
+(
+add
+-
+drop
+)
 *
 TRADEFORGE_ENGINE.marketAdjustmentMax,
 -TRADEFORGE_ENGINE.marketAdjustmentMax,
@@ -7500,7 +11504,9 @@ TRADEFORGE_ENGINE.marketAdjustmentMax
 }
 );
 
-if(syncedLeague){
+if(
+syncedLeague
+){
 buildLeaguePage();
 }
 
@@ -7508,31 +11514,42 @@ buildLeaguePage();
 
 function matchSleeper(id){
 
-id=String(id);
+id=
+String(id);
 
-if(dst[id]){
+if(
+dst[id]
+){
 
 const p=
-playerDatabase.find(
+playerDatabase
+.find(
 x=>
 norm(x.name)
 ===
-norm(dst[id])
+norm(
+dst[id]
+)
 );
 
 return p
-?{
+?
+{
 ...p,
 sleeperId:id,
 nflTeam:id
 }
-:null;
+:
+null;
 
 }
 
-const sp=sleeperPlayers[id];
+const sp=
+sleeperPlayers[id];
 
-if(!sp){
+if(
+!sp
+){
 return null;
 }
 
@@ -7547,39 +11564,59 @@ sp.last_name
 .join(" ");
 
 const p=
-playerDatabase.find(
-x=>norm(x.name)===norm(name)
+playerDatabase
+.find(
+x=>
+norm(x.name)
+===
+norm(name)
 );
 
 return p
-?{
+?
+{
 ...p,
 sleeperId:id,
-nflTeam:sp.team||""
+nflTeam:
+sp.team
+||
+""
 }
-:null;
+:
+null;
 
 }
 
-$("disconnect").onclick=()=>{
+$("disconnect").onclick=
+()=>{
 
 syncedLeague=null;
+
 syncedRosters=[];
+
 syncedUsers=[];
+
 sleeperPlayers={};
+
 sleeperUser=null;
 
 syncedProvider="";
+
 espnLeagueRaw=null;
 
 sleeperRosterA="";
+
 sleeperRosterB="";
 
 sleeperTeamA=[];
+
 sleeperTeamB=[];
 
 sleeperTrendMarket={};
+
 sleeperIdByName={};
+
+leagueTradeFinderBuilds=[];
 
 $("sleeper-bar").style.display=
 "none";
@@ -7593,16 +11630,22 @@ $("espn-sync-button").textContent=
 $("league-view-button").disabled=
 true;
 
-location.hash="analyzer";
+location.hash=
+"analyzer";
 
-setPage("analyzer");
+setPage(
+"analyzer"
+);
 
 renderBoard();
+
 render();
 
 };
 
-if(!location.hash){
+if(
+!location.hash
+){
 
 history.replaceState(
 null,
@@ -7628,11 +11671,14 @@ null,
 
 setPage(
 location.hash==="#league"
-?"league"
-:"analyzer"
+?
+"league"
+:
+"analyzer"
 );
 
 renderBoard();
+
 render();
 
 loadTradeForgeFeed();
@@ -7640,4 +11686,4 @@ loadTradeForgeFeed();
 </script>
 
 </body>
-</html>  
+</html>
