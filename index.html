@@ -287,31 +287,6 @@ border-radius:8px;
 padding:9px;
 margin-top:7px;
 font-size:12px}
-.trade-insight-box{
-background:var(--card2);
-border:1px solid var(--border);
-border-radius:12px;
-padding:15px 16px;
-line-height:1.5}
-.trade-insight-box.empty{
-color:var(--muted);
-font-size:13px}
-.trade-insight-summary{
-font-size:14px;
-font-weight:800;
-margin-bottom:10px}
-.trade-insight-list{
-margin:0;
-padding-left:20px;
-font-size:13px}
-.trade-insight-list li{
-margin:7px 0}
-.trade-insight-context{
-margin-top:11px;
-padding-top:10px;
-border-top:1px solid var(--border);
-font-size:11px;
-color:var(--muted)}
 .trade-advisor-box{
 background:var(--card2);
 border:1px solid var(--border);
@@ -698,7 +673,6 @@ grid-template-columns:1fr}
 <section class="calculator-support-card"><h3>AI Trade Advisor</h3><div class="sub" style="margin-bottom:10px">Practical accept/decline guidance directly tied to this calculator.</div><div id="trade-advisor" class="trade-advisor-box empty">Build a trade to get advisor guidance.</div></section>
 <section class="calculator-support-card"><h3>Suggested Trade Ideas</h3><div class="sub" style="margin-bottom:10px">TradeForge adds assets to the side currently receiving less adjusted value.</div><div id="trade-ideas">Build a trade to see suggested trade ideas.</div></section>
 </div>
-<section class="card"><h3>TradeForge Insight</h3><div class="sub" style="margin-bottom:10px">Player facts and league-format context behind the valuations.</div><div id="trade-insight" class="trade-insight-box empty">Build a trade to see why TradeForge values it this way.</div></section>
 </main>
 <main id="league-page" class="page-hidden">
 <section class="card"><div class="league-toolbar"><div><h2>TradeForge League Dashboard</h2><div id="league-page-name" class="sub"></div></div><button id="back-to-analyzer" class="close">← Back to Trade Analyzer</button></div></section>
@@ -721,7 +695,6 @@ grid-template-columns:1fr}
 <section class="calculator-support-card"><h3>AI Trade Advisor</h3><div class="sub" id="synced-advisor-sub" style="margin-bottom:10px">Practical guidance using your synced league rosters, value gap, format, and player profiles.</div><div id="sleeper-trade-advisor" class="trade-advisor-box empty">Build a synced league trade to get advisor guidance.</div></section>
 <section class="calculator-support-card"><h3>Suggested Trade Ideas</h3><div class="sub" style="margin-bottom:10px">TradeForge suggests additional assets from the lower-value team's own roster to add to its side of the trade.</div><div id="sleeper-trade-ideas">Build a synced league trade to see suggested trade ideas.</div></section>
 </div>
-<div class="trade-center-divider"></div><h3>TradeForge Insight</h3><div class="sub" id="synced-insight-sub" style="margin-bottom:10px">Player facts and valuation context for your synced league.</div><div id="sleeper-trade-insight" class="trade-insight-box empty">Build a synced league trade to see why TradeForge values it this way.</div>
 </div>
 <div class="trade-center-panel active" data-trade-center-panel="finder">
 <div class="trade-center-panel-title"><h3>League Trade Finder</h3><div class="sub">Pick a player on another team and let TradeForge search your roster for the closest packages.</div></div>
@@ -771,8 +744,8 @@ const SUPERSTAR_FACTOR=1,PACKAGE_WEIGHTS=[1,.95,.9,.85,.8,.8,.8,.8],multipliers=
 ["WR","Jaxon Smith-Njigba",86.8,88,90.1],
 ["WR","Amon-Ra St. Brown",86.2,81.6,73],
 ["RB","Jonathan Taylor",80.9,72.3,56.4],
-["RB","Christian McCaffrey",80.4,67.9,44.8],
-["WR","CeeDee Lamb",78,72.3,61.7],
+["RB","Christian McCaffrey",80.4,67.9,44.8], 
+  ["WR","CeeDee Lamb",78,72.3,61.7],
 ["WR","Justin Jefferson",77.8,72.8,63.4],
 ["RB","James Cook III",73.4,67.8,57.4],
 ["RB","Chase Brown",73,64.6,49],
@@ -1232,38 +1205,17 @@ function adjustedCore(e){return e.map(e=>adjustedPlayer(value(e))).sort((e,t)=>t
 function consolidationPremium(e,t){if(!e?.length||!t?.length||e.length>=t.length)return 0;const r=Math.max(...e.map(e=>value(e))),n=tfClamp(r/100,0,1),a=t.length-e.length;return 1===e.length&&2===t.length?.08+.07*n:1===e.length&&t.length>=3||a>=2?.15+.1*n:.05+.05*n}
 function adjusted(e,t=null){let r=adjustedCore(e);return t&&(r*=1+consolidationPremium(e,t)),r}
 function adjustedTradeValues(e,t){return{a:adjusted(e,t),b:adjusted(t,e),premiumA:consolidationPremium(e,t),premiumB:consolidationPremium(t,e)}}
-function base(e){return e.reduce((e,t)=>e+value(t),0)}
+  function base(e){return e.reduce((e,t)=>e+value(t),0)}
 function diff(e,t){const r=(e+t)/2;return r?Math.abs(e-t)/r*100:0}
-function insightMetadata(e){
+function advisorMetadata(e){
 if(["PICK","DST"].includes(e.pos))return{};
 const t=e.sleeperId||sleeperIdByName[norm(e.name)],r=t?sleeperPlayers[t]:null,n=r&&r.position===e.pos&&norm(r.full_name||[r.first_name,r.last_name].filter(Boolean).join(" "))===norm(e.name),a=[n?r.age:null,e.engine?.dynasty?.age,e.liveData?.age].find(e=>tfIsNumber(e)&&Number(e)>0),s=n&&tfIsNumber(r.years_exp)&&Number.isInteger(Number(r.years_exp))&&Number(r.years_exp)>=0?Number(r.years_exp):null;
 return{age:void 0===a?null:Number(a),years:s,rookie:0===s||null===s&&!0===e.engine?.dynasty?.isRookie}
 }
-function insightPlayerReasons(e){
-if("PICK"===e.pos)return["A future draft asset with no current-season production; the selected QB format determines its pick rating."];
-if("DST"===e.pos)return["A team defense, so individual player age and career horizon do not apply. Its stored rating follows the selected league format."];
-const{age:t,years:r,rookie:n}=insightMetadata(e),a=[],s=[e.pos];
-null!==t&&s.push("age "+t),n?s.push("rookie"):null!==r&&s.push(r+" "+(1===r?"year":"years")+" of NFL experience"),a.push(s.join(" • ")+".");
-const o=tfIsNumber(e.redraft)?Number(e.redraft):null,l=tfIsNumber(e.dynasty)?Number(e.dynasty):null,i="redraft"!==leagueMode;
-if(n&&a.push(i?"Rookie status makes future development relevant to long-term value; that potential does not establish current-season production.":"Redraft focuses on the current season; rookie status alone does not establish production."),null!==t&&i){
-const r=tfDynastyAgeFactor(e.pos,t);
-r>1?a.push(null!==o&&o>=75?"Youth accompanies a high stored current-season rating, combining present value with a longer potential career runway.":"Youth offers a longer potential career runway, which matters when keeping players beyond this season."):r<1&&a.push("At this age, the remaining career horizon is a consideration for a "+e.pos+" in "+leagueMode+". Age is context, not a prediction of retirement.")
-}
-return null!==o&&null!==l&&(l>o?a.push("The stored dynasty rating is higher than the redraft rating, placing more value on the longer-term profile."):l<o?a.push("The stored redraft rating is higher than the dynasty rating, favoring current-season value over the longer-term profile."):a.push("The stored redraft and dynasty ratings are equal.")),
-"keeper"===leagueMode&&a.push("Keeper mode balances current and future value; keeper costs and contract rules are not supplied to this calculator."),
-"QB"===e.pos?a.push("superflex"===qbMode?"The Superflex/2QB setting adds a quarterback premium because more quarterbacks can start.":"The 1QB setting does not add the Superflex/2QB quarterback premium."):"TE"===e.pos&&"off"!==tePremiumMode?a.push("The active tight end premium adds value at TE."):["RB","WR","TE"].includes(e.pos)&&"ppr"!==scoringMode&&a.push("The "+("half"===scoringMode?"half-PPR":"non-PPR")+" setting applies the model's "+e.pos+" scoring adjustment."),a
-}
-function renderTradeInsight(e,t,r,n){
-const a=$(e);if(!a)return;
-if(!t.length||!r.length)return a.className="trade-insight-box empty",void(a.textContent="Add players to both sides to see their available valuation context.");
-const s=[...t.map(e=>({p:e,side:"A"})),...r.map(e=>({p:e,side:"B"}))];a.className="trade-insight-box",
-a.innerHTML='<div class="trade-insight-summary">Player profiles in '+esc(modeLabel())+'</div><ul class="trade-insight-list">'+s.map(({p:e,side:t})=>"<li><strong>Team "+t+" — "+esc(e.name)+":</strong> "+insightPlayerReasons(e).map(esc).join(" ")+"</li>").join("")+'</ul><div class="trade-insight-context">Age and experience appear only when supplied by the player data. Stored ratings are valuation scores, not fantasy-point forecasts; player context does not change the trade calculation.</div>'
-}
-
 function advisorTopAsset(e){return e.slice().sort((e,t)=>value(t)-value(e))[0]||null}
 function advisorTeamPositions(e){const t={QB:0,RB:0,WR:0,TE:0,K:0,DST:0,PICK:0};return e.forEach(e=>{t[e.pos]=(t[e.pos]||0)+1}),t}
 function advisorFutureProfile(e){
-if(!e||"PICK"===e.pos)return"future draft asset";const t=tfIsNumber(e.redraft)?Number(e.redraft):0,r=tfIsNumber(e.dynasty)?Number(e.dynasty):0,n=tfIsNumber(e.keeper)?Number(e.keeper):0,a=insightMetadata(e),s=[];
+if(!e||"PICK"===e.pos)return"future draft asset";const t=tfIsNumber(e.redraft)?Number(e.redraft):0,r=tfIsNumber(e.dynasty)?Number(e.dynasty):0,n=tfIsNumber(e.keeper)?Number(e.keeper):0,a=advisorMetadata(e),s=[];
 return null!==a.age&&s.push("age "+a.age),a.rookie?s.push("rookie"):null!==a.years&&s.push(a.years+" "+(1===a.years?"year":"years")+" experience"),r>=t+8?s.push("dynasty value is stronger than redraft value"):t>=r+8?s.push("current-season value is stronger than dynasty value"):s.push("redraft and dynasty values are close"),"keeper"===leagueMode&&n&&s.push("keeper value "+n.toFixed(1)),s.join(" • ")
 }
 function advisorRosterPositionRank(e,t){
@@ -1311,7 +1263,7 @@ $("sleeper-info")&&($("sleeper-info").textContent=`${e} league settings are isol
 $("disconnect")&&($("disconnect").textContent=`Disconnect ${e}`),$("trade-center-provider-label")&&($("trade-center-provider-label").textContent=`${e} trade tools`),
 $("synced-trade-calculator-title")&&($("synced-trade-calculator-title").textContent=`${e} Trade Calculator`),
 $("synced-trade-calculator-sub")&&($("synced-trade-calculator-sub").textContent=`Uses the selected ${e} rosters`),
-$("synced-insight-sub")&&($("synced-insight-sub").textContent=`Player facts and valuation context for your ${e} league.`),$("synced-advisor-sub")&&($("synced-advisor-sub").textContent=`AI Trade Advisor guidance for your ${e} league.`),
+$("synced-advisor-sub")&&($("synced-advisor-sub").textContent=`AI Trade Advisor guidance for your ${e} league.`),
 $("trade-finder-roster-copy")&&($("trade-finder-roster-copy").textContent=`TradeForge searches your valued ${e} roster for 1-for-1, 2-for-1, and 3-for-1 packages and ranks them by adjusted trade value.`)
 }
 function withSleeperModes(e){
@@ -1336,10 +1288,10 @@ function calculate(){
 const e=base(teamA),t=base(teamB),r=adjustedTradeValues(teamA,teamB),n=r.a,a=r.b,s=diff(n,a);
 $("base-a").textContent=e.toFixed(1),$("base-b").textContent=t.toFixed(1),$("adj-a").textContent=n.toFixed(1),$("adj-b").textContent=a.toFixed(1),$("marker").style.left=(n+a?Math.max(5,Math.min(95,a/(n+a)*100)):50)+"%";
 const o=$("verdict");
-if(o.className="",!teamA.length||!teamB.length)return o.innerHTML="\nBuild a Trade\n<small>Add players to both sides.</small>\n",$("grade").textContent="—",renderTradeInsight("trade-insight",teamA,teamB,r),renderTradeAdvisor("trade-advisor",teamA,teamB,r),void($("trade-ideas").textContent="Build a trade to see suggested trade ideas.");
+if(o.className="",!teamA.length||!teamB.length)return o.innerHTML="\nBuild a Trade\n<small>Add players to both sides.</small>\n",$("grade").textContent="—",renderTradeAdvisor("trade-advisor",teamA,teamB,r),void($("trade-ideas").textContent="Build a trade to see suggested trade ideas.");
 let l,i;s<=5?(l="FAIR TRADE",i="fair"):s<=10?(l="SLIGHT ADVANTAGE",i="slight"):s<=20?(l="ADVANTAGE",i="adv"):(l="MAJOR ADVANTAGE",i="major"),o.className=i,
 o.innerHTML=`\n${l}\n<small>\n${s.toFixed(1)}% difference\n${s>5?" • "+(n>a?"Team A":"Team B")+" has more adjusted value":""}\n</small>\n`,
-$("grade").textContent=s<=5?"A+":s<=10?"A":s<=20?"B":s<=30?"C":s<=40?"D":"F",renderTradeInsight("trade-insight",teamA,teamB,r),renderTradeAdvisor("trade-advisor",teamA,teamB,r),tradeIdeas(n,a)
+$("grade").textContent=s<=5?"A+":s<=10?"A":s<=20?"B":s<=30?"C":s<=40?"D":"F",renderTradeAdvisor("trade-advisor",teamA,teamB,r),tradeIdeas(n,a)
 }
 function tradeIdeas(e,t){
 const r=$("trade-ideas");if(!teamA.length||!teamB.length)return void(r.textContent="Build a trade to see suggested trade ideas.");const n=diff(e,t);
@@ -1376,10 +1328,10 @@ function renderSleeper(){clearSearchResults("sleeper-"),renderSleeperTeam("A"),r
 function sleeperCalculate(){withSleeperModes(()=>{
 const e=base(sleeperTeamA),t=base(sleeperTeamB),r=adjustedTradeValues(sleeperTeamA,sleeperTeamB),n=r.a,a=r.b,s=diff(n,a);
 $("sleeper-base-a").textContent=e.toFixed(1),$("sleeper-base-b").textContent=t.toFixed(1),$("sleeper-adj-a").textContent=n.toFixed(1),$("sleeper-adj-b").textContent=a.toFixed(1),$("sleeper-marker").style.left=(n+a?Math.max(5,Math.min(95,a/(n+a)*100)):50)+"%";
-const o=$("sleeper-verdict");if(o.className="",!sleeperTeamA.length||!sleeperTeamB.length)return o.innerHTML="\nBuild a Trade\n<small>Add players from both synced rosters.</small>\n",$("sleeper-grade").textContent="—",renderTradeInsight("sleeper-trade-insight",sleeperTeamA,sleeperTeamB,r),renderTradeAdvisor("sleeper-trade-advisor",sleeperTeamA,sleeperTeamB,r,{rosterA:sleeperRosterA,rosterB:sleeperRosterB}),void($("sleeper-trade-ideas").textContent=`Build a trade from the synced ${syncedProviderName()} league to see suggested trade ideas.`);
+const o=$("sleeper-verdict");if(o.className="",!sleeperTeamA.length||!sleeperTeamB.length)return o.innerHTML="\nBuild a Trade\n<small>Add players from both synced rosters.</small>\n",$("sleeper-grade").textContent="—",renderTradeAdvisor("sleeper-trade-advisor",sleeperTeamA,sleeperTeamB,r,{rosterA:sleeperRosterA,rosterB:sleeperRosterB}),void($("sleeper-trade-ideas").textContent=`Build a trade from the synced ${syncedProviderName()} league to see suggested trade ideas.`);
 let l,i;s<=5?(l="FAIR TRADE",i="fair"):s<=10?(l="SLIGHT ADVANTAGE",i="slight"):s<=20?(l="ADVANTAGE",i="adv"):(l="MAJOR ADVANTAGE",i="major"),o.className=i,
 o.innerHTML=`\n${l}\n<small>\n${s.toFixed(1)}% difference\n${s>5?" • "+(n>a?"Team A":"Team B")+" has more adjusted value":""}\n</small>\n`,
-$("sleeper-grade").textContent=s<=5?"A+":s<=10?"A":s<=20?"B":s<=30?"C":s<=40?"D":"F",renderTradeInsight("sleeper-trade-insight",sleeperTeamA,sleeperTeamB,r),renderTradeAdvisor("sleeper-trade-advisor",sleeperTeamA,sleeperTeamB,r,{rosterA:sleeperRosterA,rosterB:sleeperRosterB}),sleeperTradeIdeas(n,a)
+$("sleeper-grade").textContent=s<=5?"A+":s<=10?"A":s<=20?"B":s<=30?"C":s<=40?"D":"F",renderTradeAdvisor("sleeper-trade-advisor",sleeperTeamA,sleeperTeamB,r,{rosterA:sleeperRosterA,rosterB:sleeperRosterB}),sleeperTradeIdeas(n,a)
 })}
 function sleeperTradeIdeas(e,t){
 const r=$("sleeper-trade-ideas");
@@ -1450,7 +1402,7 @@ DASHBOARD_POSITIONS.forEach(e=>{l[e]=dashboardPositionValue(t,e)});const i=.6*n+
 }
 function dashboardRank(e,t,r){const n=e.slice().sort((e,r)=>r[t]-e[t]).findIndex(e=>e.rosterId===String(r));return n>=0?n+1:e.length}
 function dashboardPositionRank(e,t,r){const n=e.slice().sort((e,r)=>r.positions[t]-e.positions[t]).findIndex(e=>e.rosterId===String(r));return n>=0?n+1:e.length}
-function dashboardTeamProfile(e,t){
+  function dashboardTeamProfile(e,t){
 if("dynasty"===sleeperLeagueMode){const r=dashboardRank(t,"redraftStarters",e.rosterId),n=dashboardRank(t,"dynastyTotal",e.rosterId);
 return r+2<n?{label:"Win-now leaning",detail:`Current lineup strength ranks ${ordinal(r)} while long-term dynasty value ranks ${ordinal(n)}.`}:n+2<r?{label:"Future-focused",detail:`Long-term dynasty value ranks ${ordinal(n)} while current lineup strength ranks ${ordinal(r)}.`}:{label:"Balanced roster",detail:`Current lineup strength ranks ${ordinal(r)} and long-term dynasty value ranks ${ordinal(n)}.`}}
 const r=dashboardRank(t,"starters",e.rosterId),n=dashboardRank(t,"depth",e.rosterId);
