@@ -321,9 +321,51 @@ padding-top:10px;
 border-top:1px solid var(--border);
 font-size:11px;
 color:var(--muted)}
+.injury-engine-box{
+background:var(--card2);
+border:1px solid var(--border);
+border-radius:12px;
+padding:15px 16px;
+line-height:1.5}
+.injury-engine-box.empty{
+color:var(--muted);
+font-size:13px}
+.injury-engine-head{
+display:flex;
+justify-content:space-between;
+gap:12px;
+align-items:flex-start;
+margin-bottom:10px}
+.injury-engine-title{
+font-size:15px;
+font-weight:900}
+.injury-engine-score{
+font-size:13px;
+font-weight:900;
+white-space:nowrap}
+.injury-engine-score.low{
+color:#22a06b}
+.injury-engine-score.moderate{
+color:#e3a008}
+.injury-engine-score.elevated{
+color:#e87722}
+.injury-engine-score.high{
+color:#ef5350}
+.injury-engine-list{
+margin:0;
+padding-left:20px;
+font-size:13px}
+.injury-engine-list li{
+margin:7px 0}
+.injury-engine-context{
+margin-top:11px;
+padding-top:10px;
+border-top:1px solid var(--border);
+font-size:11px;
+color:var(--muted)}
 .calculator-support-grid{
 display:grid;
-grid-template-columns:1fr 1fr;
+grid-template-columns:1fr 1fr 1fr;
 gap:16px;
 margin-top:16px}
 .calculator-support-card{
@@ -392,7 +434,7 @@ gap:15px;
 margin-bottom:16px}
 .league-toolbar h2{
 margin:0}
-.league-view-grid{
+  .league-view-grid{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:16px}
@@ -672,6 +714,7 @@ grid-template-columns:1fr}
 <div class="calculator-support-grid">
 <section class="calculator-support-card"><h3>AI Trade Advisor</h3><div class="sub" style="margin-bottom:10px">Practical accept/decline guidance directly tied to this calculator.</div><div id="trade-advisor" class="trade-advisor-box empty">Build a trade to get advisor guidance.</div></section>
 <section class="calculator-support-card"><h3>Suggested Trade Ideas</h3><div class="sub" style="margin-bottom:10px">TradeForge adds assets to the side currently receiving less adjusted value.</div><div id="trade-ideas">Build a trade to see suggested trade ideas.</div></section>
+<section class="calculator-support-card"><h3>Injury Intelligence Engine</h3><div class="sub" style="margin-bottom:10px">Availability, age, position, and injury-status context tied directly to this trade.</div><div id="injury-engine" class="injury-engine-box empty">Build a trade to see injury and availability context.</div></section>
 </div>
 </main>
 <main id="league-page" class="page-hidden">
@@ -694,6 +737,7 @@ grid-template-columns:1fr}
 <div class="calculator-support-grid synced-calculator-support-grid">
 <section class="calculator-support-card"><h3>AI Trade Advisor</h3><div class="sub" id="synced-advisor-sub" style="margin-bottom:10px">Practical guidance using your synced league rosters, value gap, format, and player profiles.</div><div id="sleeper-trade-advisor" class="trade-advisor-box empty">Build a synced league trade to get advisor guidance.</div></section>
 <section class="calculator-support-card"><h3>Suggested Trade Ideas</h3><div class="sub" style="margin-bottom:10px">TradeForge suggests additional assets from the lower-value team's own roster to add to its side of the trade.</div><div id="sleeper-trade-ideas">Build a synced league trade to see suggested trade ideas.</div></section>
+<section class="calculator-support-card"><h3>Injury Intelligence Engine</h3><div class="sub" id="synced-injury-sub" style="margin-bottom:10px">Availability, age, position, and injury-status context from your synced league.</div><div id="sleeper-injury-engine" class="injury-engine-box empty">Build a synced league trade to see injury and availability context.</div></section>
 </div>
 </div>
 <div class="trade-center-panel active" data-trade-center-panel="finder">
@@ -744,8 +788,8 @@ const SUPERSTAR_FACTOR=1,PACKAGE_WEIGHTS=[1,.95,.9,.85,.8,.8,.8,.8],multipliers=
 ["WR","Jaxon Smith-Njigba",86.8,88,90.1],
 ["WR","Amon-Ra St. Brown",86.2,81.6,73],
 ["RB","Jonathan Taylor",80.9,72.3,56.4],
-["RB","Christian McCaffrey",80.4,67.9,44.8], 
-  ["WR","CeeDee Lamb",78,72.3,61.7],
+["RB","Christian McCaffrey",80.4,67.9,44.8],
+["WR","CeeDee Lamb",78,72.3,61.7],
 ["WR","Justin Jefferson",77.8,72.8,63.4],
 ["RB","James Cook III",73.4,67.8,57.4],
 ["RB","Chase Brown",73,64.6,49],
@@ -826,7 +870,7 @@ const SUPERSTAR_FACTOR=1,PACKAGE_WEIGHTS=[1,.95,.9,.85,.8,.8,.8,.8],multipliers=
 ["TE","Harold Fannin Jr.",25.9,26.7,28.2],
 ["WR","Makai Lemon",25.5,26.4,28.1],
 ["WR","Alec Pierce",25.4,23.8,20.8],
-["WR","Rashid Shaheed",25.1,20.6,12.1],
+  ["WR","Rashid Shaheed",25.1,20.6,12.1],
 ["QB","Bo Nix",25,26.2,28.3],
 ["WR","Jayden Reed",24.4,21.6,16.4],
 ["RB","Zach Charbonnet",24.3,21.4,16.1],
@@ -1205,7 +1249,7 @@ function adjustedCore(e){return e.map(e=>adjustedPlayer(value(e))).sort((e,t)=>t
 function consolidationPremium(e,t){if(!e?.length||!t?.length||e.length>=t.length)return 0;const r=Math.max(...e.map(e=>value(e))),n=tfClamp(r/100,0,1),a=t.length-e.length;return 1===e.length&&2===t.length?.08+.07*n:1===e.length&&t.length>=3||a>=2?.15+.1*n:.05+.05*n}
 function adjusted(e,t=null){let r=adjustedCore(e);return t&&(r*=1+consolidationPremium(e,t)),r}
 function adjustedTradeValues(e,t){return{a:adjusted(e,t),b:adjusted(t,e),premiumA:consolidationPremium(e,t),premiumB:consolidationPremium(t,e)}}
-  function base(e){return e.reduce((e,t)=>e+value(t),0)}
+function base(e){return e.reduce((e,t)=>e+value(t),0)}
 function diff(e,t){const r=(e+t)/2;return r?Math.abs(e-t)/r*100:0}
 function advisorMetadata(e){
 if(["PICK","DST"].includes(e.pos))return{};
@@ -1254,6 +1298,83 @@ if(w&&g){const e=advisorNeedNote(w,g,p);e&&y.push(e)}
 const v=t.length+r.length;if(v>=4)y.push("Because this is a multi-player trade, check your bench cuts and starting lineup after the trade. A fair value trade can still be bad if it forces you to drop useful depth.");
 s.className="trade-advisor-box",s.innerHTML=`<div class="trade-advisor-verdict ${h}">${esc(f)}</div><div class="trade-advisor-detail">Advisor read: ${esc(advisorSideLabel(d))} has the stronger side by ${i.toFixed(1)}% adjusted value.</div><ul class="trade-advisor-list">${y.filter(Boolean).slice(0,6).map(e=>`<li>${e}</li>`).join("")}</ul><div class="trade-advisor-context">AI Trade Advisor is a rules-based TradeForge advisor using only app data: values, format, package size, synced roster context, and available player metadata. It does not use outside injuries, news, projections, or private keeper costs.</div>`
 }
+
+function injurySleeperRecord(e){
+const t=e?.sleeperId||sleeperIdByName[norm(e?.name)];
+return t?sleeperPlayers[t]||null:null
+}
+function injuryCleanStatus(e){
+return String(e||"").trim()
+}
+  function injuryEngineExplicitAvailability(e){
+if(!e||["PICK","DST"].includes(e.pos))return null;
+const t=[e.engine?.[leagueMode],e.engine?.redraft,e.engine?.dynasty,e.engine?.keeper].filter(Boolean);
+for(const e of t){
+if(tfIsNumber(e.availabilityScore))return tfClamp(Number(e.availabilityScore),0,100);
+if(tfIsNumber(e.availability)){const t=Number(e.availability);return tfClamp(t<=1.25?100*t:t,0,100)}
+}
+return null
+}
+function injuryEngineStatusPenalty(e){
+const t=injuryCleanStatus(e).toLowerCase();
+if(!t)return null;
+if(t.includes("ir")||t.includes("pup")||t.includes("nfi"))return 45;
+if(t.includes("out"))return 35;
+if(t.includes("doubt"))return 50;
+if(t.includes("question"))return 72;
+if(t.includes("suspend"))return 55;
+if(t.includes("healthy")||t.includes("active"))return 100;
+return 85
+}
+function injuryEnginePlayerProfile(e){
+if(!e)return null;
+if(e.pos==="PICK")return{player:e,score:100,label:"Low",className:"low",status:"Draft pick",notes:[`${esc(e.name)} is a future draft asset, so injury risk is not applied directly.`]};
+if(e.pos==="DST")return{player:e,score:92,label:"Low",className:"low",status:"Team defense",notes:[`${esc(e.name)} is a team-defense asset, so individual player injury risk is not applied.`]};
+const t=advisorMetadata(e),r=injurySleeperRecord(e),n=injuryCleanStatus(r?.injury_status||r?.injuryStatus||r?.status||e.liveData?.injury_status||e.engine?.[leagueMode]?.injuryStatus||""),a=injuryCleanStatus(r?.injury_body_part||r?.injuryBodyPart||e.liveData?.injury_body_part||""),s=injuryEngineStatusPenalty(n),o=injuryEngineExplicitAvailability(e);
+let l=tfIsNumber(o)?Number(o):100;
+if(tfIsNumber(s))l=Math.min(l,Number(s));
+const i=[];
+if(n){i.push(`${esc(e.name)} has a current synced/app designation of ${esc(n)}${a?` (${esc(a)})`:""}.`)}
+else{i.push(`No current injury designation is detected for ${esc(e.name)} in the synced/app data available to TradeForge.`)}
+if(tfIsNumber(o)&&o<100)i.push(`The TradeForge availability input for ${esc(e.name)} is ${Number(o).toFixed(0)} / 100 before age and position context.`);
+if(null!==t.age){
+const r=tfDynastyAgeFactor(e.pos,t.age);
+if(r<.9){l-=10;i.push(`${esc(e.name)} is age ${t.age}, which creates a stronger career-horizon discount for ${e.pos} in long-term formats.`)}
+else if(r<1){l-=5;i.push(`${esc(e.name)} is age ${t.age}, so TradeForge applies some long-term age/career-window caution.`)}
+else if(r>1){i.push(`${esc(e.name)} is age ${t.age}, which supports a longer runway in dynasty/keeper formats.`)}
+}
+if("RB"===e.pos){l-=6;i.push("RBs receive extra availability caution because the position carries more workload and contact exposure.")}
+else if("TE"===e.pos){l-=3;i.push("TEs receive mild availability caution because of blocking and contact usage.")}
+else if("QB"===e.pos){i.push("QBs generally receive less position-based injury volatility than RB/WR/TE in the TradeForge risk layer.")}
+if("redraft"===leagueMode&&l<85)i.push("Redraft mode makes short-term availability more important because missed games are harder to recover from this season.");
+if("dynasty"===leagueMode&&l<85)i.push("Dynasty mode reduces the impact of short-term missed time, but age and recurrence risk still matter for long-term value.");
+l=tfClamp(Math.round(l),5,100);
+const d=l>=90?"Low":l>=75?"Moderate":l>=55?"Elevated":"High",u=l>=90?"low":l>=75?"moderate":l>=55?"elevated":"high";
+return{player:e,score:l,label:d,className:u,status:n||"No current designation",notes:i}
+}
+function injuryEngineSideScore(e){
+if(!e.length)return 100;
+let t=0,r=0;
+e.forEach(e=>{const n=injuryEnginePlayerProfile(e),a=Math.max(1,value(e));t+=n.score*a;r+=a});
+return r?tfClamp(Math.round(t/r),5,100):100
+}
+function injuryEngineWorst(e){
+return e.map(injuryEnginePlayerProfile).sort((e,t)=>e.score-t.score)[0]||null
+}
+function injuryEngineLabel(e){return e>=90?{label:"Low",className:"low"}:e>=75?{label:"Moderate",className:"moderate"}:e>=55?{label:"Elevated",className:"elevated"}:{label:"High",className:"high"}}
+function renderInjuryEngine(e,t,r){
+const n=$(e);if(!n)return;
+if(!t.length||!r.length)return n.className="injury-engine-box empty",void(n.textContent="Add players to both sides to see Injury Intelligence Engine context.");
+const a=injuryEngineSideScore(t),s=injuryEngineSideScore(r),o=injuryEngineLabel(Math.min(a,s)),l=injuryEngineWorst(t),i=injuryEngineWorst(r),d=[];
+d.push(`Team A package availability score: ${a} / 100. Team B package availability score: ${s} / 100.`);
+if(l)d.push(`Team A main availability watch: ${esc(l.player.name)} — ${l.label} risk. ${l.notes[0]||"No extra injury note available."}`);
+if(i)d.push(`Team B main availability watch: ${esc(i.player.name)} — ${i.label} risk. ${i.notes[0]||"No extra injury note available."}`);
+const u=[l?.notes?.[1],i?.notes?.[1]].filter(Boolean);u.forEach(e=>d.push(e));
+if(Math.abs(a-s)>=10)d.push(`${a>s?"Team B":"Team A"} carries the higher availability concern in this trade based on the current TradeForge injury inputs and player context.`);
+else d.push("Neither side has a major package-level availability edge based on the current TradeForge injury inputs.");
+n.className="injury-engine-box",n.innerHTML=`<div class="injury-engine-head"><div><div class="injury-engine-title">Availability Risk: ${o.label}</div><div class="sub">Lower score means more injury/availability concern.</div></div><div class="injury-engine-score ${o.className}">${Math.min(a,s)} / 100</div></div><ul class="injury-engine-list">${d.filter(Boolean).slice(0,7).map(e=>`<li>${e}</li>`).join("")}</ul><div class="injury-engine-context">Injury Intelligence Engine uses only app/synced data: current designation when available, TradeForge availability inputs, age/career-window context, position risk, and league format. It does not diagnose injuries or pull outside medical news.</div>`
+}
+
 function modeLabel(){return`${"ppr"===scoringMode?"PPR":"half"===scoringMode?"0.5 PPR":"No PPR"} • ${leagueMode[0].toUpperCase()+leagueMode.slice(1)} • ${"superflex"===qbMode?"Superflex":"1QB"}${"half"===tePremiumMode?" • TEP +0.5":"full"===tePremiumMode?" • TEP +1.0":""}`}
 function sleeperModeLabel(){return`${"ppr"===sleeperScoringMode?"PPR":"half"===sleeperScoringMode?"0.5 PPR":"No PPR"} • ${sleeperLeagueMode[0].toUpperCase()+sleeperLeagueMode.slice(1)} • ${"superflex"===sleeperQbMode?"Superflex":"1QB"}${"half"===sleeperTePremiumMode?" • TEP +0.5":"full"===sleeperTePremiumMode?" • TEP +1.0":""}`}
 function syncedProviderName(){return"espn"===syncedProvider?"ESPN":"Sleeper"}
@@ -1264,6 +1385,7 @@ $("disconnect")&&($("disconnect").textContent=`Disconnect ${e}`),$("trade-center
 $("synced-trade-calculator-title")&&($("synced-trade-calculator-title").textContent=`${e} Trade Calculator`),
 $("synced-trade-calculator-sub")&&($("synced-trade-calculator-sub").textContent=`Uses the selected ${e} rosters`),
 $("synced-advisor-sub")&&($("synced-advisor-sub").textContent=`AI Trade Advisor guidance for your ${e} league.`),
+$("synced-injury-sub")&&($("synced-injury-sub").textContent=`Injury Intelligence Engine context for your ${e} league.`),
 $("trade-finder-roster-copy")&&($("trade-finder-roster-copy").textContent=`TradeForge searches your valued ${e} roster for 1-for-1, 2-for-1, and 3-for-1 packages and ranks them by adjusted trade value.`)
 }
 function withSleeperModes(e){
@@ -1288,10 +1410,10 @@ function calculate(){
 const e=base(teamA),t=base(teamB),r=adjustedTradeValues(teamA,teamB),n=r.a,a=r.b,s=diff(n,a);
 $("base-a").textContent=e.toFixed(1),$("base-b").textContent=t.toFixed(1),$("adj-a").textContent=n.toFixed(1),$("adj-b").textContent=a.toFixed(1),$("marker").style.left=(n+a?Math.max(5,Math.min(95,a/(n+a)*100)):50)+"%";
 const o=$("verdict");
-if(o.className="",!teamA.length||!teamB.length)return o.innerHTML="\nBuild a Trade\n<small>Add players to both sides.</small>\n",$("grade").textContent="—",renderTradeAdvisor("trade-advisor",teamA,teamB,r),void($("trade-ideas").textContent="Build a trade to see suggested trade ideas.");
+if(o.className="",!teamA.length||!teamB.length)return o.innerHTML="\nBuild a Trade\n<small>Add players to both sides.</small>\n",$("grade").textContent="—",renderTradeAdvisor("trade-advisor",teamA,teamB,r),renderInjuryEngine("injury-engine",teamA,teamB),void($("trade-ideas").textContent="Build a trade to see suggested trade ideas.");
 let l,i;s<=5?(l="FAIR TRADE",i="fair"):s<=10?(l="SLIGHT ADVANTAGE",i="slight"):s<=20?(l="ADVANTAGE",i="adv"):(l="MAJOR ADVANTAGE",i="major"),o.className=i,
 o.innerHTML=`\n${l}\n<small>\n${s.toFixed(1)}% difference\n${s>5?" • "+(n>a?"Team A":"Team B")+" has more adjusted value":""}\n</small>\n`,
-$("grade").textContent=s<=5?"A+":s<=10?"A":s<=20?"B":s<=30?"C":s<=40?"D":"F",renderTradeAdvisor("trade-advisor",teamA,teamB,r),tradeIdeas(n,a)
+$("grade").textContent=s<=5?"A+":s<=10?"A":s<=20?"B":s<=30?"C":s<=40?"D":"F",renderTradeAdvisor("trade-advisor",teamA,teamB,r),renderInjuryEngine("injury-engine",teamA,teamB),tradeIdeas(n,a)
 }
 function tradeIdeas(e,t){
 const r=$("trade-ideas");if(!teamA.length||!teamB.length)return void(r.textContent="Build a trade to see suggested trade ideas.");const n=diff(e,t);
@@ -1328,10 +1450,10 @@ function renderSleeper(){clearSearchResults("sleeper-"),renderSleeperTeam("A"),r
 function sleeperCalculate(){withSleeperModes(()=>{
 const e=base(sleeperTeamA),t=base(sleeperTeamB),r=adjustedTradeValues(sleeperTeamA,sleeperTeamB),n=r.a,a=r.b,s=diff(n,a);
 $("sleeper-base-a").textContent=e.toFixed(1),$("sleeper-base-b").textContent=t.toFixed(1),$("sleeper-adj-a").textContent=n.toFixed(1),$("sleeper-adj-b").textContent=a.toFixed(1),$("sleeper-marker").style.left=(n+a?Math.max(5,Math.min(95,a/(n+a)*100)):50)+"%";
-const o=$("sleeper-verdict");if(o.className="",!sleeperTeamA.length||!sleeperTeamB.length)return o.innerHTML="\nBuild a Trade\n<small>Add players from both synced rosters.</small>\n",$("sleeper-grade").textContent="—",renderTradeAdvisor("sleeper-trade-advisor",sleeperTeamA,sleeperTeamB,r,{rosterA:sleeperRosterA,rosterB:sleeperRosterB}),void($("sleeper-trade-ideas").textContent=`Build a trade from the synced ${syncedProviderName()} league to see suggested trade ideas.`);
+const o=$("sleeper-verdict");if(o.className="",!sleeperTeamA.length||!sleeperTeamB.length)return o.innerHTML="\nBuild a Trade\n<small>Add players from both synced rosters.</small>\n",$("sleeper-grade").textContent="—",renderTradeAdvisor("sleeper-trade-advisor",sleeperTeamA,sleeperTeamB,r,{rosterA:sleeperRosterA,rosterB:sleeperRosterB}),renderInjuryEngine("sleeper-injury-engine",sleeperTeamA,sleeperTeamB),void($("sleeper-trade-ideas").textContent=`Build a trade from the synced ${syncedProviderName()} league to see suggested trade ideas.`);
 let l,i;s<=5?(l="FAIR TRADE",i="fair"):s<=10?(l="SLIGHT ADVANTAGE",i="slight"):s<=20?(l="ADVANTAGE",i="adv"):(l="MAJOR ADVANTAGE",i="major"),o.className=i,
 o.innerHTML=`\n${l}\n<small>\n${s.toFixed(1)}% difference\n${s>5?" • "+(n>a?"Team A":"Team B")+" has more adjusted value":""}\n</small>\n`,
-$("sleeper-grade").textContent=s<=5?"A+":s<=10?"A":s<=20?"B":s<=30?"C":s<=40?"D":"F",renderTradeAdvisor("sleeper-trade-advisor",sleeperTeamA,sleeperTeamB,r,{rosterA:sleeperRosterA,rosterB:sleeperRosterB}),sleeperTradeIdeas(n,a)
+$("sleeper-grade").textContent=s<=5?"A+":s<=10?"A":s<=20?"B":s<=30?"C":s<=40?"D":"F",renderTradeAdvisor("sleeper-trade-advisor",sleeperTeamA,sleeperTeamB,r,{rosterA:sleeperRosterA,rosterB:sleeperRosterB}),renderInjuryEngine("sleeper-injury-engine",sleeperTeamA,sleeperTeamB),sleeperTradeIdeas(n,a)
 })}
 function sleeperTradeIdeas(e,t){
 const r=$("sleeper-trade-ideas");
@@ -1402,7 +1524,7 @@ DASHBOARD_POSITIONS.forEach(e=>{l[e]=dashboardPositionValue(t,e)});const i=.6*n+
 }
 function dashboardRank(e,t,r){const n=e.slice().sort((e,r)=>r[t]-e[t]).findIndex(e=>e.rosterId===String(r));return n>=0?n+1:e.length}
 function dashboardPositionRank(e,t,r){const n=e.slice().sort((e,r)=>r.positions[t]-e.positions[t]).findIndex(e=>e.rosterId===String(r));return n>=0?n+1:e.length}
-  function dashboardTeamProfile(e,t){
+function dashboardTeamProfile(e,t){
 if("dynasty"===sleeperLeagueMode){const r=dashboardRank(t,"redraftStarters",e.rosterId),n=dashboardRank(t,"dynastyTotal",e.rosterId);
 return r+2<n?{label:"Win-now leaning",detail:`Current lineup strength ranks ${ordinal(r)} while long-term dynasty value ranks ${ordinal(n)}.`}:n+2<r?{label:"Future-focused",detail:`Long-term dynasty value ranks ${ordinal(n)} while current lineup strength ranks ${ordinal(r)}.`}:{label:"Balanced roster",detail:`Current lineup strength ranks ${ordinal(r)} and long-term dynasty value ranks ${ordinal(n)}.`}}
 const r=dashboardRank(t,"starters",e.rosterId),n=dashboardRank(t,"depth",e.rosterId);
