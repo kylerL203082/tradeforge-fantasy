@@ -346,6 +346,21 @@ padding-top:10px;
 border-top:1px solid var(--border);
 font-size:11px;
 color:var(--muted)}
+.calculator-support-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:16px;
+margin-top:16px}
+.calculator-support-card{
+background:var(--card);
+border:1px solid var(--border);
+border-radius:15px;
+padding:16px;
+margin-top:0}
+.calculator-support-card h3{
+margin-top:0}
+.synced-calculator-support-grid .calculator-support-card{
+background:var(--card2)}
 #sleeper-bar{
 display:none;
 border-color:var(--blue)}
@@ -648,6 +663,10 @@ display:block}
 width:100%;
 margin-top:12px}
 }
+@media(max-width:900px){
+.calculator-support-grid{
+grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -675,9 +694,11 @@ margin-top:12px}
 <section class="result-card"><div class="meter"><div id="marker"></div></div><div id="verdict">Build a Trade<small>Add players to both sides.</small></div><div class="grade"><span>Trade Grade</span><strong id="grade">—</strong></div><div class="actions"><button id="swap">Swap Sides</button><button id="clear">Clear Trade</button></div></section>
 <section class="team"><h2>Team B (Receiving)</h2><div class="search-wrap"><input id="search-b" placeholder="Search player or pick" autocomplete="off"><div id="results-b" class="results"></div></div><div id="team-b"></div><div class="totals"><div class="total"><small>Base</small><strong id="base-b">0.0</strong></div><div class="total"><small>Adjusted</small><strong id="adj-b">0.0</strong></div></div></section>
 </div>
+<div class="calculator-support-grid">
+<section class="calculator-support-card"><h3>AI Trade Advisor</h3><div class="sub" style="margin-bottom:10px">Practical accept/decline guidance directly tied to this calculator.</div><div id="trade-advisor" class="trade-advisor-box empty">Build a trade to get advisor guidance.</div></section>
+<section class="calculator-support-card"><h3>Suggested Trade Ideas</h3><div class="sub" style="margin-bottom:10px">TradeForge adds assets to the side currently receiving less adjusted value.</div><div id="trade-ideas">Build a trade to see suggested trade ideas.</div></section>
+</div>
 <section class="card"><h3>TradeForge Insight</h3><div class="sub" style="margin-bottom:10px">Player facts and league-format context behind the valuations.</div><div id="trade-insight" class="trade-insight-box empty">Build a trade to see why TradeForge values it this way.</div></section>
-<section class="card"><h3>AI Trade Advisor</h3><div class="sub" style="margin-bottom:10px">Practical accept/decline guidance based on value, roster context, league format, age/future profile, and package structure.</div><div id="trade-advisor" class="trade-advisor-box empty">Build a trade to get advisor guidance.</div></section>
-<section class="card"><h3>Suggested Trade Ideas</h3><div class="sub" style="margin-bottom:10px">TradeForge only adds assets to the side currently receiving less adjusted value.</div><div id="trade-ideas">Build a trade to see suggested trade ideas.</div></section>
 </main>
 <main id="league-page" class="page-hidden">
 <section class="card"><div class="league-toolbar"><div><h2>TradeForge League Dashboard</h2><div id="league-page-name" class="sub"></div></div><button id="back-to-analyzer" class="close">← Back to Trade Analyzer</button></div></section>
@@ -696,9 +717,11 @@ margin-top:12px}
 <section class="result-card"><div class="meter"><div id="sleeper-marker"></div></div><div id="sleeper-verdict">Build a Trade<small>Add players from the synced rosters.</small></div><div class="grade"><span>Trade Grade</span><strong id="sleeper-grade">—</strong></div><div class="actions"><button id="sleeper-swap">Swap Sides</button><button id="sleeper-clear">Clear Trade</button></div></section>
 <section class="team"><h2>Team B (Receiving)</h2><div class="search-wrap"><input id="sleeper-search-b" placeholder="Search Team B roster" autocomplete="off"><div id="sleeper-results-b" class="results"></div></div><div id="sleeper-team-b"></div><div class="totals"><div class="total"><small>Base</small><strong id="sleeper-base-b">0.0</strong></div><div class="total"><small>Adjusted</small><strong id="sleeper-adj-b">0.0</strong></div></div></section>
 </div>
-<div class="trade-center-divider"></div><h3>TradeForge Insight</h3><div class="sub" id="synced-insight-sub" style="margin-bottom:10px">Why the current synced league settings make this trade fair or favor one side.</div><div id="sleeper-trade-insight" class="trade-insight-box empty">Build a synced league trade to see why TradeForge values it this way.</div>
-<div class="trade-center-divider"></div><h3>AI Trade Advisor</h3><div class="sub" id="synced-advisor-sub" style="margin-bottom:10px">Practical guidance using your synced league rosters, value gap, format, and player profiles.</div><div id="sleeper-trade-advisor" class="trade-advisor-box empty">Build a synced league trade to get advisor guidance.</div>
-<div class="trade-center-divider"></div><h3>Suggested Trade Ideas</h3><div class="sub" style="margin-bottom:10px">TradeForge suggests additional assets from the lower-value team's own roster to add to its side of the trade.</div><div id="sleeper-trade-ideas">Build a synced league trade to see suggested trade ideas.</div>
+<div class="calculator-support-grid synced-calculator-support-grid">
+<section class="calculator-support-card"><h3>AI Trade Advisor</h3><div class="sub" id="synced-advisor-sub" style="margin-bottom:10px">Practical guidance using your synced league rosters, value gap, format, and player profiles.</div><div id="sleeper-trade-advisor" class="trade-advisor-box empty">Build a synced league trade to get advisor guidance.</div></section>
+<section class="calculator-support-card"><h3>Suggested Trade Ideas</h3><div class="sub" style="margin-bottom:10px">TradeForge suggests additional assets from the lower-value team's own roster to add to its side of the trade.</div><div id="sleeper-trade-ideas">Build a synced league trade to see suggested trade ideas.</div></section>
+</div>
+<div class="trade-center-divider"></div><h3>TradeForge Insight</h3><div class="sub" id="synced-insight-sub" style="margin-bottom:10px">Player facts and valuation context for your synced league.</div><div id="sleeper-trade-insight" class="trade-insight-box empty">Build a synced league trade to see why TradeForge values it this way.</div>
 </div>
 <div class="trade-center-panel active" data-trade-center-panel="finder">
 <div class="trade-center-panel-title"><h3>League Trade Finder</h3><div class="sub">Pick a player on another team and let TradeForge search your roster for the closest packages.</div></div>
