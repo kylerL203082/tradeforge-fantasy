@@ -1,7 +1,5 @@
 *{
-box-sizing:border-box
-}
-
+box-sizing:border-box}
 :root{
 --bg:#f4f7fb;
 --card:#fff;
@@ -11,10 +9,8 @@ box-sizing:border-box
 --border:#d8e1ee;
 --blue:#1976ff;
 --input:#fff;
---sync:#fff
-}
-
-html[data-theme="dark"]{
+--sync:#fff}
+html[data-theme=dark]{
 --bg:#0c111b;
 --card:#151d2a;
 --card2:#101722;
@@ -23,159 +19,105 @@ html[data-theme="dark"]{
 --border:#29364b;
 --blue:#2583ff;
 --input:#0f1622;
---sync:#000
-}
-
+--sync:#000}
 body{
 margin:0;
 background:var(--bg);
 color:var(--text);
-font-family:Arial,sans-serif
-}
-
-button,
-input,
-select{
-font:inherit
-}
-
+font-family:Arial,sans-serif}
+button,input,select{
+font:inherit}
 button{
-cursor:pointer
-}
-
+cursor:pointer}
 .wrap{
 max-width:1400px;
 margin:auto;
-padding:20px
-}
-
+padding:20px}
 header{
 display:flex;
 justify-content:space-between;
 align-items:center;
 border-bottom:1px solid var(--border);
-padding-bottom:18px
-}
-
+padding-bottom:18px}
 .brand{
 display:flex;
 align-items:center;
-gap:12px
-}
-
+gap:12px}
 .logo{
 background:var(--blue);
 color:#fff;
 font-weight:900;
 font-size:20px;
 padding:15px;
-border-radius:13px
-}
-
+border-radius:13px}
 h1{
 margin:0;
-font-size:30px
-}
-
+font-size:30px}
 .sub{
 color:var(--muted);
 font-size:13px;
-margin-top:4px
-}
-
+margin-top:4px}
 .header-buttons{
 display:flex;
 flex-direction:column;
 gap:7px;
-width:360px
-}
-
+width:480px}
 .header-buttons button{
 padding:10px;
 border-radius:9px;
-font-weight:800
-}
-
+font-weight:800}
 .sync-actions{
 display:grid;
-grid-template-columns:1fr 1fr;
-gap:7px
-}
-
+grid-template-columns:repeat(3,1fr);
+gap:7px}
 #theme-toggle{
 background:var(--card);
 color:var(--text);
-border:1px solid var(--border)
-}
-
-#sync-button{
+border:1px solid var(--border)}
+#espn-sync-button,#sync-button{
 background:var(--blue);
 color:var(--sync);
-border:0
-}
-
+border:0}
 #league-view-button{
 background:var(--card);
 color:var(--text);
-border:1px solid var(--border)
-}
-
+border:1px solid var(--border)}
 #league-view-button:disabled{
 opacity:.45;
-cursor:not-allowed
-}
-
-.card,
-.team,
-.result-card{
+cursor:not-allowed}
+.card,.result-card,.team{
 background:var(--card);
 border:1px solid var(--border);
 border-radius:15px;
 padding:16px;
-margin-top:16px
-}
-
+margin-top:16px}
 .settings{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:12px
-}
-
+gap:12px}
 .setting{
 display:flex;
 flex-direction:column;
-gap:5px
-}
-
+gap:5px}
 .setting span{
 font-size:11px;
 font-weight:800;
-color:var(--muted)
-}
-
-select,
-input{
+color:var(--muted)}
+input,select{
 width:100%;
 padding:10px;
 border-radius:8px;
 border:1px solid var(--border);
 background:var(--input);
-color:var(--text)
-}
-
+color:var(--text)}
 .settings-title{
 display:flex;
 justify-content:space-between;
 margin-bottom:12px;
-font-weight:900
-}
-
-#mode-label,
-#sleeper-mode-label{
+font-weight:900}
+#mode-label,#sleeper-mode-label{
 color:var(--blue);
-font-size:12px
-}
-
+font-size:12px}
 .engine-strip{
 display:flex;
 justify-content:space-between;
@@ -186,62 +128,40 @@ padding:10px 12px;
 border:1px solid var(--border);
 border-radius:10px;
 background:var(--card2);
-font-size:12px
-}
-
+font-size:12px}
 .engine-strip strong{
-color:var(--blue)
-}
-
+color:var(--blue)}
 .engine-strip span{
 color:var(--muted);
-text-align:right
-}
-
+text-align:right}
 .top-grid{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:10px
-}
-
+gap:10px}
 .top-box{
 background:var(--card2);
 border:1px solid var(--border);
 border-radius:10px;
-padding:10px
-}
-
+padding:10px}
 .top-box h3{
 margin:0 0 8px;
-font-size:13px
-}
-
+font-size:13px}
 .top-row{
 display:flex;
 justify-content:space-between;
 font-size:12px;
-padding:5px 0
-}
-
+padding:5px 0}
 .trade-grid{
 display:grid;
 grid-template-columns:1fr 320px 1fr;
 gap:15px;
-margin-top:16px
-}
-
+margin-top:16px}
 .team{
-margin-top:0
-}
-
+margin-top:0}
 .team h2{
-margin-top:0
-}
-
+margin-top:0}
 .search-wrap{
-position:relative
-}
-
+position:relative}
 .results{
 display:none;
 position:absolute;
@@ -253,92 +173,58 @@ border:1px solid var(--border);
 border-radius:9px;
 z-index:20;
 max-height:320px;
-overflow:auto
-}
-
+overflow:auto}
 .results.show{
-display:block
-}
-
+display:block}
 .result-item{
 padding:9px;
 border-bottom:1px solid var(--border);
 cursor:pointer;
 display:flex;
 justify-content:space-between;
-gap:10px
-}
-
+gap:10px}
 .result-item:hover{
-background:var(--card2)
-}
-
+background:var(--card2)}
 .player{
 display:grid;
 grid-template-columns:1fr auto auto;
 gap:8px;
 align-items:center;
 padding:10px 0;
-border-bottom:1px solid var(--border)
-}
-
-.player small,
-.roster-player small{
+border-bottom:1px solid var(--border)}
+.player small,.roster-player small{
 display:block;
 color:var(--muted);
-margin-top:3px
-}
-
+margin-top:3px}
 .remove{
 border:1px solid var(--border);
 background:var(--card2);
 color:var(--text);
-border-radius:6px
-}
-
+border-radius:6px}
 .totals{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:8px;
-margin-top:15px
-}
-
+margin-top:15px}
 .total{
 background:var(--card2);
 padding:10px;
 border-radius:9px;
-text-align:center
-}
-
+text-align:center}
 .total small{
 display:block;
-color:var(--muted)
-}
-
+color:var(--muted)}
 .total strong{
-font-size:20px
-}
-
+font-size:20px}
 .result-card{
-margin-top:0
-}
-
+margin-top:0}
 .meter{
 height:15px;
-background:linear-gradient(
-90deg,
-#3380ff,
-#26a269,
-#ff9b3d,
-#ef5350
-);
+background:linear-gradient(90deg,#3380ff,#26a269,#ff9b3d,#ef5350);
 border-radius:20px;
 position:relative;
-margin:15px 0 24px
-}
-
-#marker,
-#sleeper-marker{
+margin:15px 0 24px}
+#marker,#sleeper-marker{
 position:absolute;
 width:5px;
 height:25px;
@@ -346,229 +232,153 @@ background:var(--text);
 top:-5px;
 left:50%;
 border-radius:3px;
-transition:.2s
-}
-
-#verdict,
-#sleeper-verdict{
+transition:.2s}
+#sleeper-verdict,#verdict{
 padding:18px;
 text-align:center;
 font-size:25px;
 font-weight:900;
 border:2px solid var(--border);
 border-radius:12px;
-background:var(--card2)
-}
-
-#verdict small,
-#sleeper-verdict small{
+background:var(--card2)}
+#sleeper-verdict small,#verdict small{
 display:block;
 font-size:11px;
 color:var(--muted);
-margin-top:6px
-}
-
-#verdict.fair,
-#sleeper-verdict.fair{
-border-color:#22a06b
-}
-
-#verdict.slight,
-#sleeper-verdict.slight{
-border-color:#e3a008
-}
-
-#verdict.adv,
-#sleeper-verdict.adv{
-border-color:#e87722
-}
-
-#verdict.major,
-#sleeper-verdict.major{
-border-color:#d64545
-}
-
+margin-top:6px}
+#sleeper-verdict.fair,#verdict.fair{
+border-color:#22a06b}
+#sleeper-verdict.slight,#verdict.slight{
+border-color:#e3a008}
+#sleeper-verdict.adv,#verdict.adv{
+border-color:#e87722}
+#sleeper-verdict.major,#verdict.major{
+border-color:#d64545}
 .grade{
 display:flex;
 justify-content:space-between;
 padding:12px;
 background:var(--card2);
 border-radius:9px;
-margin-top:10px
-}
-
+margin-top:10px}
 .actions{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:7px;
-margin-top:10px
-}
-
-.actions button,
-.close{
+margin-top:10px}
+.actions button,.close{
 padding:10px;
 border-radius:8px;
 border:1px solid var(--border);
 background:var(--card2);
 color:var(--text);
-font-weight:800
-}
-
+font-weight:800}
 .suggestion{
 background:var(--card2);
 border:1px solid var(--border);
 border-radius:8px;
 padding:9px;
 margin-top:7px;
-font-size:12px
-}
-
-/* =========================================================
-TRADEFORGE INSIGHT
-========================================================= */
-
-.trade-insight-box{
+font-size:12px}
+.trade-advisor-box{
 background:var(--card2);
 border:1px solid var(--border);
 border-radius:12px;
 padding:15px 16px;
-line-height:1.5
-}
-
-.trade-insight-box.empty{
+line-height:1.5}
+.trade-advisor-box.empty{
 color:var(--muted);
-font-size:13px
-}
-
-.trade-insight-summary{
-font-size:14px;
-font-weight:800;
-margin-bottom:10px
-}
-
-.trade-insight-list{
+font-size:13px}
+.trade-advisor-verdict{
+font-size:17px;
+font-weight:900;
+margin-bottom:8px}
+.trade-advisor-verdict.make{
+color:#22a06b}
+.trade-advisor-verdict.hold{
+color:#e3a008}
+.trade-advisor-verdict.stop{
+color:#ef5350}
+.trade-advisor-detail{
+font-size:13px;
+margin-bottom:10px}
+.trade-advisor-list{
 margin:0;
 padding-left:20px;
-font-size:13px
-}
-
-.trade-insight-list li{
-margin:7px 0
-}
-
-.trade-insight-context{
+font-size:13px}
+.trade-advisor-list li{
+margin:7px 0}
+.trade-advisor-context{
 margin-top:11px;
 padding-top:10px;
 border-top:1px solid var(--border);
 font-size:11px;
-color:var(--muted)
-}
-
-.trade-insight-grid{
-display:grid;
-grid-template-columns:repeat(2,minmax(0,1fr));
-gap:12px;
-margin-top:10px
-}
-
-.trade-insight-side{
-min-width:0
-}
-
-.trade-insight-side-title{
-font-size:11px;
-font-weight:900;
-letter-spacing:.08em;
-text-transform:uppercase;
-color:var(--muted);
-margin-bottom:7px
-}
-
-.trade-insight-player{
-background:var(--card);
+color:var(--muted)}
+.injury-engine-box{
+background:var(--card2);
 border:1px solid var(--border);
-border-radius:10px;
-padding:11px 12px;
-margin-bottom:9px
-}
-
-.trade-insight-player:last-child{
-margin-bottom:0
-}
-
-.trade-insight-player-head{
+border-radius:12px;
+padding:15px 16px;
+line-height:1.5}
+.injury-engine-box.empty{
+color:var(--muted);
+font-size:13px}
+.injury-engine-head{
 display:flex;
 justify-content:space-between;
-gap:10px;
-align-items:baseline;
-margin-bottom:7px
-}
-
-.trade-insight-player-name{
+gap:12px;
+align-items:flex-start;
+margin-bottom:10px}
+.injury-engine-title{
+font-size:15px;
+font-weight:900}
+.injury-engine-score{
 font-size:13px;
-font-weight:900
-}
-
-.trade-insight-player-meta{
-font-size:10px;
-color:var(--muted);
-white-space:nowrap
-}
-
-.trade-insight-factor-list{
-list-style:none;
+font-weight:900;
+white-space:nowrap}
+.injury-engine-score.low{
+color:#22a06b}
+.injury-engine-score.moderate{
+color:#e3a008}
+.injury-engine-score.elevated{
+color:#e87722}
+.injury-engine-score.high{
+color:#ef5350}
+.injury-engine-list{
 margin:0;
-padding:0
-}
-
-.trade-insight-factor{
-font-size:12px;
-line-height:1.45;
-padding:5px 0 5px 18px;
-position:relative
-}
-
-.trade-insight-factor:before{
-content:"•";
-position:absolute;
-left:4px;
-top:5px;
-font-weight:900
-}
-
-.trade-insight-factor.risk:before{
-content:"!"
-}
-
-.trade-insight-factor.positive:before{
-content:"+"
-}
-
-.trade-insight-factor strong{
-font-weight:900
-}
-
-.trade-insight-source{
-color:var(--muted);
-font-size:10px
-}
-
-/* =========================================================
-SLEEPER
-========================================================= */
-
+padding-left:20px;
+font-size:13px}
+.injury-engine-list li{
+margin:7px 0}
+.injury-engine-context{
+margin-top:11px;
+padding-top:10px;
+border-top:1px solid var(--border);
+font-size:11px;
+color:var(--muted)}
+.calculator-support-grid{
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+gap:16px;
+margin-top:16px}
+.calculator-support-card{
+background:var(--card);
+border:1px solid var(--border);
+border-radius:15px;
+padding:16px;
+margin-top:0}
+.calculator-support-card h3{
+margin-top:0}
+.synced-calculator-support-grid .calculator-support-card{
+background:var(--card2)}
 #sleeper-bar{
 display:none;
-border-color:var(--blue)
-}
-
+border-color:var(--blue)}
 .sync-grid{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:10px;
-margin-top:12px
-}
-
+margin-top:12px}
 .primary{
 background:var(--blue);
 color:#fff;
@@ -577,9 +387,7 @@ width:100%;
 margin-top:10px;
 padding:10px;
 border-radius:8px;
-font-weight:800
-}
-
+font-weight:800}
 .modal-bg{
 display:none;
 position:fixed;
@@ -588,289 +396,182 @@ background:#000b;
 z-index:100;
 align-items:center;
 justify-content:center;
-padding:15px
-}
-
+padding:15px}
 .modal-bg.show{
-display:flex
-}
-
+display:flex}
 .modal{
 width:min(550px,100%);
 background:var(--card);
 padding:20px;
-border-radius:15px
-}
-
+border-radius:15px}
 .modal-head{
 display:flex;
 justify-content:space-between;
-gap:10px
-}
-
+gap:10px}
 .modal h2{
-margin-top:0
-}
-
+margin-top:0}
 #league-wrap{
 display:none;
-margin-top:12px
-}
-
-#status{
+margin-top:12px}
+#espn-status,#status{
 font-size:12px;
 color:var(--muted);
-margin-top:10px
-}
-
+margin-top:10px}
 .page-hidden{
-display:none!important
-}
-
-/* =========================================================
-LEAGUE PAGE
-========================================================= */
-
+display:none!important}
 .league-toolbar{
 display:flex;
 justify-content:space-between;
 align-items:center;
 gap:15px;
-margin-bottom:16px
-}
-
+margin-bottom:16px}
 .league-toolbar h2{
-margin:0
-}
-
+margin:0}
 .league-view-grid{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:16px
-}
-
+gap:16px}
 .roster-card{
 background:var(--card2);
 border:1px solid var(--border);
 border-radius:14px;
-padding:16px
-}
-
+padding:16px}
 .roster-title{
 display:flex;
 justify-content:space-between;
 gap:10px;
 align-items:flex-start;
 padding-bottom:12px;
-border-bottom:1px solid var(--border)
-}
-
+border-bottom:1px solid var(--border)}
 .roster-title h3{
-margin:4px 0 0
-}
-
+margin:4px 0 0}
 .roster-meta{
 color:var(--muted);
-font-size:12px
-}
-
+font-size:12px}
 .roster-list{
-margin-top:8px
-}
-
+margin-top:8px}
 .roster-player{
 display:grid;
 grid-template-columns:1fr auto;
 gap:10px;
 align-items:center;
 padding:11px 0;
-border-bottom:1px solid var(--border)
-}
-
+border-bottom:1px solid var(--border)}
 .roster-player:last-child{
-border-bottom:0
-}
-
+border-bottom:0}
 .roster-value{
-font-weight:900
-}
-
+font-weight:900}
 .not-valued{
 font-size:10px;
-color:var(--muted)
-}
-
-/* =========================================================
-TRADEFORGE LEAGUE DASHBOARD
-========================================================= */
-
+color:var(--muted)}
 .dashboard-header{
 display:flex;
 justify-content:space-between;
 align-items:flex-start;
 gap:20px;
-margin-bottom:18px
-}
-
+margin-bottom:18px}
 .dashboard-header h2{
-margin:0
-}
-
+margin:0}
 .dashboard-kpis{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:12px
-}
-
+gap:12px}
 .dashboard-kpi{
 background:var(--card2);
 border:1px solid var(--border);
 border-radius:13px;
-padding:15px
-}
-
+padding:15px}
 .dashboard-kpi small{
 display:block;
 color:var(--muted);
 font-size:10px;
 font-weight:900;
 letter-spacing:.05em;
-margin-bottom:8px
-}
-
+margin-bottom:8px}
 .dashboard-kpi strong{
 display:block;
-font-size:26px
-}
-
+font-size:26px}
 .dashboard-kpi span{
 display:block;
 font-size:11px;
 color:var(--muted);
-margin-top:7px
-}
-
+margin-top:7px}
 .dashboard-section-title{
-margin:22px 0 10px
-}
-
+margin:22px 0 10px}
 .dashboard-analysis{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:12px
-}
-
+gap:12px}
 .dashboard-analysis-card{
 background:var(--card2);
 border:1px solid var(--border);
 border-radius:12px;
-padding:14px
-}
-
+padding:14px}
 .dashboard-analysis-card small{
 display:block;
 font-size:10px;
 font-weight:900;
 color:var(--muted);
-margin-bottom:7px
-}
-
+margin-bottom:7px}
 .dashboard-analysis-card strong{
-font-size:17px
-}
-
+font-size:17px}
 .dashboard-position-grid{
 display:grid;
 grid-template-columns:repeat(4,1fr);
 gap:10px;
-margin-top:12px
-}
-
+margin-top:12px}
 .dashboard-position-card{
 background:var(--card2);
 border:1px solid var(--border);
 border-radius:11px;
-padding:12px
-}
-
+padding:12px}
 .dashboard-position-head{
 display:flex;
 justify-content:space-between;
-align-items:center
-}
-
+align-items:center}
 .dashboard-position-head strong{
-font-size:16px
-}
-
+font-size:16px}
 .dashboard-position-rank{
 color:var(--blue);
 font-weight:900;
-font-size:13px
-}
-
+font-size:13px}
 .dashboard-position-value{
 font-size:11px;
 color:var(--muted);
-margin-top:7px
-}
-
+margin-top:7px}
 .trade-opportunity{
 background:var(--card2);
 border:1px solid var(--border);
 border-radius:11px;
 padding:13px;
-margin-top:9px
-}
-
+margin-top:9px}
 .trade-opportunity strong{
 display:block;
-margin-bottom:5px
-}
-
+margin-bottom:5px}
 .power-table-wrap{
 overflow-x:auto;
 border:1px solid var(--border);
-border-radius:12px
-}
-
+border-radius:12px}
 .power-table{
 width:100%;
 border-collapse:collapse;
 min-width:700px;
-font-size:12px
-}
-
-.power-table th,
-.power-table td{
+font-size:12px}
+.power-table td,.power-table th{
 padding:11px;
 text-align:left;
-border-bottom:1px solid var(--border)
-}
-
+border-bottom:1px solid var(--border)}
 .power-table th{
 font-size:10px;
 letter-spacing:.05em;
-color:var(--muted)
-}
-
+color:var(--muted)}
 .power-table tr:last-child td{
-border-bottom:0
-}
-
+border-bottom:0}
 .power-table .my-row{
-background:var(--card2)
-}
-
+background:var(--card2)}
 .rank-cell{
 font-weight:900;
-color:var(--blue)
-}
-
-/* =========================================================
-TRADE CENTER
-========================================================= */
-
+color:var(--blue)}
 .trade-center-tabs{
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -879,221 +580,100 @@ padding:6px;
 margin-bottom:16px;
 background:var(--card2);
 border:1px solid var(--border);
-border-radius:12px
-}
-
+border-radius:12px}
 .trade-center-tab{
 border:1px solid transparent;
-background:transparent;
+background:0 0;
 color:var(--muted);
 padding:11px 12px;
 border-radius:9px;
-font-weight:900
-}
-
+font-weight:900}
 .trade-center-tab:hover{
 background:var(--card);
-color:var(--text)
-}
-
+color:var(--text)}
 .trade-center-tab.active{
 background:var(--blue);
 border-color:var(--blue);
-color:#fff
-}
-
+color:#fff}
 .trade-center-panel{
-display:none
-}
-
+display:none}
 .trade-center-panel.active{
-display:block
-}
-
+display:block}
 .trade-center-panel-title{
-margin-bottom:12px
-}
-
+margin-bottom:12px}
 .trade-center-panel-title h3{
-margin:0
-}
-
+margin:0}
 .trade-center-divider{
 height:1px;
 background:var(--border);
-margin:18px 0
-}
-
-/* =========================================================
-LEAGUE TRADE FINDER
-========================================================= */
-
+margin:18px 0}
 .trade-finder-grid{
 display:grid;
 grid-template-columns:1.1fr 1.4fr .7fr auto;
 gap:10px;
-align-items:end
-}
-
+align-items:end}
 .trade-finder-grid .primary{
 margin-top:0;
 height:40px;
-white-space:nowrap
-}
-
+white-space:nowrap}
 .trade-finder-results{
-margin-top:12px
-}
-
+margin-top:12px}
 .trade-finder-result{
 background:var(--card2);
 border:1px solid var(--border);
 border-radius:11px;
 padding:13px;
-margin-top:9px
-}
-
-/*
-NEW:
-Allows the suggested trade information to stay on the left
-while the Build Trade button sits on the right.
-*/
-
-.trade-finder-result-layout{
-display:grid;
-grid-template-columns:minmax(0,1fr) auto;
-gap:18px;
-align-items:center
-}
-
+margin-top:9px}
 .trade-finder-result-head{
 display:flex;
 justify-content:space-between;
 gap:12px;
-align-items:flex-start
-}
-
+align-items:flex-start}
 .trade-finder-result-head strong:last-child{
 color:var(--blue);
-white-space:nowrap
-}
-
-/*
-NEW BUILD TRADE BUTTON
-*/
-
+white-space:nowrap}
 .trade-finder-build-button{
+display:block!important;
+visibility:visible!important;
+opacity:1!important;
+width:100%;
+margin-top:12px;
+padding:11px 14px;
+border:0;
+border-radius:8px;
 background:var(--blue);
 color:#fff;
-border:1px solid var(--blue);
-border-radius:9px;
-padding:11px 16px;
 font-weight:900;
-white-space:nowrap;
-min-width:110px;
-box-shadow:0 3px 10px rgba(0,0,0,.15);
-transition:
-transform .15s ease,
-filter .15s ease,
-box-shadow .15s ease
-}
-
-.trade-finder-build-button:hover{
-filter:brightness(1.08);
-transform:translateY(-1px);
-box-shadow:0 5px 14px rgba(0,0,0,.2)
-}
-
-.trade-finder-build-button:active{
-transform:translateY(0);
-box-shadow:0 2px 6px rgba(0,0,0,.15)
-}
-
-/* =========================================================
-RESPONSIVE
-========================================================= */
-
+cursor:pointer}
 @media(max-width:900px){
-
-.trade-grid{
-grid-template-columns:1fr
-}
-
-.top-grid,
-.settings,
-.dashboard-kpis,
-.dashboard-position-grid{
-grid-template-columns:1fr 1fr
-}
-
 .trade-finder-grid{
-grid-template-columns:1fr 1fr
+grid-template-columns:1fr 1fr}
+.trade-grid{
+grid-template-columns:1fr}
+.dashboard-kpis,.dashboard-position-grid,.settings,.top-grid{
+grid-template-columns:1fr 1fr}
 }
-
-}
-
-@media(max-width:760px){
-
-.trade-insight-grid{
-grid-template-columns:1fr
-}
-
-}
-
 @media(max-width:700px){
-
 .trade-center-tabs{
-grid-template-columns:1fr
+grid-template-columns:1fr}
 }
-
-}
-
-@media(max-width:650px){
-
-.trade-finder-result-layout{
-grid-template-columns:1fr
-}
-
-.trade-finder-build-button{
-width:100%;
-min-width:0
-}
-
-}
-
 @media(max-width:550px){
-
+.trade-finder-grid{
+grid-template-columns:1fr}
 header{
-display:block
-}
-
+display:block}
 .header-buttons{
 width:100%;
-margin-top:15px
-}
-
-.top-grid,
-.settings,
-.sync-grid,
-.league-view-grid,
-.dashboard-kpis,
-.dashboard-position-grid,
-.dashboard-analysis{
-grid-template-columns:1fr
-}
-
-.league-toolbar,
-.dashboard-header{
-display:block
-}
-
+margin-top:15px}
+.dashboard-analysis,.dashboard-kpis,.dashboard-position-grid,.league-view-grid,.settings,.sync-actions,.sync-grid,.top-grid{
+grid-template-columns:1fr}
+.dashboard-header,.league-toolbar{
+display:block}
 .league-toolbar button{
 width:100%;
-margin-top:12px
+margin-top:12px}
 }
-
-.trade-finder-grid{
-grid-template-columns:1fr
-}
-
+@media(max-width:900px){
+.calculator-support-grid{
+grid-template-columns:1fr}
 }
