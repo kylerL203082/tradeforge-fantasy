@@ -1,960 +1,306 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en-us">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TradeForge Fantasy</title>
-<style>
-*{box-sizing:border-box}:root{--bg:#f4f7fb;--card:#fff;--card2:#eef3f9;--text:#142033;--muted:#68778c;--border:#d8e1ee;--blue:#1976ff;--input:#fff;--sync:#fff}html[data-theme=dark]{--bg:#0c111b;--card:#151d2a;--card2:#101722;--text:#eef4ff;--muted:#9eabc0;--border:#29364b;--blue:#2583ff;--input:#0f1622;--sync:#000}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}button,input,select{font:inherit}button{cursor:pointer}.wrap{max-width:1400px;margin:auto;padding:20px}header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);padding-bottom:18px}.brand{display:flex;align-items:center;gap:12px}.logo{background:var(--blue);color:#fff;font-weight:900;font-size:20px;padding:15px;border-radius:13px}h1{margin:0;font-size:30px}.sub{color:var(--muted);font-size:13px;margin-top:4px}.header-buttons{display:flex;flex-direction:column;gap:7px;width:480px}.header-buttons button{padding:10px;border-radius:9px;font-weight:800}.sync-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}#theme-toggle{background:var(--card);color:var(--text);border:1px solid var(--border)}#espn-sync-button,#sync-button{background:var(--blue);color:var(--sync);border:0}#league-view-button{background:var(--card);color:var(--text);border:1px solid var(--border)}#league-view-button:disabled{opacity:.45;cursor:not-allowed}.card,.result-card,.team{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:16px;margin-top:16px}.settings{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.setting{display:flex;flex-direction:column;gap:5px}.setting span{font-size:11px;font-weight:800;color:var(--muted)}input,select{width:100%;padding:10px;border-radius:8px;border:1px solid var(--border);background:var(--input);color:var(--text)}.settings-title{display:flex;justify-content:space-between;margin-bottom:12px;font-weight:900}#mode-label,#sleeper-mode-label{color:var(--blue);font-size:12px}.engine-strip{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:12px;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--card2);font-size:12px}.engine-strip strong{color:var(--blue)}.engine-strip span{color:var(--muted);text-align:right}.top-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.top-box{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:10px}.top-box h3{margin:0 0 8px;font-size:13px}.top-row{display:flex;justify-content:space-between;font-size:12px;padding:5px 0}.trade-grid{display:grid;grid-template-columns:1fr 320px 1fr;gap:15px;margin-top:16px}.team{margin-top:0}.team h2{margin-top:0}.search-wrap{position:relative}.results{display:none;position:absolute;left:0;right:0;top:46px;background:var(--card);border:1px solid var(--border);border-radius:9px;z-index:20;max-height:320px;overflow:auto}.results.show{display:block}.result-item{padding:9px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;justify-content:space-between;gap:10px}.result-item:hover{background:var(--card2)}.player{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)}.player small,.roster-player small{display:block;color:var(--muted);margin-top:3px}.remove{border:1px solid var(--border);background:var(--card2);color:var(--text);border-radius:6px}.totals{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:15px}.total{background:var(--card2);padding:10px;border-radius:9px;text-align:center}.total small{display:block;color:var(--muted)}.total strong{font-size:20px}.result-card{margin-top:0}.meter{height:15px;background:linear-gradient(90deg,#3380ff,#26a269,#ff9b3d,#ef5350);border-radius:20px;position:relative;margin:15px 0 24px}#marker,#sleeper-marker{position:absolute;width:5px;height:25px;background:var(--text);top:-5px;left:50%;border-radius:3px;transition:.2s}#sleeper-verdict,#verdict{padding:18px;text-align:center;font-size:25px;font-weight:900;border:2px solid var(--border);border-radius:12px;background:var(--card2)}#sleeper-verdict small,#verdict small{display:block;font-size:11px;color:var(--muted);margin-top:6px}#sleeper-verdict.fair,#verdict.fair{border-color:#22a06b}#sleeper-verdict.slight,#verdict.slight{border-color:#e3a008}#sleeper-verdict.adv,#verdict.adv{border-color:#e87722}#sleeper-verdict.major,#verdict.major{border-color:#d64545}.grade{display:flex;justify-content:space-between;padding:12px;background:var(--card2);border-radius:9px;margin-top:10px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}.actions button,.close{padding:10px;border-radius:8px;border:1px solid var(--border);background:var(--card2);color:var(--text);font-weight:800}.suggestion{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:9px;margin-top:7px;font-size:12px}.trade-insight-box{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:15px 16px;line-height:1.5}.trade-insight-box.empty{color:var(--muted);font-size:13px}.trade-insight-summary{font-size:14px;font-weight:800;margin-bottom:10px}.trade-insight-list{margin:0;padding-left:20px;font-size:13px}.trade-insight-list li{margin:7px 0}.trade-insight-context{margin-top:11px;padding-top:10px;border-top:1px solid var(--border);font-size:11px;color:var(--muted)}#sleeper-bar{display:none;border-color:var(--blue)}.sync-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.primary{background:var(--blue);color:#fff;border:0;width:100%;margin-top:10px;padding:10px;border-radius:8px;font-weight:800}.modal-bg{display:none;position:fixed;inset:0;background:#000b;z-index:100;align-items:center;justify-content:center;padding:15px}.modal-bg.show{display:flex}.modal{width:min(550px,100%);background:var(--card);padding:20px;border-radius:15px}.modal-head{display:flex;justify-content:space-between;gap:10px}.modal h2{margin-top:0}#league-wrap{display:none;margin-top:12px}#espn-status,#status{font-size:12px;color:var(--muted);margin-top:10px}.page-hidden{display:none!important}.league-toolbar{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:16px}.league-toolbar h2{margin:0}.league-view-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.roster-card{background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:16px}.roster-title{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;padding-bottom:12px;border-bottom:1px solid var(--border)}.roster-title h3{margin:4px 0 0}.roster-meta{color:var(--muted);font-size:12px}.roster-list{margin-top:8px}.roster-player{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:11px 0;border-bottom:1px solid var(--border)}.roster-player:last-child{border-bottom:0}.roster-value{font-weight:900}.not-valued{font-size:10px;color:var(--muted)}.dashboard-header{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:18px}.dashboard-header h2{margin:0}.dashboard-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.dashboard-kpi{background:var(--card2);border:1px solid var(--border);border-radius:13px;padding:15px}.dashboard-kpi small{display:block;color:var(--muted);font-size:10px;font-weight:900;letter-spacing:.05em;margin-bottom:8px}.dashboard-kpi strong{display:block;font-size:26px}.dashboard-kpi span{display:block;font-size:11px;color:var(--muted);margin-top:7px}.dashboard-section-title{margin:22px 0 10px}.dashboard-analysis{display:grid;grid-template-columns:1fr 1fr;gap:12px}.dashboard-analysis-card{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:14px}.dashboard-analysis-card small{display:block;font-size:10px;font-weight:900;color:var(--muted);margin-bottom:7px}.dashboard-analysis-card strong{font-size:17px}.dashboard-position-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}.dashboard-position-card{background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:12px}.dashboard-position-head{display:flex;justify-content:space-between;align-items:center}.dashboard-position-head strong{font-size:16px}.dashboard-position-rank{color:var(--blue);font-weight:900;font-size:13px}.dashboard-position-value{font-size:11px;color:var(--muted);margin-top:7px}.trade-opportunity{background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:13px;margin-top:9px}.trade-opportunity strong{display:block;margin-bottom:5px}.power-table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px}.power-table{width:100%;border-collapse:collapse;min-width:700px;font-size:12px}.power-table td,.power-table th{padding:11px;text-align:left;border-bottom:1px solid var(--border)}.power-table th{font-size:10px;letter-spacing:.05em;color:var(--muted)}.power-table tr:last-child td{border-bottom:0}.power-table .my-row{background:var(--card2)}.rank-cell{font-weight:900;color:var(--blue)}.trade-center-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:6px;margin-bottom:16px;background:var(--card2);border:1px solid var(--border);border-radius:12px}.trade-center-tab{border:1px solid transparent;background:0 0;color:var(--muted);padding:11px 12px;border-radius:9px;font-weight:900}.trade-center-tab:hover{background:var(--card);color:var(--text)}.trade-center-tab.active{background:var(--blue);border-color:var(--blue);color:#fff}.trade-center-panel{display:none}.trade-center-panel.active{display:block}.trade-center-panel-title{margin-bottom:12px}.trade-center-panel-title h3{margin:0}.trade-center-divider{height:1px;background:var(--border);margin:18px 0}.trade-finder-grid{display:grid;grid-template-columns:1.1fr 1.4fr .7fr auto;gap:10px;align-items:end}.trade-finder-grid .primary{margin-top:0;height:40px;white-space:nowrap}.trade-finder-results{margin-top:12px}.trade-finder-result{background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:13px;margin-top:9px}.trade-finder-result-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.trade-finder-result-head strong:last-child{color:var(--blue);white-space:nowrap}.trade-finder-build-button{display:block!important;visibility:visible!important;opacity:1!important;width:100%;margin-top:12px;padding:11px 14px;border:0;border-radius:8px;background:var(--blue);color:#fff;font-weight:900;cursor:pointer}@media(max-width:900px){.trade-finder-grid{grid-template-columns:1fr 1fr}.trade-grid{grid-template-columns:1fr}.dashboard-kpis,.dashboard-position-grid,.settings,.top-grid{grid-template-columns:1fr 1fr}}@media(max-width:700px){.trade-center-tabs{grid-template-columns:1fr}}@media(max-width:550px){.trade-finder-grid{grid-template-columns:1fr}header{display:block}.header-buttons{width:100%;margin-top:15px}.dashboard-analysis,.dashboard-kpis,.dashboard-position-grid,.league-view-grid,.settings,.sync-actions,.sync-grid,.top-grid{grid-template-columns:1fr}.dashboard-header,.league-toolbar{display:block}.league-toolbar button{width:100%;margin-top:12px}}
-</style>
+  <script nonce="UpL4qlG8RGMSAyUyZlR0gA==">
+    window.rootUrl = "https://teams.microsoft.com/";
+    window.environment = "prod";
+    window.platformId = "27";
+  </script>
+  <meta name="viewport" content="width=device-width" />
+  <title>Microsoft Teams - Error</title>
+  <style>
+    html {
+      font-size: calc(1em*.625) !important;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      background: #f3f2f1;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Web", sans-serif;
+      font-size: 1.4rem;
+      line-height: 1.4285;
+      color: #252424;
+      overflow-y: auto;
+      text-align: center;
+    }
+
+    .oops-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: calc(100vh - 100px);
+      width: 100%;
+    }
+
+    .oops-svg {
+      height: 20rem;
+      width: 20rem;
+    }
+
+    .oops-ref {
+      color: #16233a; /* darkblue */
+      font-family: monospace;
+      font-size: 1rem;
+      margin: 3.2rem 0 0 6rem;
+      position: fixed;
+      top: 92%;
+      cursor: pointer;
+    }
+
+    .ts-btn-fluent-primary {
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Web", sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-flex;
+      align-content: center;
+      justify-content: center;
+      flex-direction: column;
+      position: relative;
+      height: 32px;
+      padding: 0 20px;
+      min-width: 96px;
+      outline: 0;
+      white-space: nowrap;
+      cursor: pointer;
+      box-shadow: 0 2px 4px -.75px rgba(0,0,0,.25);
+      background: #5b5fc7;
+      border: 0;
+      border-radius: 4px;
+      color: #fff;
+    }
+
+    .ts-btn-fluent-primary::after,
+    .ts-btn-fluent-primary::before {
+      position: absolute;
+      content: '';
+      border: 1px solid transparent;
+      border-radius: 4px;
+    }
+
+    .ts-btn-fluent-primary::before {
+      top: 1px;
+      left: 1px;
+      right: 1px;
+      bottom: 1px;
+    }
+
+    .ts-btn-fluent-primary::after {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .ts-btn-fluent-primary:hover {
+      background: #3d3e78;
+    }
+
+    .ts-btn-fluent-primary:active,
+    .ts-btn-fluent-primary:focus {
+      background: #2f2f4a;
+      box-shadow: none;
+    }
+
+    .ts-btn-fluent-primary:focus::after {
+      border-color: #252423;
+    }
+
+    .ts-btn-fluent-primary:focus::before {
+      border-color: #fff;
+    }
+
+    .oops-line-one {
+      display: block;
+      color: #252424;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Web", sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      max-width: 536px;
+      margin: 32px auto 20px auto;
+    }
+
+    .oops-itp-block-learn-more {
+      text-decoration: none;
+      color: #5b5fc7;
+    }
+
+    #try-again-link,
+    #open-teams-on-web {
+      text-decoration: none;
+      margin-bottom: 16px;
+    }
+
+    .oops-hidden {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-<div class="wrap">
-<header>
-<div class="brand"><div class="logo">TF</div><div><h1>TradeForge Fantasy</h1><div class="sub">Super Trade Analyzer</div></div></div>
-<div class="header-buttons"><button id="theme-toggle">☀ Light Theme</button><div class="sync-actions"><button id="sync-button">Sync Sleeper</button><button id="espn-sync-button">Sync ESPN</button><button id="league-view-button" disabled>League Dashboard</button></div></div>
-</header>
-<main id="analyzer-page">
-<section class="card">
-<div class="settings-title"><span>League Settings</span><span id="mode-label"></span></div>
-<div class="settings">
-<label class="setting"><span>SCORING</span><select id="scoring"><option value="ppr">PPR</option><option value="half">0.5 PPR</option><option value="standard">No PPR</option></select></label>
-<label class="setting"><span>LEAGUE</span><select id="league"><option value="redraft">Redraft</option><option value="keeper">Keeper</option><option value="dynasty">Dynasty</option></select></label>
-<label class="setting"><span>QB FORMAT</span><select id="qb"><option value="oneqb">1QB</option><option value="superflex">Superflex</option></select></label>
-<label class="setting"><span>TE PREMIUM</span><select id="tep"><option value="off">Off</option><option value="half">+0.5 PPR</option><option value="full">+1.0 PPR</option></select></label>
-</div>
-<div class="engine-strip"><strong>TradeForge Engine v2.0 • Weighted Model</strong><span id="engine-status">Baseline mode</span></div>
-</section>
-<section class="card"><h3 style="margin-top:0">Top Players</h3><div class="top-grid">
-<div class="top-box"><h3>RB</h3><div id="top-rb"></div></div><div class="top-box"><h3>WR</h3><div id="top-wr"></div></div><div class="top-box"><h3>QB</h3><div id="top-qb"></div></div><div class="top-box"><h3>TE</h3><div id="top-te"></div></div>
-</div></section>
-<div class="trade-grid">
-<section class="team"><h2>Team A (Receiving)</h2><div class="search-wrap"><input id="search-a" placeholder="Search player or pick" autocomplete="off"><div id="results-a" class="results"></div></div><div id="team-a"></div><div class="totals"><div class="total"><small>Base</small><strong id="base-a">0.0</strong></div><div class="total"><small>Adjusted</small><strong id="adj-a">0.0</strong></div></div></section>
-<section class="result-card"><div class="meter"><div id="marker"></div></div><div id="verdict">Build a Trade<small>Add players to both sides.</small></div><div class="grade"><span>Trade Grade</span><strong id="grade">—</strong></div><div class="actions"><button id="swap">Swap Sides</button><button id="clear">Clear Trade</button></div></section>
-<section class="team"><h2>Team B (Receiving)</h2><div class="search-wrap"><input id="search-b" placeholder="Search player or pick" autocomplete="off"><div id="results-b" class="results"></div></div><div id="team-b"></div><div class="totals"><div class="total"><small>Base</small><strong id="base-b">0.0</strong></div><div class="total"><small>Adjusted</small><strong id="adj-b">0.0</strong></div></div></section>
-</div>
-<section class="card"><h3>TradeForge Insight</h3><div class="sub" style="margin-bottom:10px">Player facts and league-format context behind the valuations.</div><div id="trade-insight" class="trade-insight-box empty">Build a trade to see why TradeForge values it this way.</div></section>
-<section class="card"><h3>Suggested Trade Ideas</h3><div class="sub" style="margin-bottom:10px">TradeForge only adds assets to the side currently receiving less adjusted value.</div><div id="trade-ideas">Build a trade to see suggested trade ideas.</div></section>
-</main>
-<main id="league-page" class="page-hidden">
-<section class="card"><div class="league-toolbar"><div><h2>TradeForge League Dashboard</h2><div id="league-page-name" class="sub"></div></div><button id="back-to-analyzer" class="close">← Back to Trade Analyzer</button></div></section>
-<section id="sleeper-bar" class="card">
-<div class="settings-title"><div><strong id="sleeper-name">Synced League</strong><div id="sleeper-info" class="sub"></div></div><span id="sleeper-mode-label"></span></div>
-<div class="sync-grid"><label class="setting"><span>TEAM A ROSTER</span><select id="sleeper-roster-a"></select></label><label class="setting"><span>TEAM B ROSTER</span><select id="sleeper-roster-b"></select></label></div>
-<button id="disconnect" class="close" style="margin-top:10px">Disconnect League</button>
-</section>
-<section class="card" id="trade-center-card">
-<div class="settings-title"><span>Trade Center</span><span class="sub" id="trade-center-provider-label">Synced league trade tools</span></div>
-<div class="trade-center-tabs" role="tablist" aria-label="Trade Center tools"><button class="trade-center-tab" data-trade-center-tab="calculator" type="button">Trade Calculator</button><button class="trade-center-tab active" data-trade-center-tab="finder" type="button">League Trade Finder</button><button class="trade-center-tab" data-trade-center-tab="opportunities" type="button">Trade Opportunities</button></div>
-<div class="trade-center-panel" data-trade-center-panel="calculator">
-<div class="trade-center-panel-title"><h3 id="synced-trade-calculator-title">Synced League Trade Calculator</h3><div class="sub" id="synced-trade-calculator-sub">Uses the selected synced rosters</div></div>
-<div class="trade-grid">
-<section class="team"><h2>Team A (Receiving)</h2><div class="search-wrap"><input id="sleeper-search-a" placeholder="Search Team A roster" autocomplete="off"><div id="sleeper-results-a" class="results"></div></div><div id="sleeper-team-a"></div><div class="totals"><div class="total"><small>Base</small><strong id="sleeper-base-a">0.0</strong></div><div class="total"><small>Adjusted</small><strong id="sleeper-adj-a">0.0</strong></div></div></section>
-<section class="result-card"><div class="meter"><div id="sleeper-marker"></div></div><div id="sleeper-verdict">Build a Trade<small>Add players from the synced rosters.</small></div><div class="grade"><span>Trade Grade</span><strong id="sleeper-grade">—</strong></div><div class="actions"><button id="sleeper-swap">Swap Sides</button><button id="sleeper-clear">Clear Trade</button></div></section>
-<section class="team"><h2>Team B (Receiving)</h2><div class="search-wrap"><input id="sleeper-search-b" placeholder="Search Team B roster" autocomplete="off"><div id="sleeper-results-b" class="results"></div></div><div id="sleeper-team-b"></div><div class="totals"><div class="total"><small>Base</small><strong id="sleeper-base-b">0.0</strong></div><div class="total"><small>Adjusted</small><strong id="sleeper-adj-b">0.0</strong></div></div></section>
-</div>
-<div class="trade-center-divider"></div><h3>TradeForge Insight</h3><div class="sub" id="synced-insight-sub" style="margin-bottom:10px">Why the current synced league settings make this trade fair or favor one side.</div><div id="sleeper-trade-insight" class="trade-insight-box empty">Build a synced league trade to see why TradeForge values it this way.</div>
-<div class="trade-center-divider"></div><h3>Suggested Trade Ideas</h3><div class="sub" style="margin-bottom:10px">TradeForge suggests additional assets from the lower-value team's own roster to add to its side of the trade.</div><div id="sleeper-trade-ideas">Build a synced league trade to see suggested trade ideas.</div>
-</div>
-<div class="trade-center-panel active" data-trade-center-panel="finder">
-<div class="trade-center-panel-title"><h3>League Trade Finder</h3><div class="sub">Pick a player on another team and let TradeForge search your roster for the closest packages.</div></div>
-<div class="trade-finder-grid"><label class="setting"><span>TRADE WITH</span><select id="trade-finder-team"></select></label><label class="setting"><span>TARGET PLAYER</span><select id="trade-finder-target"></select></label><label class="setting"><span>MAX PLAYERS TO SEND</span><select id="trade-finder-max"><option value="1">1 Player</option><option value="2">2 Players</option><option value="3" selected>3 Players</option></select></label><button id="trade-finder-run" class="primary">Find Trades</button></div>
-<div class="sub" id="trade-finder-roster-copy" style="margin-top:10px">TradeForge searches your valued synced roster for 1-for-1, 2-for-1, and 3-for-1 packages and ranks them by adjusted trade value.</div><div id="trade-finder-results" class="trade-finder-results">Choose a target player and click Find Trades.</div>
-</div>
-<div class="trade-center-panel" data-trade-center-panel="opportunities"><div class="trade-center-panel-title"><h3>Trade Opportunities</h3><div class="sub">TradeForge compares your positional weaknesses against the strongest position groups around your league.</div></div><div id="dashboard-trade-opportunities"></div></div>
-</section>
-<section class="card" id="league-dashboard-card">
-<div class="dashboard-header"><div><h2>Your League at a Glance</h2><div id="dashboard-subtitle" class="sub">League-wide roster analysis using TradeForge values.</div></div><div id="dashboard-coverage" class="sub"></div></div>
-<div class="dashboard-kpis">
-<div class="dashboard-kpi"><small>LEAGUE POWER RANK</small><strong id="dashboard-overall-rank">—</strong><span id="dashboard-overall-detail">—</span></div>
-<div class="dashboard-kpi"><small>STARTING LINEUP</small><strong id="dashboard-starter-rank">—</strong><span id="dashboard-starter-detail">—</span></div>
-<div class="dashboard-kpi"><small>ROSTER DEPTH</small><strong id="dashboard-depth-rank">—</strong><span id="dashboard-depth-detail">—</span></div>
-<div class="dashboard-kpi"><small id="dashboard-future-label">FUTURE VALUE</small><strong id="dashboard-future-rank">—</strong><span id="dashboard-future-detail">—</span></div>
-</div>
-<h3 class="dashboard-section-title">Your Team Analysis</h3>
-<div class="dashboard-analysis"><div class="dashboard-analysis-card"><small>ROSTER PROFILE</small><strong id="dashboard-profile">—</strong><div id="dashboard-profile-detail" class="sub"></div></div><div class="dashboard-analysis-card"><small>POSITION SNAPSHOT</small><strong id="dashboard-position-summary">—</strong><div id="dashboard-position-detail" class="sub"></div></div></div>
-<div id="dashboard-position-grid" class="dashboard-position-grid"></div>
-<h3 class="dashboard-section-title">League Power Rankings</h3><div class="power-table-wrap"><table class="power-table"><thead><tr><th>Rank</th><th>Team</th><th>Power</th><th>Starters</th><th>Depth</th><th>Strongest Position</th></tr></thead><tbody id="dashboard-power-body"></tbody></table></div>
-</section>
-<section class="card"><div class="league-view-grid">
-<section class="roster-card"><div class="roster-title"><div><div class="roster-meta">YOUR TEAM</div><h3 id="my-team-name">Your Team</h3></div><div id="my-team-meta" class="roster-meta"></div></div><div id="my-team-roster" class="roster-list"></div></section>
-<section class="roster-card"><label class="setting"><span>COMPARE WITH TEAM</span><select id="opponent-select"></select></label><div class="roster-title" style="margin-top:15px"><div><div class="roster-meta">OTHER TEAM</div><h3 id="opponent-team-name">Team</h3></div><div id="opponent-team-meta" class="roster-meta"></div></div><div id="opponent-team-roster" class="roster-list"></div></section>
-</div></section>
-</main>
-</div>
-<div id="modal" class="modal-bg"><div class="modal">
-<div class="modal-head"><div><h2>Sync Your Sleeper League</h2><div class="sub">Enter your Sleeper username. No password is needed.</div></div><button id="modal-close" class="close">×</button></div>
-<input id="username" placeholder="Sleeper username" autocomplete="off"><button id="find-leagues" class="primary">Find My Leagues</button>
-<div id="league-wrap"><select id="league-picker"></select><button id="connect-league" class="primary">Sync Selected League</button></div><div id="status" aria-live="polite"></div>
-</div></div>
-<div id="espn-modal" class="modal-bg"><div class="modal">
-<div class="modal-head"><div><h2>Sync Your ESPN League</h2><div class="sub">Enter your ESPN league ID or paste an ESPN league URL. Public leagues sync directly.</div></div><button id="espn-modal-close" class="close">×</button></div>
-<input id="espn-league-input" placeholder="ESPN league ID or league URL" autocomplete="off">
-<div class="sync-grid"><label class="setting"><span>SEASON</span><input id="espn-season" type="number" min="2018" step="1"></label><label class="setting"><span>MY TEAM ID (OPTIONAL)</span><input id="espn-team-id" inputmode="numeric" placeholder="Auto from URL if available" autocomplete="off"></label></div>
-<button id="espn-connect-league" class="primary">Sync ESPN League</button>
-<div class="sub" style="margin-top:10px">Private leagues may need an authenticated server connection, which this standalone page does not provide. Never paste your ESPN password or session cookies here.</div><div id="espn-status" aria-live="polite"></div>
-</div></div>
-<script>
-let teamA=[],teamB=[],scoringMode="ppr",leagueMode="redraft",qbMode="oneqb",tePremiumMode="off",sleeperTeamA=[],sleeperTeamB=[],sleeperScoringMode="ppr",sleeperLeagueMode="redraft",sleeperQbMode="oneqb",sleeperTePremiumMode="off",sleeperCalculationContext=!1,sleeperUser=null,syncedLeague=null,syncedRosters=[],syncedUsers=[],sleeperPlayers={},sleeperRosterA="",sleeperRosterB="",sleeperTrendMarket={},sleeperIdByName={},leagueTradeFinderBuilds=[],syncedProvider="",espnLeagueRaw=null,tradeForgeFeedMeta=null;
-const SUPERSTAR_FACTOR=1,PACKAGE_WEIGHTS=[1,.95,.9,.85,.8,.8,.8,.8],multipliers={RB:{ppr:1,half:.98,standard:.95},WR:{ppr:1,half:.96,standard:.91},TE:{ppr:1,half:.95,standard:.89},QB:{ppr:1,half:1,standard:1},K:{ppr:1,half:1,standard:1},DST:{ppr:1,half:1,standard:1}},playerDatabase=[
-["RB","Jahmyr Gibbs",100,100,100],
-["RB","Bijan Robinson",96.7,97.9,100],
-["WR","Ja'Marr Chase",96.1,96.7,97.7],
-["WR","Puka Nacua",87,83.4,76.8],
-["WR","Jaxon Smith-Njigba",86.8,88,90.1],
-["WR","Amon-Ra St. Brown",86.2,81.6,73],
-["RB","Jonathan Taylor",80.9,72.3,56.4],
-["RB","Christian McCaffrey",80.4,67.9,44.8],
-["WR","CeeDee Lamb",78,72.3,61.7],
-["WR","Justin Jefferson",77.8,72.8,63.4],
-["RB","James Cook III",73.4,67.8,57.4],
-["RB","Chase Brown",73,64.6,49],
-["RB","Ashton Jeanty",70.5,68,63.5],
-["RB","Kenneth Walker III",69,62.6,50.7],
-["RB","De'Von Achane",66.4,63.8,58.9],
-["RB","Saquon Barkley",66.3,58.4,43.6],
-["RB","Omarion Hampton",65.6,64,61],
-["TE","Brock Bowers",65.5,67.5,71.1],
-["WR","Drake London",64.2,61,55.1],
-["TE","Trey McBride",64,63.4,62.4],
-["RB","Derrick Henry",63.5,51.5,29.1],
-["WR","Nico Collins",62.4,57.3,47.9],
-["WR","George Pickens",62,58.3,51.4],
-["WR","Chris Olave",60.3,55.9,47.8],
-["WR","Malik Nabers",57.7,59.6,63],
-["WR","DeVonta Smith",57.3,53.3,45.8],
-["QB","Josh Allen",57.1,59.1,62.7],
-["WR","Zay Flowers",56.6,53,46.3],
-["RB","Jeremiyah Love",54.9,57.5,62.2],
-["WR","Rashee Rice",53.1,45.9,32.5],
-["RB","Javonte Williams",52.7,45.7,32.8],
-["RB","Breece Hall",51.6,49.7,46.1],
-["WR","A.J. Brown",49.9,43.8,32.5],
-["RB","Kyren Williams",49.5,43.4,32],
-["WR","Ladd McConkey",49.3,48.3,46.4],
-["WR","Tee Higgins",48.9,43.5,33.6],
-["RB","Travis Etienne Jr.",48.7,41.1,27.1],
-["WR","Garrett Wilson",48.2,47.5,46.1],
-["WR","Emeka Egbuka",48.2,48.6,49.3],
-["TE","Colston Loveland",48.1,49.4,51.7],
-["WR","Tetairoa McMillan",48,48.4,49.1],
-["QB","Lamar Jackson",47.6,47,45.9],
-["RB","D'Andre Swift",44.5,38.8,28.2],
-["RB","Cam Skattebo",43.6,39.2,31.1],
-["WR","Jaylen Waddle",43.5,39.9,33.2],
-["WR","Luther Burden III",42.2,43.4,45.7],
-["WR","DJ Moore",41.2,35.2,24.2],
-["TE","Tyler Warren",41,42.9,46.5],
-["RB","Bucky Irving",40.7,37.2,30.7],
-["RB","David Montgomery",40.3,33.6,21.3],
-["RB","Quinshon Judkins",39.3,40.3,42.2],
-["QB","Joe Burrow",37.9,39.6,42.7],
-["WR","Christian Watson",37.8,34.3,27.9],
-["WR","Davante Adams",37.5,30.5,17.4],
-["WR","Jameson Williams",37.4,35.1,30.8],
-["RB","Jadarian Price",37.3,39.6,43.9],
-["QB","Caleb Williams",35.7,38.7,44.2],
-["RB","Bhayshul Tuten",35.4,32.1,26],
-["WR","Mike Evans",35.4,29.1,17.4],
-["WR","Parker Washington",34.6,34.1,33.3],
-["WR","Rome Odunze",34.6,34.3,33.8],
-["QB","Drake Maye",34,38.6,47.2],
-["QB","Jalen Hurts",33.9,32.5,29.8],
-["WR","Terry McLaurin",33.6,27.8,16.9],
-["QB","Jayden Daniels",33.4,34.9,37.8],
-["TE","Tucker Kraft",33,33,33],
-["WR","Carnell Tate",31.6,35.9,43.9],
-["WR","Marvin Harrison Jr.",31.4,30,27.3],
-["RB","TreVeyon Henderson",30.6,30.4,29.9],
-["QB","Justin Herbert",30.1,31.9,35.3],
-["RB","Rhamondre Stevenson",29,25.2,18.2],
-["QB","Trevor Lawrence",28.4,30.6,34.6],
-["RB","Josh Jacobs",28,23.2,14.2],
-["TE","Sam LaPorta",27.8,27.5,26.9],
-["QB","Dak Prescott",27.8,26.2,23.1],
-["QB","Jaxson Dart",27.7,28.5,30],
-["TE","George Kittle",27.6,23.6,16.3],
-["WR","Brian Thomas Jr.",27.5,26.9,25.8],
-["WR","Wan'Dale Robinson",27.5,23.6,16.5],
-["RB","Jaylen Warren",27.4,23.5,16.4],
-["TE","Kyle Pitts Sr.",27.1,26.1,24.1],
-["TE","Isaiah Likely",26.6,24.2,19.8],
-["WR","De'Zhaun Stribling",26.5,24.6,21],
-["WR","Chris Godwin Jr.",26.3,22.6,15.6],
-["WR","Jakobi Meyers",26.1,21.6,13.2],
-["WR","DK Metcalf",25.9,22.9,17.2],
-["TE","Harold Fannin Jr.",25.9,26.7,28.2],
-["WR","Makai Lemon",25.5,26.4,28.1],
-["WR","Alec Pierce",25.4,23.8,20.8],
-["WR","Rashid Shaheed",25.1,20.6,12.1],
-["QB","Bo Nix",25,26.2,28.3],
-["WR","Jayden Reed",24.4,21.6,16.4],
-["RB","Zach Charbonnet",24.3,21.4,16.1],
-["WR","Quentin Johnston",24.2,21.9,17.7],
-["WR","Matthew Golden",24.1,23.4,22],
-["WR","Jordan Addison",23.9,22.4,19.7],
-["WR","Romeo Doubs",23.8,20.2,13.6],
-["TE","Dalton Kincaid",23.5,21.5,17.9],
-["QB","Brock Purdy",23.5,25,27.8],
-["TE","Jake Ferguson",23.4,20.2,14.4],
-["WR","Josh Downs",23.1,21.2,17.7],
-["RB","Jordan Mason",23.1,20,14.3],
-["WR","Stefon Diggs",22.9,19.1,12.1],
-["WR","Courtland Sutton",22.9,20,14.6],
-["WR","KC Concepcion Jr.",22.9,24.6,27.9],
-["QB","Patrick Mahomes",22.9,24.7,28],
-["RB","Blake Corum",22.8,21.6,19.4],
-["WR","Denzel Boston",22.3,21.1,19],
-["WR","Jalen McMillan",21.8,18.9,13.5],
-["RB","Jonathon Brooks",21.7,20.7,18.9],
-["WR","Michael Pittman Jr.",21.7,19.7,16.1],
-["WR","Xavier Worthy",21.6,19.3,14.9],
-["RB","Chuba Hubbard",21.5,19.9,16.9],
-["RB","RJ Harvey",21.5,19.9,16.9],
-["WR","Jordyn Tyson",21.5,24.8,31],
-["QB","Jordan Love",21.5,22.4,24.2],
-["RB","Tony Pollard",20.7,17.8,12.3],
-["QB","Jared Goff",20.6,20.1,19.3],
-["RB","Kenny Gainwell",20.4,17.9,13.4],
-["QB","Matthew Stafford",20.1,17.8,13.6],
-["QB","Baker Mayfield",20.1,19.9,19.4],
-["RB","Rico Dowdle",19.5,18,15.1],
-["WR","Michael Wilson",18.5,19.7,21.9],
-["RB","MarShawn Lloyd",18.3,17,14.6],
-["TE","T.J. Hockenson",17.8,15.6,11.6],
-["RB","Jacory Croskey-Merritt",17.6,17.3,16.8],
-["TE","Dallas Goedert",17.2,15.7,12.8],
-["RB","Rachaad White",17.1,15.3,11.9],
-["RB","J.K. Dobbins",16.9,16.2,14.8],
-["QB","C.J. Stroud",16.4,17.1,18.5],
-["WR","Jalen Coker",15.9,17.2,19.6],
-["RB","Chris Rodriguez Jr.",15.4,14.2,11.9],
-["RB","Jonah Coleman",15,15.3,16],
-["RB","Tyler Allgeier",14.8,14.4,13.6],
-["RB","Kyle Monangai",14.6,15.8,17.9],
-["RB","Keaton Mitchell",14.6,13.6,11.8],
-["QB","Fernando Mendoza",14.5,17.9,24.3],
-["RB","Tyjae Spears",14.4,13.4,11.4],
-["RB","Woody Marks",12.8,12.9,13.1],
-["TE","Juwan Johnson",12.7,12.6,12.3],
-["RB","Tank Bigsby",12,11.8,11.3],
-["TE","Travis Kelce",11.6,11.5,11.2],
-["RB","Emmett Johnson",11.6,12.2,13.3],
-["RB","Aaron Jones Sr.",11.3,10.8,9.9],
-["RB","Mike Washington Jr.",11.3,12.7,15.4],
-["RB","Kaelon Black",11.1,13.1,16.9],
-["WR","Adonai Mitchell",11.1,11.3,11.7],
-["WR","Tre Tucker",10.9,11,11.1],
-["WR","Deebo Samuel",10.7,10.6,10.3],
-["WR","Khalil Shakir",10.6,11.5,13.2],
-["WR","Jayden Higgins",10.6,12,13.6],
-["TE","Mark Andrews",10.5,11,12],
-["DST","Los Angeles Rams DST",10.5,8.9,5.8],
-["RB","Ray Davis",10.1,9.9,9.5],
-["RB","Brian Robinson Jr.",10,9.9,9.7],
-["DST","Houston Texans DST",10,8.4,5.5],
-["K","Brandon Aubrey",10,8.4,5.5],
-["RB","Alvin Kamara",9.6,8.6,6.8],
-["DST","Seattle Seahawks DST",9.6,8.1,5.3],
-["QB","Tyler Shough",9.5,13.6,21.2],
-["DST","Denver Broncos DST",9.2,7.8,5.1],
-["WR","Keenan Allen",9,8.1,6.4],
-["RB","Braelon Allen",8.9,9.9,11.9],
-["WR","Devaughn Vele",8.8,8.3,7.4],
-["RB","Dylan Sampson",8.7,9.6,11.3],
-["WR","Ricky Pearsall",8.7,9.2,9.9],
-["QB","Kyler Murray",8.6,10.2,13.1],
-["QB","Malik Willis",8.6,10.2,13.2],
-["WR","Kayshon Boutte",8.6,10,12.7],
-["WR","Dontayvion Wicks",8.5,9.6,11.6],
-["WR","Ja'Kobi Lane",8.4,11.1,16.2],
-["QB","Bryce Young",8.3,10.9,15.6],
-["TE","Terrance Ferguson",8.2,10.3,14.3],
-["WR","Pat Bryant",8,9.5,12.2],
-["QB","Jacoby Brissett",8,8,7.9],
-["WR","Tre' Harris",7.9,9.1,11.4],
-["TE","Hunter Henry",7.8,8.4,9.6],
-["WR","Ryan Flournoy",7.7,7.8,8],
-["RB","Nicholas Singleton",7.6,9,11.5],
-["RB","Najee Harris",7.5,7.2,6.6],
-["K","Cameron Dicker",7.5,6.3,4.1],
-["WR","Elijah Sarratt",7.5,8.4,9.6],
-["WR","Jalen Nailor",7.4,8.3,9.9],
-["WR","Omar Cooper Jr.",7.3,10.7,16.9],
-["WR","Malachi Fields",7.2,10,15.3],
-["DST","Philadelphia Eagles DST",7.2,6.1,4],
-["QB","Daniel Jones",7.1,9.3,13.3],
-["TE","Dalton Schultz",6.9,7.8,9.4],
-["QB","Sam Darnold",6.9,10.1,16.1],
-["RB","George Holani",6.8,7,7.4],
-["DST","Baltimore Ravens DST",6.8,5.7,3.7],
-["TE","Theo Johnson",6.8,8.5,12.8],
-["RB","Malik Davis",6.7,7,7.5],
-["RB","Demond Claiborne",6.6,7.6,9.5],
-["RB","Trey Benson",6.6,4.8,2.7],
-["K","Chris Boswell",6.5,5.5,3.6],
-["WR","Chris Bell",6.3,9.7,16.1],
-["WR","Jerry Jeudy",6.3,7.2,8.9],
-["TE","Mason Taylor",6.3,8.8,13.8],
-["TE","Kenyon Sadiq",6.2,11.1,20.1],
-["TE","Chig Okonkwo",6.1,7.8,11],
-["TE","David Njoku",6.1,6.4,6.8],
-["TE","Brenton Strange",6,8.9,14.3],
-["K","Ka'imi Fairbairn",6,5.1,3.3],
-["TE","AJ Barner",5.9,8,12],
-["RB","Tyrone Tracy Jr.",5.8,6.7,8.3],
-["DST","Green Bay Packers DST",5.8,4.9,3.2],
-["RB","Sean Tucker",5.7,6.5,8],
-["RB","Kimani Vidal",5.6,6.5,8.3],
-["WR","Cyrus Allen",5.5,7.9,12.3],
-["WR","Calvin Ridley",5.5,5.3,5],
-["QB","Cam Ward",5.5,9.5,16.9],
-["TE","Eli Stowers",5.5,9,13.3],
-["WR","Jaylin Noel",5.4,7.2,10.5],
-["DST","Los Angeles Chargers DST",5.4,4.6,3],
-["TE","Jonnu Smith",5.4,4.6,3.1],
-["WR","Caleb Douglas",5.3,8.4,14.2],
-["QB","Geno Smith",5.3,5.5,5.9],
-["WR","Malik Washington",5.2,7.5,11.9],
-["DST","Pittsburgh Steelers DST",5.2,4.4,2.9],
-["QB","Aaron Rodgers",5.2,5,4.7],
-["TE","Ja'Tavion Sanders",5.2,4.3,3.1],
-["WR","Travis Hunter",5.1,7.7,12.4],
-["K","Harrison Butker",5,4.2,2.8],
-["RB","Isaac Guerendo",5,6.4,8.7],
-["WR","Jauan Jennings",4.8,6.3,9.1],
-["DST","New England Patriots DST",4.8,4,2.6],
-["K","Jake Bates",4.8,4,2.6],
-["QB","Ty Simpson",4.8,10.7,17.9],
-["RB","Jerome Ford",4.8,4.6,4.2],
-["WR","Ted Hurst III",4.7,7.2,11.9],
-["RB","Justice Hill",4.7,4.9,5.4],
-["RB","Audric Estime",4.7,5.8,8],
-["RB","Chris Brooks",4.6,5.3,6.6],
-["TE","Cole Kmet",4.6,4.9,5.4],
-["TE","Zach Ertz",4.6,3.6,2.1],
-["RB","Kaytron Allen",4.5,6.5,10.3],
-["K","Eddy Pineiro",4.5,3.8,2.5],
-["DST","Minnesota Vikings DST",4.5,3.8,2.5],
-["RB","Jarquez Hunter",4.5,6.5,9.6],
-["RB","Kaleb Johnson",4.4,6.3,9.7],
-["WR","Cedric Tillman",4.4,6.3,9.2],
-["RB","James Conner",4.3,4.3,4.2],
-["RB","Isiah Pacheco",4.3,5.3,7.3],
-["RB","Will Shipley",4.3,5.9,8.2],
-["RB","Samaje Perine",4.2,3.6,2.5],
-["K","Cam Little",4.2,3.5,2.3],
-["K","Jason Myers",4.2,3.5,2.3],
-["WR","Luke McCaffrey",4.2,5.7,8.5],
-["RB","Seth McGowan",4.1,5.2,7.1],
-["RB","Jordan James",4.1,5.4,7.9],
-["WR","Christian Kirk",4.1,3.3,2.4],
-["RB","Raheim Sanders",4.1,6,8.9],
-["DST","Jacksonville Jaguars DST",4,3.4,2.2],
-["K","Will Reichard",4,3.4,2.2],
-["QB","Michael Penix Jr.",4,5.6,8.6],
-["QB","Kirk Cousins",4,4.5,5.4],
-["TE","Dawson Knox",4,3.7,3],
-["RB","Trevor Etienne",4,6.4,9.8],
-["QB","Tua Tagovailoa",3.9,4.4,5.4],
-["TE","Noah Fant",3.9,3.9,3.4],
-["DST","Kansas City Chiefs DST",3.8,3.2,2.1],
-["TE","Darnell Washington",3.8,5.1,7.4],
-["QB","Spencer Rattler",3.7,4.4,6.2],
-["WR","Isaac TeSlaa",3.6,5.9,10.3],
-["QB","Dillon Gabriel",3.6,5,8.1],
-["WR","Rashod Bateman",3.5,5,7.8],
-["WR","Zachariah Branch",3.5,6.5,12],
-["K","Harrison Mevis",3.5,2.9,1.9],
-["QB","J.J. McCarthy",3.5,4.9,6.6],
-["WR","Chris Brazzell II",3.5,5.5,7.9],
-["QB","Quinn Ewers",3.5,5.4,9],
-["TE","Cade Stover",3.5,5.9,9.7],
-["WR","Antonio Williams",3.4,6.8,13.2],
-["WR","Darnell Mooney",3.4,4.4,6.3],
-["RB","Donovan Edwards",3.4,5.6,8.7],
-["WR","Savion Williams",3.4,6.3,10.9],
-["WR","Cooper Kupp",3.3,4.1,5.7],
-["QB","Will Levis",3.3,3.8,4.8],
-["RB","Emanuel Wilson",3.2,3.9,5.2],
-["K","Tyler Loop",3.2,2.7,1.8],
-["WR","Brandon Aiyuk",3.2,1.9,0.3],
-["QB","Tanner McKee",3.2,4.8,7.8],
-["TE","Cade Otton",3.1,5,8.5],
-["RB","Devin Neal",3.1,2.3,1.3],
-["RB","Emari Demercado",3.1,3.2,3.1],
-["K","Cairo Santos",3,2.5,1.7],
-["RB","Phil Mafah",3,4.8,7.1],
-["WR","Jalen Royals",3,5.8,9.9],
-["TE","Greg Dulcich",2.9,5,8.8],
-["TE","Darren Waller",2.9,3.1,3.6],
-["RB","Jawhar Jordan",2.9,4,5.8],
-["WR","Tai Felton",2.9,5.4,9.2],
-["RB","Jaylen Wright",2.8,5,9],
-["QB","Justin Fields",2.8,2.7,2.6],
-["RB","Dameon Pierce",2.8,2.7,2.5],
-["WR","Dyami Brown",2.8,3.6,4.8],
-["RB","Kendre Miller",2.7,4.1,6.6],
-["RB","LeQuint Allen Jr.",2.7,4.5,7.7],
-["TE","Max Klare",2.7,4.9,7.6],
-["RB","Jaydon Blue",2.7,1.9,0.9],
-["RB","Corey Kiner",2.7,4.3,6.6],
-["QB","Jameis Winston",2.7,2.6,2.2],
-["WR","Jaylin Lane",2.7,5,8.7],
-["RB","Isaiah Davis",2.6,4.1,6.8],
-["TE","Pat Freiermuth",2.6,5,9.5],
-["WR","Devontez Walker",2.6,4.7,7.8],
-["RB","Tyler Badie",2.5,3.1,4.2],
-["WR","Treylon Burks",2.5,3.9,5.8],
-["WR","Germie Bernard",2.4,6.1,13.1],
-["WR","Jahan Dotson",2.4,3.8,6.4],
-["TE","Tyler Conklin",2.4,2.5,2.3],
-["WR","Demarcus Robinson",2.4,2,1.4],
-["WR","Bryce Lance",2.3,4.1,7.4],
-["WR","Jack Bech",2.3,4.9,9.7],
-["WR","Tez Johnson",2.3,4.1,6.3],
-["QB","Trey Lance",2.3,3.3,5.2],
-["WR","Tyquan Thornton",2.2,3.6,6.1],
-["WR","Joshua Palmer",2.2,3.7,6.4],
-["WR","DeMario Douglas",2.2,4.1,7.6],
-["TE","Mike Gesicki",2.2,1.7,1],
-["RB","Dylan Laube",2.2,3.2,5],
-["QB","Davis Mills",2.2,3.1,4.7],
-["WR","Theo Wease Jr.",2.2,4.4,7.4],
-["WR","Keon Coleman",2.1,4.6,9.3],
-["WR","Malik Benson",2.1,4,7.6],
-["WR","Calvin Austin III",2.1,1.4,0.6],
-["TE","Jake Tonges",2.1,3.5,5.3],
-["WR","Isaiah Williams",2.1,3.4,5.5],
-["WR","Xavier Legette",2,3.5,6.3],
-["RB","Ronnie Rivers",2,2.2,2.5],
-["WR","Colbie Young",1.9,3.5,6.1],
-["WR","Kalif Raymond",1.8,1.4,0.9],
-["WR","Darius Slayton",1.7,2.8,4.8],
-["WR","Kyle Williams",1.7,4.4,9.3],
-["TE","Michael Mayer",1.6,5.1,11.6],
-["TE","Gunnar Helm",1.6,4.5,9.9],
-["TE","Elijah Arroyo",1.6,4.3,9.2],
-["WR","KaVontae Turpin",1.5,1.9,2.6],
-["TE","Evan Engram",1.5,3,5.7],
-["TE","Charlie Kolar",1.5,2.7,5],
-["QB","Shedeur Sanders",1.4,3.2,6.6],
-["QB","Deshaun Watson",1.4,2.9,5.6],
-["RB","Kareem Hunt",1.3,1.1,0.7],
-["RB","Ollie Gordon II",1.3,3.6,7.9],
-["QB","Tyrod Taylor",1.3,1.1,0.7],
-["RB","Ty Johnson",1.2,2.1,3.7],
-["RB","Brashard Smith",1.2,3,6.3],
-["RB","Jacob Saylors",1.2,2.4,4.7],
-["RB","Sione Vaki",1.2,1.7,2.7],
-["RB","Devin Singletary",1.1,1.8,3.1],
-["RB","Adam Randall",1.1,3.6,8.3],
-["QB","Carson Beck",1.1,3.6,8.2],
-["WR","Tory Horton",1.1,4.1,9.6],
-["QB","Joe Flacco",1.1,0.8,0.4],
-["WR","Kendrick Bourne",1,1.9,3.5],
-["WR","Andrei Iosivas",1,2.5,5.2],
-["WR","Zavion Thomas",1,3.9,9.3],
-["WR","Troy Franklin",1,4,9.5],
-["WR","Xavier Hutchinson",0.9,3.2,7.6],
-["WR","Tank Dell",0.9,4,9.8],
-["WR","Skyler Bell",0.9,3.9,9.4],
-["WR","Brenen Thompson",0.9,2.9,6.6],
-["WR","Barion Brown",0.8,3.4,8],
-["WR","Elic Ayomanor",0.8,3.6,8.9],
-["WR","Roman Wilson",0.8,2.8,6.4],
-["RB","Roschon Johnson",0.8,2.6,5.9],
-["WR","Marvin Mims Jr.",0.8,3.2,7.8],
-["QB","Garrett Nussmeier",0.8,1.2,1.6],
-["TE","Oscar Delp",0.8,3.6,7],
-["RB","Tahj Brooks",0.7,2.2,5.1],
-["WR","Ashton Dulin",0.7,0.7,0.6],
-["WR","Odell Beckham Jr.",0.7,0.6,0.3],
-["TE","Oronde Gadsden II",0.7,5,13.1],
-["TE","Colby Parkinson",0.7,3,7.4],
-["QB","Drew Allar",0.7,4.8,9.8],
-["TE","Tyler Higbee",0.7,0.8,0.8],
-["TE","Erick All Jr.",0.6,2,4.7],
-["RB","Rasheen Ali",0.6,1.5,3.2],
-["RB","DJ Giddens",0.6,2.7,6.6],
-["RB","Bam Knight",0.6,1.2,2.4],
-["QB","Anthony Richardson",0.6,3,5.9],
-["QB","Mac Jones",0.5,4.4,9.1],
-["QB","Carson Wentz",0.5,0.3,0.1],
-["QB","Cade Klubnik",0.4,3.2,6.6],
-["QB","Gardner Minshew",0.3,0.3,0.4],
-["QB","Taylen Green",0.3,1.6,3.1],
-["RB","J'Mari Taylor",0.3,0.4,0.6],
-["QB","Drew Lock",0.2,1.6,3.2],
-["TE","Ben Sinnott",0.2,0.9,1.8],
-["RB","Zavier Scott",0.2,0.2,0.2],
-["QB","Cooper Rush",0.2,0.2,0.1],
-["WR","Chimere Dike",0.2,3.1,6.6],
-["WR","Brandin Cooks",0.1,0.1,0.1],
-["WR","Mack Hollins",0.1,0.3,0.5]
-].map((r,i)=>({rank:i+1,pos:r[0],name:r[1],redraft:r[2],keeper:r[3],dynasty:r[4]}))
-  ,picks=[["2027 Early 1st",52,58],["2027 Mid 1st",44,50],["2027 Late 1st",36,42],["2027 Early 2nd",26,29],["2027 Mid 2nd",22,25],["2027 Late 2nd",18,21],["2027 Early 3rd",13,15],["2027 Mid 3rd",10,12],["2027 Late 3rd",7,9],["2028 Early 1st",47,53],["2028 Mid 1st",40,46],["2028 Late 1st",33,39],["2028 Early 2nd",23,26],["2028 Mid 2nd",19,22],["2028 Late 2nd",15,18],["2028 Early 3rd",11,13],["2028 Mid 3rd",8,10],["2028 Late 3rd",5,7]].map((e,t)=>({
-rank:1001+t,name:e[0],pos:"PICK",oneqb:e[1],superflex:e[2]})),dst={HOU:"Houston Texans DST",DEN:"Denver Broncos DST",SEA:"Seattle Seahawks DST",LAR:"Los Angeles Rams DST",
-PIT:"Pittsburgh Steelers DST",LAC:"Los Angeles Chargers DST",NE:"New England Patriots DST",MIN:"Minnesota Vikings DST",PHI:"Philadelphia Eagles DST",GB:"Green Bay Packers DST",
-BAL:"Baltimore Ravens DST",JAC:"Jacksonville Jaguars DST",KC:"Kansas City Chiefs DST"
-},$=e=>document.getElementById(e),key=e=>e.sleeperId||e.pos+"|"+e.name,norm=e=>String(e||"").toLowerCase().replace(/[.'’\-]/g,"").replace(/\b(jr|sr|ii|iii|iv)\b/g,"").replace(/[^a-z0-9]/g,""),esc=e=>String(e??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;"),assets=()=>"dynasty"===leagueMode?playerDatabase.concat(picks):playerDatabase,TRADEFORGE_ENGINE={
-enabled:!0,weights:{performance:.35,opportunity:.2,scarcity:.15,market:.1,consistency:.1,availability:.05,situation:.05},performanceInputs:{projection:.6,consensus:.25,recent:.15},
-keeperWeights:{redraft:.65,dynasty:.35},dynastyYears:{year1:.5,year2:.3,year3:.2},replacementRanks:{QB:15,RB:36,WR:42,TE:15,K:5,DST:5},scarcityBoost:.75,eliteCurveExponent:1.1,
-marketSignalGap:8,useSleeperTrendingMarket:!1,useDynamicPickValues:!1,marketAdjustmentMax:.08,futurePickDiscounts:[1,.91,.84,.78]
-},tfClamp=(e,t,r)=>Math.max(t,Math.min(r,e)),tfRound=e=>Math.round(10*e)/10,tfIsNumber=e=>("number"==typeof e||"string"==typeof e&&""!==e.trim())&&Number.isFinite(Number(e)),tfNum=(e,t)=>tfIsNumber(e)?Number(e):t,tfStoredRawValue=(e,t)=>tfNum(e?.[t],.1);
-function tfHasComponentData(e){
-return!!e&&["performance","projection","consensus","recent","upside","opportunity","roleConfidence","scarcity","replacement","market","marketChange","marketMomentum","consistency","consistencyScore","availability","availabilityScore","availabilityValue","situation","situationScore","roleSecurity","year1","year2","year3","prospect","draftCapital","age","ageScore","nflGames"].some(t=>tfIsNumber(e[t]))
-}
-function tfHasRedraftData(e){return tfHasComponentData(e.engine?.redraft)}
-function tfHasDynastyData(e){const t=e.engine?.dynasty;return tfHasComponentData(t)||!0===t?.isRookie}
-function tfHasAnyEngineData(e){return tfHasRedraftData(e)||tfHasDynastyData(e)||tfHasComponentData(e.engine?.keeper)}
-function tfWeightedSum(e){const t=TRADEFORGE_ENGINE.weights;return e.performance*t.performance+e.opportunity*t.opportunity+e.scarcity*t.scarcity+e.market*t.market+e.consistency*t.consistency+e.availability*t.availability+e.situation*t.situation}
-function tfTraitValue(e,t,r=.8,n=1.05){if(!tfIsNumber(t))return e;const a=tfClamp(Number(t),0,100)/100;return tfClamp(e*(r+(n-r)*a),.1,100)}
-function tfApplyEliteCurve(e){return e=tfClamp(tfNum(e,.1),.1,100),tfClamp(100*Math.pow(e/100,TRADEFORGE_ENGINE.eliteCurveExponent),.1,100)}
-function tfDynastyAgeFactor(e,t){
-return!tfIsNumber(t)||Number(t)<=0?1:(t=Number(t),
-"RB"===e?t<=23?1.05:t<=25?1.02:26===t?.99:27===t?.95:28===t?.9:.83:"WR"===e?t<=24?1.04:t<=27?1.02:28===t?.99:29===t?.95:30===t?.9:.84:"TE"===e?t<=25?1.03:t<=29?1.02:30===t?.98:t<=32?.94:.88:"QB"===e?t<=25?1.03:t<=32?1.02:t<=35?.98:.92:1)
-}
-function tfReplacementRank(e){let t=TRADEFORGE_ENGINE.replacementRanks[e]??12;return"QB"===e&&"superflex"===qbMode&&(t=28),"TE"===e&&"off"!==tePremiumMode&&(t=18),t}
-function tfReplacementRaw(e,t){const r=playerDatabase.filter(t=>t.pos===e).map(e=>tfStoredRawValue(e,t)).filter(Number.isFinite).sort((e,t)=>t-e);if(!r.length)return 0;return r[Math.min(r.length-1,Math.max(0,tfReplacementRank(e)-1))]}
-function tfScarcityValue(e,t,r,n={}){if(tfIsNumber(n.scarcity))return tfClamp(Number(n.scarcity),.1,100);const a=tfIsNumber(n.replacement)?Number(n.replacement):tfReplacementRaw(e.pos,t);return tfClamp(r+(r-a)*TRADEFORGE_ENGINE.scarcityBoost,.1,100)}
-function tfAutoMarketChange(e){if(!sleeperCalculationContext||!TRADEFORGE_ENGINE.useSleeperTrendingMarket)return 0;const t=e.sleeperId||sleeperIdByName[norm(e.name)];return t&&Number.isFinite(sleeperTrendMarket[t])?sleeperTrendMarket[t]:0}
-function tfMarketValue(e,t,r){
-let n=tfIsNumber(t?.market)?Number(t.market):tfIsNumber(t?.consensus)?Number(t.consensus):r;
-const a=tfIsNumber(t?.marketChange)?Number(t.marketChange):tfIsNumber(t?.marketMomentum)?Number(t.marketMomentum):tfAutoMarketChange(e);
-return Math.abs(a)<=1&&(n*=1+tfClamp(a,-TRADEFORGE_ENGINE.marketAdjustmentMax,TRADEFORGE_ENGINE.marketAdjustmentMax)),tfClamp(n,.1,100)
-}
-function tfPerformanceValue(e,t){if(tfIsNumber(e?.performance))return tfClamp(Number(e.performance),.1,100);if(!["projection","consensus","recent"].some(t=>tfIsNumber(e?.[t])))return t;const r=TRADEFORGE_ENGINE.performanceInputs;return tfClamp(tfNum(e.projection,t)*r.projection+tfNum(e.consensus,t)*r.consensus+tfNum(e.recent,t)*r.recent,.1,100)}
-function tfOpportunityValue(e,t){return tfIsNumber(e?.opportunity)?tfClamp(Number(e.opportunity),.1,100):tfIsNumber(e?.roleSecurity)?tfClamp(Number(e.roleSecurity),.1,100):tfIsNumber(e?.roleConfidence)?tfTraitValue(t,e.roleConfidence,.75,1.08):t}
-function tfConsistencyValue(e,t){if(tfIsNumber(e?.consistency))return tfClamp(Number(e.consistency),.1,100);if(tfIsNumber(e?.consistencyScore))return tfTraitValue(t,e.consistencyScore,.8,1.06);if(tfIsNumber(e?.projection)&&tfIsNumber(e?.recent)){const r=Math.abs(Number(e.projection)-Number(e.recent));return tfTraitValue(t,tfClamp(100-2*r,35,100),.82,1.05)}return t}
-function tfAvailabilityValue(e,t){if(tfIsNumber(e?.availabilityValue))return tfClamp(Number(e.availabilityValue),.1,100);if(tfIsNumber(e?.availabilityScore))return tfClamp(t*tfClamp(Number(e.availabilityScore),0,100)/100,.1,100);if(tfIsNumber(e?.availability)){const r=Number(e.availability);return tfClamp(r<=1.25?t*tfClamp(r,0,1):r,.1,100)}return t}
-function tfSituationValue(e,t){return tfIsNumber(e?.situation)?tfClamp(Number(e.situation),.1,100):tfIsNumber(e?.situationScore)?tfTraitValue(t,e.situationScore,.8,1.06):tfIsNumber(e?.roleConfidence)?tfTraitValue(t,e.roleConfidence,.82,1.05):t}
-function tfRedraftComponents(e){const t=tfStoredRawValue(e,"redraft"),r=e.engine?.redraft||{},n=tfPerformanceValue(r,t);return{performance:n,opportunity:tfOpportunityValue(r,t),scarcity:tfScarcityValue(e,"redraft",n,r),market:tfMarketValue(e,r,t),consistency:tfConsistencyValue(r,t),availability:tfAvailabilityValue(r,t),situation:tfSituationValue(r,t)}}
-function tfRedraftRaw(e){return tfHasRedraftData(e)?tfClamp(tfRound(tfWeightedSum(tfRedraftComponents(e))),.1,100):tfStoredRawValue(e,"redraft")}
-function tfDynastyAnchor(e,t,r){if(!["year1","year2","year3"].some(e=>tfIsNumber(t?.[e])))return r;const n=TRADEFORGE_ENGINE.dynastyYears;return tfClamp(tfNum(t.year1,r)*n.year1+tfNum(t.year2,r)*n.year2+tfNum(t.year3,r)*n.year3,.1,100)}
-function tfDynastySituationValue(e,t,r){return tfIsNumber(t?.situation)?tfClamp(Number(t.situation),.1,100):!0===t?.isRookie?tfClamp(.3*tfNum(t.prospect,r)+.25*tfNum(t.draftCapital,r)+.25*tfNum(t.roleSecurity,r)+.2*tfNum(t.opportunity,r),.1,100):tfIsNumber(t?.roleSecurity)?tfClamp(Number(t.roleSecurity),.1,100):tfSituationValue(t,r)}
-function tfDynastyComponents(e){
-const t=tfStoredRawValue(e,"dynasty"),r=e.engine?.dynasty||{},n=tfDynastyAnchor(e,r,t);let a=t;
-if(tfIsNumber(r.consistency))a=tfClamp(Number(r.consistency),.1,100);else if(tfIsNumber(r.year1)&&tfIsNumber(r.year2)&&tfIsNumber(r.year3)){const e=[Number(r.year1),Number(r.year2),Number(r.year3)],t=Math.max(...e)-Math.min(...e);a=tfTraitValue(n,tfClamp(100-1.5*t,35,100),.84,1.05)}
-const s=Object.keys(r).length?r:e.engine?.redraft||{};return{performance:tfIsNumber(r.performance)?tfClamp(Number(r.performance),.1,100):n,opportunity:tfOpportunityValue(r,n),scarcity:tfScarcityValue(e,"dynasty",n,r),market:tfMarketValue(e,r,t),consistency:a,availability:tfAvailabilityValue(s,n),situation:tfDynastySituationValue(e,r,n)}
-}
-function tfDynastyRaw(e){if(!tfHasDynastyData(e))return tfStoredRawValue(e,"dynasty");const t=e.engine?.dynasty||{};let r=tfWeightedSum(tfDynastyComponents(e));return tfIsNumber(t.age)&&(r*=tfDynastyAgeFactor(e.pos,Number(t.age))),tfClamp(tfRound(r),.1,100)}
-function tfKeeperRaw(e){
-if(!tfHasAnyEngineData(e))return tfStoredRawValue(e,"keeper");const t=e.engine?.keeper;
-if(tfHasComponentData(t)){const r=tfStoredRawValue(e,"keeper");return tfClamp(tfRound(tfWeightedSum({performance:tfPerformanceValue(t,r),opportunity:tfOpportunityValue(t,r),scarcity:tfScarcityValue(e,"keeper",r,t),market:tfMarketValue(e,t,r),consistency:tfConsistencyValue(t,r),availability:tfAvailabilityValue(t,r),situation:tfSituationValue(t,r)})),.1,100)}
-const r=TRADEFORGE_ENGINE.keeperWeights;return tfClamp(tfRound(tfRedraftRaw(e)*r.redraft+tfDynastyRaw(e)*r.dynasty),.1,100)
-}
-function tfDynamicPickValue(e){const t="superflex"===qbMode?e.superflex:e.oneqb;if(!TRADEFORGE_ENGINE.useDynamicPickValues)return t;const r=Number(String(e.name).match(/20\d{2}/)?.[0]);if(!r)return t;const n=(new Date).getFullYear()+1,a=Math.max(0,r-n),s=TRADEFORGE_ENGINE.futurePickDiscounts,o=s[Math.min(a,s.length-1)]??s[s.length-1];return tfClamp(tfRound(t*o),.1,100)}
-function tfApplyLeagueSettings(e,t,r){let n=t*(multipliers[e.pos]?.[scoringMode]||1);return"superflex"===qbMode&&"QB"===e.pos&&(n*="dynasty"===r?1.45:"keeper"===r?1.4:1.35),"TE"===e.pos&&"half"===tePremiumMode&&(n*=n>=75?1.1:n>=50?1.08:n>=25?1.06:1.04),"TE"===e.pos&&"full"===tePremiumMode&&(n*=n>=75?1.18:n>=50?1.14:n>=25?1.1:1.06),tfClamp(tfRound(n),.1,100)}
-function legacyValue(e){return"PICK"===e.pos?"superflex"===qbMode?e.superflex:e.oneqb:tfApplyLeagueSettings(e,tfStoredRawValue(e,leagueMode),leagueMode)}
-function value(e){if("PICK"===e.pos)return tfDynamicPickValue(e);if(!TRADEFORGE_ENGINE.enabled||!tfHasAnyEngineData(e))return legacyValue(e);let t;return t="dynasty"===leagueMode?tfDynastyRaw(e):"keeper"===leagueMode?tfKeeperRaw(e):tfRedraftRaw(e),t=tfApplyEliteCurve(t),tfApplyLeagueSettings(e,t,leagueMode)}
-function updateEngineStatus(){
-const e=playerDatabase.filter(tfHasAnyEngineData).length;let t=e?`Weighted model • ${e}/${playerDatabase.length} data-enhanced players`:`Weighted model ready • ${playerDatabase.length} baseline players`;
-if(tradeForgeFeedMeta?.week&&(t+=` • Week ${tradeForgeFeedMeta.week}`),tradeForgeFeedMeta?.generatedAt){const e=new Date(tradeForgeFeedMeta.generatedAt);Number.isNaN(e.getTime())||(t+=` • Updated ${e.toLocaleString()}`)}$("engine-status").textContent=t
-}
-async function loadTradeForgeFeed(){
-try{
-const e=await fetch(`./tradeforge-data.json?v=${Date.now()}`,{cache:"no-store"});if(!e.ok)throw new Error(`Feed HTTP ${e.status}`);const t=await e.json();tradeForgeFeedMeta=t.meta||null;let r=0;
-playerDatabase.forEach(e=>{const n=t.players?.[norm(e.name)];n?.engine&&(e.engine=n.engine,e.liveData=n,r++)});
-const n=e=>{const t=playerDatabase.find(t=>t.pos===e.pos&&norm(t.name)===norm(e.name));return t?{...e,engine:t.engine,liveData:t.liveData}:e};
-teamA=teamA.map(n),teamB=teamB.map(n),sleeperTeamA=sleeperTeamA.map(n),sleeperTeamB=sleeperTeamB.map(n),leagueTradeFinderBuilds=[],$("trade-finder-results").textContent="Values updated. Run Find Trades again.",console.log(`TradeForge feed applied to ${r} players.`),renderBoard(),render(),syncedLeague&&!$("league-page").classList.contains("page-hidden")&&buildLeaguePage()
-}catch(e){console.warn("TradeForge live feed unavailable; baseline values remain active.",e),tradeForgeFeedMeta=null,renderBoard(),render()}
-}
-function adjustedPlayer(e){return e<=0?0:e}
-function adjustedCore(e){return e.map(e=>adjustedPlayer(value(e))).sort((e,t)=>t-e).reduce((e,t,r)=>e+t*(PACKAGE_WEIGHTS[r]??.8),0)}
-function consolidationPremium(e,t){if(!e?.length||!t?.length||e.length>=t.length)return 0;const r=Math.max(...e.map(e=>value(e))),n=tfClamp(r/100,0,1),a=t.length-e.length;return 1===e.length&&2===t.length?.08+.07*n:1===e.length&&t.length>=3||a>=2?.15+.1*n:.05+.05*n}
-function adjusted(e,t=null){let r=adjustedCore(e);return t&&(r*=1+consolidationPremium(e,t)),r}
-function adjustedTradeValues(e,t){return{a:adjusted(e,t),b:adjusted(t,e),premiumA:consolidationPremium(e,t),premiumB:consolidationPremium(t,e)}}
-function base(e){return e.reduce((e,t)=>e+value(t),0)}
-function diff(e,t){const r=(e+t)/2;return r?Math.abs(e-t)/r*100:0}
-function insightMetadata(e){
-if(["PICK","DST"].includes(e.pos))return{};
-const t=e.sleeperId||sleeperIdByName[norm(e.name)],r=t?sleeperPlayers[t]:null,n=r&&r.position===e.pos&&norm(r.full_name||[r.first_name,r.last_name].filter(Boolean).join(" "))===norm(e.name),a=[n?r.age:null,e.engine?.dynasty?.age,e.liveData?.age].find(e=>tfIsNumber(e)&&Number(e)>0),s=n&&tfIsNumber(r.years_exp)&&Number.isInteger(Number(r.years_exp))&&Number(r.years_exp)>=0?Number(r.years_exp):null;
-return{age:void 0===a?null:Number(a),years:s,rookie:0===s||null===s&&!0===e.engine?.dynasty?.isRookie}
-}
-function insightPlayerReasons(e){
-if("PICK"===e.pos)return["A future draft asset with no current-season production; the selected QB format determines its pick rating."];
-if("DST"===e.pos)return["A team defense, so individual player age and career horizon do not apply. Its stored rating follows the selected league format."];
-const{age:t,years:r,rookie:n}=insightMetadata(e),a=[],s=[e.pos];
-null!==t&&s.push("age "+t),n?s.push("rookie"):null!==r&&s.push(r+" "+(1===r?"year":"years")+" of NFL experience"),a.push(s.join(" • ")+".");
-const o=tfIsNumber(e.redraft)?Number(e.redraft):null,l=tfIsNumber(e.dynasty)?Number(e.dynasty):null,i="redraft"!==leagueMode;
-if(n&&a.push(i?"Rookie status makes future development relevant to long-term value; that potential does not establish current-season production.":"Redraft focuses on the current season; rookie status alone does not establish production."),null!==t&&i){
-const r=tfDynastyAgeFactor(e.pos,t);
-r>1?a.push(null!==o&&o>=75?"Youth accompanies a high stored current-season rating, combining present value with a longer potential career runway.":"Youth offers a longer potential career runway, which matters when keeping players beyond this season."):r<1&&a.push("At this age, the remaining career horizon is a consideration for a "+e.pos+" in "+leagueMode+". Age is context, not a prediction of retirement.")
-}
-return null!==o&&null!==l&&(l>o?a.push("The stored dynasty rating is higher than the redraft rating, placing more value on the longer-term profile."):l<o?a.push("The stored redraft rating is higher than the dynasty rating, favoring current-season value over the longer-term profile."):a.push("The stored redraft and dynasty ratings are equal.")),
-"keeper"===leagueMode&&a.push("Keeper mode balances current and future value; keeper costs and contract rules are not supplied to this calculator."),
-"QB"===e.pos?a.push("superflex"===qbMode?"The Superflex/2QB setting adds a quarterback premium because more quarterbacks can start.":"The 1QB setting does not add the Superflex/2QB quarterback premium."):"TE"===e.pos&&"off"!==tePremiumMode?a.push("The active tight end premium adds value at TE."):["RB","WR","TE"].includes(e.pos)&&"ppr"!==scoringMode&&a.push("The "+("half"===scoringMode?"half-PPR":"non-PPR")+" setting applies the model's "+e.pos+" scoring adjustment."),a
-}
-function renderTradeInsight(e,t,r,n){
-const a=$(e);if(!a)return;
-if(!t.length||!r.length)return a.className="trade-insight-box empty",void(a.textContent="Add players to both sides to see their available valuation context.");
-const s=[...t.map(e=>({p:e,side:"A"})),...r.map(e=>({p:e,side:"B"}))];a.className="trade-insight-box",
-a.innerHTML='<div class="trade-insight-summary">Player profiles in '+esc(modeLabel())+'</div><ul class="trade-insight-list">'+s.map(({p:e,side:t})=>"<li><strong>Team "+t+" — "+esc(e.name)+":</strong> "+insightPlayerReasons(e).map(esc).join(" ")+"</li>").join("")+'</ul><div class="trade-insight-context">Age and experience appear only when supplied by the player data. Stored ratings are valuation scores, not fantasy-point forecasts; player context does not change the trade calculation.</div>'
-}
-function modeLabel(){return`${"ppr"===scoringMode?"PPR":"half"===scoringMode?"0.5 PPR":"No PPR"} • ${leagueMode[0].toUpperCase()+leagueMode.slice(1)} • ${"superflex"===qbMode?"Superflex":"1QB"}${"half"===tePremiumMode?" • TEP +0.5":"full"===tePremiumMode?" • TEP +1.0":""}`}
-function sleeperModeLabel(){return`${"ppr"===sleeperScoringMode?"PPR":"half"===sleeperScoringMode?"0.5 PPR":"No PPR"} • ${sleeperLeagueMode[0].toUpperCase()+sleeperLeagueMode.slice(1)} • ${"superflex"===sleeperQbMode?"Superflex":"1QB"}${"half"===sleeperTePremiumMode?" • TEP +0.5":"full"===sleeperTePremiumMode?" • TEP +1.0":""}`}
-function syncedProviderName(){return"espn"===syncedProvider?"ESPN":"Sleeper"}
-function updateSyncedProviderCopy(){
-const e=syncedProviderName();
-$("sleeper-info")&&($("sleeper-info").textContent=`${e} league settings are isolated from the main TradeForge calculator.`),
-$("disconnect")&&($("disconnect").textContent=`Disconnect ${e}`),$("trade-center-provider-label")&&($("trade-center-provider-label").textContent=`${e} trade tools`),
-$("synced-trade-calculator-title")&&($("synced-trade-calculator-title").textContent=`${e} Trade Calculator`),
-$("synced-trade-calculator-sub")&&($("synced-trade-calculator-sub").textContent=`Uses the selected ${e} rosters`),
-$("synced-insight-sub")&&($("synced-insight-sub").textContent=`Player facts and valuation context for your ${e} league.`),
-$("trade-finder-roster-copy")&&($("trade-finder-roster-copy").textContent=`TradeForge searches your valued ${e} roster for 1-for-1, 2-for-1, and 3-for-1 packages and ranks them by adjusted trade value.`)
-}
-function withSleeperModes(e){
-const t={scoringMode:scoringMode,leagueMode:leagueMode,qbMode:qbMode,tePremiumMode:tePremiumMode,sleeperCalculationContext:sleeperCalculationContext};
-scoringMode=sleeperScoringMode,leagueMode=sleeperLeagueMode,qbMode=sleeperQbMode,tePremiumMode=sleeperTePremiumMode,sleeperCalculationContext=!0;
-try{return e()}finally{scoringMode=t.scoringMode,leagueMode=t.leagueMode,qbMode=t.qbMode,tePremiumMode=t.tePremiumMode,sleeperCalculationContext=t.sleeperCalculationContext}
-}
-function sleeperValue(e){return withSleeperModes(()=>value(e))}
-function renderTop(e,t){
-const r=playerDatabase.filter(t=>t.pos===e&&Number.isFinite(legacyValue(t))).slice().sort((e,t)=>legacyValue(t)-legacyValue(e)||e.rank-t.rank).slice(0,3);
-$(t).innerHTML=r.length?r.map((e,t)=>`\n<div class="top-row">\n<span>#${t+1} ${esc(e.name)}</span>\n<strong>${legacyValue(e).toFixed(1)}</strong>\n</div>\n`).join(""):'<div class="sub">No ranked players</div>'
-}
-function renderBoard(){$("mode-label").textContent=modeLabel(),updateEngineStatus(),renderTop("RB","top-rb"),renderTop("WR","top-wr"),renderTop("QB","top-qb"),renderTop("TE","top-te")}
-function renderTeam(e){
-const t="A"===e?teamA:teamB,r=$("A"===e?"team-a":"team-b");
-t.length?r.innerHTML=t.map((t,r)=>`\n<div class="player">\n\n<div>\n<strong>${esc(t.name)}</strong>\n<small>${esc(t.pos)}${t.nflTeam?" • "+esc(t.nflTeam):""}</small>\n</div>\n\n<strong>${value(t).toFixed(1)}</strong>\n\n<button class="remove" onclick="removePlayer('${e}',${r})">×</button>\n\n</div>\n`).join(""):r.innerHTML='\n<div class="sub" style="padding:20px 0">\nSearch above to add players.\n</div>\n'
-}
-function removePlayer(e,t){("A"===e?teamA:teamB).splice(t,1),render()}
-function clearSearchResults(e=""){["a","b"].forEach(t=>{const r=$(e+"results-"+t);r.innerHTML="",r.classList.remove("show")})}
-function render(){clearSearchResults(),renderTeam("A"),renderTeam("B"),calculate()}
-function calculate(){
-const e=base(teamA),t=base(teamB),r=adjustedTradeValues(teamA,teamB),n=r.a,a=r.b,s=diff(n,a);
-$("base-a").textContent=e.toFixed(1),$("base-b").textContent=t.toFixed(1),$("adj-a").textContent=n.toFixed(1),$("adj-b").textContent=a.toFixed(1),$("marker").style.left=(n+a?Math.max(5,Math.min(95,a/(n+a)*100)):50)+"%";
-const o=$("verdict");
-if(o.className="",!teamA.length||!teamB.length)return o.innerHTML="\nBuild a Trade\n<small>Add players to both sides.</small>\n",$("grade").textContent="—",renderTradeInsight("trade-insight",teamA,teamB,r),void($("trade-ideas").textContent="Build a trade to see suggested trade ideas.");
-let l,i;s<=5?(l="FAIR TRADE",i="fair"):s<=10?(l="SLIGHT ADVANTAGE",i="slight"):s<=20?(l="ADVANTAGE",i="adv"):(l="MAJOR ADVANTAGE",i="major"),o.className=i,
-o.innerHTML=`\n${l}\n<small>\n${s.toFixed(1)}% difference\n${s>5?" • "+(n>a?"Team A":"Team B")+" has more adjusted value":""}\n</small>\n`,
-$("grade").textContent=s<=5?"A+":s<=10?"A":s<=20?"B":s<=30?"C":s<=40?"D":"F",renderTradeInsight("trade-insight",teamA,teamB,r),tradeIdeas(n,a)
-}
-function tradeIdeas(e,t){
-const r=$("trade-ideas");if(!teamA.length||!teamB.length)return void(r.textContent="Build a trade to see suggested trade ideas.");const n=diff(e,t);
-if(n<=5)return void(r.innerHTML='\n<div class="suggestion">\n<strong>No adjustment needed.</strong>\n<br><br>\nThis trade is already inside the 5% TradeForge fair range.\n</div>\n');
-const a=e>t?"B":"A",s=new Set(teamA.concat(teamB).map(key)),o=assets().filter(e=>!s.has(key(e))),l=e=>{
-const t=adjustedTradeValues("A"===a?teamA.concat(e):teamA,"B"===a?teamB.concat(e):teamB),r=diff(t.a,t.b);return r>=n?null:{additions:e,recalculated:t,newDifference:r,fair:r<=5,close:r>5&&r<=10,improvement:n-r}},i=[];
-o.forEach(e=>{const t=l([e]);t&&i.push(t)});
-const d=Math.abs(e-t),u=o.slice().sort((e,t)=>Math.abs(value(e)-d)-Math.abs(value(t)-d)).slice(0,35);
-for(let e=0;e<u.length;e++)for(let t=e+1;t<u.length;t++){const r=l([u[e],u[t]]);r&&i.push(r)}
-if(!i.some(e=>e.fair)){const e=u.slice(0,18);for(let t=0;t<e.length;t++)for(let r=t+1;r<e.length;r++)for(let n=r+1;n<e.length;n++){const a=l([e[t],e[r],e[n]]);a&&i.push(a)}}
-i.sort((e,t)=>e.fair!==t.fair?e.fair?-1:1:e.additions.length!==t.additions.length&&e.fair&&t.fair?e.additions.length-t.additions.length:e.close!==t.close?e.close?-1:1:e.newDifference-t.newDifference);
-const c=[],p=new Set;for(const e of i){const t=e.additions.map(key).sort().join("|");if(!p.has(t)&&(p.add(t),(e.fair||!(e.improvement<2))&&(c.push(e),c.length>=3)))break}
-c.length?r.innerHTML=c.map((r,s)=>{const o=r.additions.map(e=>esc(e.name)).join(" + ");
-return`\n<div class="suggestion">\n\n<strong>Idea ${s+1} — ${r.fair?"FAIR MATCH":r.close?"VERY CLOSE":"BEST AVAILABLE"}</strong>\n\n<br><br>\n\n<strong>Add ${o} to Team ${a}'s side.</strong>\n\n<br><br>\n\nCurrent:\nTeam A ${e.toFixed(1)}\nvs\nTeam B ${t.toFixed(1)}\n\n<br>\n\nAfter suggestion:\nTeam A ${r.recalculated.a.toFixed(1)}\nvs\nTeam B ${r.recalculated.b.toFixed(1)}\n\n<br>\n\nDifference:\n${n.toFixed(1)}%\n→\n${r.newDifference.toFixed(1)}%\n\n${r.fair?"\n<br><br>\n<strong>✓ Inside the 5% TradeForge fair range</strong>\n":""}\n\n</div>\n`
-}).join(""):r.innerHTML='\n<div class="suggestion">\nTradeForge could not find a reasonable addition that meaningfully improves the trade.\n</div>\n'
-}
-function setupSearch(e){
-const t=$("A"===e?"search-a":"search-b"),r=$("A"===e?"results-a":"results-b");
-t.oninput=()=>{const n=t.value.trim().toLowerCase();if(!n)return void r.classList.remove("show");
-const a=new Set(teamA.concat(teamB).map(key)),s=assets().filter(e=>!a.has(key(e))&&(e.name.toLowerCase().includes(n)||e.pos.toLowerCase().includes(n))).sort((e,t)=>value(t)-value(e)).slice(0,15);
-r.innerHTML=s.length?s.map((e,t)=>`\n<div class="result-item" data-i="${t}">\n<span>\n${esc(e.name)}\n<small class="sub">${esc(e.pos)}</small>\n</span>\n<strong>${value(e).toFixed(1)}</strong>\n</div>\n`).join(""):'<div class="result-item"><span>No matching players found</span></div>',
-r.classList.add("show"),r.querySelectorAll("[data-i]").forEach((n,a)=>{n.onclick=()=>{const n=s[a];assets().some(e=>key(e)===key(n))&&!teamA.concat(teamB).some(e=>key(e)===key(n))&&(("A"===e?teamA:teamB).push({...n}),t.value="",r.classList.remove("show"),render())}})
-}}
-function applyControls(){scoringMode=$("scoring").value,leagueMode=$("league").value,qbMode=$("qb").value,tePremiumMode=$("tep").value,"dynasty"!==leagueMode&&(teamA=teamA.filter(e=>"PICK"!==e.pos),teamB=teamB.filter(e=>"PICK"!==e.pos)),renderBoard(),render()}
-function rosterAssets(e){const t=syncedRosters.find(t=>String(t.roster_id)===String(e));return t?(t.players||[]).map(e=>matchSleeper(String(e))).filter(Boolean).sort((e,t)=>sleeperValue(t)-sleeperValue(e)):[]}
-function sleeperSelectedRoster(e){return"A"===e?sleeperRosterA:sleeperRosterB}
-function sleeperPool(e){const t=sleeperSelectedRoster(e);if(!syncedLeague||!t)return[];const r=rosterAssets(t);return"dynasty"===sleeperLeagueMode?r.concat(picks):r}
-function renderSleeperTeam(e){
-const t="A"===e?sleeperTeamA:sleeperTeamB,r=$("A"===e?"sleeper-team-a":"sleeper-team-b");
-t.length?r.innerHTML=t.map((t,r)=>`\n<div class="player">\n\n<div>\n<strong>${esc(t.name)}</strong>\n<small>\n${esc(t.pos)}\n${t.nflTeam?" • "+esc(t.nflTeam):""}\n</small>\n</div>\n\n<strong>${sleeperValue(t).toFixed(1)}</strong>\n\n<button class="remove" onclick="removeSleeperPlayer('${e}',${r})">\n×\n</button>\n\n</div>\n`).join(""):r.innerHTML='\n<div class="sub" style="padding:20px 0">\nSearch the selected synced roster above to add players.\n</div>\n'
-}
-function removeSleeperPlayer(e,t){("A"===e?sleeperTeamA:sleeperTeamB).splice(t,1),renderSleeper()}
-function renderSleeper(){clearSearchResults("sleeper-"),renderSleeperTeam("A"),renderSleeperTeam("B"),sleeperCalculate()}
-function sleeperCalculate(){withSleeperModes(()=>{
-const e=base(sleeperTeamA),t=base(sleeperTeamB),r=adjustedTradeValues(sleeperTeamA,sleeperTeamB),n=r.a,a=r.b,s=diff(n,a);
-$("sleeper-base-a").textContent=e.toFixed(1),$("sleeper-base-b").textContent=t.toFixed(1),$("sleeper-adj-a").textContent=n.toFixed(1),$("sleeper-adj-b").textContent=a.toFixed(1),$("sleeper-marker").style.left=(n+a?Math.max(5,Math.min(95,a/(n+a)*100)):50)+"%";
-const o=$("sleeper-verdict");if(o.className="",!sleeperTeamA.length||!sleeperTeamB.length)return o.innerHTML="\nBuild a Trade\n<small>Add players from both synced rosters.</small>\n",$("sleeper-grade").textContent="—",renderTradeInsight("sleeper-trade-insight",sleeperTeamA,sleeperTeamB,r),void($("sleeper-trade-ideas").textContent=`Build a trade from the synced ${syncedProviderName()} league to see suggested trade ideas.`);
-let l,i;s<=5?(l="FAIR TRADE",i="fair"):s<=10?(l="SLIGHT ADVANTAGE",i="slight"):s<=20?(l="ADVANTAGE",i="adv"):(l="MAJOR ADVANTAGE",i="major"),o.className=i,
-o.innerHTML=`\n${l}\n<small>\n${s.toFixed(1)}% difference\n${s>5?" • "+(n>a?"Team A":"Team B")+" has more adjusted value":""}\n</small>\n`,
-$("sleeper-grade").textContent=s<=5?"A+":s<=10?"A":s<=20?"B":s<=30?"C":s<=40?"D":"F",renderTradeInsight("sleeper-trade-insight",sleeperTeamA,sleeperTeamB,r),sleeperTradeIdeas(n,a)
-})}
-function sleeperTradeIdeas(e,t){
-const r=$("sleeper-trade-ideas");
-if(!sleeperTeamA.length||!sleeperTeamB.length)return void(r.textContent=`Build a trade from the synced ${syncedProviderName()} league to see suggested trade ideas.`);
-const n=diff(e,t);
-if(n<=5)return void(r.innerHTML='\n<div class="suggestion">\n<strong>No adjustment needed.</strong>\n<br><br>\nThis trade is already inside the 5% TradeForge fair range.\n</div>\n');
-const a=e>t?"B":"A",s="A"===a?sleeperRosterA:sleeperRosterB,o=new Set(sleeperTeamA.concat(sleeperTeamB).map(key)),l=rosterAssets(s).filter(e=>!o.has(key(e))&&"PICK"!==e.pos);
-if(!l.length)return void(r.innerHTML=`\n<div class="suggestion">\n<strong>Team ${a} needs more value.</strong>\n<br><br>\nTradeForge could not find another valued player on Team ${a}'s roster to add to the trade.\n</div>\n`);
-const i=e=>sleeperValue(e),d=e=>{
-const t="A"===a?sleeperTeamA.concat(e):sleeperTeamA,r="B"===a?sleeperTeamB.concat(e):sleeperTeamB,s=withSleeperModes(()=>adjustedTradeValues(t,r)),o=diff(s.a,s.b);
-return o>=n?null:{additions:e,recalculated:s,newDifference:o,fair:o<=5,close:o>5&&o<=10,improvement:n-o}},u=[];
-l.forEach(e=>{const t=d([e]);t&&u.push(t)});
-const c=Math.abs(e-t),p=l.slice().sort((e,t)=>Math.abs(i(e)-c)-Math.abs(i(t)-c)).slice(0,30);
-for(let e=0;e<p.length;e++)for(let t=e+1;t<p.length;t++){const r=d([p[e],p[t]]);r&&u.push(r)}
-if(!u.some(e=>e.fair)){const e=p.slice(0,16);for(let t=0;t<e.length;t++)for(let r=t+1;r<e.length;r++)for(let n=r+1;n<e.length;n++){const a=d([e[t],e[r],e[n]]);a&&u.push(a)}}
-if(!u.length)return void(r.innerHTML=`\n<div class="suggestion">\n<strong>Team ${a} needs more value.</strong>\n<br><br>\nTradeForge could not find an additional player or combination from Team ${a}'s roster that improves the trade.\n</div>\n`);
-u.sort((e,t)=>e.fair!==t.fair?e.fair?-1:1:e.fair&&t.fair?e.additions.length!==t.additions.length?e.additions.length-t.additions.length:e.newDifference-t.newDifference:e.close!==t.close?e.close?-1:1:Math.abs(e.newDifference-t.newDifference)>.25?e.newDifference-t.newDifference:e.additions.length-t.additions.length);
-const m=[],f=new Set;for(const e of u){const t=e.additions.map(e=>key(e)).sort().join("|");if(!f.has(t)&&(f.add(t),(e.fair||!(e.improvement<2))&&(m.push(e),m.length>=3)))break}
-m.length?r.innerHTML=m.map((r,s)=>{const o=r.additions.map(e=>esc(e.name)).join(" + ");
-return`\n<div class="suggestion">\n\n<strong>Idea ${s+1} — ${r.fair?"FAIR MATCH":r.close?"VERY CLOSE":"BEST AVAILABLE"}</strong>\n\n<br><br>\n\n<strong>\nTeam ${a} adds ${o} to Team ${a}'s side of the trade.\n</strong>\n\n<br><br>\n\nCurrent:\nTeam A ${e.toFixed(1)}\nvs\nTeam B ${t.toFixed(1)}\n\n<br>\n\nAfter suggestion:\nTeam A ${r.recalculated.a.toFixed(1)}\nvs\nTeam B ${r.recalculated.b.toFixed(1)}\n\n<br>\n\nDifference:\n${n.toFixed(1)}%\n→\n${r.newDifference.toFixed(1)}%\n\n${r.fair?"\n<br><br>\n<strong>✓ Inside the 5% TradeForge fair range</strong>\n":""}\n\n</div>\n`
-}).join(""):r.innerHTML=`\n<div class="suggestion">\n<strong>Team ${a} needs more value.</strong>\n<br><br>\nTradeForge could not find a reasonable addition from Team ${a}'s roster that gets the trade close enough to recommend.\n</div>\n`
-}
-function setupSleeperSearch(e){
-const t=$("A"===e?"sleeper-search-a":"sleeper-search-b"),r=$("A"===e?"sleeper-results-a":"sleeper-results-b");t.oninput=()=>{
-const n=t.value.trim().toLowerCase();if(!n)return void r.classList.remove("show");
-const a=new Set(sleeperTeamA.concat(sleeperTeamB).map(key)),s=sleeperPool(e).filter(e=>!a.has(key(e))&&(e.name.toLowerCase().includes(n)||e.pos.toLowerCase().includes(n))).sort((e,t)=>sleeperValue(t)-sleeperValue(e)).slice(0,15);
-r.innerHTML=s.length?s.map((e,t)=>`\n<div class="result-item" data-i="${t}">\n\n<span>\n${esc(e.name)}\n<small class="sub">${esc(e.pos)}</small>\n</span>\n\n<strong>${sleeperValue(e).toFixed(1)}</strong>\n\n</div>\n`).join(""):'\n<div class="result-item">\n<span>No matching players found on this roster</span>\n</div>\n',
-r.classList.add("show"),r.querySelectorAll("[data-i]").forEach((n,a)=>{n.onclick=()=>{const n=s[a];sleeperPool(e).some(e=>key(e)===key(n))&&!sleeperTeamA.concat(sleeperTeamB).some(e=>key(e)===key(n))&&(("A"===e?sleeperTeamA:sleeperTeamB).push({...n}),t.value="",r.classList.remove("show"),renderSleeper())}})
-}}
-function getMyRosterId(){if("espn"===syncedProvider)return String(sleeperRosterA||"");const e=syncedRosters.find(e=>String(e.owner_id)===String(sleeperUser?.user_id));return String(e?e.roster_id:sleeperRosterA||"")}
-function getSleeperRosterPlayer(e){
-const t=matchSleeper(e=String(e));if(t)return{name:t.name,pos:t.pos,team:t.nflTeam||"",tradePlayer:t};
-const r=sleeperPlayers[e];return r?{name:r.full_name||[r.first_name,r.last_name].filter(Boolean).join(" ")||"Unknown Player",pos:r.position||"",team:r.team||"",tradePlayer:null}:null
-}
-function renderLeagueRoster(e,t,r,n){
-const a=syncedRosters.find(t=>String(t.roster_id)===String(e));if(!a)return $(r).textContent="Roster Not Found",$(n).textContent="",void($(t).innerHTML="");
-const s=(a.players||[]).map(getSleeperRosterPlayer).filter(Boolean).sort((e,t)=>(t.tradePlayer?sleeperValue(t.tradePlayer):-1)-(e.tradePlayer?sleeperValue(e.tradePlayer):-1)),o=s.filter(e=>e.tradePlayer),l=o.reduce((e,t)=>e+sleeperValue(t.tradePlayer),0);
-$(r).textContent=rosterName(a),$(n).textContent=`${s.length} players • ${o.length} valued • ${l.toFixed(1)} value`,$(t).innerHTML=s.map(e=>{
-const t=e.tradePlayer?sleeperValue(e.tradePlayer).toFixed(1):"—",r=[e.pos,e.team].filter(Boolean).join(" • ");
-return`\n<div class="roster-player">\n\n<div>\n<strong>${esc(e.name)}</strong>\n<small>${esc(r)}</small>\n${e.tradePlayer?"":'\n<div class="not-valued">\nNot yet in TradeForge database\n</div>\n'}\n</div>\n\n<div class="roster-value">${t}</div>\n\n</div>\n`
-}).join("")
-}
-["scoring","league","qb","tep"].forEach(e=>$(e).onchange=applyControls);
-$("swap").onclick=()=>{[teamA,teamB]=[teamB,teamA],render()};
-$("clear").onclick=()=>{teamA=[],teamB=[],render()};
-$("theme-toggle").onclick=()=>{const e=document.documentElement,t="dark"===e.dataset.theme?"light":"dark";e.dataset.theme=t,$("theme-toggle").textContent="dark"===t?"☀ Light Theme":"☾ Dark Theme"};
-setupSearch("A"),setupSearch("B"),setupSleeperSearch("A"),setupSleeperSearch("B");
-$("sleeper-swap").onclick=()=>{[sleeperTeamA,sleeperTeamB]=[sleeperTeamB,sleeperTeamA],[sleeperRosterA,sleeperRosterB]=[sleeperRosterB,sleeperRosterA],syncedLeague&&($("sleeper-roster-a").value=sleeperRosterA,$("sleeper-roster-b").value=sleeperRosterB),renderSleeper()};
-$("sleeper-clear").onclick=()=>{sleeperTeamA=[],sleeperTeamB=[],renderSleeper()};
-const DASHBOARD_POSITIONS=["QB","RB","WR","TE"];
-function ordinal(e){const t=(e=Number(e)||0)%100;if(t>=11&&t<=13)return`${e}th`;switch(e%10){case 1:return`${e}st`;case 2:return`${e}nd`;case 3:return`${e}rd`;default:return`${e}th`}}
-function sleeperValueForMode(e,t){const r=sleeperLeagueMode;sleeperLeagueMode=t;try{return sleeperValue(e)}finally{sleeperLeagueMode=r}}
-function dashboardRosterPlayers(e){return e?(e.players||[]).map(e=>matchSleeper(String(e))).filter(Boolean):[]}
-function dashboardValue(e,t=null){return t?sleeperValueForMode(e,t):sleeperValue(e)}
-function dashboardCanFill(e,t){const r=e.pos;return t===r||("DEF"===t&&"DST"===r||("FLEX"===t||"WRRBTE_FLEX"===t?["RB","WR","TE"].includes(r):"WRRB_FLEX"===t?["RB","WR"].includes(r):"REC_FLEX"===t?["WR","TE"].includes(r):("SUPER_FLEX"===t||"OP"===t)&&["QB","RB","WR","TE"].includes(r)))}
-function dashboardStarterSlots(){const e=new Set(["BN","IR","TAXI"]);return(syncedLeague?.roster_positions||[]).filter(t=>!e.has(t))}
-function dashboardStarterValue(e,t=null){
-const r=dashboardRosterPlayers(e);if(!r.length)return 0;const n=dashboardStarterSlots();
-if(!n.length)return r.slice().sort((e,r)=>dashboardValue(r,t)-dashboardValue(e,t)).slice(0,Math.min(9,r.length)).reduce((e,r)=>e+dashboardValue(r,t),0);
-const a=r.slice(),s=n.slice().sort((e,t)=>r.filter(t=>dashboardCanFill(t,e)).length-r.filter(e=>dashboardCanFill(e,t)).length);let o=0;
-return s.forEach(e=>{let r=-1,n=-1;a.forEach((a,s)=>{if(!dashboardCanFill(a,e))return;const o=dashboardValue(a,t);o>n&&(n=o,r=s)}),r>=0&&(o+=n,a.splice(r,1))}),o
-}
-function dashboardPositionCap(e){return"QB"===e?"superflex"===sleeperQbMode?2:1:"RB"===e||"WR"===e?3:"TE"===e?2:1}
-function dashboardPositionValue(e,t,r=null){return e.filter(e=>e.pos===t).sort((e,t)=>dashboardValue(t,r)-dashboardValue(e,r)).slice(0,dashboardPositionCap(t)).reduce((e,t)=>e+dashboardValue(t,r),0)}
-function dashboardMetrics(e){
-const t=dashboardRosterPlayers(e),r=t.reduce((e,t)=>e+dashboardValue(t),0),n=dashboardStarterValue(e),a=Math.max(0,r-n),s=dashboardStarterValue(e,"redraft"),o=t.reduce((e,t)=>e+dashboardValue(t,"dynasty"),0),l={};
-DASHBOARD_POSITIONS.forEach(e=>{l[e]=dashboardPositionValue(t,e)});const i=.6*n+.2*a+.2*r;return{roster:e,rosterId:String(e.roster_id),name:rosterName(e),players:t,total:r,starters:n,depth:a,redraftStarters:s,dynastyTotal:o,positions:l,matched:t.length,power:i}
-}
-function dashboardRank(e,t,r){const n=e.slice().sort((e,r)=>r[t]-e[t]).findIndex(e=>e.rosterId===String(r));return n>=0?n+1:e.length}
-function dashboardPositionRank(e,t,r){const n=e.slice().sort((e,r)=>r.positions[t]-e.positions[t]).findIndex(e=>e.rosterId===String(r));return n>=0?n+1:e.length}
-function dashboardTeamProfile(e,t){
-if("dynasty"===sleeperLeagueMode){const r=dashboardRank(t,"redraftStarters",e.rosterId),n=dashboardRank(t,"dynastyTotal",e.rosterId);
-return r+2<n?{label:"Win-now leaning",detail:`Current lineup strength ranks ${ordinal(r)} while long-term dynasty value ranks ${ordinal(n)}.`}:n+2<r?{label:"Future-focused",detail:`Long-term dynasty value ranks ${ordinal(n)} while current lineup strength ranks ${ordinal(r)}.`}:{label:"Balanced roster",detail:`Current lineup strength ranks ${ordinal(r)} and long-term dynasty value ranks ${ordinal(n)}.`}}
-const r=dashboardRank(t,"starters",e.rosterId),n=dashboardRank(t,"depth",e.rosterId);
-return r+2<n?{label:"Starter-heavy",detail:`The starting lineup ranks ${ordinal(r)}, while roster depth ranks ${ordinal(n)}.`}:n+2<r?{label:"Depth-heavy",detail:`Roster depth ranks ${ordinal(n)}, while the starting lineup ranks ${ordinal(r)}.`}:{label:"Balanced roster",detail:`Starting lineup ranks ${ordinal(r)} and depth ranks ${ordinal(n)}.`}
-}
-function dashboardTradeOpportunities(e,t){
-const r=t.length,n=DASHBOARD_POSITIONS.map(r=>({pos:r,rank:dashboardPositionRank(t,r,e.rosterId)})).sort((e,t)=>t.rank-e.rank).slice(0,2),a=[],s=new Set;
-for(const o of n){
-const n=t.filter(t=>t.rosterId!==e.rosterId).map(e=>({...e,posRank:dashboardPositionRank(t,o.pos,e.rosterId)})).sort((e,t)=>e.posRank-t.posRank||t.positions[o.pos]-e.positions[o.pos]);
-for(const e of n){if(s.has(e.rosterId))continue;const t=e.players.filter(e=>e.pos===o.pos).sort((e,t)=>sleeperValue(t)-sleeperValue(e));if(!t.length)continue;let n=0;t.length>=2&&"QB"!==o.pos&&(n=1),"QB"===o.pos&&"superflex"===sleeperQbMode&&t.length>=2&&(n=1);const l=t[n];a.push({need:o,partner:e,target:l,leagueSize:r}),s.add(e.rosterId);break}}
-if(n[0]){
-const o=n[0],l=t.filter(t=>t.rosterId!==e.rosterId&&!s.has(t.rosterId)).map(e=>({...e,posRank:dashboardPositionRank(t,o.pos,e.rosterId)})).sort((e,t)=>e.posRank-t.posRank||t.positions[o.pos]-e.positions[o.pos]).find(e=>e.players.some(e=>e.pos===o.pos));
-if(l){const e=l.players.filter(e=>e.pos===o.pos).sort((e,t)=>sleeperValue(t)-sleeperValue(e)),t=e[e.length>=2?1:0];a.push({need:o,partner:l,target:t,leagueSize:r})}}
-return a.slice(0,3)
-}
-function renderLeagueDashboard(){
-if(!syncedLeague||!syncedRosters.length)return;const e=syncedRosters.map(dashboardMetrics).filter(e=>e.matched>0);if(!e.length)return;
-const t=getMyRosterId(),r=e.find(e=>e.rosterId===String(t));if(!r)return;
-const n=e.length,a=dashboardRank(e,"power",r.rosterId),s=dashboardRank(e,"starters",r.rosterId),o=dashboardRank(e,"depth",r.rosterId),l=dashboardRank(e,"dynasty"===sleeperLeagueMode?"dynastyTotal":"total",r.rosterId);
-$("dashboard-overall-rank").textContent=`${ordinal(a)} / ${n}`,$("dashboard-overall-detail").textContent=`${r.power.toFixed(1)} power score`,
-$("dashboard-starter-rank").textContent=`${ordinal(s)} / ${n}`,$("dashboard-starter-detail").textContent=`${r.starters.toFixed(1)} starter value`,
-$("dashboard-depth-rank").textContent=`${ordinal(o)} / ${n}`,$("dashboard-depth-detail").textContent=`${r.depth.toFixed(1)} depth value`,
-$("dashboard-future-label").textContent="dynasty"===sleeperLeagueMode?"FUTURE VALUE":"TOTAL ROSTER VALUE",$("dashboard-future-rank").textContent=`${ordinal(l)} / ${n}`,
-$("dashboard-future-detail").textContent="dynasty"===sleeperLeagueMode?`${r.dynastyTotal.toFixed(1)} dynasty value`:`${r.total.toFixed(1)} total value`;
-const i=syncedRosters.reduce((e,t)=>e+(t.players?.length||0),0),d=e.reduce((e,t)=>e+t.matched,0);
-$("dashboard-coverage").textContent=`${d}/${i} rostered players matched`,$("dashboard-subtitle").textContent=`${syncedLeague.name} • ${sleeperModeLabel()} • TradeForge league analysis`;
-const u=dashboardTeamProfile(r,e);$("dashboard-profile").textContent=u.label,$("dashboard-profile-detail").textContent=u.detail;
-const c=DASHBOARD_POSITIONS.map(t=>({pos:t,rank:dashboardPositionRank(e,t,r.rosterId),value:r.positions[t]})).sort((e,t)=>e.rank-t.rank),p=c[0],m=c[c.length-1];
-$("dashboard-position-summary").textContent=`Strongest: ${p.pos} • Biggest need: ${m.pos}`,
-$("dashboard-position-detail").textContent=`${p.pos} ranks ${ordinal(p.rank)} in the league. ${m.pos} ranks ${ordinal(m.rank)}.`,
-$("dashboard-position-grid").innerHTML=DASHBOARD_POSITIONS.map(t=>`\n<div class="dashboard-position-card">\n\n<div class="dashboard-position-head">\n<strong>${t}</strong>\n<span class="dashboard-position-rank">\n${ordinal(dashboardPositionRank(e,t,r.rosterId))} / ${n}\n</span>\n</div>\n\n<div class="dashboard-position-value">\n${r.positions[t].toFixed(1)} TradeForge positional value\n</div>\n\n</div>\n`).join("");
-const f=dashboardTradeOpportunities(r,e);
-$("dashboard-trade-opportunities").innerHTML=f.length?f.map((e,t)=>`\n<div class="trade-opportunity">\n\n<strong>\nOpportunity ${t+1}: ${esc(e.partner.name)}\n</strong>\n\n<div class="sub">\nYour ${e.need.pos} room ranks ${ordinal(e.need.rank)} of ${e.leagueSize}.\n${esc(e.partner.name)} ranks ${ordinal(e.partner.posRank)} at ${e.need.pos}.\nA player worth exploring is ${esc(e.target.name)} at ${sleeperValue(e.target).toFixed(1)} TradeForge value.\n</div>\n\n</div>\n`).join(""):'\n<div class="trade-opportunity">\n<div class="sub">\nNo clear roster-strength trade opportunities were found with the players currently matched in TradeForge.\n</div>\n</div>\n';
-const g=e.slice().sort((e,t)=>t.power-e.power);
-$("dashboard-power-body").innerHTML=g.map((t,n)=>{const a=DASHBOARD_POSITIONS.map(r=>({pos:r,rank:dashboardPositionRank(e,r,t.rosterId)})).sort((e,t)=>e.rank-t.rank)[0];
-return`\n<tr class="${t.rosterId===r.rosterId?"my-row":""}">\n\n<td class="rank-cell">${n+1}</td>\n\n<td>\n<strong>${esc(t.name)}</strong>\n${t.rosterId===r.rosterId?' <span class="sub">(You)</span>':""}\n</td>\n\n<td>${t.power.toFixed(1)}</td>\n<td>${t.starters.toFixed(1)}</td>\n<td>${t.depth.toFixed(1)}</td>\n<td>${a.pos} • ${ordinal(a.rank)}</td>\n\n</tr>\n`
-}).join("")
-}
-function leagueTradeFinderRosters(){const e=getMyRosterId();return syncedRosters.filter(t=>String(t.roster_id)!==String(e))}
-function leagueTradeFinderPlayerKey(e){return String(e?.sleeperId||norm(e?.name))}
-function populateLeagueTradeFinderTargets(e,t=!0){
-const r=$("trade-finder-target"),n=t?r.value:"",a=rosterAssets(e);
-r.innerHTML=a.length?a.map(e=>`<option value="${esc(leagueTradeFinderPlayerKey(e))}">${esc(e.name)} • ${esc(e.pos)} • ${sleeperValue(e).toFixed(1)}</option>`).join(""):'<option value="">No valued players available</option>',
-t&&a.some(e=>leagueTradeFinderPlayerKey(e)===n)&&(r.value=n)
-}
-function buildLeagueTradeFinder(){
-if(!syncedLeague)return;const e=$("trade-finder-team"),t=e.value,r=leagueTradeFinderRosters();
-e.innerHTML=r.length?r.map(e=>`<option value="${e.roster_id}">${esc(rosterName(e))}</option>`).join(""):'<option value="">No other teams available</option>';let n=t;
-r.some(e=>String(e.roster_id)===String(n))||(n=r[0]?String(r[0].roster_id):""),n&&(e.value=n),populateLeagueTradeFinderTargets(n,!0)
-}
-function leagueTradeFinderGrade(e){return e<=5?"A+":e<=10?"A":e<=20?"B":e<=30?"C":e<=40?"D":"F"}
-function findLeagueTrades(){
-const e=$("trade-finder-results");if(leagueTradeFinderBuilds=[],!syncedLeague)return void(e.textContent="Sync a Sleeper or ESPN league first.");
-const t=getMyRosterId(),r=$("trade-finder-team").value,n=$("trade-finder-target").value,a=Math.max(1,Math.min(3,Number($("trade-finder-max").value)||3)),s=syncedRosters.find(e=>String(e.roster_id)===String(t)),o=syncedRosters.find(e=>String(e.roster_id)===String(r)),l=rosterAssets(r).find(e=>leagueTradeFinderPlayerKey(e)===n);
-if(!s||!o||!l)return void(e.textContent="Choose a team and a valued target player first.");const i=rosterAssets(t);
-if(!i.length)return void(e.textContent="TradeForge could not find any valued players on your roster.");e.textContent="Searching your roster for the best TradeForge packages...";
-const d=[],u=e=>{const t=withSleeperModes(()=>adjustedTradeValues(e,[l])),r=diff(t.a,t.b);d.push({packagePlayers:e,values:t,difference:r,grade:leagueTradeFinderGrade(r)})};
-for(let e=0;e<i.length;e++)u([i[e]]);
-if(a>=2)for(let e=0;e<i.length;e++)for(let t=e+1;t<i.length;t++)u([i[e],i[t]]);
-if(a>=3)for(let e=0;e<i.length;e++)for(let t=e+1;t<i.length;t++)for(let r=t+1;r<i.length;r++)u([i[e],i[t],i[r]]);
-d.sort((e,t)=>{const r=e.difference<=5,n=t.difference<=5;return r!==n?r?-1:1:r&&n&&e.packagePlayers.length!==t.packagePlayers.length?e.packagePlayers.length-t.packagePlayers.length:Math.abs(e.difference-t.difference)>.05?e.difference-t.difference:e.packagePlayers.length-t.packagePlayers.length});
-const c=[],p=new Set;for(const e of d){const t=e.packagePlayers.map(leagueTradeFinderPlayerKey).sort().join("|");if(!p.has(t)&&(p.add(t),c.push(e),c.length>=5))break}
-if(!c.length)return void(e.textContent="TradeForge could not find a package for this target.");const m=rosterName(s),f=rosterName(o);
-leagueTradeFinderBuilds=c.map(e=>({mineId:String(t),otherId:String(r),target:{...l},packagePlayers:e.packagePlayers.map(e=>({...e}))})),
-e.innerHTML=c.map((e,t)=>{const r=e.packagePlayers.map(e=>esc(e.name)).join(" + "),n=e.packagePlayers.reduce((e,t)=>e+sleeperValue(t),0),a=sleeperValue(l);
-return`\n<div class="trade-finder-result">\n\n<div class="trade-finder-result-head">\n<strong>Option ${t+1} — ${e.difference<=5?"FAIR MATCH":e.difference<=10?"VERY CLOSE":"BEST AVAILABLE"}</strong>\n<strong>Grade ${e.grade}</strong>\n</div>\n\n<div style="margin-top:9px">\n<strong>${esc(m)} sends:</strong>\n${r}\n</div>\n\n<div style="margin-top:5px">\n<strong>${esc(f)} sends:</strong>\n${esc(l.name)}\n</div>\n\n<div class="sub" style="margin-top:9px">\nBase value: ${n.toFixed(1)} for ${a.toFixed(1)} • Adjusted value: ${e.values.a.toFixed(1)} for ${e.values.b.toFixed(1)} • ${e.difference.toFixed(1)}% difference\n</div>\n\n<button\ntype="button"\nclass="trade-finder-build-button"\ndata-build-trade-index="${t}"\n>\nBuild Trade\n</button>\n\n</div>\n`
-}).join(""),e.querySelectorAll("[data-build-trade-index]").forEach(e=>{e.addEventListener("click",()=>{buildLeagueFinderTrade(Number(e.dataset.buildTradeIndex))})})
-}
-function buildLeagueFinderTrade(e){
-const t=leagueTradeFinderBuilds[e];if(!t||!syncedLeague)return;const r=rosterAssets(t.mineId),n=rosterAssets(t.otherId);
-if(!t.packagePlayers.every(e=>r.some(t=>key(t)===key(e)))||!n.some(e=>key(e)===key(t.target)))return leagueTradeFinderBuilds=[],void($("trade-finder-results").textContent="Rosters changed. Run Find Trades again.");
-sleeperRosterA=String(t.mineId),sleeperRosterB=String(t.otherId),$("sleeper-roster-a").value=sleeperRosterA,$("sleeper-roster-b").value=sleeperRosterB,sleeperTeamA=t.packagePlayers.map(e=>({...e})),sleeperTeamB=[{...t.target}],renderSleeper(),setTradeCenterTab("calculator"),$("trade-center-card")?.scrollIntoView({behavior:"smooth",block:"start"})
-}
-function setTradeCenterTab(e){
-["calculator","finder","opportunities"].includes(e)||(e="finder"),document.querySelectorAll("[data-trade-center-tab]").forEach(t=>{const r=t.dataset.tradeCenterTab===e;t.classList.toggle("active",r),t.setAttribute("aria-selected",r?"true":"false")}),document.querySelectorAll("[data-trade-center-panel]").forEach(t=>{t.classList.toggle("active",t.dataset.tradeCenterPanel===e)})
-}
-function buildLeaguePage(){
-if(!syncedLeague)return;$("league-page-name").textContent=syncedLeague.name+" • "+sleeperModeLabel();const e=getMyRosterId();
-renderLeagueDashboard(),buildLeagueTradeFinder(),renderLeagueRoster(e,"my-team-roster","my-team-name","my-team-meta");
-const t=syncedRosters.filter(t=>String(t.roster_id)!==String(e)),r=$("opponent-select").value;
-$("opponent-select").innerHTML=t.map(e=>`\n<option value="${e.roster_id}">\n${esc(rosterName(e))}\n</option>\n`).join("");let n=r;
-t.some(e=>String(e.roster_id)===String(n))||(n=t[0]?String(t[0].roster_id):""),n?($("opponent-select").value=n,renderLeagueRoster(n,"opponent-team-roster","opponent-team-name","opponent-team-meta")):($("opponent-team-name").textContent="No Other Team",$("opponent-team-meta").textContent="",$("opponent-team-roster").innerHTML=""),
-$("sleeper-name").textContent=syncedLeague.name||`${syncedProviderName()} League`,$("sleeper-mode-label").textContent=sleeperModeLabel(),updateSyncedProviderCopy(),renderSleeper()
-}
-function setPage(e){"league"!==e||syncedLeague||(e="analyzer"),$("analyzer-page").classList.toggle("page-hidden","analyzer"!==e),$("league-page").classList.toggle("page-hidden","league"!==e),"league"===e&&buildLeaguePage(),window.scrollTo(0,0)}
-$("trade-finder-team").onchange=()=>{leagueTradeFinderBuilds=[],populateLeagueTradeFinderTargets($("trade-finder-team").value,!1),$("trade-finder-results").textContent="Choose a target player and click Find Trades."};
-$("trade-finder-target").onchange=()=>{leagueTradeFinderBuilds=[],$("trade-finder-results").textContent="Click Find Trades to search your roster for packages."};
-$("trade-finder-max").onchange=()=>{leagueTradeFinderBuilds=[],$("trade-finder-results").textContent="Click Find Trades to search your roster for packages."};
-$("trade-finder-run").onclick=findLeagueTrades;
-document.querySelectorAll("[data-trade-center-tab]").forEach(e=>{e.onclick=()=>setTradeCenterTab(e.dataset.tradeCenterTab)});
-setTradeCenterTab("finder");
-$("opponent-select").onchange=e=>renderLeagueRoster(e.target.value,"opponent-team-roster","opponent-team-name","opponent-team-meta");
-$("league-view-button").onclick=()=>{syncedLeague&&(location.hash="league",setPage("league"))};
-$("back-to-analyzer").onclick=()=>{location.hash="analyzer",setPage("analyzer")};
-window.addEventListener("hashchange",()=>{setPage("#league"===location.hash?"league":"analyzer")});
-const modal=$("modal");
-async function fetchJSON(e){const t=await fetch(e);if(!t.ok)throw new Error("Sleeper request failed ("+t.status+").");return t.json()}
-async function fetchJSONSafe(e,t=[]){try{return await fetchJSON(e)}catch{return t}}
-$("sync-button").onclick=()=>{modal.classList.add("show")};
-$("modal-close").onclick=()=>{modal.classList.remove("show")};
-$("find-leagues").onclick=async()=>{
-const e=$("username").value.trim();
-if(e){$("status").textContent="Finding your leagues...";try{
-if(sleeperUser=await fetchJSON("https://api.sleeper.app/v1/user/"+encodeURIComponent(e)),!sleeperUser?.user_id)throw new Error("Username not found.");
-const t=await fetchJSON("https://api.sleeper.app/v1/state/nfl"),r=t.league_season||t.season,n=await fetchJSON(`https://api.sleeper.app/v1/user/${sleeperUser.user_id}/leagues/nfl/${r}`);
-if(!Array.isArray(n)||!n.length)throw new Error("No NFL leagues found for the current Sleeper season.");
-$("league-picker").innerHTML=n.map(e=>`\n<option value="${e.league_id}">\n${esc(e.name)}\n</option>\n`).join(""),$("league-wrap").style.display="block",$("status").textContent=`Found ${n.length} league${1===n.length?"":"s"}.`
-}catch(e){$("status").textContent=e.message||"Unable to find Sleeper leagues."}}else $("status").textContent="Enter your Sleeper username."
-};
-$("connect-league").onclick=async()=>{
-const e=$("league-picker").value;
-if(e){$("status").textContent="Syncing league...";try{
-[syncedLeague,syncedRosters,syncedUsers,sleeperPlayers]=await Promise.all([fetchJSON(`https://api.sleeper.app/v1/league/${e}`),fetchJSON(`https://api.sleeper.app/v1/league/${e}/rosters`),fetchJSON(`https://api.sleeper.app/v1/league/${e}/users`),fetchJSON("https://api.sleeper.app/v1/players/nfl?active=true")]),
-syncedProvider="sleeper",espnLeagueRaw=null,sleeperTrendMarket={},leagueTradeFinderBuilds=[],$("trade-finder-results").textContent="Choose a target player and click Find Trades.",
-applySleeperSettings(),buildSleeperRosterSelectors(),buildSleeperNameMap(),sleeperTeamA=[],sleeperTeamB=[],$("sleeper-name").textContent=syncedLeague.name||"Sleeper League",
-$("sleeper-mode-label").textContent=sleeperModeLabel(),updateSyncedProviderCopy(),$("sleeper-bar").style.display="block",$("sync-button").textContent="Sleeper Synced ✓",
-$("espn-sync-button").textContent="Sync ESPN",$("league-view-button").disabled=!1,modal.classList.remove("show"),renderSleeper(),location.hash="league",setPage("league"),
-TRADEFORGE_ENGINE.useSleeperTrendingMarket&&refreshSleeperTrends()
-}catch(e){$("status").textContent=e.message||"Unable to sync this Sleeper league."}}else $("status").textContent="Choose a league first."
-};
-const espnModal=$("espn-modal"),ESPN_POSITION_MAP={1:"QB",2:"RB",3:"WR",4:"TE",5:"K",16:"DST"},ESPN_PRO_TEAM_MAP={0:"",1:"ATL",2:"BUF",3:"CHI",4:"CIN",5:"CLE",6:"DAL",7:"DEN",8:"DET",9:"GB",10:"TEN",11:"IND",12:"KC",13:"LV",14:"LAR",15:"MIA",16:"MIN",17:"NE",18:"NO",19:"NYG",20:"NYJ",21:"PHI",22:"ARI",23:"PIT",24:"LAC",25:"SF",26:"SEA",27:"TB",28:"WAS",29:"CAR",30:"JAC",33:"BAL",34:"HOU"},ESPN_LINEUP_SLOT_MAP={0:"QB",1:"QB",2:"RB",3:"WRRB_FLEX",4:"WR",5:"REC_FLEX",6:"TE",7:"SUPER_FLEX",16:"DEF",17:"K",20:"BN",21:"IR",23:"FLEX",24:"IR",25:"BN"};
-function parseEspnLeagueInput(e){
-e=String(e||"").trim();let t="",r="",n="";
-if(/^\d+$/.test(e))t=e;else if(e){
-try{const a=new URL(e);t=a.searchParams.get("leagueId")||"",r=a.searchParams.get("teamId")||"",n=a.searchParams.get("seasonId")||""}catch{}
-if(!t){const r=e.match(/leagueId(?:=|\/)(\d+)/i);t=r?.[1]||""}
-if(!r){const t=e.match(/teamId(?:=|\/)(\d+)/i);r=t?.[1]||""}
-if(!n){const t=e.match(/seasonId(?:=|\/)(\d{4})/i);n=t?.[1]||""}}
-return{leagueId:/^\d+$/.test(t)?t:"",teamId:/^\d+$/.test(r)?r:"",seasonId:n}
-}
-async function fetchEspnJSON(e){
-let t;try{t=await fetch(e,{credentials:"include",headers:{Accept:"application/json"}})}
-catch(e){throw new Error("The ESPN request failed. Check your connection and use a hosted or localhost page. ESPN may also block cross-site access; signing in in another tab does not guarantee access here.")}
-if(!t.ok){
-if(401===t.status||403===t.status)throw new Error("ESPN denied access. Private leagues may require an authenticated server connection, which this standalone HTML does not provide.");
-throw new Error("ESPN request failed ("+t.status+").")}
-const r=await t.json();return Array.isArray(r)?r[0]:r
-}
-function espnRosterPositions(e){const t=[];return Object.entries(e||{}).forEach(([e,r])=>{const n=ESPN_LINEUP_SLOT_MAP[Number(e)];if(!n)return;const a=Math.max(0,Number(r)||0);for(let e=0;e<a;e++)t.push(n)}),t}
-function espnReceptionScoringItem(e){const t=e?.settings?.scoringSettings?.scoringItems||[];return t.find(e=>53===Number(e.statId))||t.find(e=>41===Number(e.statId))||null}
-function applyEspnSettings(e){
-const t=espnReceptionScoringItem(e),r=Number(t?.points||0),n=t?.pointsOverrides?.[4],a=Number(n),s=Number.isFinite(a)?Math.max(0,a-r):0,o=e?.settings?.rosterSettings?.lineupSlotCounts||{},l=Math.max(Number(e?.settings?.draftSettings?.keeperCount||0),Number(e?.settings?.draftSettings?.keeperCountFuture||0));
-sleeperScoringMode=r>=.75?"ppr":r>=.25?"half":"standard",sleeperQbMode=Number(o[7]||0)>0||Number(o[0]||0)+Number(o[1]||0)>1?"superflex":"oneqb",sleeperTePremiumMode=s>=.75?"full":s>=.25?"half":"off",sleeperLeagueMode=l>0?"keeper":"redraft"
-}
-function espnTeamName(e){return e?.name||[e?.location,e?.nickname].filter(Boolean).join(" ")||e?.abbrev||"Team "+String(e?.id||"")}
-function normalizeEspnLeague(e,t=""){
-const r=Array.isArray(e?.teams)?e.teams:[];
-if(!r.length)throw new Error("ESPN returned the league, but no team rosters were available.");
-if(t&&!r.some(e=>String(e.id)===String(t)))throw new Error("That team ID is not in this ESPN league.");
-const n=Array.isArray(e?.members)?e.members:[],a={},s=[],o=[];
-r.forEach(e=>{
-const t=String(e.id),r="espn-team-"+t,l=Array.isArray(e?.roster?.entries)?e.roster.entries:[],i=[];
-l.forEach(e=>{
-const t=e?.playerPoolEntry?.player||{},r=String(e?.playerId??t?.id??e?.playerPoolEntry?.id??"");if(!r)return;i.push(r);
-const n=ESPN_POSITION_MAP[Number(t.defaultPositionId)]||"",s=ESPN_PRO_TEAM_MAP[Number(t.proTeamId)]||"";
-a[r]={full_name:t.fullName||[t.firstName,t.lastName].filter(Boolean).join(" ")||"Unknown Player",first_name:t.firstName||"",last_name:t.lastName||"",position:n,team:s,espn_id:r}
-});
-s.push({roster_id:t,owner_id:r,players:i,espnTeam:e});const d=n.find(t=>(e.owners||[]).some(e=>String(e)===String(t.id)));
-o.push({user_id:r,display_name:d?.displayName||espnTeamName(e),username:d?.displayName||"",metadata:{team_name:espnTeamName(e)}})
-});
-const l=espnReceptionScoringItem(e),i=Number(l?.points||0),d=Number(l?.pointsOverrides?.[4]),u=Number.isFinite(d)?Math.max(0,d-i):0,c=Math.max(Number(e?.settings?.draftSettings?.keeperCount||0),Number(e?.settings?.draftSettings?.keeperCountFuture||0));
-syncedLeague={...e,name:e?.settings?.name||e?.name||"ESPN League",roster_positions:espnRosterPositions(e?.settings?.rosterSettings?.lineupSlotCounts),scoring_settings:{rec:i,bonus_rec_te:u},settings:{...e?.settings||{},type:c>0?1:0}},syncedRosters=s,syncedUsers=o,sleeperPlayers=a;
-const p=String(t||"");sleeperUser=p&&s.some(e=>String(e.roster_id)===p)?{user_id:"espn-team-"+p}:null
-}
-async function loadEspnLeague(e,t){
-const r=`https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/${encodeURIComponent(t)}/segments/0/leagues/${encodeURIComponent(e)}`,n=await fetchEspnJSON(r+"?view=mSettings&view=mTeam&view=mStatus"),a=Number(n?.scoringPeriodId||n?.status?.currentMatchupPeriod||n?.status?.latestScoringPeriod||1);
-return fetchEspnJSON(r+"?view=mSettings&view=mTeam&view=mRoster&view=mDraftDetail&view=mStatus&scoringPeriodId="+encodeURIComponent(a))
-}
-function applySleeperSettings(){
-const e=syncedLeague?.scoring_settings||{},t=syncedLeague?.roster_positions||[],r=syncedLeague?.settings||{},n=Number(e.rec||0),a=Number(e.bonus_rec_te||0);
-sleeperScoringMode=n>=.75?"ppr":n>=.25?"half":"standard",sleeperQbMode=t.includes("SUPER_FLEX")||t.filter(e=>"QB"===e).length>1?"superflex":"oneqb",sleeperTePremiumMode=a>=.75?"full":a>=.25?"half":"off",sleeperLeagueMode=2===Number(r.type)?"dynasty":1===Number(r.type)?"keeper":"redraft"
-}
-function rosterName(e){const t=syncedUsers.find(t=>String(t.user_id)===String(e.owner_id));return t?.metadata?.team_name||t?.display_name||t?.username||"Roster "+e.roster_id}
-function buildSleeperRosterSelectors(){
-const e=syncedRosters.map(e=>({id:String(e.roster_id),owner:String(e.owner_id||""),name:rosterName(e)})),t=e.map(e=>`\n<option value="${e.id}">\n${esc(e.name)}\n</option>\n`).join("");
-$("sleeper-roster-a").innerHTML=t,$("sleeper-roster-b").innerHTML=t;
-const r=e.find(e=>e.owner===String(sleeperUser?.user_id));
-sleeperRosterA=r?.id||e[0]?.id||"",sleeperRosterB=e.find(e=>e.id!==sleeperRosterA)?.id||sleeperRosterA,$("sleeper-roster-a").value=sleeperRosterA,$("sleeper-roster-b").value=sleeperRosterB
-}
-function buildSleeperNameMap(){sleeperIdByName={},Object.entries(sleeperPlayers||{}).forEach(([e,t])=>{const r=t?.full_name||[t?.first_name,t?.last_name].filter(Boolean).join(" ");r&&(sleeperIdByName[norm(r)]=String(e))})}
-async function refreshSleeperTrends(){
-const[e,t]=await Promise.all([fetchJSONSafe("https://api.sleeper.app/v1/players/nfl/trending/add?lookback_hours=24&limit=100",[]),fetchJSONSafe("https://api.sleeper.app/v1/players/nfl/trending/drop?lookback_hours=24&limit=100",[])]),r=Math.max(1,...e.map(e=>Number(e.count||0))),n=Math.max(1,...t.map(e=>Number(e.count||0))),a=new Set([...e.map(e=>String(e.player_id)),...t.map(e=>String(e.player_id))]);
-sleeperTrendMarket={},a.forEach(a=>{const s=Number(e.find(e=>String(e.player_id)===a)?.count||0)/r,o=Number(t.find(e=>String(e.player_id)===a)?.count||0)/n;sleeperTrendMarket[a]=tfClamp((s-o)*TRADEFORGE_ENGINE.marketAdjustmentMax,-TRADEFORGE_ENGINE.marketAdjustmentMax,TRADEFORGE_ENGINE.marketAdjustmentMax)}),syncedLeague&&buildLeaguePage()
-}
-function matchSleeper(e){
-if(e=String(e),dst[e]){const t=playerDatabase.find(t=>norm(t.name)===norm(dst[e]));return t?{...t,sleeperId:e,nflTeam:e}:null}
-const t=sleeperPlayers[e];if(!t)return null;
-const r=t.full_name||[t.first_name,t.last_name].filter(Boolean).join(" "),n=playerDatabase.find(e=>e.pos===t.position&&(norm(e.name)===norm(r)||"DST"===t.position&&norm(e.name)===norm(dst[t.team])));
-return n?{...n,sleeperId:e,nflTeam:t.team||""}:null
-}
-$("espn-sync-button").onclick=()=>{$("espn-season").value=$("espn-season").value||String((new Date).getFullYear()),$("espn-status").textContent="",espnModal.classList.add("show")};
-$("espn-modal-close").onclick=()=>{espnModal.classList.remove("show")};
-$("espn-connect-league").onclick=async()=>{
-const e=parseEspnLeagueInput($("espn-league-input").value),t=e.leagueId,r=$("espn-team-id").value.trim()||e.teamId,n=Number(e.seasonId||$("espn-season").value||(new Date).getFullYear());
-if(t)if(!Number.isInteger(n)||n<2018)$("espn-status").textContent="Enter a valid ESPN fantasy season (2018 or newer).";else{
-$("espn-status").textContent="Syncing ESPN league...";
-try{
-const e=await loadEspnLeague(t,n);normalizeEspnLeague(e,r),syncedProvider="espn",espnLeagueRaw=e,applyEspnSettings(e),buildSleeperRosterSelectors(),buildSleeperNameMap(),
-sleeperTeamA=[],sleeperTeamB=[],sleeperTrendMarket={},leagueTradeFinderBuilds=[],$("trade-finder-results").textContent="Choose a target player and click Find Trades.",
-$("sleeper-name").textContent=syncedLeague.name||"ESPN League",$("sleeper-mode-label").textContent=sleeperModeLabel(),updateSyncedProviderCopy(),
-$("sleeper-bar").style.display="block",$("sync-button").textContent="Sync Sleeper",$("espn-sync-button").textContent="ESPN Synced ✓",$("league-view-button").disabled=!1,
-espnModal.classList.remove("show"),renderSleeper(),location.hash="league",setPage("league")
-}catch(e){$("espn-status").textContent=e.message||"Unable to sync this ESPN league."}
-}else $("espn-status").textContent="Enter an ESPN league ID or paste an ESPN league URL."
-};
-$("sleeper-roster-a").onchange=e=>{sleeperRosterA=e.target.value,sleeperTeamA=[],leagueTradeFinderBuilds=[],renderSleeper(),buildLeaguePage()};
-$("sleeper-roster-b").onchange=e=>{sleeperRosterB=e.target.value,sleeperTeamB=[],leagueTradeFinderBuilds=[],renderSleeper(),buildLeaguePage()};
-$("disconnect").onclick=()=>{
-syncedLeague=null,syncedRosters=[],syncedUsers=[],sleeperPlayers={},sleeperUser=null,syncedProvider="",espnLeagueRaw=null,sleeperRosterA="",sleeperRosterB="",sleeperTeamA=[],sleeperTeamB=[],sleeperTrendMarket={},sleeperIdByName={},leagueTradeFinderBuilds=[],
-$("sleeper-bar").style.display="none",$("sync-button").textContent="Sync Sleeper",$("espn-sync-button").textContent="Sync ESPN",$("league-view-button").disabled=!0,location.hash="analyzer",setPage("analyzer"),renderBoard(),render()
-};
-location.hash||history.replaceState(null,"","#analyzer");
-"#league"!==location.hash||syncedLeague||history.replaceState(null,"","#analyzer");
-setPage("#league"===location.hash?"league":"analyzer"),renderBoard(),render(),loadTradeForgeFeed();
-</script>
+  <div class="oops" role="main">
+    <div class="oops-content">
+      <!-- eoa.svg -->
+      <svg id="eoa-svg" class="oops-svg oops-hidden" width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_2916_170481)">
+          <path d="M153.363 3H47.0605V197H153.363V3Z" fill="#E2E2F6"/>
+          <path d="M150.363 6V194H50.0605V6H150.363ZM156.363 0H44.0605V200H156.363V0Z" fill="#BDBDE6"/>
+          <g opacity="0.3">
+            <path opacity="0.3" d="M156.363 0H44.0605V200H156.363V0Z" fill="#BDBDE6"/>
+          </g>
+          <path d="M93.4585 109.793H64.7744V177.389H93.4585V109.793Z" fill="white"/>
+          <path d="M90.4585 112.793V174.388H67.7744V112.793H90.4585V112.793ZM96.4585 106.793H90.4585H67.7744H61.7744V112.793V174.388V180.388H67.7744H90.4585H96.4585V174.388V112.793V106.793Z" fill="#BDBDE6"/>
+          <path d="M90.4585 129.585V174.388L67.7744 174.403V140.093L90.4585 129.585Z" fill="#F3F2F1"/>
+          <path d="M137.86 109.793H109.177V177.389H137.86V109.793Z" fill="white"/>
+          <path d="M134.861 112.793V174.388H112.177V112.793H134.861V112.793ZM140.861 106.793H134.861H112.177H106.177V112.793V174.388V180.388H112.177H134.861H140.861V174.388V112.793V106.793Z" fill="#BDBDE6"/>
+          <path d="M134.861 113.617V174.388L112.177 174.408V124.132L134.861 113.617Z" fill="#F3F2F1"/>
+          <path d="M56.5075 113.364H56.5075C54.0574 113.364 52.0713 111.378 52.0713 108.928V95.8883C52.0713 93.4383 54.0574 91.4521 56.5075 91.4521H56.5075C58.9575 91.4521 60.9437 93.4383 60.9437 95.8883V108.927C60.9437 111.378 58.9575 113.364 56.5075 113.364Z" fill="url(#paint0_radial_2916_170481)"/>
+          <path d="M66.8286 104.322H56.2003C54.8664 104.322 53.7852 103.241 53.7852 101.907V101.907C53.7852 100.573 54.8664 99.4917 56.2003 99.4917H66.8286C68.1624 99.4917 69.2437 100.573 69.2437 101.907C69.2437 103.241 68.1624 104.322 66.8286 104.322Z" fill="#EDEBE9"/>
+          <path d="M93.4585 19.9531H64.7744V87.5483H93.4585V19.9531Z" fill="white"/>
+          <path d="M90.4585 22.9534V84.5484H67.7744V22.9534H90.4585ZM96.4585 16.9534H90.4585H67.7744H61.7744V22.9534V84.5484V90.5484H67.7744H90.4585H96.4585V84.5484V22.9534V16.9534Z" fill="#BDBDE6"/>
+          <path d="M90.4761 58.1758V84.5485H67.792V68.6861L90.4761 58.1758Z" fill="#F3F2F1"/>
+          <path d="M137.86 19.9536H109.177V87.5483H137.86V19.9536Z" fill="white"/>
+          <path d="M134.861 22.9534V84.5483H112.177V22.9534H134.861ZM140.861 16.9534H134.861H112.177H106.177V22.9534V84.5483V90.5483H112.177H134.861H140.861V84.5483V22.9534V16.9534Z" fill="#BDBDE6"/>
+          <path d="M134.842 39.7485V84.6222H112.158V50.2588L134.842 39.7485Z" fill="#F3F2F1"/>
+          <path d="M14.4893 104.826H6.29785V195.843H14.4893V104.826Z" fill="url(#paint1_linear_2916_170481)"/>
+          <path d="M20.7868 200H0L10.2824 188.095L20.7868 200Z" fill="#FDC9B5"/>
+          <path d="M10.393 115.031C14.763 115.031 18.3056 111.488 18.3056 107.118C18.3056 102.748 14.763 99.2058 10.393 99.2058C6.02304 99.2058 2.48047 102.748 2.48047 107.118C2.48047 111.488 6.02304 115.031 10.393 115.031Z" fill="#FDC9B5"/>
+          <path d="M193.702 104.826H185.511V195.843H193.702V104.826Z" fill="url(#paint2_linear_2916_170481)"/>
+          <path d="M200 200H179.213L189.495 188.095L200 200Z" fill="#FDC9B5"/>
+          <path d="M189.607 115.031C193.977 115.031 197.519 111.488 197.519 107.118C197.519 102.748 193.977 99.2058 189.607 99.2058C185.237 99.2058 181.694 102.748 181.694 107.118C181.694 111.488 185.237 115.031 189.607 115.031Z" fill="#FDC9B5"/>
+          <path d="M99.6942 138.026C99.4109 138.026 99.13 138.024 98.8461 138.023C68.4464 137.884 41.129 130.132 23.2558 116.669C19.612 113.94 23.0269 109.128 26.7598 111.933C43.6193 124.664 69.6887 131.997 98.8734 132.132C128.987 132.237 154.767 124.815 171.907 111.084C177.459 106.637 181.041 111.386 175.16 116.026C157.131 130.252 130.553 138.026 99.6942 138.026Z" fill="#E86E58"/>
+          <path d="M24.6958 118.99C27.4289 118.99 29.6445 116.774 29.6445 114.041C29.6445 111.308 27.4289 109.092 24.6958 109.092C21.9627 109.092 19.7471 111.308 19.7471 114.041C19.7471 116.774 21.9627 118.99 24.6958 118.99Z" fill="#605D5A"/>
+          <path d="M174.315 117.742C177.048 117.742 179.264 115.527 179.264 112.793C179.264 110.06 177.048 107.845 174.315 107.845C171.582 107.845 169.366 110.06 169.366 112.793C169.366 115.527 171.582 117.742 174.315 117.742Z" fill="#605D5A"/>
+        </g>
+        <defs>
+          <radialGradient id="paint0_radial_2916_170481" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(59.6961 101.899) scale(7.55951 5.02978)">
+            <stop stop-color="#C8C6C4"/>
+            <stop offset="1" stop-color="#E1DFDD"/>
+          </radialGradient>
+          <linearGradient id="paint1_linear_2916_170481" x1="10.3936" y1="108.626" x2="10.3936" y2="136.656" gradientUnits="userSpaceOnUse">
+            <stop offset="0.002198" stop-color="#ED9583"/>
+            <stop offset="1" stop-color="#FDC9B5"/>
+          </linearGradient>
+          <linearGradient id="paint2_linear_2916_170481" x1="189.606" y1="108.626" x2="189.606" y2="136.656" gradientUnits="userSpaceOnUse">
+            <stop offset="0.002198" stop-color="#ED9583"/>
+            <stop offset="1" stop-color="#FDC9B5"/>
+          </linearGradient>
+          <clipPath id="clip0_2916_170481">
+            <rect width="200" height="200" fill="white"/>
+          </clipPath>
+        </defs>
+        </svg>
+      <!-- oops.svg -->
+      <svg id="oops-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 201.3 201.3" class="oops-svg">
+        <circle cx="100.65" cy="100.65" r="100.8" fill="#e1dfdd"/>
+        <path fill="#8b8cc4" d="M164.616 130.272c-.347.022-.686.18-1.016.45a46.79 46.79 0 0 0-7.366-.583h-26.278a46.31 46.31 0 0 0-6.576.479l-1.686-.286s-31.896-1.455-43.822-10.645c-2.408-2.894-.23-3.797.882-5.77 1.638-2.908-2.066-4.306-2.116-5.832-.06-1.86 2.584-3.845 2.895-4.073 14.68-8.93 50.816-11.593 50.816-11.593l-.845-11.644S46.52 65.143 36.902 108.663c-8.432 38.15 45.387 52.636 50.15 81.782l.874 10.208c4.167.525 8.414.797 12.724.797 41.805 0 77.665-25.45 92.935-61.701-7.963-4.976-17.523-8.463-28.97-9.477z"/>
+        <radialGradient id="a" cx="133.181" cy="87.203" r="26.001" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#915a37"/>
+          <stop offset=".299" stop-color="#b1805b"/>
+          <stop offset=".576" stop-color="#c99c75"/>
+          <stop offset=".818" stop-color="#d7ad85"/>
+          <stop offset="1" stop-color="#dcb38b"/>
+        </radialGradient>
+        <path fill="url(#a)" d="M88.335 78.304l3.574 20.63c16.619-4.907 38.44-6.515 38.44-6.515l-.845-11.644s-19.795-3.726-41.17-2.47z"/>
+        <path fill="#bf8f68" d="M119.587 90.935l48.03.69.236-16.457a8.484 8.484 0 0 0-8.362-8.604l-31.066-.446a8.48 8.48 0 0 0-8.601 8.358l-.237 16.459z"/>
+        <radialGradient id="b" cx="139.096" cy="105.403" r="29.595" fx="139.932" fy="105.326" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#915a37"/>
+          <stop offset=".093" stop-color="#9d6844"/>
+          <stop offset=".343" stop-color="#b88963"/>
+          <stop offset=".583" stop-color="#cca079"/>
+          <stop offset=".808" stop-color="#d8ae86"/>
+          <stop offset="1" stop-color="#dcb38b"/>
+        </radialGradient>
+        <path fill="url(#b)" d="M159.456 124.23c-.688-5.305.49-34.218.49-34.218h-29.772s-.312 30.16-1.506 35.484c-1.195 5.324-5.607 4.639-6.974 4.836 2.896 4.942 11.877 8.755 22.14 8.755 10.537 0 20.194-3.504 22.846-8.65-1.902-.274-6.588-1.305-7.224-6.208z"/>
+        <circle cx="163.578" cy="93.482" r="7.149" fill="#dcb38b"/>
+        <radialGradient id="c" cx="131.398" cy="94.684" r="13.738" gradientTransform="matrix(1 .0088 -.0088 1 -.723 -3.06)" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#915a37"/>
+          <stop offset=".054" stop-color="#98623e"/>
+          <stop offset=".326" stop-color="#b58560"/>
+          <stop offset=".582" stop-color="#cb9e77"/>
+          <stop offset=".814" stop-color="#d7ae86"/>
+          <stop offset="1" stop-color="#dcb38b"/>
+        </radialGradient>
+        <circle cx="122.021" cy="93.116" r="7.149" fill="url(#c)"/>
+        <path fill="#dcb38b" d="M139.07 120.47l6.11.088c10.049.145 18.313-7.885 18.457-17.935l.34-23.695c.076-5.347-4.196-9.743-9.542-9.82l-22.654-.325c-5.482-.079-9.99 4.301-10.068 9.783l-.34 23.692c-.143 9.917 7.78 18.07 17.697 18.213z"/>
+        <path fill="#bf8f68" d="M119.83 71.376s6.897-2.563 6.823 5.983-5.187 8.627-5.187 8.627l-1.636-14.61z"/>
+        <path fill="#bf8f68" d="M132.314 73.466c3.064-.21 11.692-4.14 17.818-4.42 8.867-.405 11.456 3.81 11.456 3.81s2.538-17.34-10.019-15.088c-12.02 2.156-9.186-3.028-14.347-3.38-4.899-.335-5.039 4.376-8.054 4.54-4.975.273-3.245-5.775-10.831-4.709-7.253 1.02-11.83 21.014 13.977 19.247z"/>
+        <ellipse cx="151.266" cy="88.69" fill="#605d5a" rx="1.684" ry="3.109" transform="rotate(-.642 150.728 88.38)"/>
+        <radialGradient id="d" cx="242.292" cy="155.621" r="12.536" gradientTransform="matrix(.9696 .0718 -.0647 .8738 -81.71 -56.88)" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#9b643d"/>
+          <stop offset=".18" stop-color="#a46e47" stop-opacity=".82"/>
+          <stop offset=".687" stop-color="#b8865f" stop-opacity=".313"/>
+          <stop offset="1" stop-color="#bf8f68" stop-opacity="0"/>
+        </radialGradient>
+        <path fill="url(#d)" d="M127.035 113.103l13.988.883.695-11.215a2.343 2.343 0 0 0-.932-2.018l-3.225-2.422a1.601 1.601 0 0 1-.33-2.229l3.205-4.363a6.767 6.767 0 0 0 1.298-3.565l.629-9.226-12.984-.817-2.343 34.972z"/>
+        <path fill="#bf8f68" d="M166.335 79.382c.197-4.017-1.432-7.68-4.434-7.81-1.647-.07-3.8 1.846-3.835 5.728-.077 8.546 5.805 9.01 5.805 9.01s2.268-2.91 2.464-6.928z"/>
+        <ellipse cx="133.588" cy="88.901" fill="#605d5a" rx="1.684" ry="3.109" transform="rotate(-.642 133.12 88.594)"/>
+        <path fill="#bf8f68" d="M147.564 107.996c-.674-.059-1.204.03-1.882.15-.665.129-1.415.319-2.24.46-.82.147-1.728.234-2.676.156-.94-.075-1.944-.352-2.732-.957a.762.762 0 0 1 .38-1.361l.081-.009a22.067 22.067 0 0 0 2.165-.347c.705-.145 1.434-.337 2.238-.485.802-.15 1.68-.285 2.669-.232.963.042 2.146.364 2.892 1.186a.872.872 0 0 1-.718 1.455l-.177-.016z"/>
+        <circle cx="100.65" cy="100.65" r="100.8" fill="none"/>
+        <circle cx="61.871" cy="48.022" r="28.91" fill="#fff"/>
+        <circle cx="90.781" cy="42.047" r="6.609" fill="#fff"/>
+        <circle cx="103.196" cy="47.227" r="3.505" fill="#fff"/>
+        <path fill="#f7b548" d="M61.828 63.526c-.416-.01-.828-.1-1.21-.269a3.336 3.336 0 0 1-1.752-1.698 2.993 2.993 0 0 1-.269-1.263A3.082 3.082 0 0 1 58.866 59a3.37 3.37 0 0 1 .727-1.028 3.276 3.276 0 0 1 1.027-.67 3.27 3.27 0 0 1 3.498.687c.622.604.963 1.44.94 2.306a3.057 3.057 0 0 1-.94 2.307 3.159 3.159 0 0 1-2.29.924zm.055-9.881a2.706 2.706 0 0 1-2.704-2.62l-.494-15.71-.001-.084a2.706 2.706 0 0 1 2.706-2.706h.987l.084.001a2.706 2.706 0 0 1 2.62 2.79l-.493 15.708a2.706 2.706 0 0 1-2.705 2.621z"/>
+      </svg>
+
+      <div class="oops-h1">
+        <h1 id="oops-line-one" class="oops-line-one">Classic Teams is no longer available</h1>
+        <p id="oops-line-two" class="oops-hidden">
+          Use Teams on the web or download the latest version of the app.
+          <a class="oops-itp-block-learn-more oops-hidden" href="" target="_blank">Learn more</a>
+        </p>
+        <p id="oops-line-three" class="oops-hidden">
+          For more information or assistance, please contact your IT administrator.
+          <a class="oops-eoa-mtr-learn-more oops-hidden">Learn more</a>
+        </p>
+      </div>
+      <a href="/downloads" id="try-again-link">
+        <button class="ts-btn ts-btn-fluent ts-btn-fluent-primary oops-button"
+                type="button">
+          Try again
+        </button>
+      </a>
+     <a
+        id="open-teams-on-web"
+        class="ts-btn ts-btn-fluent ts-btn-fluent-primary oops-button oops-hidden"
+        href=""
+        target="_blank"
+      >
+        Use Teams on the web
+      </a>
+      <a id="open-teams-in-edge-link" class="oops-hidden">
+        <button class="ts-btn ts-btn-fluent ts-btn-fluent-primary oops-button"
+                type="button">
+          
+        </button>
+      </a>
+      <a id="manage-settings-link" class="oops-hidden">
+        <button class="ts-btn ts-btn-fluent ts-btn-fluent-primary oops-button"
+                type="button">
+          
+        </button>
+      </a>
+      <div id="eoa-signout-text" class="oops-text oops-hidden">
+        <a href="https://login.microsoftonline.com/[[tenantId]]/oauth2/logout?post_logout_redirect_uri=https://teams.microsoft.com/" id="eoa-signout-link">Sign out</a>
+      </div>
+      <div id="oops-signout-text" class="oops-text oops-hidden">
+        If that doesn't work, try
+        <a href="https://login.microsoftonline.com/[[tenantId]]/oauth2/logout?post_logout_redirect_uri=https://teams.microsoft.com/" id="oops-signout-link">signing out</a>
+        and back in.
+      </div>
+      <div id="alternative-oops-signout-text" class="oops-text oops-hidden">
+        <span id="alternative-oops-signout-before-text">Please</span>
+        <a href="https://login.microsoftonline.com/[[tenantId]]/oauth2/logout?post_logout_redirect_uri=https://teams.microsoft.com/" id="alternative-oops-signout-link">sign out</a>
+        <span id="alternative-oops-signout-after-text">and sign back in</span>
+      </div>
+      <div id="error-ie-not-supported-launch-app" class="oops-text oops-hidden">
+        <span id="launch-app-before-text"></span>
+        <a href="" id="launch-app-link"></a>
+      </div>
+    </div>
+  </div>
+  <a id="log-download"><div id="session-id" class="oops-ref"></div></a>
+  <script src="https://teams.public.onecdn.static.microsoft/hashed/ErrorTemplatePage-029e165.js" nonce="UpL4qlG8RGMSAyUyZlR0gA=="></script>
 </body>
 </html>
