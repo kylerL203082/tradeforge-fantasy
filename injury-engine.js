@@ -14,6 +14,375 @@
 window.TRADEFORGE_INJURY_ENGINE_VERSION = "2026-09-25 Injury Engine v2";
 
 window.tradeForgeInjuryData = {
+  "Puka Nacua": {
+    status: "OUT",
+    bodyPart: "Hip/Groin",
+    severity: "moderate",
+    expectedWeeks: 1,
+    recurrence: "medium",
+    note: "Reuters reported Nacua out with a hip/groin issue. Short-term redraft hit; smaller keeper/dynasty impact."
+  },
+
+  "Jayden Daniels": {
+    status: "OUT",
+    bodyPart: "Left elbow",
+    severity: "high",
+    expectedWeeks: 2,
+    recurrence: "medium",
+    note: "Reported dislocated left elbow with no fracture shown on initial X-rays. Stronger short-term QB availability penalty."
+  },
+
+  "Caleb Williams": {
+    status: "QUESTIONABLE",
+    bodyPart: "Hamstring",
+    severity: "moderate",
+    expectedWeeks: 1,
+    recurrence: "medium",
+    note: "Left game with a non-contact hamstring injury. Short-term redraft concern."
+  },
+
+  "Omar Cooper Jr.": {
+    status: "IR_SHORT",
+    bodyPart: "Ankle",
+    severity: "high",
+    expectedWeeks: 4,
+    recurrence: "medium",
+    note: "Reported heading to injured reserve and required to miss at least four games."
+  },
+
+  "Ja'Kobi Lane": {
+    status: "IR_SHORT",
+    bodyPart: "Wrist",
+    severity: "moderate",
+    expectedWeeks: 4,
+    recurrence: "low",
+    note: "Placed on injured reserve after wrist surgery. Minimum four-game absence."
+  },
+
+  "Demarcus Robinson": {
+    status: "IR_SHORT",
+    bodyPart: "Ankle",
+    severity: "high",
+    expectedWeeks: 4,
+    recurrence: "medium",
+    note: "Reported high ankle sprain with a 3-6 week range. Strong short-term redraft hit."
+  },
+
+  "Zay Flowers": {
+    status: "QUESTIONABLE",
+    bodyPart: "Hamstring",
+    severity: "moderate",
+    expectedWeeks: 1,
+    recurrence: "medium",
+    note: "Listed as day-to-day with a hamstring issue and limited/DNP practice concern."
+  },
+
+  "Mike Evans": {
+    status: "QUESTIONABLE",
+    bodyPart: "Hip",
+    severity: "low",
+    expectedWeeks: 1,
+    recurrence: "low",
+    note: "Limited participation/hip issue. Monitor but not a major downgrade yet."
+  },
+
+  "Charlie Kolar": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "moderate",
+    expectedWeeks: 1,
+    recurrence: "low",
+    note: "Did not participate in practice on the current NFL injury report."
+  },
+
+  "Brenen Thompson": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "moderate",
+    expectedWeeks: 1,
+    recurrence: "low",
+    note: "Did not participate in practice on the current NFL injury report."
+  },
+
+  "Keon Coleman": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "low",
+    expectedWeeks: 1,
+    recurrence: "low",
+    note: "Limited participation on the current NFL injury report."
+  },
+
+  "DJ Moore": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "low",
+    expectedWeeks: 1,
+    recurrence: "low",
+    note: "Limited participation on the current NFL injury report."
+  },
+
+  "Cooper Kupp": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "low",
+    expectedWeeks: 1,
+    recurrence: "medium",
+    note: "Limited participation on the current NFL injury report."
+  },
+
+  "Chig Okonkwo": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "moderate",
+    expectedWeeks: 1,
+    recurrence: "low",
+    note: "Did not participate in practice on the current NFL injury report."
+  },
+
+  "Jalen Coker": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "low",
+    expectedWeeks: 1,
+    recurrence: "low",
+    note: "Limited participation on the current NFL injury report."
+  },
+
+  "Xavier Legette": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "low",
+    expectedWeeks: 1,
+    recurrence: "low",
+    note: "Limited participation on the current NFL injury report."
+  },
+
+  "Caleb Douglas": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "moderate",
+    expectedWeeks: 1,
+    recurrence: "low",
+    note: "Did not participate in practice on the current NFL injury report."
+  },
+
+  "Jaylen Wright": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "moderate",
+    expectedWeeks: 1,
+    recurrence: "medium",
+    note: "Did not participate in practice on the current NFL injury report."
+  },
+
+  "Andrei Iosivas": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "moderate",
+    expectedWeeks: 1,
+    recurrence: "low",
+    note: "Did not participate in practice on the current NFL injury report."
+  },
+
+  "Rico Dowdle": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "moderate",
+    expectedWeeks: 1,
+    recurrence: "low",
+    note: "Did not participate in practice on the current NFL injury report."
+  },
+
+  "Michael Pittman Jr.": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "low",
+    expectedWeeks: 1,
+    recurrence: "low",
+    note: "Limited participation on the current NFL injury report."
+  },
+
+  "Jaylen Warren": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "low",
+    expectedWeeks: 1,
+    recurrence: "medium",
+    note: "Limited participation on the current NFL injury report."
+  },
+
+  "Adonai Mitchell": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "low",
+    expectedWeeks: 1,
+    recurrence: "low",
+    note: "Limited participation on the current NFL injury report."
+  },
+
+  "Nico Collins": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "moderate",
+    expectedWeeks: 1,
+    recurrence: "medium",
+    note: "Did not participate in practice on the current NFL injury report."
+  },
+
+  "Dalton Schultz": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "moderate",
+    expectedWeeks: 1,
+    recurrence: "low",
+    note: "Did not participate in practice on the current NFL injury report."
+  },
+
+  "Ashton Dulin": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "moderate",
+    expectedWeeks: 1,
+    recurrence: "low",
+    note: "Did not participate in practice on the current NFL injury report."
+  },
+
+  "Alec Pierce": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "moderate",
+    expectedWeeks: 1,
+    recurrence: "medium",
+    note: "Did not participate in practice on the current NFL injury report."
+  },
+
+  "LeQuint Allen Jr.": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "low",
+    expectedWeeks: 1,
+    recurrence: "low",
+    note: "Limited participation on the current NFL injury report."
+  },
+
+  "Tony Pollard": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "low",
+    expectedWeeks: 1,
+    recurrence: "medium",
+    note: "Limited participation on the current NFL injury report."
+  },
+
+  "Tyjae Spears": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "low",
+    expectedWeeks: 1,
+    recurrence: "medium",
+    note: "Limited participation on the current NFL injury report."
+  },
+
+  "Jaxson Dart": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "moderate",
+    expectedWeeks: 1,
+    recurrence: "low",
+    note: "Did not participate in practice on the current NFL injury report."
+  },
+
+  "Brock Bowers": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "moderate",
+    expectedWeeks: 1,
+    recurrence: "medium",
+    note: "Did not participate in practice on the current NFL injury report."
+  },
+
+  "Barion Brown": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "moderate",
+    expectedWeeks: 1,
+    recurrence: "low",
+    note: "Did not participate in practice on the current NFL injury report."
+  },
+
+  "Colby Parkinson": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "moderate",
+    expectedWeeks: 1,
+    recurrence: "low",
+    note: "Did not participate in practice on the current NFL injury report."
+  },
+
+  "Jonah Coleman": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "moderate",
+    expectedWeeks: 1,
+    recurrence: "low",
+    note: "Did not participate in practice on the current NFL injury report."
+  },
+
+  "Marvin Mims Jr.": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "low",
+    expectedWeeks: 1,
+    recurrence: "low",
+    note: "Limited participation on the current NFL injury report."
+  },
+
+  "Saquon Barkley": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "low",
+    expectedWeeks: 1,
+    recurrence: "medium",
+    note: "Limited participation on the current NFL injury report."
+  },
+
+  "Tank Bigsby": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "moderate",
+    expectedWeeks: 1,
+    recurrence: "low",
+    note: "Did not participate in practice on the current NFL injury report."
+  },
+
+  "Dallas Goedert": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "moderate",
+    expectedWeeks: 1,
+    recurrence: "medium",
+    note: "Did not participate in practice on the current NFL injury report."
+  },
+
+  "Will Shipley": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "moderate",
+    expectedWeeks: 1,
+    recurrence: "low",
+    note: "Did not participate in practice on the current NFL injury report."
+  },
+
+  "DeVonta Smith": {
+    status: "QUESTIONABLE",
+    bodyPart: "Undisclosed",
+    severity: "moderate",
+    expectedWeeks: 1,
+    recurrence: "medium",
+    note: "Did not participate in practice on the current NFL injury report."
+  }
+};
   /*
   Example format:
 
