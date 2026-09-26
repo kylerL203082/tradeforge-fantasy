@@ -10,7 +10,7 @@
 <div class="wrap">
 <header>
 <div class="brand"><div class="logo">TF</div><div><h1>TradeForge Fantasy</h1><div class="sub">Super Trade Analyzer</div></div></div>
-<div class="header-buttons"><button id="theme-toggle">☀ Light Theme</button><div class="sync-actions"><button id="sync-button">Sync Sleeper</button><button id="espn-sync-button">Sync ESPN</button><button id="league-view-button" disabled>League Dashboard</button></div></div>
+<div class="header-buttons"><button id="theme-toggle">☀ Light Theme</button><div class="sync-actions"><button id="sync-button">Sync Sleeper</button><button id="espn-sync-button" type="button">Sync ESPN</button><button id="league-view-button" type="button" disabled>League Dashboard</button></div></div>
 </header>
 <main id="analyzer-page">
 <section class="card">
@@ -28,7 +28,7 @@
 </div></section>
 <div class="trade-grid">
 <section class="team"><h2>Team A (Receiving)</h2><div class="search-wrap"><input id="search-a" placeholder="Search player or pick" autocomplete="off"><div id="results-a" class="results"></div></div><div id="team-a"></div><div class="totals"><div class="total"><small>Base</small><strong id="base-a">0.0</strong></div><div class="total"><small>Adjusted</small><strong id="adj-a">0.0</strong></div></div></section>
-<section class="result-card"><div class="meter"><div id="marker"></div></div><div id="verdict">Build a Trade<small>Add players to both sides.</small></div><div class="grade"><span>Trade Grade</span><strong id="grade">—</strong></div><div class="actions"><button id="swap">Swap Sides</button><button id="clear">Clear Trade</button></div></section>
+<section class="result-card"><div class="meter"><div id="marker"></div></div><div id="verdict">Build a Trade<small>Add players to both sides.</small></div><div class="grade"><span>Trade Grade</span><strong id="grade">—</strong></div><div class="actions"><button id="swap" type="button">Swap Sides</button><button id="clear" type="button">Clear Trade</button></div></section>
 <section class="team"><h2>Team B (Receiving)</h2><div class="search-wrap"><input id="search-b" placeholder="Search player or pick" autocomplete="off"><div id="results-b" class="results"></div></div><div id="team-b"></div><div class="totals"><div class="total"><small>Base</small><strong id="base-b">0.0</strong></div><div class="total"><small>Adjusted</small><strong id="adj-b">0.0</strong></div></div></section>
 </div>
 <div class="calculator-support-grid">
@@ -38,11 +38,11 @@
 </div>
 </main>
 <main id="league-page" class="page-hidden">
-<section class="card"><div class="league-toolbar"><div><h2>TradeForge League Dashboard</h2><div id="league-page-name" class="sub"></div></div><button id="back-to-analyzer" class="close">← Back to Trade Analyzer</button></div></section>
+<section class="card"><div class="league-toolbar"><div><h2>TradeForge League Dashboard</h2><div id="league-page-name" class="sub"></div></div><button id="back-to-analyzer" class="close" type="button">← Back to Trade Analyzer</button></div></section>
 <section id="sleeper-bar" class="card">
 <div class="settings-title"><div><strong id="sleeper-name">Synced League</strong><div id="sleeper-info" class="sub"></div></div><span id="sleeper-mode-label"></span></div>
 <div class="sync-grid"><label class="setting"><span>TEAM A ROSTER</span><select id="sleeper-roster-a"></select></label><label class="setting"><span>TEAM B ROSTER</span><select id="sleeper-roster-b"></select></label></div>
-<button id="disconnect" class="close" style="margin-top:10px">Disconnect League</button>
+<button id="disconnect" class="close" type="button" style="margin-top:10px">Disconnect League</button>
 </section>
 <section class="card" id="trade-center-card">
 <div class="settings-title"><span>Trade Center</span><span class="sub" id="trade-center-provider-label">Synced league trade tools</span></div>
@@ -51,7 +51,7 @@
 <div class="trade-center-panel-title"><h3 id="synced-trade-calculator-title">Synced League Trade Calculator</h3><div class="sub" id="synced-trade-calculator-sub">Uses the selected synced rosters</div></div>
 <div class="trade-grid">
 <section class="team"><h2>Team A (Receiving)</h2><div class="search-wrap"><input id="sleeper-search-a" placeholder="Search Team A roster" autocomplete="off"><div id="sleeper-results-a" class="results"></div></div><div id="sleeper-team-a"></div><div class="totals"><div class="total"><small>Base</small><strong id="sleeper-base-a">0.0</strong></div><div class="total"><small>Adjusted</small><strong id="sleeper-adj-a">0.0</strong></div></div></section>
-<section class="result-card"><div class="meter"><div id="sleeper-marker"></div></div><div id="sleeper-verdict">Build a Trade<small>Add players from the synced rosters.</small></div><div class="grade"><span>Trade Grade</span><strong id="sleeper-grade">—</strong></div><div class="actions"><button id="sleeper-swap">Swap Sides</button><button id="sleeper-clear">Clear Trade</button></div></section>
+<section class="result-card"><div class="meter"><div id="sleeper-marker"></div></div><div id="sleeper-verdict">Build a Trade<small>Add players from the synced rosters.</small></div><div class="grade"><span>Trade Grade</span><strong id="sleeper-grade">—</strong></div><div class="actions"><button id="sleeper-swap" type="button">Swap Sides</button><button id="sleeper-clear" type="button">Clear Trade</button></div></section>
 <section class="team"><h2>Team B (Receiving)</h2><div class="search-wrap"><input id="sleeper-search-b" placeholder="Search Team B roster" autocomplete="off"><div id="sleeper-results-b" class="results"></div></div><div id="sleeper-team-b"></div><div class="totals"><div class="total"><small>Base</small><strong id="sleeper-base-b">0.0</strong></div><div class="total"><small>Adjusted</small><strong id="sleeper-adj-b">0.0</strong></div></div></section>
 </div>
 <div class="calculator-support-grid synced-calculator-support-grid">
@@ -62,7 +62,7 @@
 </div>
 <div class="trade-center-panel active" data-trade-center-panel="finder">
 <div class="trade-center-panel-title"><h3>League Trade Finder</h3><div class="sub">Pick a player on another team and let TradeForge search your roster for the closest packages.</div></div>
-<div class="trade-finder-grid"><label class="setting"><span>TRADE WITH</span><select id="trade-finder-team"></select></label><label class="setting"><span>TARGET PLAYER</span><select id="trade-finder-target"></select></label><label class="setting"><span>MAX PLAYERS TO SEND</span><select id="trade-finder-max"><option value="1">1 Player</option><option value="2">2 Players</option><option value="3" selected>3 Players</option></select></label><button id="trade-finder-run" class="primary">Find Trades</button></div>
+<div class="trade-finder-grid"><label class="setting"><span>TRADE WITH</span><select id="trade-finder-team"></select></label><label class="setting"><span>TARGET PLAYER</span><select id="trade-finder-target"></select></label><label class="setting"><span>MAX PLAYERS TO SEND</span><select id="trade-finder-max"><option value="1">1 Player</option><option value="2">2 Players</option><option value="3" selected>3 Players</option></select></label><button id="trade-finder-run" class="primary" type="button">Find Trades</button></div>
 <div class="sub" id="trade-finder-roster-copy" style="margin-top:10px">TradeForge searches your valued synced roster for 1-for-1, 2-for-1, and 3-for-1 packages and ranks them by adjusted trade value.</div><div id="trade-finder-results" class="trade-finder-results">Choose a target player and click Find Trades.</div>
 </div>
 <div class="trade-center-panel" data-trade-center-panel="opportunities"><div class="trade-center-panel-title"><h3>Trade Opportunities</h3><div class="sub">TradeForge compares your positional weaknesses against the strongest position groups around your league.</div></div><div id="dashboard-trade-opportunities"></div></div>
@@ -86,24 +86,106 @@
 </div></section>
 </main>
 </div>
+
 <div id="modal" class="modal-bg"><div class="modal">
-<div class="modal-head"><div><h2>Sync Your Sleeper League</h2><div class="sub">Enter your Sleeper username. No password is needed.</div></div><button id="modal-close" class="close">×</button></div>
-<input id="username" placeholder="Sleeper username" autocomplete="off"><button id="find-leagues" class="primary">Find My Leagues</button>
-<div id="league-wrap"><select id="league-picker"></select><button id="connect-league" class="primary">Sync Selected League</button></div><div id="status" aria-live="polite"></div>
+<div class="modal-head"><div><h2>Sync Your Sleeper League</h2><div class="sub">Enter your Sleeper username. No password is needed.</div></div><button id="modal-close" class="close" type="button">×</button></div>
+<input id="username" placeholder="Sleeper username" autocomplete="off"><button id="find-leagues" class="primary" type="button">Find My Leagues</button>
+<div id="league-wrap"><select id="league-picker"></select><button id="connect-league" class="primary" type="button">Sync Selected League</button></div><div id="status" aria-live="polite"></div>
 </div></div>
+
 <div id="espn-modal" class="modal-bg"><div class="modal">
-<div class="modal-head"><div><h2>Sync Your ESPN League</h2><div class="sub">Enter your ESPN league ID or paste an ESPN league URL. Public leagues sync directly.</div></div><button id="espn-modal-close" class="close">×</button></div>
+<div class="modal-head"><div><h2>Sync Your ESPN League</h2><div class="sub">Enter your ESPN league ID or paste an ESPN league URL. Public leagues sync directly.</div></div><button id="espn-modal-close" class="close" type="button">×</button></div>
 <input id="espn-league-input" placeholder="ESPN league ID or league URL" autocomplete="off">
 <div class="sync-grid"><label class="setting"><span>SEASON</span><input id="espn-season" type="number" min="2018" step="1"></label><label class="setting"><span>MY TEAM ID (OPTIONAL)</span><input id="espn-team-id" inputmode="numeric" placeholder="Auto from URL if available" autocomplete="off"></label></div>
-<button id="espn-connect-league" class="primary">Sync ESPN League</button>
+<button id="espn-connect-league" class="primary" type="button">Sync ESPN League</button>
 <div class="sub" style="margin-top:10px">Private leagues may need an authenticated server connection, which this standalone page does not provide. Never paste your ESPN password or session cookies here.</div><div id="espn-status" aria-live="polite"></div>
 </div></div>
+
 <script src="player-rater.js"></script>
 <script src="injury-engine.js"></script>
-<script src="tradeforge-engine.js"></script>
 <script src="tradeforge-ai-advisor.js"></script>
 <script src="tradeforge-dashboard.js"></script>
+<script src="tradeforge-engine.js"></script>
 <script src="tradeforge-league-sync.js"></script>
 <script src="tradeforge-trade-finder.js"></script>
+
+<script>
+(function(){
+  function byId(id){ return document.getElementById(id); }
+
+  function openEspnModal(event){
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    const season = byId("espn-season");
+    const status = byId("espn-status");
+    const modal = byId("espn-modal");
+
+    if (season && !season.value) season.value = String(new Date().getFullYear());
+    if (status) status.textContent = "";
+    if (modal) modal.classList.add("show");
+  }
+
+  function closeEspnModal(event){
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    const modal = byId("espn-modal");
+    if (modal) modal.classList.remove("show");
+  }
+
+  function connectEspnLeague(event){
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    if (typeof window.tradeForgeSyncEspnLeague === "function") {
+      window.tradeForgeSyncEspnLeague();
+      return;
+    }
+
+    if (typeof window.syncEspnLeague === "function") {
+      window.syncEspnLeague();
+      return;
+    }
+
+    const status = byId("espn-status");
+    if (status) {
+      status.textContent = "ESPN sync code did not load. Check that tradeforge-engine.js and tradeforge-league-sync.js are loading without console errors.";
+    }
+  }
+
+  function wireEspnButtons(){
+    const openButton = byId("espn-sync-button");
+    const closeButton = byId("espn-modal-close");
+    const connectButton = byId("espn-connect-league");
+
+    if (openButton) {
+      openButton.onclick = openEspnModal;
+    }
+
+    if (closeButton) {
+      closeButton.onclick = closeEspnModal;
+    }
+
+    if (connectButton) {
+      connectButton.onclick = connectEspnLeague;
+    }
+  }
+
+  wireEspnButtons();
+  document.addEventListener("DOMContentLoaded", wireEspnButtons);
+  window.addEventListener("load", wireEspnButtons);
+  setTimeout(wireEspnButtons,50);
+  setTimeout(wireEspnButtons,250);
+  setTimeout(wireEspnButtons,750);
+})();
+</script>
+
 </body>
 </html>
