@@ -249,10 +249,25 @@ return`\n<div class="suggestion">\n\n<strong>Idea ${s+1} — ${r.fair?"FAIR MATC
 }).join(""):r.innerHTML='\n<div class="suggestion">\nTradeForge could not find a reasonable addition that meaningfully improves the trade.\n</div>\n'
 }
 
+function tfRenderBasicTradeAdvisor(e,t,r,n,a){
+const s=$(e);if(!s)return;if(!t.length||!r.length)return s.className="trade-advisor-box empty",void(s.textContent="sleeper-trade-advisor"===e?"Build a synced league trade to get advisor guidance.":"Add players to both sides to get AI Trade Advisor guidance.");
+const o=tfNum(n?.a,adjusted(t,r)),l=tfNum(n?.b,adjusted(r,t)),i=diff(o,l),d=o>=l?"Team A":"Team B",u=o>=l?"Team B":"Team A",c=advisorTopAsset(t),p=advisorTopAsset(r),m=[];
+c&&m.push(`Team A's best asset in this deal is ${esc(c.name)} at ${value(c).toFixed(1)} value.`);
+p&&m.push(`Team B's best asset in this deal is ${esc(p.name)} at ${value(p).toFixed(1)} value.`);
+i<=5?m.push("This is inside the TradeForge fair range. Roster fit and format should decide it."):i<=10?m.push(`${d} has a small value edge, but ${u} can still justify it for roster fit.`):i<=20?m.push(`${d} has a clear value edge. ${u} should ask for another useful asset or pick.`):m.push(`${u} is giving up too much adjusted value unless there is outside context not captured here.`);
+"dynasty"===leagueMode?m.push("Dynasty mode puts more weight on age, long-term value, and picks."):"keeper"===leagueMode?m.push("Keeper mode blends current value and future value, but private keeper cost is not included."):m.push("Redraft mode prioritizes this season's usable production.");
+s.className="trade-advisor-box",s.innerHTML=`<div class="trade-advisor-verdict ${i<=5?"hold":i<=10?"hold":i<=20?"make":"stop"}">${i<=5?"Fair but context dependent":i<=10?`Slight edge to ${d}`:i<=20?`Accept for ${d} / ask for more for ${u}`:`Do not accept as ${u}`}</div><div class="trade-advisor-detail">Advisor read: Team A ${o.toFixed(1)} vs Team B ${l.toFixed(1)} • ${i.toFixed(1)}% value gap.</div><ul class="trade-advisor-list">${m.filter(Boolean).slice(0,7).map(e=>`<li>${e}</li>`).join("")}</ul><div class="trade-advisor-context">AI Trade Advisor fallback uses TradeForge values, package size, league format, and available player metadata. It is intentionally isolated so advisor errors cannot break the calculator.</div>`
+}
 function tfSafeRenderTradeAdvisor(e,t,r,n,a){
 const s=$(e),o=window.tradeForgeRenderAIAdvisor;
-if("function"==typeof o){try{return void o(e,t,r,n,a)}catch(l){console.warn("TradeForge AI Advisor 2.0 failed; using built-in fallback.",l)}}
-try{return void renderTradeAdvisor(e,t,r,n,a)}catch(l){console.warn("TradeForge AI Advisor fallback failed.",l),s&&(s.className="trade-advisor-box empty",s.textContent="AI Trade Advisor could not render. Check the browser console for the exact error.")}
+if("function"==typeof o){
+try{
+o(e,t,r,n,a);
+if(s&&/could not render/i.test(String(s.textContent||"")))throw new Error("External AI advisor rendered an error state.");
+return
+}catch(l){console.warn("TradeForge AI Advisor module failed; using engine fallback.",l)}
+}
+try{return void renderTradeAdvisor(e,t,r,n,a)}catch(l){console.warn("TradeForge internal AI Advisor failed; using basic fallback.",l),tfRenderBasicTradeAdvisor(e,t,r,n,a)}
 }
 function tfSafeRenderInjuryEngine(e,t,r){
 const n=$(e);
@@ -286,7 +301,7 @@ t.length?r.innerHTML=t.map((t,r)=>`\n<div class="player">\n\n<div>\n<strong>${es
 function removeSleeperPlayer(e,t){("A"===e?sleeperTeamA:sleeperTeamB).splice(t,1),renderSleeper()}
 function renderSleeper(){clearSearchResults("sleeper-"),renderSleeperTeam("A"),renderSleeperTeam("B"),sleeperCalculate()}
 function sleeperCalculate(){withSleeperModes(()=>{
-const e=base(sleeperTeamA),t=base(sleeperTeamB),r=adjustedTradeValues(sleeperTeamA,sleeperTeamB),n=r.a,a=r.b,s=diff(n,a);
+  const e=base(sleeperTeamA),t=base(sleeperTeamB),r=adjustedTradeValues(sleeperTeamA,sleeperTeamB),n=r.a,a=r.b,s=diff(n,a);
 $("sleeper-base-a").textContent=e.toFixed(1),$("sleeper-base-b").textContent=t.toFixed(1),$("sleeper-adj-a").textContent=n.toFixed(1),$("sleeper-adj-b").textContent=a.toFixed(1),$("sleeper-marker").style.left=(n+a?Math.max(5,Math.min(95,a/(n+a)*100)):50)+"%";
 const o=$("sleeper-verdict");if(o.className="",!sleeperTeamA.length||!sleeperTeamB.length)return o.innerHTML="\nBuild a Trade\n<small>Add players from both synced rosters.</small>\n",$("sleeper-grade").textContent="—",tfSafeRenderTradeAdvisor("sleeper-trade-advisor",sleeperTeamA,sleeperTeamB,r,{rosterA:sleeperRosterA,rosterB:sleeperRosterB}),tfSafeRenderInjuryEngine("sleeper-injury-engine",sleeperTeamA,sleeperTeamB),void($("sleeper-trade-ideas").textContent=`Build a trade from the synced ${syncedProviderName()} league to see suggested trade ideas.`);
 let l,i;s<=5?(l="FAIR TRADE",i="fair"):s<=10?(l="SLIGHT ADVANTAGE",i="slight"):s<=20?(l="ADVANTAGE",i="adv"):(l="MAJOR ADVANTAGE",i="major"),o.className=i,
@@ -419,7 +434,7 @@ const e=$("trade-finder-results");if(leagueTradeFinderBuilds=[],!syncedLeague)re
 const t=getMyRosterId(),r=$("trade-finder-team").value,n=$("trade-finder-target").value,a=Math.max(1,Math.min(3,Number($("trade-finder-max").value)||3)),s=syncedRosters.find(e=>String(e.roster_id)===String(t)),o=syncedRosters.find(e=>String(e.roster_id)===String(r)),l=rosterAssets(r).find(e=>leagueTradeFinderPlayerKey(e)===n);
 if(!s||!o||!l)return void(e.textContent="Choose a team and a valued target player first.");const i=rosterAssets(t);
 if(!i.length)return void(e.textContent="TradeForge could not find any valued players on your roster.");e.textContent="Searching your roster for the best TradeForge packages...";
-const d=[],u=e=>{const t=withSleeperModes(()=>adjustedTradeValues(e,[n])),r=diff(t.a,t.b);d.push({packagePlayers:e,values:t,difference:r,grade:leagueTradeFinderGrade(r)})};
+const d=[],u=e=>{const t=withSleeperModes(()=>adjustedTradeValues(e,[l])),r=diff(t.a,t.b);d.push({packagePlayers:e,values:t,difference:r,grade:leagueTradeFinderGrade(r)})};
 for(let e=0;e<i.length;e++)u([i[e]]);
 if(a>=2)for(let e=0;e<i.length;e++)for(let t=e+1;t<i.length;t++)u([i[e],i[t]]);
 if(a>=3)for(let e=0;e<i.length;e++)for(let t=e+1;t<i.length;t++)for(let r=t+1;r<i.length;r++)u([i[e],i[t],i[r]]);
@@ -581,3 +596,11 @@ setPage("#league"===location.hash?"league":"analyzer"),renderBoard(),render(),lo
 function calculateAdjustedTeamValue(e){return adjusted(Array.isArray(e)?e:[],[])}
 window.calculateAdjustedTeamValue=calculateAdjustedTeamValue;
 window.tradeForgeEngineRefresh=()=>{try{render()}catch(e){console.warn("TradeForge main refresh failed",e)}try{renderSleeper()}catch(e){console.warn("TradeForge synced refresh failed",e)}};
+window.tradeForgeEngineVersion="2026-09-25 engine advisor fallback fix";
+window.tradeForgeValue=value;
+window.tradeForgeSleeperValue=sleeperValue;
+window.tradeForgeAdjustedTradeValues=adjustedTradeValues;
+window.tradeForgeRenderBasicTradeAdvisor=tfRenderBasicTradeAdvisor;
+setTimeout(()=>window.tradeForgeEngineRefresh&&window.tradeForgeEngineRefresh(),50);
+setTimeout(()=>window.tradeForgeEngineRefresh&&window.tradeForgeEngineRefresh(),300);
+setTimeout(()=>window.tradeForgeEngineRefresh&&window.tradeForgeEngineRefresh(),900);
