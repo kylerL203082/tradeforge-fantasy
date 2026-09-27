@@ -16,9 +16,10 @@
   "use strict";
 
   window.TRADEFORGE_DASHBOARD_MODULE = true;
-  window.TRADEFORGE_DASHBOARD_VERSION = "2026-09-25 Dashboard Fixed v2";
+  window.TRADEFORGE_DASHBOARD_VERSION = "2026-09-27 Dashboard Ranked K-DST v3";
 
   const DASHBOARD_POSITIONS = ["QB","RB","WR","TE"];
+  const DASHBOARD_RANKED_POSITIONS = ["QB","RB","WR","TE","K","DST"];
 
   function $(id){
     return document.getElementById(id);
@@ -322,11 +323,11 @@
   }
 
   function starterValue(roster,mode=null){
-    const players = rosterPlayers(roster);
+    const players = rosterPlayers(roster).filter(player => DASHBOARD_POSITIONS.includes(player.pos));
 
     if (!players.length) return 0;
 
-    const slots = starterSlots();
+    const slots = starterSlots().filter(slot => slot !== "K" && slot !== "DST" && slot !== "DEF");
 
     if (!slots.length) {
       return players
@@ -387,14 +388,15 @@
 
   function dashboardMetrics(roster){
     const players = rosterPlayers(roster);
-    const total = players.reduce((sum,player) => sum + currentValue(player),0);
+    const strategicPlayers = players.filter(player => DASHBOARD_POSITIONS.includes(player.pos));
+    const total = strategicPlayers.reduce((sum,player) => sum + currentValue(player),0);
     const starters = starterValue(roster);
     const depth = Math.max(0,total - starters);
     const redraftStarters = starterValue(roster,"redraft");
-    const dynastyTotal = players.reduce((sum,player) => sum + modeValue(player,"dynasty"),0);
+    const dynastyTotal = strategicPlayers.reduce((sum,player) => sum + modeValue(player,"dynasty"),0);
 
     const positions = {};
-    DASHBOARD_POSITIONS.forEach(position => {
+    DASHBOARD_RANKED_POSITIONS.forEach(position => {
       positions[position] = positionValue(players,position);
     });
 
@@ -476,6 +478,7 @@
       detail:`Starting lineup ranks ${ordinal(starterRank)} and depth ranks ${ordinal(depthRank)}.`
     };
   }
+
      function dashboardTradeOpportunities(myMetrics,allMetrics){
     const leagueSize = allMetrics.length;
 
@@ -528,7 +531,7 @@
     return opportunities.slice(0,3);
   }
 
-  function renderLeagueDashboard(){
+   function renderLeagueDashboard(){
     const league = getSyncedLeague();
     const rosters = getSyncedRosters();
 
@@ -634,7 +637,7 @@
 
     setHTML(
       "dashboard-position-grid",
-      DASHBOARD_POSITIONS.map(position => {
+      DASHBOARD_RANKED_POSITIONS.map(position => {
         const rank = positionRank(metrics,position,myMetrics.rosterId);
         const value = myMetrics.positions[position] || 0;
 
