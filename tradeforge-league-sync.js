@@ -19,7 +19,7 @@
   "use strict";
 
   window.TRADEFORGE_LEAGUE_SYNC_MODULE = true;
-  window.TRADEFORGE_LEAGUE_SYNC_VERSION = "2026-09-25 League Sync Module v2";
+  window.TRADEFORGE_LEAGUE_SYNC_VERSION = "2026-09-26 League Sync Module v3";
 
   function tfLSById(id){
     return document.getElementById(id);
@@ -60,6 +60,92 @@
     }
     return null;
   }
+
+  /* =========================================================
+     SLEEPER SETTINGS COMPATIBILITY
+     The Sleeper sync handler in tradeforge-engine.js calls
+     applySleeperSettings(). Keep that function available on
+     window from this sync module so the handler can always
+     resolve it after the league data has been loaded.
+  ========================================================= */
+
+  function tfLSGetSyncedLeague(){
+    try {
+      if (typeof syncedLeague !== "undefined" && syncedLeague) return syncedLeague;
+    } catch(error) {}
+
+    return window.syncedLeague || null;
+  }
+
+  function tfLSSetSleeperSetting(name,value){
+    try {
+      if (name === "sleeperScoringMode") sleeperScoringMode = value;
+      else if (name === "sleeperQbMode") sleeperQbMode = value;
+      else if (name === "sleeperTePremiumMode") sleeperTePremiumMode = value;
+      else if (name === "sleeperLeagueMode") sleeperLeagueMode = value;
+    } catch(error) {}
+
+    try {
+      window[name] = value;
+    } catch(error) {}
+  }
+
+  function tfLSApplySleeperSettings(){
+    const league = tfLSGetSyncedLeague();
+
+    if (!league) {
+      console.warn("TradeForge League Sync: applySleeperSettings ran before syncedLeague was available.");
+      return null;
+    }
+
+    const scoring = league.scoring_settings || {};
+    const rosterPositions = Array.isArray(league.roster_positions) ? league.roster_positions : [];
+    const settings = league.settings || {};
+
+    const receptions = Number(scoring.rec || 0);
+    const teBonus = Number(scoring.bonus_rec_te || 0);
+
+    const scoringMode =
+      receptions >= 0.75
+        ? "ppr"
+        : receptions >= 0.25
+          ? "half"
+          : "standard";
+
+    const qbMode =
+      rosterPositions.includes("SUPER_FLEX")
+        ? "superflex"
+        : "oneqb";
+
+    const tePremiumMode =
+      teBonus >= 0.75
+        ? "full"
+        : teBonus >= 0.25
+          ? "half"
+          : "off";
+
+    const leagueType = Number(settings.type);
+    const leagueMode =
+      leagueType === 2
+        ? "dynasty"
+        : leagueType === 1
+          ? "keeper"
+          : "redraft";
+
+    tfLSSetSleeperSetting("sleeperScoringMode",scoringMode);
+    tfLSSetSleeperSetting("sleeperQbMode",qbMode);
+    tfLSSetSleeperSetting("sleeperTePremiumMode",tePremiumMode);
+    tfLSSetSleeperSetting("sleeperLeagueMode",leagueMode);
+
+    return {
+      scoringMode,
+      qbMode,
+      tePremiumMode,
+      leagueMode
+    };
+  }
+
+  window.applySleeperSettings = tfLSApplySleeperSettings;
 
   function tfLSParseLeagueInput(input){
     const raw = String(input || "").trim();
@@ -261,8 +347,7 @@
     const viewQuery = views.map(view => `view=${encodeURIComponent(view)}`).join("&");
     return `${base}?${viewQuery}${extra ? "&" + extra : ""}`;
   }
-
-  async function tfLSEspnFetchJson(url){
+     async function tfLSEspnFetchJson(url){
     let response;
 
     try {
@@ -312,7 +397,8 @@
 
     return tfLSEspnFetchJson(leagueUrl);
   }
-     function tfLSNormalizeEspnLeague(league,selectedTeamId){
+
+  function tfLSNormalizeEspnLeague(league,selectedTeamId){
     const teams = Array.isArray(league?.teams) ? league.teams : [];
 
     if (!teams.length) {
@@ -436,6 +522,7 @@
     try { leagueTradeFinderBuilds = []; } catch(error) { window.leagueTradeFinderBuilds = []; }
 
     const nameMap = {};
+
     Object.entries(state.players || {}).forEach(([id,player]) => {
       const name = player.full_name || [player.first_name,player.last_name].filter(Boolean).join(" ");
       if (name) nameMap[tfLSNorm(name)] = String(id);
@@ -444,15 +531,22 @@
     try { sleeperIdByName = nameMap; } catch(error) { window.sleeperIdByName = nameMap; }
 
     const user = state.selectedRoster ? { user_id:"espn-team-" + state.selectedRoster } : null;
+
     try { sleeperUser = user; } catch(error) { window.sleeperUser = user; }
   }
 
   function tfLSRosterName(roster){
     const users = (() => {
-      try { return syncedUsers || []; } catch(error) { return window.syncedUsers || []; }
+      try {
+        return syncedUsers || [];
+      } catch(error) {
+        return window.syncedUsers || [];
+      }
     })();
 
-    const user = users.find(user => String(user.user_id) === String(roster.owner_id));
+    const user = users.find(user =>
+      String(user.user_id) === String(roster.owner_id)
+    );
 
     return (
       roster?.metadata?.team_name ||
@@ -480,12 +574,20 @@
   }
 
   function tfLSRefreshSyncedUI(state){
-    tfLSPopulateRosterSelectors(state.rosters,state.selectedRoster,state.secondRoster);
+    tfLSPopulateRosterSelectors(
+      state.rosters,
+      state.selectedRoster,
+      state.secondRoster
+    );
 
     const sleeperName = tfLSById("sleeper-name");
-    if (sleeperName) sleeperName.textContent = state.league.name || "ESPN League";
+
+    if (sleeperName) {
+      sleeperName.textContent = state.league.name || "ESPN League";
+    }
 
     const sleeperModeLabel = tfLSById("sleeper-mode-label");
+
     if (sleeperModeLabel && typeof sleeperModeLabel === "object") {
       if (typeof window.sleeperModeLabel === "function") {
         sleeperModeLabel.textContent = window.sleeperModeLabel();
@@ -496,68 +598,138 @@
     }
 
     const sleeperBar = tfLSById("sleeper-bar");
-    if (sleeperBar) sleeperBar.style.display = "block";
+
+    if (sleeperBar) {
+      sleeperBar.style.display = "block";
+    }
 
     tfLSSetButtonText("sync-button","Sync Sleeper");
     tfLSSetButtonText("espn-sync-button","ESPN Synced ✓");
 
     const leagueView = tfLSById("league-view-button");
-    if (leagueView) leagueView.disabled = false;
+
+    if (leagueView) {
+      leagueView.disabled = false;
+    }
 
     const tradeFinderResults = tfLSById("trade-finder-results");
-    if (tradeFinderResults) tradeFinderResults.textContent = "Choose a target player and click Find Trades.";
 
-    tfLSSafeCall("updateSyncedProviderCopy",() => updateSyncedProviderCopy());
-    tfLSSafeCall("renderSleeper",() => renderSleeper());
+    if (tradeFinderResults) {
+      tradeFinderResults.textContent =
+        "Choose a target player and click Find Trades.";
+    }
+
+    tfLSSafeCall(
+      "updateSyncedProviderCopy",
+      () => updateSyncedProviderCopy()
+    );
+
+    tfLSSafeCall(
+      "renderSleeper",
+      () => renderSleeper()
+    );
 
     try {
       location.hash = "league";
     } catch(error) {}
 
-    tfLSSafeCall("setPage",() => setPage("league"));
-    tfLSSafeCall("buildLeaguePage",() => buildLeaguePage());
-    tfLSSafeCall("tradeForgeEngineRefresh",() => window.tradeForgeEngineRefresh && window.tradeForgeEngineRefresh());
+    tfLSSafeCall(
+      "setPage",
+      () => setPage("league")
+    );
+
+    tfLSSafeCall(
+      "buildLeaguePage",
+      () => buildLeaguePage()
+    );
+
+    tfLSSafeCall(
+      "tradeForgeEngineRefresh",
+      () => window.tradeForgeEngineRefresh && window.tradeForgeEngineRefresh()
+    );
   }
 
   function tfLSOpenEspnModal(){
     const seasonInput = tfLSById("espn-season");
-    if (seasonInput && !seasonInput.value) seasonInput.value = String(new Date().getFullYear());
+
+    if (seasonInput && !seasonInput.value) {
+      seasonInput.value = String(new Date().getFullYear());
+    }
 
     tfLSStatus("");
 
     const modal = tfLSById("espn-modal");
-    if (modal) modal.classList.add("show");
+
+    if (modal) {
+      modal.classList.add("show");
+    }
   }
 
   function tfLSCloseEspnModal(){
     const modal = tfLSById("espn-modal");
-    if (modal) modal.classList.remove("show");
+
+    if (modal) {
+      modal.classList.remove("show");
+    }
   }
 
   async function tfLSSyncEspnLeague(){
-    const parsed = tfLSParseLeagueInput(tfLSById("espn-league-input")?.value || "");
+    const parsed = tfLSParseLeagueInput(
+      tfLSById("espn-league-input")?.value || ""
+    );
+
     const leagueId = parsed.leagueId;
-    const selectedTeamId = String(tfLSById("espn-team-id")?.value || parsed.teamId || "").trim();
-    const season = Number(parsed.seasonId || tfLSById("espn-season")?.value || new Date().getFullYear());
+
+    const selectedTeamId = String(
+      tfLSById("espn-team-id")?.value ||
+      parsed.teamId ||
+      ""
+    ).trim();
+
+    const season = Number(
+      parsed.seasonId ||
+      tfLSById("espn-season")?.value ||
+      new Date().getFullYear()
+    );
 
     if (!leagueId) {
-      tfLSStatus("Enter an ESPN league ID or paste an ESPN league URL.");
+      tfLSStatus(
+        "Enter an ESPN league ID or paste an ESPN league URL."
+      );
       return;
     }
 
     if (!Number.isInteger(season) || season < 2018) {
-      tfLSStatus("Enter a valid ESPN fantasy season, 2018 or newer.");
+      tfLSStatus(
+        "Enter a valid ESPN fantasy season, 2018 or newer."
+      );
       return;
     }
 
     tfLSStatus("Syncing ESPN league...");
 
     try {
-      const league = await tfLSLoadEspnLeague(leagueId,season);
-      const state = tfLSNormalizeEspnLeague(league,selectedTeamId);
+      const league =
+        await tfLSLoadEspnLeague(
+          leagueId,
+          season
+        );
 
-      tfLSSetEspnGlobals(state,league);
-      tfLSRefreshSyncedUI(state);
+      const state =
+        tfLSNormalizeEspnLeague(
+          league,
+          selectedTeamId
+        );
+
+      tfLSSetEspnGlobals(
+        state,
+        league
+      );
+
+      tfLSRefreshSyncedUI(
+        state
+      );
+
       tfLSCloseEspnModal();
 
       window.tradeForgeEspnSyncSummary = {
@@ -574,9 +746,17 @@
         updatedAt:new Date().toISOString()
       };
 
-      tfLSStatus(`${state.league.name} synced ✓`);
-      console.log("TradeForge ESPN sync complete:",window.tradeForgeEspnSyncSummary);
+      tfLSStatus(
+        `${state.league.name} synced ✓`
+      );
+
+      console.log(
+        "TradeForge ESPN sync complete:",
+        window.tradeForgeEspnSyncSummary
+      );
+
     } catch(error) {
+
       window.tradeForgeEspnSyncSummary = {
         ok:false,
         version:window.TRADEFORGE_LEAGUE_SYNC_VERSION,
@@ -584,8 +764,15 @@
         updatedAt:new Date().toISOString()
       };
 
-      console.warn("TradeForge ESPN sync failed:",error);
-      tfLSStatus(error.message || "Unable to sync this ESPN league.");
+      console.warn(
+        "TradeForge ESPN sync failed:",
+        error
+      );
+
+      tfLSStatus(
+        error.message ||
+        "Unable to sync this ESPN league."
+      );
     }
   }
 
@@ -594,26 +781,71 @@
     const espnClose = tfLSById("espn-modal-close");
     const espnConnect = tfLSById("espn-connect-league");
 
-    if (espnButton) espnButton.onclick = tfLSOpenEspnModal;
-    if (espnClose) espnClose.onclick = tfLSCloseEspnModal;
-    if (espnConnect) espnConnect.onclick = tfLSSyncEspnLeague;
+    if (espnButton) {
+      espnButton.onclick = tfLSOpenEspnModal;
+    }
 
-    window.tradeForgeOpenEspnModal = tfLSOpenEspnModal;
-    window.tradeForgeSyncEspnLeague = tfLSSyncEspnLeague;
-    window.syncEspnLeague = tfLSSyncEspnLeague;
+    if (espnClose) {
+      espnClose.onclick = tfLSCloseEspnModal;
+    }
+
+    if (espnConnect) {
+      espnConnect.onclick = tfLSSyncEspnLeague;
+    }
+
+    /*
+      Re-register this every time handlers are installed.
+
+      This is intentional because index.html or another TradeForge
+      script may define or replace applySleeperSettings after this
+      file first executes.
+    */
+    window.applySleeperSettings =
+      tfLSApplySleeperSettings;
+
+    window.tradeForgeOpenEspnModal =
+      tfLSOpenEspnModal;
+
+    window.tradeForgeSyncEspnLeague =
+      tfLSSyncEspnLeague;
+
+    window.syncEspnLeague =
+      tfLSSyncEspnLeague;
   }
 
   window.TradeForgeLeagueSync = {
     version:window.TRADEFORGE_LEAGUE_SYNC_VERSION,
+    applySleeperSettings:tfLSApplySleeperSettings,
     openEspnModal:tfLSOpenEspnModal,
     syncEspnLeague:tfLSSyncEspnLeague,
     parseLeagueInput:tfLSParseLeagueInput
   };
 
   tfLSInstallHandlers();
-  document.addEventListener("DOMContentLoaded",tfLSInstallHandlers);
-  window.addEventListener("load",tfLSInstallHandlers);
-  setTimeout(tfLSInstallHandlers,50);
-  setTimeout(tfLSInstallHandlers,250);
-  setTimeout(tfLSInstallHandlers,750);
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    tfLSInstallHandlers
+  );
+
+  window.addEventListener(
+    "load",
+    tfLSInstallHandlers
+  );
+
+  setTimeout(
+    tfLSInstallHandlers,
+    50
+  );
+
+  setTimeout(
+    tfLSInstallHandlers,
+    250
+  );
+
+  setTimeout(
+    tfLSInstallHandlers,
+    750
+  );
+
 })();
