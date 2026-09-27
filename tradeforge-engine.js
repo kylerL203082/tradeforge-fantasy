@@ -303,7 +303,7 @@ function renderSleeper(){clearSearchResults("sleeper-"),renderSleeperTeam("A"),r
 function sleeperCalculate(){withSleeperModes(()=>{
   const e=base(sleeperTeamA),t=base(sleeperTeamB),r=adjustedTradeValues(sleeperTeamA,sleeperTeamB),n=r.a,a=r.b,s=diff(n,a);
 $("sleeper-base-a").textContent=e.toFixed(1),$("sleeper-base-b").textContent=t.toFixed(1),$("sleeper-adj-a").textContent=n.toFixed(1),$("sleeper-adj-b").textContent=a.toFixed(1),$("sleeper-marker").style.left=(n+a?Math.max(5,Math.min(95,a/(n+a)*100)):50)+"%";
-const o=$("sleeper-verdict");if(o.className="",!sleeperTeamA.length||!sleeperTeamB.length)return o.innerHTML="\nBuild a Trade\n<small>Add players from both synced rosters.</small>\n",$("sleeper-grade").textContent="—",tfSafeRenderTradeAdvisor("sleeper-trade-advisor",sleeperTeamA,sleeperTeamB,r,{rosterA:sleeperRosterA,rosterB:sleeperRosterB}),tfSafeRenderInjuryEngine("sleeper-injury-engine",sleeperTeamA,sleeperTeamB),void($("sleeper-trade-ideas").textContent=`Build a trade from the synced ${syncedProviderName()} league to see suggested trade ideas.`);
+  const o=$("sleeper-verdict");if(o.className="",!sleeperTeamA.length||!sleeperTeamB.length)return o.innerHTML="\nBuild a Trade\n<small>Add players from both synced rosters.</small>\n",$("sleeper-grade").textContent="—",tfSafeRenderTradeAdvisor("sleeper-trade-advisor",sleeperTeamA,sleeperTeamB,r,{rosterA:sleeperRosterA,rosterB:sleeperRosterB}),tfSafeRenderInjuryEngine("sleeper-injury-engine",sleeperTeamA,sleeperTeamB),void($("sleeper-trade-ideas").textContent=`Build a trade from the synced ${syncedProviderName()} league to see suggested trade ideas.`);
 let l,i;s<=5?(l="FAIR TRADE",i="fair"):s<=10?(l="SLIGHT ADVANTAGE",i="slight"):s<=20?(l="ADVANTAGE",i="adv"):(l="MAJOR ADVANTAGE",i="major"),o.className=i,
 o.innerHTML=`\n${l}\n<small>\n${s.toFixed(1)}% difference\n${s>5?" • "+(n>a?"Team A":"Team B")+" has more adjusted value":""}\n</small>\n`,
 $("sleeper-grade").textContent=s<=5?"A+":s<=10?"A":s<=20?"B":s<=30?"C":s<=40?"D":"F",tfSafeRenderTradeAdvisor("sleeper-trade-advisor",sleeperTeamA,sleeperTeamB,r,{rosterA:sleeperRosterA,rosterB:sleeperRosterB}),tfSafeRenderInjuryEngine("sleeper-injury-engine",sleeperTeamA,sleeperTeamB),tfSafeSleeperTradeIdeas(n,a)
@@ -476,6 +476,21 @@ window.addEventListener("hashchange",()=>{setPage("#league"===location.hash?"lea
 const modal=$("modal");
 async function fetchJSON(e){const t=await fetch(e);if(!t.ok)throw new Error("Sleeper request failed ("+t.status+").");return t.json()}
 async function fetchJSONSafe(e,t=[]){try{return await fetchJSON(e)}catch{return t}}
+function tfEngineApplySleeperSettings(){
+const e=syncedLeague?.scoring_settings||{},t=syncedLeague?.roster_positions||[],r=syncedLeague?.settings||{},n=Number(e.rec||0),a=Number(e.bonus_rec_te||0);
+sleeperScoringMode=n>=.75?"ppr":n>=.25?"half":"standard",sleeperQbMode=t.includes("SUPER_FLEX")||t.filter(e=>"QB"===e).length>1?"superflex":"oneqb",sleeperTePremiumMode=a>=.75?"full":a>=.25?"half":"off",sleeperLeagueMode=2===Number(r.type)?"dynasty":1===Number(r.type)?"keeper":"redraft"
+}
+function rosterName(e){const t=syncedUsers.find(t=>String(t.user_id)===String(e.owner_id));return t?.metadata?.team_name||t?.display_name||t?.username||"Roster "+e.roster_id}
+function tfEngineBuildSleeperRosterSelectors(){
+const e=syncedRosters.map(e=>({id:String(e.roster_id),owner:String(e.owner_id||""),name:rosterName(e)})),t=e.map(e=>`\n<option value="${e.id}">\n${esc(e.name)}\n</option>\n`).join("");
+$("sleeper-roster-a").innerHTML=t,$("sleeper-roster-b").innerHTML=t;
+const r=e.find(e=>e.owner===String(sleeperUser?.user_id));
+sleeperRosterA=r?.id||e[0]?.id||"",sleeperRosterB=e.find(e=>e.id!==sleeperRosterA)?.id||sleeperRosterA,$("sleeper-roster-a").value=sleeperRosterA,$("sleeper-roster-b").value=sleeperRosterB
+}
+function tfEngineBuildSleeperNameMap(){sleeperIdByName={},Object.entries(sleeperPlayers||{}).forEach(([e,t])=>{const r=t?.full_name||[t?.first_name,t?.last_name].filter(Boolean).join(" ");r&&(sleeperIdByName[norm(r)]=String(e))})}
+window.applySleeperSettings=tfEngineApplySleeperSettings;
+window.buildSleeperRosterSelectors=tfEngineBuildSleeperRosterSelectors;
+window.buildSleeperNameMap=tfEngineBuildSleeperNameMap;
 $("sync-button").onclick=()=>{modal.classList.add("show")};
 $("modal-close").onclick=()=>{modal.classList.remove("show")};
 $("find-leagues").onclick=async()=>{
@@ -492,7 +507,7 @@ const e=$("league-picker").value;
 if(e){$("status").textContent="Syncing league...";try{
 [syncedLeague,syncedRosters,syncedUsers,sleeperPlayers]=await Promise.all([fetchJSON(`https://api.sleeper.app/v1/league/${e}`),fetchJSON(`https://api.sleeper.app/v1/league/${e}/rosters`),fetchJSON(`https://api.sleeper.app/v1/league/${e}/users`),fetchJSON("https://api.sleeper.app/v1/players/nfl?active=true")]),
 syncedProvider="sleeper",espnLeagueRaw=null,sleeperTrendMarket={},leagueTradeFinderBuilds=[],$("trade-finder-results").textContent="Choose a target player and click Find Trades.",
-applySleeperSettings(),buildSleeperRosterSelectors(),buildSleeperNameMap(),sleeperTeamA=[],sleeperTeamB=[],$("sleeper-name").textContent=syncedLeague.name||"Sleeper League",
+tfEngineApplySleeperSettings(),tfEngineBuildSleeperRosterSelectors(),tfEngineBuildSleeperNameMap(),sleeperTeamA=[],sleeperTeamB=[],$("sleeper-name").textContent=syncedLeague.name||"Sleeper League",
 $("sleeper-mode-label").textContent=sleeperModeLabel(),updateSyncedProviderCopy(),$("sleeper-bar").style.display="block",$("sync-button").textContent="Sleeper Synced ✓",
 $("espn-sync-button").textContent="Sync ESPN",$("league-view-button").disabled=!1,modal.classList.remove("show"),renderSleeper(),location.hash="league",setPage("league"),
 TRADEFORGE_ENGINE.useSleeperTrendingMarket&&refreshSleeperTrends()
@@ -546,18 +561,6 @@ async function loadEspnLeague(e,t){
 const r=`https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/${encodeURIComponent(t)}/segments/0/leagues/${encodeURIComponent(e)}`,n=await fetchEspnJSON(r+"?view=mSettings&view=mTeam&view=mStatus"),a=Number(n?.scoringPeriodId||n?.status?.currentMatchupPeriod||n?.status?.latestScoringPeriod||1);
 return fetchEspnJSON(r+"?view=mSettings&view=mTeam&view=mRoster&view=mDraftDetail&view=mStatus&scoringPeriodId="+encodeURIComponent(a))
 }
-function applySleeperSettings(){
-const e=syncedLeague?.scoring_settings||{},t=syncedLeague?.roster_positions||[],r=syncedLeague?.settings||{},n=Number(e.rec||0),a=Number(e.bonus_rec_te||0);
-sleeperScoringMode=n>=.75?"ppr":n>=.25?"half":"standard",sleeperQbMode=t.includes("SUPER_FLEX")||t.filter(e=>"QB"===e).length>1?"superflex":"oneqb",sleeperTePremiumMode=a>=.75?"full":a>=.25?"half":"off",sleeperLeagueMode=2===Number(r.type)?"dynasty":1===Number(r.type)?"keeper":"redraft"
-}
-function rosterName(e){const t=syncedUsers.find(t=>String(t.user_id)===String(e.owner_id));return t?.metadata?.team_name||t?.display_name||t?.username||"Roster "+e.roster_id}
-function buildSleeperRosterSelectors(){
-const e=syncedRosters.map(e=>({id:String(e.roster_id),owner:String(e.owner_id||""),name:rosterName(e)})),t=e.map(e=>`\n<option value="${e.id}">\n${esc(e.name)}\n</option>\n`).join("");
-$("sleeper-roster-a").innerHTML=t,$("sleeper-roster-b").innerHTML=t;
-const r=e.find(e=>e.owner===String(sleeperUser?.user_id));
-sleeperRosterA=r?.id||e[0]?.id||"",sleeperRosterB=e.find(e=>e.id!==sleeperRosterA)?.id||sleeperRosterA,$("sleeper-roster-a").value=sleeperRosterA,$("sleeper-roster-b").value=sleeperRosterB
-}
-function buildSleeperNameMap(){sleeperIdByName={},Object.entries(sleeperPlayers||{}).forEach(([e,t])=>{const r=t?.full_name||[t?.first_name,t?.last_name].filter(Boolean).join(" ");r&&(sleeperIdByName[norm(r)]=String(e))})}
 async function refreshSleeperTrends(){
 const[e,t]=await Promise.all([fetchJSONSafe("https://api.sleeper.app/v1/players/nfl/trending/add?lookback_hours=24&limit=100",[]),fetchJSONSafe("https://api.sleeper.app/v1/players/nfl/trending/drop?lookback_hours=24&limit=100",[])]),r=Math.max(1,...e.map(e=>Number(e.count||0))),n=Math.max(1,...t.map(e=>Number(e.count||0))),a=new Set([...e.map(e=>String(e.player_id)),...t.map(e=>String(e.player_id))]);
 sleeperTrendMarket={},a.forEach(a=>{const s=Number(e.find(e=>String(e.player_id)===a)?.count||0)/r,o=Number(t.find(e=>String(e.player_id)===a)?.count||0)/n;sleeperTrendMarket[a]=tfClamp((s-o)*TRADEFORGE_ENGINE.marketAdjustmentMax,-TRADEFORGE_ENGINE.marketAdjustmentMax,TRADEFORGE_ENGINE.marketAdjustmentMax)}),syncedLeague&&buildLeaguePage()
@@ -575,7 +578,7 @@ const e=parseEspnLeagueInput($("espn-league-input").value),t=e.leagueId,r=$("esp
 if(t)if(!Number.isInteger(n)||n<2018)$("espn-status").textContent="Enter a valid ESPN fantasy season (2018 or newer).";else{
 $("espn-status").textContent="Syncing ESPN league...";
 try{
-const e=await loadEspnLeague(t,n);normalizeEspnLeague(e,r),syncedProvider="espn",espnLeagueRaw=e,applyEspnSettings(e),buildSleeperRosterSelectors(),buildSleeperNameMap(),
+const e=await loadEspnLeague(t,n);normalizeEspnLeague(e,r),syncedProvider="espn",espnLeagueRaw=e,applyEspnSettings(e),tfEngineBuildSleeperRosterSelectors(),tfEngineBuildSleeperNameMap(),
 sleeperTeamA=[],sleeperTeamB=[],sleeperTrendMarket={},leagueTradeFinderBuilds=[],$("trade-finder-results").textContent="Choose a target player and click Find Trades.",
 $("sleeper-name").textContent=syncedLeague.name||"ESPN League",$("sleeper-mode-label").textContent=sleeperModeLabel(),updateSyncedProviderCopy(),
 $("sleeper-bar").style.display="block",$("sync-button").textContent="Sync Sleeper",$("espn-sync-button").textContent="ESPN Synced ✓",$("league-view-button").disabled=!1,
@@ -596,7 +599,7 @@ setPage("#league"===location.hash?"league":"analyzer"),renderBoard(),render(),lo
 function calculateAdjustedTeamValue(e){return adjusted(Array.isArray(e)?e:[],[])}
 window.calculateAdjustedTeamValue=calculateAdjustedTeamValue;
 window.tradeForgeEngineRefresh=()=>{try{render()}catch(e){console.warn("TradeForge main refresh failed",e)}try{renderSleeper()}catch(e){console.warn("TradeForge synced refresh failed",e)}};
-window.tradeForgeEngineVersion="2026-09-25 engine advisor fallback fix";
+window.tradeForgeEngineVersion="2026-09-26 engine Sleeper sync fix v2";
 window.tradeForgeValue=value;
 window.tradeForgeSleeperValue=sleeperValue;
 window.tradeForgeAdjustedTradeValues=adjustedTradeValues;
