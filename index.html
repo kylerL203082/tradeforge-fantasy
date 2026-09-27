@@ -940,15 +940,13 @@ Private leagues may need an authenticated server connection, which this standalo
 <script src="tradeforge-ai-advisor.js"></script>
 <script src="tradeforge-dashboard.js"></script>
 <script src="tradeforge-engine.js"></script>
-<script src="tradeforge-league-sync.js"></script>
-<script src="tradeforge-trade-finder.js"></script>
-
 
 <script>
 
 /* =========================================================
 SLEEPER LEAGUE SETTINGS
 Compatibility function required by tradeforge-league-sync.js
+Must load after tradeforge-engine.js and before tradeforge-league-sync.js
 ========================================================= */
 
 function applySleeperSettings(){
@@ -1032,6 +1030,13 @@ set.type
 
 }
 
+</script>
+
+<script src="tradeforge-league-sync.js"></script>
+<script src="tradeforge-trade-finder.js"></script>
+
+
+<script>
 
 /* =========================================================
 ESPN BUTTON / MODAL WIRING
