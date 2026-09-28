@@ -4,8 +4,6 @@
 */
 
 window.playerDatabase = [
-window.playerDatabase = [
-window.playerDatabase = [
 ["RB","Jahmyr Gibbs",100,100,100],
 ["RB","Bijan Robinson",96.7,97.9,100],
 ["WR","Ja'Marr Chase",96.1,96.7,97.7],
@@ -229,7 +227,7 @@ window.playerDatabase = [
 ["DST","Detroit Lions DST",5.5,4.6,3],
 ["WR","Jaylin Noel",5.4,7.2,10.5],
 ["DST","Los Angeles Chargers DST",5.4,4.6,3],
-   ["TE","Jonnu Smith",5.4,4.6,3.1],
+["TE","Jonnu Smith",5.4,4.6,3.1],
 ["WR","Caleb Douglas",5.3,8.4,14.2],
 ["QB","Geno Smith",5.3,5.5,5.9],
 ["WR","Malik Washington",5.2,7.5,11.9],
@@ -246,7 +244,7 @@ window.playerDatabase = [
 ["K","Jake Bates",4.8,4,2.6],
 ["QB","Ty Simpson",4.8,10.7,17.9],
 ["RB","Jerome Ford",4.8,4.6,4.2],
-["WR","Ted Hurst III",4.7,7.2,11.9],
+   ["WR","Ted Hurst III",4.7,7.2,11.9],
 ["RB","Justice Hill",4.7,4.9,5.4],
 ["RB","Audric Estime",4.7,5.8,8],
 ["K","Chase McLaughlin",4.7,4,2.6],
@@ -452,7 +450,6 @@ window.playerDatabase = [
 ["WR","Chimere Dike",0.2,3.1,6.6],
 ["WR","Brandin Cooks",0.1,0.1,0.1],
 ["WR","Mack Hollins",0.1,0.3,0.5]
-].map((r,i)=>({rank:i+1,pos:r[0],name:r[1],redraft:r[2],keeper:r[3],dynasty:r[4]}));
 ].map((r,i)=>({rank:i+1,pos:r[0],name:r[1],redraft:r[2],keeper:r[3],dynasty:r[4]}));
 
 window.picks = [["2027 Early 1st",52,58],["2027 Mid 1st",44,50],["2027 Late 1st",36,42],["2027 Early 2nd",26,29],["2027 Mid 2nd",22,25],["2027 Late 2nd",18,21],["2027 Early 3rd",13,15],["2027 Mid 3rd",10,12],["2027 Late 3rd",7,9],["2028 Early 1st",47,53],["2028 Mid 1st",40,46],["2028 Late 1st",33,39],["2028 Early 2nd",23,26],["2028 Mid 2nd",19,22],["2028 Late 2nd",15,18],["2028 Early 3rd",11,13],["2028 Mid 3rd",8,10],["2028 Late 3rd",5,7]].map((e,t)=>({
